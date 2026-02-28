@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Mark Concepts</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #FAFAF8;
+    color: #111;
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: 60px;
+    border-bottom: 2px solid #111;
+    padding-bottom: 24px;
+  }
+
+  .page-header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .page-header h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header p {
+    font-size: 16px;
+    color: #666;
+    margin-top: 8px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .concept-section {
+    margin-bottom: 80px;
+  }
+
+  .concept-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .concept-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5B8DEF;
+  }
+
+  .concept-name {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .concept-description {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 32px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .mark-row {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .mark-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .mark-container {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    background: #fff;
+  }
+
+  .mark-container.dark {
+    background: #111;
+    border-color: #333;
+  }
+
+  .mark-container.small {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+  }
+
+  .mark-container.tiny {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .mark-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .lockup-row {
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 32px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .lockup.dark {
+    background: #111;
+    border-color: #333;
+  }
+
+  .lockup-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #111;
+  }
+
+  .lockup.dark .lockup-text {
+    color: #FAFAF8;
+  }
+
+  .divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 60px 0;
+  }
+
+  .notes {
+    background: #f5f5f3;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-top: 24px;
+    max-width: 640px;
+  }
+
+  .notes h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .notes p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .size-strip {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    margin-top: 24px;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .comparison-card {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .comparison-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Cipher / Brand Mark Exploration</h1>
+  <h2>Four Directions for the Mark</h2>
+  <p>Each concept draws from the Signal visual identity. React to the direction and energy, not pixel perfection — a designer will refine whichever direction resonates.</p>
+</div>
+
+<!-- ==================== CONCEPT 1: SIGNAL RESOLVE ==================== -->
+<div class="concept-section">
+  <div class="concept-header">
+    <span class="concept-number">01</span>
+    <span class="concept-name">Signal Resolve</span>
+  </div>
+  <p class="concept-description">
+    A waveform that transitions from noise (chaotic) to signal (clean). The core Cipher metaphor in a single mark — finding the pattern in chaos. The clean wave emerges from static.
+  </p>
+
+  <div class="mark-row">
+    <div class="mark-card">
+      <div class="mark-container">
+        <svg width="120" height="80" viewBox="0 0 120 80">
+          <!-- Noise phase (left) -->
+          <polyline points="0,40 4,35 8,48 12,28 16,52 20,30 24,45 28,33 32,47 36,35 40,42"
+            fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round"/>
+          <!-- Transition -->
+          <polyline points="40,42 46,38 52,44 58,36"
+            fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+          <!-- Clean signal (right) -->
+          <polyline points="58,36 66,50 74,22 82,54 90,18 98,52 106,24 114,48 120,30"
+            fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Accent dot at signal peak -->
+          <circle cx="90" cy="18" r="3.5" fill="#5B8DEF"/>
+        </svg>
+      </div>
+      <span class="mark-label">Light</span>
+    </div>
+
+    <div class="mark-card">
+      <div class="mark-container dark">
+        <svg width="120" height="80" viewBox="0 0 120 80">
+          <polyline points="0,40 4,35 8,48 12,28 16,52 20,30 24,45 28,33 32,47 36,35 40,42"
+            fill="none" stroke="#444" stroke-width="2" stroke-linecap="round"/>
+          <polyline points="40,42 46,38 52,44 58,36"
+            fill="none" stroke="#777" stroke-width="2" stroke-linecap="round"/>
+          <polyline points="58,36 66,50 74,22 82,54 90,18 98,52 106,24 114,48 120,30"
+            fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="90" cy="18" r="3.5" fill="#5B8DEF"/>
+        </svg>
+      </div>
+      <span class="mark-label">Dark</span>
+    </div>
+
+    <div class="mark-card">
+      <div class="mark-container small">
+        <svg width="36" height="24" viewBox="0 0 120 80">
+          <polyline points="0,40 4,35 8,48 12,28 16,52 20,30 24,45 28,33 32,47 36,35 40,42"
+            fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+          <polyline points="40,42 46,38 52,44 58,36"
+            fill="none" stroke="#888" stroke-width="4" stroke-linecap="round"/>
+          <polyline points="58,36 66,50 74,22 82,54 90,18 98,52 106,24 114,48 120,30"
+            fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="90" cy="18" r="6" fill="#5B8DEF"/>
+        </svg>
+      </div>
+      <span class="mark-label">Favicon</span>
+    </div>
+  </div>
+
+  <!-- Lockup -->
+  <div class="lockup-row">
+    <div class="lockup">
+      <svg width="80" height="40" viewBox="0 0 120 80">
+        <polyline points="0,40 4,35 8,48 12,28 16,52 20,30 24,45 28,33 32,47 36,35 40,42"
+          fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round"/>
+        <polyline points="40,42 46,38 52,44 58,36"
+          fill="none" stroke="#888" stroke-width="2.5" stroke-linecap="round"/>
+        <polyline points="58,36 66,50 74,22 82,54 90,18 98,52 106,24 114,48 120,30"
+          fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="90" cy="18" r="4" fill="#5B8DEF"/>
+      </svg>
+      <span class="lockup-text">CIPHER</span>
+    </div>
+    <div class="lockup dark">
+      <svg width="80" height="40" viewBox="0 0 120 80">
+        <polyline points="0,40 4,35 8,48 12,28 16,52 20,30 24,45 28,33 32,47 36,35 40,42"
+          fill="none" stroke="#444" stroke-width="2.5" stroke-linecap="round"/>
+        <polyline points="40,42 46,38 52,44 58,36"
+          fill="none" stroke="#777" stroke-width="2.5" stroke-linecap="round"/>
+        <polyline points="58,36 66,50 74,22 82,54 90,18 98,52 106,24 114,48 120,30"
+          fill="none" stroke="#FAFAF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="90" cy="18" r="4" fill="#5B8DEF"/>
+      </svg>
+      <span class="lockup-text" style="color:#FAFAF8">CIPHER</span>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h4>Design Notes</h4>
+    <p>The mark tells the brand story: noise becomes signal. The blue accent dot marks the peak — the moment of clarity. Works as a standalone mark or paired with the wordmark. Could animate beautifully (noise draws first, then resolves into clean wave).</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== CONCEPT 2: PULSE C ==================== -->
+<div class="concept-section">
+  <div class="concept-header">
+    <span class="concept-number">02</span>
+    <span class="concept-name">Pulse C</span>
+  </div>
+  <p class="concept-description">
+    The letter C formed by a heartbeat/signal pulse. Combines the brand initial with vital signs energy. The sharp spike gives it edge — not a soft wellness curve.
+  </p>
+
+  <div class="mark-row">
+    <div class="mark-card">
+      <div class="mark-container">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <!-- C shape made from pulse line -->
+          <path d="M 70,20 Q 50,8 30,20 Q 10,35 10,50 Q 10,65 30,80 Q 50,92 70,80"
+            fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+          <!-- Pulse spike at the top -->
+          <polyline points="60,20 64,20 68,8 72,32 76,16 80,20"
+            fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Pulse spike at the bottom -->
+          <polyline points="60,80 64,80 68,68 72,92 76,76 80,80"
+            fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Color accents -->
+          <circle cx="68" cy="8" r="2.5" fill="#EF5A5A"/>
+          <circle cx="68" cy="68" r="2.5" fill="#3ECF8E"/>
+        </svg>
+      </div>
+      <span class="mark-label">Light</span>
+    </div>
+
+    <div class="mark-card">
+      <div class="mark-container dark">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <path d="M 70,20 Q 50,8 30,20 Q 10,35 10,50 Q 10,65 30,80 Q 50,92 70,80"
+            fill="none" stroke="#FAFAF8" stroke-width="3" stroke-linecap="round"/>
+          <polyline points="60,20 64,20 68,8 72,32 76,16 80,20"
+            fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="60,80 64,80 68,68 72,92 76,76 80,80"
+            fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="68" cy="8" r="2.5" fill="#EF5A5A"/>
+          <circle cx="68" cy="68" r="2.5" fill="#3ECF8E"/>
+        </svg>
+      </div>
+      <span class="mark-label">Dark</span>
+    </div>
+
+    <div class="mark-card">
+      <div class="mark-container small">
+        <svg width="36" height="36" viewBox="0 0 100 100">
+          <path d="M 70,20 Q 50,8 30,20 Q 10,35 10,50 Q 10,65 30,80 Q 50,92 70,80"
+            fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+          <polyline points="60,20 64,20 68,8 72,32 76,16 80,20"
+            fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="60,80 64,80 68,68 72,92 76,76 80,80"
+            fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="68" cy="8" r="5" fill="#EF5A5A"/>
+          <circle cx="68" cy="68" r="5" fill="#3ECF8E"/>
+        </svg>
+      </div>
+      <span class="mark-label">Favicon</span>
+    </div>
+  </div>
+
+  <div class="lockup-row">
+    <div class="lockup">
+      <svg width="44" height="44" viewBox="0 0 100 100">
+        <path d="M 70,20 Q 50,8 30,20 Q 10,35 10,50 Q 10,65 30,80 Q 50,92 70,80"
+          fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+        <polyline points="60,20 64,20 68,8 72,32 76,16 80,20"
+          fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="60,80 64,80 68,68 72,92 76,76 80,80"
+          fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="68" cy="8" r="3" fill="#EF5A5A"/>
+        <circle cx="68" cy="68" r="3" fill="#3ECF8E"/>
+      </svg>
+      <span class="lockup-text">CIPHER</span>
+    </div>
+    <div class="lockup dark">
+      <svg width="44" height="44" viewBox="0 0 100 100">
+        <path d="M 70,20 Q 50,8 30,20 Q 10,35 10,50 Q 10,65 30,80 Q 50,92 70,80"
+          fill="none" stroke="#FAFAF8" stroke-width="3.5" stroke-linecap="round"/>
+        <polyline points="60,20 64,20 68,8 72,32 76,16 80,20"
+          fill="none" stroke="#FAFAF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="60,80 64,80 68,68 72,92 76,76 80,80"
+          fill="none" stroke="#FAFAF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="68" cy="8" r="3" fill="#EF5A5A"/>
+        <circle cx="68" cy="68" r="3" fill="#3ECF8E"/>
+      </svg>
+      <span class="lockup-text" style="color:#FAFAF8">CIPHER</span>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h4>Design Notes</h4>
+    <p>Lettermark that doubles as a health signal. The open C with pulse spikes at both endpoints gives it life and energy — not a static letter. Red dot (pulse/alive) at top, green dot (health/growth) at bottom. Immediately reads as health + data without being clinical.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== CONCEPT 3: DECODE BARS ==================== -->
+<div class="concept-section">
+  <div class="concept-header">
+    <span class="concept-number">03</span>
+    <span class="concept-name">Decode Bars</span>
+  </div>
+  <p class="concept-description">
+    Vertical frequency bars — like a spectrum analyzer or barcode — that suggest data being read and interpreted. The bars use the brand colors as channels. Feels technical, alive, and codified.
+  </p>
+
+  <div class="mark-row">
+    <div class="mark-card">
+      <div class="mark-container">
+        <svg width="100" height="80" viewBox="0 0 100 80">
+          <!-- 7 vertical bars at different heights, brand colors -->
+          <rect x="8" y="34" width="6" height="32" rx="2" fill="#ccc"/>
+          <rect x="20" y="18" width="6" height="48" rx="2" fill="#5B8DEF"/>
+          <rect x="32" y="28" width="6" height="38" rx="2" fill="#ccc"/>
+          <rect x="44" y="10" width="6" height="56" rx="2" fill="#111"/>
+          <rect x="56" y="22" width="6" height="44" rx="2" fill="#3ECF8E"/>
+          <rect x="68" y="30" width="6" height="36" rx="2" fill="#ccc"/>
+          <rect x="80" y="14" width="6" height="52" rx="2" fill="#EF5A5A"/>
+        </svg>
+      </div>
+      <span class="mark-label">Light</span>
+    </div>
+
+    <div class="mark-card">
+      <div class="mark-container dark">
+        <svg width="100" height="80" viewBox="0 0 100 80">
+          <rect x="8" y="34" width="6" height="32" rx="2" fill="#444"/>
+          <rect x="20" y="18" width="6" height="48" rx="2" fill="#5B8DEF"/>
+          <rect x="32" y="28" width="6" height="38" rx="2" fill="#444"/>
+          <rect x="44" y="10" width="6" height="56" rx="2" fill="#FAFAF8"/>
+          <rect x="56" y="22" width="6" height="44" rx="2" fill="#3ECF8E"/>
+          <rect x="68" y="30" width="6" height="36" rx="2" fill="#444"/>
+          <rect x="80" y="14" width="6" height="52" rx="2" fill="#EF5A5A"/>
+        </svg>
+      </div>
+      <span class="mark-label">Dark</span>
+    </div>
+
+    <div class="mark-card">
+      <div class="mark-container small">
+        <svg width="36" height="28" viewBox="0 0 100 80">
+          <rect x="8" y="34" width="8" height="32" rx="2" fill="#ccc"/>
+          <rect x="22" y="18" width="8" height="48" rx="2" fill="#5B8DEF"/>
+          <rect x="36" y="28" width="8" height="38" rx="2" fill="#ccc"/>
+          <rect x="50" y="10" width="8" height="56" rx="2" fill="#111"/>
+          <rect x="64" y="22" width="8" height="44" rx="2" fill="#3ECF8E"/>
+          <rect x="78" y="30" width="8" height="36" rx="2" fill="#ccc"/>
+        </svg>
+      </div>
+      <span class="mark-label">Favicon</span>
+    </div>
+  </div>
+
+  <div class="lockup-row">
+    <div class="lockup">
+      <svg width="56" height="36" viewBox="0 0 100 80">
+        <rect x="8" y="34" width="6" height="32" rx="2" fill="#ccc"/>
+        <rect x="20" y="18" width="6" height="48" rx="2" fill="#5B8DEF"/>
+        <rect x="32" y="28" width="6" height="38" rx="2" fill="#ccc"/>
+        <rect x="44" y="10" width="6" height="56" rx="2" fill="#111"/>
+        <rect x="56" y="22" width="6" height="44" rx="2" fill="#3ECF8E"/>
+        <rect x="68" y="30" width="6" height="36" rx="2" fill="#ccc"/>
+        <rect x="80" y="14" width="6" height="52" rx="2" fill="#EF5A5A"/>
+      </svg>
+      <span class="lockup-text">CIPHER</span>
+    </div>
+    <div class="lockup dark">
+      <svg width="56" height="36" viewBox="0 0 100 80">
+        <rect x="8" y="34" width="6" height="32" rx="2" fill="#444"/>
+        <rect x="20" y="18" width="6" height="48" rx="2" fill="#5B8DEF"/>
+        <rect x="32" y="28" width="6" height="38" rx="2" fill="#444"/>
+        <rect x="44" y="10" width="6" height="56" rx="2" fill="#FAFAF8"/>
+        <rect x="56" y="22" width="6" height="44" rx="2" fill="#3ECF8E"/>
+        <rect x="68" y="30" width="6" height="36" rx="2" fill="#444"/>
+        <rect x="80" y="14" width="6" height="52" rx="2" fill="#EF5A5A"/>
+      </svg>
+      <span class="lockup-text" style="color:#FAFAF8">CIPHER</span>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h4>Design Notes</h4>
+    <p>Spectrum/barcode energy — data being decoded. Each colored bar represents a health channel (blue = data/intelligence, green = health/growth, red = energy/pulse). The muted bars are noise; the colored ones are signal. Has a code-breaking quality that maps directly to the name. Could animate as bars rising and falling like a live readout.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== CONCEPT 4: SCAN DOT ==================== -->
+<div class="concept-section">
+  <div class="concept-header">
+    <span class="concept-number">04</span>
+    <span class="concept-name">Scan Dot</span>
+  </div>
+  <p class="concept-description">
+    A single point with radiating signal rings — like radar, sonar, or a scanning pulse finding a pattern. Minimal, iconic, scales to any size. The dot is the person; the rings are the data being decoded around them.
+  </p>
+
+  <div class="mark-row">
+    <div class="mark-card">
+      <div class="mark-container">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <!-- Outer rings -->
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#e8e8e6" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#ddd" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="20" fill="none" stroke="#ccc" stroke-width="1.5"/>
+          <!-- Signal arcs (partial rings that show "decoded" sections) -->
+          <path d="M 50 10 A 40 40 0 0 1 85 30" fill="none" stroke="#5B8DEF" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 15 55 A 40 40 0 0 1 18 35" fill="none" stroke="#3ECF8E" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 75 78 A 40 40 0 0 1 50 90" fill="none" stroke="#E8B931" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Center dot -->
+          <circle cx="50" cy="50" r="6" fill="#111"/>
+          <circle cx="50" cy="50" r="3" fill="#FAFAF8"/>
+        </svg>
+      </div>
+      <span class="mark-label">Light</span>
+    </div>
+
+    <div class="mark-card">
+      <div class="mark-container dark">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#333" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#2a2a2a" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="20" fill="none" stroke="#222" stroke-width="1.5"/>
+          <path d="M 50 10 A 40 40 0 0 1 85 30" fill="none" stroke="#5B8DEF" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 15 55 A 40 40 0 0 1 18 35" fill="none" stroke="#3ECF8E" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 75 78 A 40 40 0 0 1 50 90" fill="none" stroke="#E8B931" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="50" cy="50" r="6" fill="#FAFAF8"/>
+          <circle cx="50" cy="50" r="3" fill="#111"/>
+        </svg>
+      </div>
+      <span class="mark-label">Dark</span>
+    </div>
+
+    <div class="mark-card">
+      <div class="mark-container small">
+        <svg width="36" height="36" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#ddd" stroke-width="3"/>
+          <circle cx="50" cy="50" r="28" fill="none" stroke="#ddd" stroke-width="3"/>
+          <path d="M 50 10 A 40 40 0 0 1 85 30" fill="none" stroke="#5B8DEF" stroke-width="5" stroke-linecap="round"/>
+          <path d="M 15 55 A 40 40 0 0 1 18 35" fill="none" stroke="#3ECF8E" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="50" cy="50" r="9" fill="#111"/>
+        </svg>
+      </div>
+      <span class="mark-label">Favicon</span>
+    </div>
+  </div>
+
+  <div class="lockup-row">
+    <div class="lockup">
+      <svg width="40" height="40" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#e8e8e6" stroke-width="2"/>
+        <circle cx="50" cy="50" r="28" fill="none" stroke="#ddd" stroke-width="2"/>
+        <path d="M 50 10 A 40 40 0 0 1 85 30" fill="none" stroke="#5B8DEF" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 15 55 A 40 40 0 0 1 18 35" fill="none" stroke="#3ECF8E" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 75 78 A 40 40 0 0 1 50 90" fill="none" stroke="#E8B931" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="7" fill="#111"/>
+        <circle cx="50" cy="50" r="3.5" fill="#FAFAF8"/>
+      </svg>
+      <span class="lockup-text">CIPHER</span>
+    </div>
+    <div class="lockup dark">
+      <svg width="40" height="40" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#333" stroke-width="2"/>
+        <circle cx="50" cy="50" r="28" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+        <path d="M 50 10 A 40 40 0 0 1 85 30" fill="none" stroke="#5B8DEF" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 15 55 A 40 40 0 0 1 18 35" fill="none" stroke="#3ECF8E" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 75 78 A 40 40 0 0 1 50 90" fill="none" stroke="#E8B931" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="7" fill="#FAFAF8"/>
+        <circle cx="50" cy="50" r="3.5" fill="#111"/>
+      </svg>
+      <span class="lockup-text" style="color:#FAFAF8">CIPHER</span>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h4>Design Notes</h4>
+    <p>Radar/sonar energy — scanning, discovering, finding. The colored arcs represent decoded data channels (health domains). The center dot is you — the person at the center of their own health data. Most minimal of all concepts. Scales perfectly to any size. Could animate as a scanning sweep with arcs lighting up as they're "decoded."</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== COMPARISON ==================== -->
+<div class="concept-section">
+  <div class="concept-header">
+    <span class="concept-number">05</span>
+    <span class="concept-name">Side-by-Side Comparison</span>
+  </div>
+  <p class="concept-description">
+    All four marks at avatar size (how they'll actually be seen most often — social profiles, favicons, app icons).
+  </p>
+
+  <div class="comparison-grid">
+    <div class="comparison-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="14" fill="#111"/>
+        <g transform="translate(5, 16)">
+          <polyline points="0,16 2,14 4,19 6,11 8,21 10,12 12,18 14,13 16,19 18,14 20,17"
+            fill="none" stroke="#444" stroke-width="1.5" stroke-linecap="round"/>
+          <polyline points="20,17 23,15 26,18 29,14"
+            fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+          <polyline points="29,14 33,20 37,9 41,22 45,7 49,21 53,10"
+            fill="none" stroke="#FAFAF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="45" cy="7" r="2.5" fill="#5B8DEF"/>
+        </g>
+      </svg>
+      <h4>Signal Resolve</h4>
+    </div>
+
+    <div class="comparison-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="14" fill="#111"/>
+        <g transform="translate(10, 10)">
+          <path d="M 32,8 Q 22,2 13,8 Q 4,16 4,23 Q 4,30 13,37 Q 22,43 32,37"
+            fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="27,8 29,8 31,3 33,14 35,6 37,8"
+            fill="none" stroke="#FAFAF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="27,37 29,37 31,31 33,43 35,34 37,37"
+            fill="none" stroke="#FAFAF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="31" cy="3" r="2" fill="#EF5A5A"/>
+          <circle cx="31" cy="31" r="2" fill="#3ECF8E"/>
+        </g>
+      </svg>
+      <h4>Pulse C</h4>
+    </div>
+
+    <div class="comparison-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="14" fill="#111"/>
+        <g transform="translate(10, 12)">
+          <rect x="0" y="16" width="5" height="18" rx="1.5" fill="#444"/>
+          <rect x="9" y="8" width="5" height="26" rx="1.5" fill="#5B8DEF"/>
+          <rect x="18" y="13" width="5" height="21" rx="1.5" fill="#444"/>
+          <rect x="27" y="4" width="5" height="30" rx="1.5" fill="#FAFAF8"/>
+          <rect x="36" y="10" width="5" height="24" rx="1.5" fill="#3ECF8E"/>
+        </g>
+      </svg>
+      <h4>Decode Bars</h4>
+    </div>
+
+    <div class="comparison-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="14" fill="#111"/>
+        <g transform="translate(8, 8)">
+          <circle cx="24" cy="24" r="20" fill="none" stroke="#333" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="14" fill="none" stroke="#2a2a2a" stroke-width="1.5"/>
+          <path d="M 24 4 A 20 20 0 0 1 42 14" fill="none" stroke="#5B8DEF" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 6 28 A 20 20 0 0 1 8 16" fill="none" stroke="#3ECF8E" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 38 40 A 20 20 0 0 1 24 44" fill="none" stroke="#E8B931" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="24" cy="24" r="4" fill="#FAFAF8"/>
+        </g>
+      </svg>
+      <h4>Scan Dot</h4>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

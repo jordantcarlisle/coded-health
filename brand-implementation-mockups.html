@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Brand Implementation Mockups</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #5B8DEF;
+    --green: #3ECF8E;
+    --yellow: #E8B931;
+    --red: #EF5A5A;
+    --black: #111111;
+    --off-white: #FAFAF8;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: #0a0a0a;
+    color: #e0e0e0;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #1a1a1a;
+    padding: 0 48px; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  nav .nav-brand {
+    font-family: var(--mono); font-size: 14px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff; text-decoration: none;
+  }
+  nav .nav-links { display: flex; gap: 28px; list-style: none; }
+  nav .nav-links a {
+    font-family: var(--mono); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: #666; text-decoration: none; transition: color 0.15s;
+  }
+  nav .nav-links a:hover { color: #fff; }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    padding: 140px 60px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::after {
+    content: '';
+    position: absolute; bottom: 0; left: 60px; right: 60px;
+    height: 1px; background: #1a1a1a;
+  }
+  .page-label {
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 20px;
+  }
+  .page-title {
+    font-size: 56px; font-weight: 900; letter-spacing: -0.03em;
+    color: #fff; margin-bottom: 16px; line-height: 1.1;
+  }
+  .page-subtitle {
+    font-size: 18px; color: #777; max-width: 560px;
+    margin: 0 auto; line-height: 1.6;
+  }
+
+  /* ===== MOCKUP SECTIONS ===== */
+  .mockup-section {
+    padding: 100px 60px;
+    position: relative;
+  }
+  .mockup-section + .mockup-section {
+    border-top: 1px solid #1a1a1a;
+  }
+  .mockup-label {
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 12px;
+  }
+  .mockup-title {
+    font-size: 36px; font-weight: 800; letter-spacing: -0.02em;
+    color: #fff; margin-bottom: 8px;
+  }
+  .mockup-desc {
+    font-size: 15px; color: #777; max-width: 500px;
+    line-height: 1.6; margin-bottom: 48px;
+  }
+
+  /* ===== APPAREL GRID ===== */
+  .apparel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+
+  .apparel-item {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .apparel-item:hover {
+    transform: translateY(-4px);
+    border-color: #333;
+  }
+
+  .apparel-canvas {
+    position: relative;
+    aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .apparel-info {
+    padding: 20px 24px;
+    border-top: 1px solid #222;
+  }
+  .apparel-name {
+    font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 4px;
+  }
+  .apparel-detail {
+    font-family: var(--mono); font-size: 11px; color: #555;
+    letter-spacing: 0.04em;
+  }
+
+  /* --- T-Shirt --- */
+  .tshirt-canvas { background: #111; }
+  .tshirt {
+    width: 260px; height: 300px;
+    position: relative;
+  }
+  .tshirt-body {
+    position: absolute; top: 60px; left: 30px; right: 30px; bottom: 0;
+    background: #1a1a1a;
+    border-radius: 4px 4px 12px 12px;
+  }
+  .tshirt-collar {
+    position: absolute; top: 42px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 24px;
+    border-radius: 0 0 30px 30px;
+    background: #111;
+    z-index: 2;
+  }
+  .tshirt-sleeve-l {
+    position: absolute; top: 60px; left: 0; width: 36px; height: 80px;
+    background: #1a1a1a;
+    border-radius: 0 0 0 20px;
+    transform: skewY(-8deg);
+  }
+  .tshirt-sleeve-r {
+    position: absolute; top: 60px; right: 0; width: 36px; height: 80px;
+    background: #1a1a1a;
+    border-radius: 0 0 20px 0;
+    transform: skewY(8deg);
+  }
+  .tshirt-print {
+    position: absolute; top: 100px; left: 50%; transform: translateX(-50%);
+    text-align: center; z-index: 3;
+  }
+  .tshirt-print .waveform-small {
+    margin-bottom: 12px;
+  }
+  .tshirt-print .print-wordmark {
+    font-family: var(--mono); font-size: 22px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+  }
+  .tshirt-print .print-tagline {
+    font-family: var(--sans); font-size: 9px; color: #666;
+    letter-spacing: 0.06em; margin-top: 6px;
+  }
+
+  /* --- Hoodie --- */
+  .hoodie-canvas { background: var(--off-white); }
+  .hoodie {
+    width: 280px; height: 320px;
+    position: relative;
+  }
+  .hoodie-body {
+    position: absolute; top: 50px; left: 20px; right: 20px; bottom: 0;
+    background: #111;
+    border-radius: 4px 4px 12px 12px;
+  }
+  .hoodie-hood {
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    width: 140px; height: 50px;
+    border-radius: 50% 50% 0 0;
+    background: #111;
+    z-index: 1;
+  }
+  .hoodie-sleeve-l {
+    position: absolute; top: 50px; left: -8px; width: 36px; height: 120px;
+    background: #111; border-radius: 0 0 0 16px;
+    transform: skewY(-6deg);
+  }
+  .hoodie-sleeve-r {
+    position: absolute; top: 50px; right: -8px; width: 36px; height: 120px;
+    background: #111; border-radius: 0 0 16px 0;
+    transform: skewY(6deg);
+  }
+  .hoodie-pocket {
+    position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 40px;
+    border: 1px solid #222;
+    border-radius: 0 0 8px 8px;
+    border-top: none;
+    z-index: 4;
+  }
+  .hoodie-print {
+    position: absolute; top: 90px; left: 50%; transform: translateX(-50%);
+    text-align: center; z-index: 3;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .hoodie-print .print-wordmark {
+    font-family: var(--mono); font-size: 18px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+  }
+  .hoodie-gradient-bar {
+    width: 80px; height: 3px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+  }
+
+  /* --- Performance Tee --- */
+  .perf-canvas { background: #0d0d0d; }
+  .perf-tee {
+    width: 260px; height: 300px;
+    position: relative;
+  }
+  .perf-body {
+    position: absolute; top: 60px; left: 30px; right: 30px; bottom: 0;
+    background: #161616;
+    border-radius: 4px 4px 12px 12px;
+  }
+  .perf-collar {
+    position: absolute; top: 46px; left: 50%; transform: translateX(-50%);
+    width: 50px; height: 20px;
+    border-radius: 0 0 25px 25px;
+    background: #0d0d0d;
+    z-index: 2;
+  }
+  .perf-sleeve-l {
+    position: absolute; top: 60px; left: 6px; width: 30px; height: 60px;
+    background: #161616; border-radius: 0 0 0 16px;
+    transform: skewY(-8deg);
+  }
+  .perf-sleeve-r {
+    position: absolute; top: 60px; right: 6px; width: 30px; height: 60px;
+    background: #161616; border-radius: 0 0 16px 0;
+    transform: skewY(8deg);
+  }
+  /* Left chest logo */
+  .perf-chest-logo {
+    position: absolute; top: 85px; left: 54px;
+    z-index: 3;
+  }
+  .perf-chest-logo .mini-wordmark {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+  }
+  /* Back print: large waveform */
+  .perf-back-label {
+    position: absolute; top: 75px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 8px; color: #444;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    z-index: 3;
+  }
+  .perf-back-wave {
+    position: absolute; top: 95px; left: 50%; transform: translateX(-50%);
+    z-index: 3; opacity: 0.7;
+  }
+  .perf-back-text {
+    position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
+    text-align: center; z-index: 3;
+  }
+  .perf-back-text .big-wordmark {
+    font-family: var(--mono); font-size: 28px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+  }
+  .perf-back-text .back-tagline {
+    font-family: var(--sans); font-size: 8px; color: #555;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px;
+  }
+
+  /* ===== GYM WALL ===== */
+  .gym-mockup {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/7;
+    background: #1a1a1a;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #222;
+  }
+  /* Concrete wall texture via subtle gradient */
+  .gym-wall {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, #1e1e1e 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, #1c1c1c 0%, transparent 40%),
+      linear-gradient(180deg, #191919, #151515);
+  }
+  /* Floor */
+  .gym-floor {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 22%;
+    background: linear-gradient(180deg, #111 0%, #0d0d0d 100%);
+    border-top: 1px solid #222;
+  }
+  .gym-floor-line {
+    position: absolute; top: 30%; left: 10%; right: 10%;
+    height: 1px; background: #1a1a1a;
+  }
+  /* Equipment silhouettes */
+  .gym-rack {
+    position: absolute; bottom: 22%; left: 6%;
+    width: 60px; height: 120px;
+    border: 2px solid #222;
+    border-radius: 2px;
+    opacity: 0.4;
+  }
+  .gym-rack::before {
+    content: ''; position: absolute; top: 30%; left: 10%; right: 10%;
+    height: 2px; background: #222;
+  }
+  .gym-rack::after {
+    content: ''; position: absolute; top: 55%; left: 10%; right: 10%;
+    height: 2px; background: #222;
+  }
+  .gym-bench {
+    position: absolute; bottom: 22%; right: 8%;
+    width: 100px; height: 30px;
+    border: 2px solid #222; border-radius: 4px;
+    opacity: 0.3;
+  }
+  .gym-bench::after {
+    content: ''; position: absolute; bottom: -20px; left: 10px;
+    width: 8px; height: 20px; background: #222; border-radius: 2px;
+  }
+  /* Wall branding */
+  .gym-brand {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -65%);
+    text-align: center;
+    z-index: 5;
+  }
+  .gym-wordmark {
+    font-family: var(--mono); font-size: 72px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+    text-shadow: 0 0 60px rgba(91,141,239,0.15);
+  }
+  .gym-tagline {
+    font-family: var(--sans); font-size: 14px; color: #555;
+    letter-spacing: 0.04em; margin-top: 8px;
+  }
+  /* Gradient stripe across wall */
+  .gym-stripe {
+    position: absolute; top: 46%; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+      transparent 5%,
+      var(--blue) 20%,
+      var(--green) 40%,
+      var(--yellow) 60%,
+      var(--red) 80%,
+      transparent 95%
+    );
+    opacity: 0.8;
+  }
+  /* Wall channels */
+  .gym-channels {
+    position: absolute; top: 16%; right: 6%;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .gym-ch {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 9px; color: #444;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .gym-ch-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+
+  /* ===== SUPPLEMENTS ===== */
+  .supp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  .supp-item {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .supp-item:hover {
+    transform: translateY(-4px);
+    border-color: #333;
+  }
+  .supp-canvas {
+    position: relative;
+    aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .supp-info {
+    padding: 20px 24px;
+    border-top: 1px solid #222;
+  }
+  .supp-name {
+    font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 4px;
+  }
+  .supp-detail {
+    font-family: var(--mono); font-size: 11px; color: #555;
+    letter-spacing: 0.04em;
+  }
+
+  /* --- Bottle --- */
+  .bottle-canvas { background: #0d0d0d; }
+  .bottle {
+    position: relative;
+    width: 140px; height: 260px;
+  }
+  .bottle-cap {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 50px; height: 28px;
+    background: linear-gradient(180deg, #222 0%, #1a1a1a 100%);
+    border-radius: 6px 6px 0 0;
+    border: 1px solid #333;
+    border-bottom: none;
+  }
+  .bottle-cap::after {
+    content: ''; position: absolute; bottom: 0; left: 4px; right: 4px;
+    height: 3px; background: #2a2a2a;
+  }
+  .bottle-neck {
+    position: absolute; top: 26px; left: 50%; transform: translateX(-50%);
+    width: 40px; height: 16px;
+    background: #181818;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+  }
+  .bottle-body {
+    position: absolute; top: 38px; left: 50%; transform: translateX(-50%);
+    width: 120px; bottom: 0;
+    background: linear-gradient(135deg, #1e1e1e 0%, #161616 50%, #1a1a1a 100%);
+    border-radius: 6px 6px 10px 10px;
+    border: 1px solid #333;
+    overflow: hidden;
+  }
+  .bottle-label {
+    position: absolute; top: 20px; left: 0; right: 0;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .bottle-label-channel {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    margin-bottom: 10px;
+  }
+  .bottle-label-channel .ch-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+  }
+  .bottle-label-channel span {
+    font-family: var(--mono); font-size: 7px; color: #666;
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .bottle-label .bl-wordmark {
+    font-family: var(--mono); font-size: 16px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+  }
+  .bottle-label .bl-product {
+    font-family: var(--sans); font-size: 11px; font-weight: 700;
+    color: #fff; margin-top: 6px; letter-spacing: -0.01em;
+  }
+  .bottle-label .bl-sub {
+    font-family: var(--mono); font-size: 7px; color: #555;
+    letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px;
+  }
+  .bottle-label .bl-gradient {
+    width: 60px; height: 2px; border-radius: 1px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+    margin: 10px auto 0;
+  }
+  .bottle-label .bl-dose {
+    font-family: var(--mono); font-size: 8px; color: #444;
+    letter-spacing: 0.04em; margin-top: 10px;
+  }
+  .bottle-shine {
+    position: absolute; top: 0; left: 8px;
+    width: 16px; height: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+    border-radius: 6px;
+  }
+
+  /* --- Pouch --- */
+  .pouch-canvas { background: var(--off-white); }
+  .pouch {
+    position: relative;
+    width: 180px; height: 240px;
+  }
+  .pouch-body {
+    position: absolute; inset: 0;
+    background: var(--black);
+    border-radius: 12px 12px 16px 16px;
+    overflow: hidden;
+    box-shadow: 4px 8px 24px rgba(0,0,0,0.2);
+  }
+  .pouch-seal {
+    position: absolute; top: 0; left: 0; right: 0; height: 20px;
+    background: #1a1a1a;
+    border-bottom: 1px dashed #333;
+  }
+  .pouch-notch {
+    position: absolute; top: 8px; right: 12px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    border: 1px solid #444;
+  }
+  .pouch-content {
+    position: absolute; top: 28px; left: 0; right: 0; bottom: 0;
+    padding: 20px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+  }
+  .pouch-content .pc-mark {
+    margin-bottom: 8px;
+  }
+  .pouch-content .pc-wordmark {
+    font-family: var(--mono); font-size: 20px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+    margin-bottom: 4px;
+  }
+  .pouch-content .pc-gradient {
+    width: 60px; height: 2px; border-radius: 1px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+    margin-bottom: 14px;
+  }
+  .pouch-content .pc-product {
+    font-family: var(--sans); font-size: 16px; font-weight: 800;
+    color: #fff; letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .pouch-content .pc-flavor {
+    font-family: var(--sans); font-size: 11px; color: #888;
+    margin-bottom: 16px;
+  }
+  .pouch-content .pc-dose {
+    font-family: var(--mono); font-size: 8px; color: #555;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #222;
+    width: 100%;
+  }
+  .pouch-content .pc-wave {
+    margin-bottom: 12px; opacity: 0.25;
+  }
+
+  /* --- Sachet / Stick Pack --- */
+  .sachet-canvas { background: #111; }
+  .sachet-row {
+    display: flex; gap: 12px; align-items: flex-end;
+  }
+  .sachet {
+    position: relative;
+    width: 52px; height: 180px;
+    border-radius: 8px 8px 10px 10px;
+    overflow: hidden;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.3);
+  }
+  .sachet-body {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center;
+    padding: 8px 6px;
+  }
+  .sachet-seal-top {
+    position: absolute; top: 0; left: 0; right: 0; height: 12px;
+    border-bottom: 1px dashed rgba(255,255,255,0.15);
+  }
+  .sachet-seal-bottom {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 12px;
+    border-top: 1px dashed rgba(255,255,255,0.15);
+  }
+  .sachet .s-letter {
+    font-family: var(--mono); font-size: 18px; font-weight: 700;
+    letter-spacing: 0.08em; margin-bottom: 6px;
+  }
+  .sachet .s-name {
+    font-family: var(--mono); font-size: 5px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    writing-mode: vertical-rl; text-orientation: mixed;
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    opacity: 0.5;
+  }
+  .sachet .s-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    margin-bottom: 4px;
+  }
+  .sachet .s-stripe {
+    position: absolute; bottom: 16px; left: 0; right: 0;
+    height: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .supp-grid { grid-template-columns: 1fr; max-width: 400px; }
+  }
+
+  /* ===== AIRPLANE ===== */
+  .airplane-mockup {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/7;
+    background: linear-gradient(180deg, #c8ddf5 0%, #e8eff8 40%, #dde6ef 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #222;
+  }
+  /* Clouds */
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.6);
+    border-radius: 100px;
+  }
+  .cloud-1 { width: 200px; height: 40px; top: 30%; left: -5%; }
+  .cloud-2 { width: 140px; height: 30px; top: 15%; right: 10%; }
+  .cloud-3 { width: 100px; height: 25px; top: 50%; right: -3%; }
+  .cloud-4 { width: 160px; height: 35px; bottom: 25%; left: 15%; }
+
+  /* Fuselage */
+  .fuselage {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 88%; height: 38%;
+  }
+  .fuselage-body {
+    position: absolute;
+    top: 0; left: 8%; right: 0;
+    height: 100%;
+    background: linear-gradient(180deg, #fafafa 0%, #f0f0ee 48%, #e0deda 50%, #eae8e4 52%, #f2f0ee 100%);
+    border-radius: 100px 30px 30px 100px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
+  }
+  /* Window strip */
+  .window-strip {
+    position: absolute; top: 28%; left: 12%; right: 15%;
+    height: 8%;
+    display: flex; gap: 10px;
+  }
+  .window-dot {
+    width: 8px; height: 100%;
+    background: #b8c8d8;
+    border-radius: 4px;
+  }
+  /* Nose cone */
+  .nose-cone {
+    position: absolute; top: 0; left: 0; width: 12%; height: 100%;
+    background: linear-gradient(90deg, #222 0%, #444 40%, #888 100%);
+    border-radius: 100% 0 0 100%;
+    clip-path: ellipse(100% 50% at 100% 50%);
+  }
+  /* Tail */
+  .tail-fin {
+    position: absolute; top: -50%; right: -1%;
+    width: 14%; height: 100%;
+    background: linear-gradient(180deg, var(--black) 0%, #333 100%);
+    clip-path: polygon(100% 100%, 100% 20%, 30% 100%);
+    border-radius: 0 8px 0 0;
+  }
+  .tail-wordmark {
+    position: absolute; bottom: 20%; right: 4%;
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+    transform: rotate(-0deg);
+    z-index: 5;
+  }
+  /* Fuselage branding */
+  .fuselage-brand {
+    position: absolute;
+    top: 54%; left: 18%;
+    display: flex; align-items: center; gap: 14px;
+    z-index: 5;
+  }
+  .fuselage-wordmark {
+    font-family: var(--mono); font-size: 28px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--black);
+  }
+  .fuselage-tagline {
+    font-family: var(--sans); font-size: 10px; color: #888;
+    letter-spacing: 0.02em;
+  }
+  /* Gradient line on fuselage */
+  .fuselage-stripe {
+    position: absolute; top: 50%; left: 8%; right: 8%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+    z-index: 4;
+  }
+  /* Tail logo */
+  .tail-mark {
+    position: absolute; top: -28%; right: 2.5%;
+    z-index: 6;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tail-c {
+    font-family: var(--mono); font-size: 32px; font-weight: 700;
+    color: #fff;
+  }
+  /* Wing */
+  .wing {
+    position: absolute; top: 55%; left: 30%;
+    width: 30%; height: 10%;
+    background: linear-gradient(180deg, #ddd 0%, #bbb 100%);
+    clip-path: polygon(0 0, 100% 40%, 90% 100%, 0 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  /* Engine */
+  .engine {
+    position: absolute; top: 68%; left: 36%;
+    width: 7%; height: 20%;
+    background: linear-gradient(180deg, #999 0%, #777 100%);
+    border-radius: 50% 50% 4px 4px;
+  }
+  .engine::after {
+    content: '';
+    position: absolute; top: -15%; left: 10%; right: 10%;
+    height: 20%;
+    background: #666;
+    border-radius: 50%;
+  }
+
+  /* ===== BILLBOARD ===== */
+  .billboard-scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(180deg, #1a2a3a 0%, #0d1520 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #222;
+  }
+  /* Sky stars */
+  .star {
+    position: absolute; width: 2px; height: 2px;
+    background: #fff; border-radius: 50%;
+    opacity: 0.3;
+  }
+  /* Ground / highway */
+  .highway {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 30%;
+    background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+  }
+  .highway-line {
+    position: absolute; top: 40%; left: 0; right: 0;
+    height: 2px; background: #222;
+  }
+  .highway-dash {
+    position: absolute; top: 55%;
+    height: 2px; width: 40px;
+    background: #333;
+  }
+  /* Billboard structure */
+  .billboard-structure {
+    position: absolute;
+    top: 8%; left: 50%; transform: translateX(-50%);
+    width: 75%; aspect-ratio: 3/1;
+  }
+  .billboard-poles {
+    position: absolute; bottom: -60%; left: 35%;
+    width: 4px; height: 60%;
+    background: #333;
+  }
+  .billboard-poles::after {
+    content: '';
+    position: absolute; bottom: 0; left: -40px;
+    width: 4px; height: 100%;
+    background: #333;
+  }
+  .billboard-board {
+    position: relative;
+    width: 100%; height: 100%;
+    background: var(--black);
+    border: 3px solid #333;
+    border-radius: 4px;
+    display: flex; align-items: center;
+    padding: 0 6%;
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(91,141,239,0.08), 0 20px 60px rgba(0,0,0,0.4);
+  }
+  /* Billboard content */
+  .bb-content {
+    flex: 1;
+    z-index: 2;
+  }
+  .bb-headline {
+    font-size: clamp(18px, 3.5vw, 42px);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .bb-tagline {
+    font-family: var(--mono); font-size: clamp(8px, 1vw, 13px);
+    color: #777; letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .bb-cta {
+    display: inline-block;
+    font-family: var(--mono); font-size: clamp(7px, 0.9vw, 11px);
+    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    background: #fff; color: var(--black);
+    padding: 6px 16px;
+  }
+  .bb-logo {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    text-align: right; z-index: 2;
+  }
+  .bb-wordmark {
+    font-family: var(--mono); font-size: clamp(24px, 4vw, 52px);
+    font-weight: 700; letter-spacing: 0.08em; color: #fff;
+  }
+  .bb-url {
+    font-family: var(--mono); font-size: clamp(7px, 0.8vw, 10px);
+    color: #555; letter-spacing: 0.04em; margin-top: 4px;
+  }
+  /* Waveform background on billboard */
+  .bb-wave-bg {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.05; z-index: 1;
+  }
+  /* Billboard gradient accent */
+  .bb-gradient {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+  }
+  /* Billboard light glow */
+  .bb-glow {
+    position: absolute; top: -2px; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+      transparent 10%,
+      rgba(255,255,255,0.3) 30%,
+      rgba(255,255,255,0.5) 50%,
+      rgba(255,255,255,0.3) 70%,
+      transparent 90%
+    );
+  }
+
+  /* ===== VIDEO INTRO ===== */
+  .video-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .video-frame {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--black);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #222;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .video-frame-label {
+    position: absolute; top: 16px; left: 20px;
+    font-family: var(--mono); font-size: 9px;
+    color: #444; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .video-frame-time {
+    position: absolute; bottom: 16px; right: 20px;
+    font-family: var(--mono); font-size: 10px;
+    color: #333; letter-spacing: 0.04em;
+  }
+  .video-progress {
+    position: absolute; bottom: 0; left: 0;
+    height: 3px; border-radius: 0 0 16px 16px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+  }
+
+  /* Frame 1: Noise state */
+  .frame-noise {
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
+      var(--black);
+  }
+  .frame-noise .noise-lines {
+    position: absolute; inset: 0;
+    opacity: 0.08;
+  }
+  .frame-noise .noise-lines div {
+    position: absolute; left: 0; right: 0;
+    height: 1px; background: #fff;
+  }
+
+  /* Frame 2: Signal forming */
+  .frame-signal-forming .wave-container {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Frame 3: Wordmark reveal */
+  .frame-reveal {
+    text-align: center;
+  }
+  .frame-reveal .reveal-wordmark {
+    font-family: var(--mono); font-size: 48px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+    position: relative;
+  }
+  .frame-reveal .reveal-line {
+    width: 160px; height: 3px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+    margin: 12px auto 0;
+  }
+
+  /* Frame 4: Full lockup */
+  .frame-lockup {
+    text-align: center;
+    flex-direction: column; gap: 16px;
+  }
+  .frame-lockup .lockup-tagline {
+    font-family: var(--sans); font-size: 14px;
+    color: #666; letter-spacing: 0.01em;
+  }
+
+  /* Video timeline strip */
+  .timeline-strip {
+    margin-top: 32px;
+    display: flex;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #222;
+  }
+  .timeline-phase {
+    flex: 1;
+    padding: 16px 20px;
+    background: #141414;
+    border-right: 1px solid #222;
+    position: relative;
+  }
+  .timeline-phase:last-child { border-right: none; }
+  .timeline-phase-label {
+    font-family: var(--mono); font-size: 9px;
+    color: #555; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .timeline-phase-name {
+    font-size: 13px; font-weight: 600; color: #ccc;
+  }
+  .timeline-phase-time {
+    font-family: var(--mono); font-size: 10px; color: #444;
+    margin-top: 4px;
+  }
+  .timeline-phase::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .timeline-phase:nth-child(1)::after { background: var(--red); opacity: 0.6; }
+  .timeline-phase:nth-child(2)::after { background: var(--blue); opacity: 0.6; }
+  .timeline-phase:nth-child(3)::after { background: var(--green); opacity: 0.6; }
+  .timeline-phase:nth-child(4)::after { background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red)); }
+
+  /* ===== SPEC CARDS ===== */
+  .spec-row {
+    display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;
+  }
+  .spec-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 16px 20px;
+    flex: 1; min-width: 200px;
+  }
+  .spec-label {
+    font-family: var(--mono); font-size: 10px;
+    color: #555; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .spec-value {
+    font-size: 14px; color: #ccc; font-weight: 500;
+  }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    padding: 60px;
+    text-align: center;
+    border-top: 1px solid #1a1a1a;
+  }
+  .footer-gradient {
+    width: 120px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+    margin: 0 auto 20px;
+  }
+  .footer-wordmark {
+    font-family: var(--mono); font-size: 20px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff;
+  }
+  .footer-tagline {
+    font-size: 13px; color: #555; margin-top: 6px;
+  }
+  .footer-meta {
+    font-family: var(--mono); font-size: 11px; color: #333;
+    margin-top: 24px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .page-header, .mockup-section { padding-left: 24px; padding-right: 24px; }
+    .page-title { font-size: 36px; }
+    .apparel-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .video-container { grid-template-columns: 1fr; }
+    .gym-wordmark { font-size: 36px; }
+    .fuselage-wordmark { font-size: 16px; }
+    nav { padding: 0 24px; }
+    nav .nav-links { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="#" class="nav-brand">CIPHER</a>
+  <ul class="nav-links">
+    <li><a href="#apparel">Apparel</a></li>
+    <li><a href="#supplements">Supplements</a></li>
+    <li><a href="#gym">Gym Wall</a></li>
+    <li><a href="#airplane">Airplane</a></li>
+    <li><a href="#billboard">Billboard</a></li>
+    <li><a href="#video">Video Intro</a></li>
+  </ul>
+</nav>
+
+<!-- ===== PAGE HEADER ===== -->
+<header class="page-header">
+  <div class="page-label">Brand Implementation</div>
+  <h1 class="page-title">Cipher in the Wild</h1>
+  <p class="page-subtitle">How the brand identity translates across physical and digital touchpoints. From fabric to fuselage.</p>
+</header>
+
+<!-- =========================================== -->
+<!-- 01 — ATHLETIC APPAREL                       -->
+<!-- =========================================== -->
+<section class="mockup-section" id="apparel">
+  <div class="mockup-label">01 / Athletic Apparel</div>
+  <h2 class="mockup-title">Wearable Signal</h2>
+  <p class="mockup-desc">Performance apparel that carries the brand without shouting. The wordmark, waveform, and gradient bar work at every scale. Black is the primary canvas.</p>
+
+  <div class="apparel-grid">
+    <!-- T-Shirt -->
+    <div class="apparel-item">
+      <div class="apparel-canvas tshirt-canvas">
+        <div class="tshirt">
+          <div class="tshirt-collar"></div>
+          <div class="tshirt-sleeve-l"></div>
+          <div class="tshirt-sleeve-r"></div>
+          <div class="tshirt-body"></div>
+          <div class="tshirt-print">
+            <div class="waveform-small">
+              <svg width="120" height="36" viewBox="0 0 200 60">
+                <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+                  fill="none" stroke="#444" stroke-width="2.5" stroke-linecap="round"/>
+                <polyline points="60,32 70,28 80,34 90,26"
+                  fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round"/>
+                <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+                  fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+              </svg>
+            </div>
+            <div class="print-wordmark">CIPHER</div>
+            <div class="print-tagline">DECODE WHAT WORKS FOR YOU</div>
+          </div>
+        </div>
+      </div>
+      <div class="apparel-info">
+        <div class="apparel-name">Signal Resolve Tee</div>
+        <div class="apparel-detail">Center chest &middot; Mark + Wordmark + Tagline</div>
+      </div>
+    </div>
+
+    <!-- Hoodie -->
+    <div class="apparel-item">
+      <div class="apparel-canvas hoodie-canvas">
+        <div class="hoodie">
+          <div class="hoodie-hood"></div>
+          <div class="hoodie-sleeve-l"></div>
+          <div class="hoodie-sleeve-r"></div>
+          <div class="hoodie-body"></div>
+          <div class="hoodie-pocket"></div>
+          <div class="hoodie-print">
+            <svg width="80" height="24" viewBox="0 0 200 60">
+              <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+                fill="none" stroke="#444" stroke-width="3" stroke-linecap="round"/>
+              <polyline points="60,32 70,28 80,34 90,26"
+                fill="none" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+              <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+                fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="146" cy="8" r="5" fill="#5B8DEF"/>
+            </svg>
+            <div class="print-wordmark">CIPHER</div>
+            <div class="hoodie-gradient-bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="apparel-info">
+        <div class="apparel-name">Core Hoodie</div>
+        <div class="apparel-detail">Center chest &middot; Mark + Wordmark + Gradient bar</div>
+      </div>
+    </div>
+
+    <!-- Performance Tee (Back) -->
+    <div class="apparel-item">
+      <div class="apparel-canvas perf-canvas">
+        <div class="perf-tee">
+          <div class="perf-collar"></div>
+          <div class="perf-sleeve-l"></div>
+          <div class="perf-sleeve-r"></div>
+          <div class="perf-body"></div>
+          <div class="perf-back-label">YOUR HEALTH. YOUR CODE.</div>
+          <div class="perf-back-wave">
+            <svg width="160" height="48" viewBox="0 0 300 60" style="opacity:0.4;">
+              <path d="M0,30 Q20,10 40,30 Q60,50 80,30 Q100,10 120,30 Q140,50 160,30 Q180,10 200,30 Q220,50 240,30 Q260,10 280,30 Q300,50 320,30"
+                fill="none" stroke="#5B8DEF" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M0,30 Q30,15 60,30 Q90,45 120,30 Q150,15 180,30 Q210,45 240,30 Q270,15 300,30"
+                fill="none" stroke="#3ECF8E" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="perf-back-text">
+            <div class="big-wordmark">CIPHER</div>
+            <div class="back-tagline">DECODE WHAT WORKS FOR YOU</div>
+          </div>
+        </div>
+      </div>
+      <div class="apparel-info">
+        <div class="apparel-name">Performance Tee — Back</div>
+        <div class="apparel-detail">Full back &middot; Tagline + Waveforms + Wordmark</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-row">
+    <div class="spec-card">
+      <div class="spec-label">Primary Color</div>
+      <div class="spec-value">Black (#111) base, White print</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Accent Elements</div>
+      <div class="spec-value">Blue signal dot, 4-color gradient bar</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Print Method</div>
+      <div class="spec-value">Screen print or DTG &middot; Soft hand finish</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Fabric</div>
+      <div class="spec-value">Tri-blend or 100% ringspun cotton</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================== -->
+<!-- 02 — SUPPLEMENTS                            -->
+<!-- =========================================== -->
+<section class="mockup-section" id="supplements">
+  <div class="mockup-label">02 / Supplements</div>
+  <h2 class="mockup-title">Decode Your Stack</h2>
+  <p class="mockup-desc">Supplement packaging that looks like it belongs in a lab, not a GNC. Black substrate, minimal typography, signal motifs. The data-forward brand translated to product.</p>
+
+  <div class="supp-grid">
+    <!-- Bottle -->
+    <div class="supp-item">
+      <div class="supp-canvas bottle-canvas">
+        <div class="bottle">
+          <div class="bottle-cap"></div>
+          <div class="bottle-neck"></div>
+          <div class="bottle-body">
+            <div class="bottle-shine"></div>
+            <div class="bottle-label">
+              <div class="bottle-label-channel">
+                <div class="ch-dot" style="background:var(--green)"></div>
+                <span>Recovery Channel</span>
+              </div>
+              <div class="bl-wordmark">CIPHER</div>
+              <div class="bl-product">Magnesium<br>Threonate</div>
+              <div class="bl-sub">Deep Sleep Support</div>
+              <div class="bl-gradient"></div>
+              <div class="bl-dose">90 capsules &middot; 2000mg</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="supp-info">
+        <div class="supp-name">Capsule Bottle</div>
+        <div class="supp-detail">Matte black HDPE &middot; Channel-coded label</div>
+      </div>
+    </div>
+
+    <!-- Pouch -->
+    <div class="supp-item">
+      <div class="supp-canvas pouch-canvas">
+        <div class="pouch">
+          <div class="pouch-body">
+            <div class="pouch-seal"></div>
+            <div class="pouch-notch"></div>
+            <div class="pouch-content">
+              <svg class="pc-mark" width="80" height="24" viewBox="0 0 200 60">
+                <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+                  fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+                <polyline points="60,32 70,28 80,34 90,26"
+                  fill="none" stroke="#555" stroke-width="3" stroke-linecap="round"/>
+                <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+                  fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="146" cy="8" r="5" fill="#5B8DEF"/>
+              </svg>
+              <div class="pc-wordmark">CIPHER</div>
+              <div class="pc-gradient"></div>
+              <div class="pc-product">Whey Isolate</div>
+              <div class="pc-flavor">Cold Brew + Vanilla</div>
+              <svg class="pc-wave" width="120" height="20" viewBox="0 0 300 40">
+                <path d="M0,20 Q30,5 60,20 Q90,35 120,20 Q150,5 180,20 Q210,35 240,20 Q270,5 300,20"
+                  fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M0,20 Q40,10 80,20 Q120,30 160,20 Q200,10 240,20 Q280,30 320,20"
+                  fill="none" stroke="var(--blue)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+              </svg>
+              <div class="pc-dose">30 servings &middot; 25g protein per serve</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="supp-info">
+        <div class="supp-name">Protein Pouch</div>
+        <div class="supp-detail">Matte black stand-up &middot; Resealable zipper</div>
+      </div>
+    </div>
+
+    <!-- Stick Packs -->
+    <div class="supp-item">
+      <div class="supp-canvas sachet-canvas">
+        <div class="sachet-row">
+          <!-- Sleep sachet -->
+          <div class="sachet" style="background: linear-gradient(180deg, #0e1528 0%, #111 100%); border: 1px solid #1a2545;">
+            <div class="sachet-seal-top"></div>
+            <div class="sachet-seal-bottom"></div>
+            <div class="sachet-body">
+              <div class="s-dot" style="background:var(--blue); box-shadow:0 0 8px rgba(91,141,239,0.4);"></div>
+              <div class="s-letter" style="color:var(--blue);">C</div>
+              <span class="s-name" style="color:var(--blue);">SLEEP</span>
+              <div class="s-stripe" style="background:var(--blue); opacity:0.4;"></div>
+            </div>
+          </div>
+          <!-- Recovery sachet -->
+          <div class="sachet" style="background: linear-gradient(180deg, #0a1a12 0%, #111 100%); border: 1px solid #153020; height:170px;">
+            <div class="sachet-seal-top"></div>
+            <div class="sachet-seal-bottom"></div>
+            <div class="sachet-body">
+              <div class="s-dot" style="background:var(--green); box-shadow:0 0 8px rgba(62,207,142,0.4);"></div>
+              <div class="s-letter" style="color:var(--green);">C</div>
+              <span class="s-name" style="color:var(--green);">RECOVER</span>
+              <div class="s-stripe" style="background:var(--green); opacity:0.4;"></div>
+            </div>
+          </div>
+          <!-- Energy sachet -->
+          <div class="sachet" style="background: linear-gradient(180deg, #1a100a 0%, #111 100%); border: 1px solid #302015;">
+            <div class="sachet-seal-top"></div>
+            <div class="sachet-seal-bottom"></div>
+            <div class="sachet-body">
+              <div class="s-dot" style="background:var(--yellow); box-shadow:0 0 8px rgba(232,185,49,0.4);"></div>
+              <div class="s-letter" style="color:var(--yellow);">C</div>
+              <span class="s-name" style="color:var(--yellow);">ENERGY</span>
+              <div class="s-stripe" style="background:var(--yellow); opacity:0.4;"></div>
+            </div>
+          </div>
+          <!-- Metabolic sachet -->
+          <div class="sachet" style="background: linear-gradient(180deg, #1a0e0e 0%, #111 100%); border: 1px solid #301515; height:170px;">
+            <div class="sachet-seal-top"></div>
+            <div class="sachet-seal-bottom"></div>
+            <div class="sachet-body">
+              <div class="s-dot" style="background:var(--red); box-shadow:0 0 8px rgba(239,90,90,0.4);"></div>
+              <div class="s-letter" style="color:var(--red);">C</div>
+              <span class="s-name" style="color:var(--red);">METABOLIC</span>
+              <div class="s-stripe" style="background:var(--red); opacity:0.4;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="supp-info">
+        <div class="supp-name">Stick Packs</div>
+        <div class="supp-detail">Channel-coded by function &middot; Color = health domain</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-row">
+    <div class="spec-card">
+      <div class="spec-label">Packaging</div>
+      <div class="spec-value">Matte black base &middot; Minimal white type</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Color System</div>
+      <div class="spec-value">Channel-coded: Blue=Sleep, Green=Recovery, Yellow=Energy, Red=Metabolic</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Label Finish</div>
+      <div class="spec-value">Soft-touch matte &middot; Spot UV on wordmark</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Design System</div>
+      <div class="spec-value">Accent dot = product category &middot; Gradient bar unifies the line</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================== -->
+<!-- 03 — GYM WALL                               -->
+<!-- =========================================== -->
+<section class="mockup-section" id="gym">
+  <div class="mockup-label">03 / Environmental</div>
+  <h2 class="mockup-title">Gym Wall</h2>
+  <p class="mockup-desc">The brand on a training facility wall. The wordmark commands the space. The gradient stripe and channel indicators add the data-forward energy.</p>
+
+  <div class="gym-mockup">
+    <div class="gym-wall"></div>
+    <div class="gym-floor">
+      <div class="gym-floor-line"></div>
+    </div>
+    <div class="gym-rack"></div>
+    <div class="gym-bench"></div>
+
+    <div class="gym-stripe"></div>
+
+    <div class="gym-brand">
+      <svg width="180" height="48" viewBox="0 0 200 60" style="margin-bottom:8px;">
+        <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+          fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+        <polyline points="60,32 70,28 80,34 90,26"
+          fill="none" stroke="#555" stroke-width="2.5" stroke-linecap="round"/>
+        <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+          fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+      </svg>
+      <div class="gym-wordmark">CIPHER</div>
+      <div class="gym-tagline">Decode what works for you</div>
+    </div>
+
+    <div class="gym-channels">
+      <div class="gym-ch"><div class="gym-ch-dot" style="background:var(--blue)"></div> Sleep</div>
+      <div class="gym-ch"><div class="gym-ch-dot" style="background:var(--green)"></div> Recovery</div>
+      <div class="gym-ch"><div class="gym-ch-dot" style="background:var(--yellow)"></div> Metabolic</div>
+      <div class="gym-ch"><div class="gym-ch-dot" style="background:var(--red)"></div> Strain</div>
+    </div>
+  </div>
+
+  <div class="spec-row">
+    <div class="spec-card">
+      <div class="spec-label">Wall Finish</div>
+      <div class="spec-value">Matte black base &middot; Vinyl or paint</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Gradient Stripe</div>
+      <div class="spec-value">4-color gradient &middot; 6cm height &middot; Full wall width</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Wordmark Size</div>
+      <div class="spec-value">1.2m wide minimum &middot; White vinyl</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Channel Indicators</div>
+      <div class="spec-value">Painted or LED backlit accent dots</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================== -->
+<!-- 04 — AIRPLANE                               -->
+<!-- =========================================== -->
+<section class="mockup-section" id="airplane">
+  <div class="mockup-label">04 / Aviation</div>
+  <h2 class="mockup-title">Airplane Livery</h2>
+  <p class="mockup-desc">The brand at 35,000 feet. Clean white fuselage with the gradient stripe as the hero element. The dark tail carries the C lettermark. Restrained and premium.</p>
+
+  <div class="airplane-mockup">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+
+    <div class="fuselage">
+      <div class="nose-cone"></div>
+      <div class="fuselage-body">
+        <div class="window-strip">
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+          <div class="window-dot"></div><div class="window-dot"></div><div class="window-dot"></div>
+        </div>
+        <div class="fuselage-stripe"></div>
+        <div class="fuselage-brand">
+          <span class="fuselage-wordmark">CIPHER</span>
+        </div>
+      </div>
+      <div class="tail-fin"></div>
+      <div class="tail-mark">
+        <span class="tail-c">C</span>
+      </div>
+      <div class="wing"></div>
+      <div class="engine"></div>
+    </div>
+  </div>
+
+  <div class="spec-row">
+    <div class="spec-card">
+      <div class="spec-label">Fuselage</div>
+      <div class="spec-value">White base &middot; CIPHER wordmark in #111</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Tail</div>
+      <div class="spec-value">Black (#111) &middot; White "C" lettermark</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Accent Stripe</div>
+      <div class="spec-value">4-color gradient &middot; Runs full fuselage length</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Engine Cowlings</div>
+      <div class="spec-value">Metallic gray &middot; Optional blue accent ring</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================== -->
+<!-- 05 — BILLBOARD                              -->
+<!-- =========================================== -->
+<section class="mockup-section" id="billboard">
+  <div class="mockup-label">05 / Out-of-Home</div>
+  <h2 class="mockup-title">Highway Billboard</h2>
+  <p class="mockup-desc">The brand at speed. Black background, white type, gradient accent. The message needs to land in 3 seconds. No clutter — just the signal.</p>
+
+  <div class="billboard-scene">
+    <!-- Stars -->
+    <div class="star" style="top:8%; left:12%;"></div>
+    <div class="star" style="top:15%; left:35%;"></div>
+    <div class="star" style="top:5%; left:58%;"></div>
+    <div class="star" style="top:18%; left:78%;"></div>
+    <div class="star" style="top:10%; left:92%;"></div>
+    <div class="star" style="top:22%; left:22%;"></div>
+    <div class="star" style="top:6%; left:45%;"></div>
+    <div class="star" style="top:14%; left:68%;"></div>
+
+    <div class="highway">
+      <div class="highway-line"></div>
+      <div class="highway-dash" style="left:10%;"></div>
+      <div class="highway-dash" style="left:25%;"></div>
+      <div class="highway-dash" style="left:40%;"></div>
+      <div class="highway-dash" style="left:55%;"></div>
+      <div class="highway-dash" style="left:70%;"></div>
+      <div class="highway-dash" style="left:85%;"></div>
+    </div>
+
+    <div class="billboard-structure">
+      <div class="billboard-poles"></div>
+      <div class="billboard-board">
+        <div class="bb-wave-bg">
+          <svg width="100%" height="100%" viewBox="0 0 800 200" preserveAspectRatio="none">
+            <path d="M0,100 Q50,40 100,100 Q150,160 200,100 Q250,40 300,100 Q350,160 400,100 Q450,40 500,100 Q550,160 600,100 Q650,40 700,100 Q750,160 800,100"
+              fill="none" stroke="#fff" stroke-width="2"/>
+            <path d="M0,100 Q60,50 120,100 Q180,150 240,100 Q300,50 360,100 Q420,150 480,100 Q540,50 600,100 Q660,150 720,100 Q780,50 840,100"
+              fill="none" stroke="#fff" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="bb-content">
+          <div class="bb-headline">Your health<br>has a pattern.</div>
+          <div class="bb-tagline">Let's find it.</div>
+          <div class="bb-cta">cipher.health</div>
+        </div>
+        <div class="bb-logo">
+          <svg width="100" height="32" viewBox="0 0 200 60" style="margin-bottom:6px; opacity:0.3;">
+            <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+              fill="none" stroke="#444" stroke-width="2.5" stroke-linecap="round"/>
+            <polyline points="60,32 70,28 80,34 90,26"
+              fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round"/>
+            <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+              fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+          </svg>
+          <div class="bb-wordmark">CIPHER</div>
+          <div class="bb-url">Decode what works for you</div>
+        </div>
+        <div class="bb-gradient"></div>
+        <div class="bb-glow"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-row">
+    <div class="spec-card">
+      <div class="spec-label">Background</div>
+      <div class="spec-value">Black (#111) &middot; Maximum contrast at distance</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Copy Hierarchy</div>
+      <div class="spec-value">Headline (Inter 900) &middot; CTA (Mono 600)</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Read Time</div>
+      <div class="spec-value">Under 3 seconds &middot; 7 words max</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Illumination</div>
+      <div class="spec-value">Backlit or front-lit &middot; Gradient strip glows</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================== -->
+<!-- 06 — VIDEO INTRO                            -->
+<!-- =========================================== -->
+<section class="mockup-section" id="video">
+  <div class="mockup-label">06 / Motion</div>
+  <h2 class="mockup-title">Video Intro Sequence</h2>
+  <p class="mockup-desc">A 4-second animated intro. Starts with noise, resolves into signal, reveals the wordmark, settles into the full lockup. The brand's core metaphor, animated.</p>
+
+  <div class="video-container">
+    <!-- Frame 1: Noise -->
+    <div class="video-frame frame-noise">
+      <div class="video-frame-label">Frame 01 &mdash; Noise</div>
+      <div class="noise-lines">
+        <div style="top:12%; transform:rotate(2deg);"></div>
+        <div style="top:18%; transform:rotate(-1deg);"></div>
+        <div style="top:25%; transform:rotate(3deg);"></div>
+        <div style="top:33%; transform:rotate(-2deg);"></div>
+        <div style="top:38%; transform:rotate(1deg);"></div>
+        <div style="top:44%; transform:rotate(-3deg);"></div>
+        <div style="top:51%; transform:rotate(2deg);"></div>
+        <div style="top:58%; transform:rotate(-1deg);"></div>
+        <div style="top:64%; transform:rotate(3deg);"></div>
+        <div style="top:72%; transform:rotate(-2deg);"></div>
+        <div style="top:78%; transform:rotate(1deg);"></div>
+        <div style="top:85%; transform:rotate(-1deg);"></div>
+      </div>
+      <!-- Glitch text -->
+      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+        <div style="font-family:var(--mono); font-size:28px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.06);">CIPHER</div>
+      </div>
+      <div class="video-frame-time">00:00</div>
+      <div class="video-progress" style="width:10%;"></div>
+    </div>
+
+    <!-- Frame 2: Signal Forming -->
+    <div class="video-frame frame-signal-forming">
+      <div class="video-frame-label">Frame 02 &mdash; Signal Forming</div>
+      <div class="wave-container">
+        <svg width="80%" height="60%" viewBox="0 0 400 120">
+          <!-- Fading noise lines -->
+          <path d="M0,60 L15,52 30,68 45,44 60,72 75,48 90,64 105,52 120,66 135,50 150,58"
+            fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+          <!-- Transition -->
+          <path d="M150,58 L170,54 190,62 210,50"
+            fill="none" stroke="#777" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          <!-- Clean signal emerging -->
+          <path d="M210,50 Q240,80 270,30 Q300,80 330,20 Q360,70 400,40"
+            fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Blue clarity dot -->
+          <circle cx="330" cy="20" r="5" fill="#5B8DEF">
+            <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Glow -->
+          <circle cx="330" cy="20" r="12" fill="none" stroke="#5B8DEF" stroke-width="1" opacity="0.3">
+            <animate attributeName="r" values="12;20;12" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+      <div class="video-frame-time">00:01</div>
+      <div class="video-progress" style="width:35%;"></div>
+    </div>
+
+    <!-- Frame 3: Wordmark Reveal -->
+    <div class="video-frame frame-reveal">
+      <div class="video-frame-label">Frame 03 &mdash; Reveal</div>
+      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+        <div class="reveal-wordmark">CIPHER</div>
+        <div class="reveal-line"></div>
+      </div>
+      <!-- Subtle waveform in background -->
+      <svg width="100%" height="100%" viewBox="0 0 800 300" preserveAspectRatio="none"
+        style="position:absolute; inset:0; opacity:0.03;">
+        <path d="M0,150 Q100,80 200,150 Q300,220 400,150 Q500,80 600,150 Q700,220 800,150"
+          fill="none" stroke="#fff" stroke-width="2"/>
+      </svg>
+      <div class="video-frame-time">00:02</div>
+      <div class="video-progress" style="width:65%;"></div>
+    </div>
+
+    <!-- Frame 4: Full Lockup -->
+    <div class="video-frame frame-lockup">
+      <div class="video-frame-label">Frame 04 &mdash; Lockup</div>
+      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+        <svg width="120" height="36" viewBox="0 0 200 60" style="margin-bottom:12px;">
+          <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+            fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="60,32 70,28 80,34 90,26"
+            fill="none" stroke="#555" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+            fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+        </svg>
+        <div style="font-family:var(--mono); font-size:42px; font-weight:700; letter-spacing:0.08em; color:#fff; margin-bottom:8px;">CIPHER</div>
+        <div style="width:120px; height:3px; border-radius:2px; background:linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red)); margin:0 auto 12px;"></div>
+        <div class="lockup-tagline">Decode what works for you</div>
+      </div>
+      <div class="video-frame-time">00:04</div>
+      <div class="video-progress" style="width:100%; background:linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));"></div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-strip">
+    <div class="timeline-phase">
+      <div class="timeline-phase-label">Phase 1</div>
+      <div class="timeline-phase-name">Static noise fills screen</div>
+      <div class="timeline-phase-time">0.0s — 0.8s</div>
+    </div>
+    <div class="timeline-phase">
+      <div class="timeline-phase-label">Phase 2</div>
+      <div class="timeline-phase-name">Noise resolves into waveform</div>
+      <div class="timeline-phase-time">0.8s — 2.0s</div>
+    </div>
+    <div class="timeline-phase">
+      <div class="timeline-phase-label">Phase 3</div>
+      <div class="timeline-phase-name">Wordmark types on with gradient</div>
+      <div class="timeline-phase-time">2.0s — 3.0s</div>
+    </div>
+    <div class="timeline-phase">
+      <div class="timeline-phase-label">Phase 4</div>
+      <div class="timeline-phase-name">Full lockup settles &middot; Hold</div>
+      <div class="timeline-phase-time">3.0s — 4.0s</div>
+    </div>
+  </div>
+
+  <div class="spec-row">
+    <div class="spec-card">
+      <div class="spec-label">Duration</div>
+      <div class="spec-value">4 seconds &middot; Loopable</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Resolution</div>
+      <div class="spec-value">4K (3840x2160) &middot; 60fps</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Audio</div>
+      <div class="spec-value">Subtle synth tone resolving to clarity</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Use Cases</div>
+      <div class="spec-value">YouTube, podcast video, presentations</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="page-footer">
+  <div class="footer-gradient"></div>
+  <div class="footer-wordmark">CIPHER</div>
+  <div class="footer-tagline">Decode what works for you</div>
+  <div class="footer-meta">Brand Implementation Mockups &middot; v1.0 &middot; February 2026</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Signal Direction (Bold)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #FAFAF8;
+    color: #111;
+    overflow-x: hidden;
+  }
+  :root {
+    --blue: #5B8DEF;
+    --green: #3ECF8E;
+    --red: #EF5A5A;
+    --yellow: #E8B931;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  /* ============================== */
+  /* NAV                            */
+  /* ============================== */
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px;
+    position: relative; z-index: 10;
+  }
+  .nav-brand {
+    font-family: var(--mono); font-size: 15px; font-weight: 700;
+    letter-spacing: 6px; text-transform: uppercase;
+  }
+  .nav-right { display: flex; align-items: center; gap: 36px; }
+  .nav-link {
+    font-family: var(--mono); font-size: 11px; color: #999;
+    text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: #111; }
+  .nav-cta {
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    background: #111; color: #fff; padding: 10px 20px;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.8; }
+
+  /* ============================== */
+  /* HERO                           */
+  /* ============================== */
+  .hero {
+    padding: 40px 60px 0;
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Giant waveform — THE visual element */
+  .hero-wave {
+    position: absolute;
+    top: 50%; left: 0; width: 100%;
+    transform: translateY(-50%);
+    height: 500px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-wave svg { width: 100%; height: 100%; }
+  .hero-wave .wave-main {
+    fill: none; stroke-width: 3; stroke-linecap: round;
+  }
+  .hero-wave .wave-blue {
+    stroke: var(--blue); opacity: 0.2;
+    animation: wave-move-1 8s ease-in-out infinite;
+  }
+  .hero-wave .wave-green {
+    stroke: var(--green); opacity: 0.15;
+    animation: wave-move-2 10s ease-in-out infinite;
+  }
+  .hero-wave .wave-red {
+    stroke: var(--red); opacity: 0.1;
+    animation: wave-move-3 12s ease-in-out infinite;
+  }
+  /* Bright signal line — the "found" signal */
+  .hero-wave .wave-signal {
+    stroke: var(--blue); opacity: 0.9; stroke-width: 2.5;
+    filter: drop-shadow(0 0 8px rgba(91,141,239,0.4));
+    animation: signal-pulse 4s ease-in-out infinite;
+  }
+  @keyframes wave-move-1 {
+    0% { d: path("M-100,250 Q100,100 300,250 Q500,400 700,250 Q900,100 1100,250 Q1300,400 1500,250"); }
+    50% { d: path("M-100,250 Q100,380 300,250 Q500,120 700,250 Q900,380 1100,250 Q1300,120 1500,250"); }
+    100% { d: path("M-100,250 Q100,100 300,250 Q500,400 700,250 Q900,100 1100,250 Q1300,400 1500,250"); }
+  }
+  @keyframes wave-move-2 {
+    0% { d: path("M-100,250 Q150,150 350,250 Q550,350 750,250 Q950,150 1150,250 Q1350,350 1500,250"); }
+    50% { d: path("M-100,250 Q150,340 350,250 Q550,160 750,250 Q950,340 1150,250 Q1350,160 1500,250"); }
+    100% { d: path("M-100,250 Q150,150 350,250 Q550,350 750,250 Q950,150 1150,250 Q1350,350 1500,250"); }
+  }
+  @keyframes wave-move-3 {
+    0% { d: path("M-100,250 Q200,180 400,250 Q600,320 800,250 Q1000,180 1200,250 Q1400,320 1500,250"); }
+    50% { d: path("M-100,250 Q200,310 400,250 Q600,190 800,250 Q1000,310 1200,250 Q1400,190 1500,250"); }
+    100% { d: path("M-100,250 Q200,180 400,250 Q600,320 800,250 Q1000,180 1200,250 Q1400,320 1500,250"); }
+  }
+  @keyframes signal-pulse {
+    0%, 100% { opacity: 0.9; filter: drop-shadow(0 0 8px rgba(91,141,239,0.4)); }
+    50% { opacity: 0.5; filter: drop-shadow(0 0 20px rgba(91,141,239,0.6)); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 680px;
+  }
+  .hero-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: #BBB; margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .hero-label .live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+    position: relative;
+  }
+  .hero-label .live-dot::after {
+    content: ''; position: absolute; top: -4px; left: -4px;
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 1px solid var(--green);
+    animation: dot-ring 2s ease-out infinite;
+  }
+  @keyframes dot-ring {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+
+  .hero h1 {
+    font-size: 64px; font-weight: 900; line-height: 1.02;
+    letter-spacing: -3px; margin-bottom: 28px;
+  }
+  .hero h1 .signal-word {
+    position: relative; display: inline-block;
+  }
+  .hero h1 .signal-word::after {
+    content: '';
+    position: absolute; bottom: 6px; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    border-radius: 2px;
+  }
+  .hero .hero-body {
+    font-size: 18px; line-height: 1.75; color: #777;
+    max-width: 500px; margin-bottom: 44px;
+  }
+  .hero .cta-row { display: flex; align-items: center; gap: 24px; }
+  .hero .btn-primary {
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    background: #111; color: #fff; padding: 18px 36px;
+    border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; transition: all 0.2s;
+  }
+  .hero .btn-primary:hover { background: #333; }
+  .hero .btn-ghost {
+    font-family: var(--mono); font-size: 11px; color: #999;
+    text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .hero .btn-ghost:hover { color: #111; }
+
+  /* Channel indicator — floating right side */
+  .hero-channels {
+    position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+    z-index: 5; display: flex; flex-direction: column; gap: 20px;
+  }
+  .channel {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; color: #CCC;
+  }
+  .channel-line {
+    width: 40px; height: 2px; border-radius: 1px;
+    position: relative; overflow: hidden;
+  }
+  .channel-line::after {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%; border-radius: 1px;
+    animation: scan-line 3s ease-in-out infinite;
+  }
+  .channel:nth-child(1) .channel-line { background: rgba(91,141,239,0.2); }
+  .channel:nth-child(1) .channel-line::after { background: var(--blue); animation-delay: 0s; }
+  .channel:nth-child(2) .channel-line { background: rgba(62,207,142,0.2); }
+  .channel:nth-child(2) .channel-line::after { background: var(--green); animation-delay: -1s; }
+  .channel:nth-child(3) .channel-line { background: rgba(232,185,49,0.2); }
+  .channel:nth-child(3) .channel-line::after { background: var(--yellow); animation-delay: -2s; }
+  .channel:nth-child(4) .channel-line { background: rgba(239,90,90,0.2); }
+  .channel:nth-child(4) .channel-line::after { background: var(--red); animation-delay: -0.5s; }
+  @keyframes scan-line {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* ============================== */
+  /* SIGNAL BREAK — Full width      */
+  /* ============================== */
+  .signal-break {
+    width: 100%; padding: 0 60px;
+    margin: 0 0 100px;
+  }
+  .signal-break-inner {
+    border: 1px solid #E8E6E0;
+    background: #fff;
+    overflow: hidden;
+  }
+  .signal-break-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 24px; border-bottom: 1px solid #E8E6E0;
+  }
+  .signal-break-header span {
+    font-family: var(--mono); font-size: 10px; color: #CCC;
+    letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .signal-break-channels { display: flex; gap: 16px; }
+  .signal-break-channels .ch {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 9px; color: #BBB;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .signal-break-channels .ch-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .signal-break svg {
+    display: block; width: 100%; height: 120px;
+  }
+  .sb-line { fill: none; stroke-width: 2; stroke-linecap: round; }
+  .sb-blue { stroke: var(--blue); opacity: 0.7; }
+  .sb-green { stroke: var(--green); opacity: 0.5; }
+  .sb-yellow { stroke: var(--yellow); opacity: 0.4; }
+  .sb-red { stroke: var(--red); opacity: 0.3; }
+
+  /* ============================== */
+  /* NOISE → SIGNAL SECTION         */
+  /* ============================== */
+  .transform-section {
+    padding: 0 60px 120px;
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    align-items: start;
+  }
+
+  .noise-side, .signal-side {
+    padding: 48px;
+  }
+
+  .noise-side {
+    background: #F0EFEB;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Visual noise — layered chaotic lines */
+  .noise-visual {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.06; pointer-events: none;
+  }
+  .noise-visual line {
+    stroke: #111; stroke-width: 1;
+  }
+
+  .noise-side .side-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: #BBB; margin-bottom: 20px;
+    position: relative; z-index: 2;
+  }
+  .noise-side h2 {
+    font-size: 28px; font-weight: 800; letter-spacing: -1px;
+    margin-bottom: 20px; color: #999; position: relative; z-index: 2;
+  }
+  .noise-side ul {
+    list-style: none; position: relative; z-index: 2;
+  }
+  .noise-side ul li {
+    font-size: 14px; line-height: 2.2; color: #AAA;
+    padding-left: 20px; position: relative;
+  }
+  .noise-side ul li::before {
+    content: '~'; position: absolute; left: 0;
+    font-family: var(--mono); color: #CCC;
+  }
+
+  .transform-arrow {
+    display: flex; align-items: center; justify-content: center;
+    align-self: center;
+  }
+  .transform-arrow svg { width: 32px; height: 32px; }
+  .arrow-path {
+    fill: none; stroke: var(--blue); stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .signal-side {
+    background: #fff;
+    border: 1px solid #E8E6E0;
+    position: relative;
+  }
+  /* Clean signal line at top */
+  .signal-side::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow));
+  }
+  .signal-side .side-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--green); margin-bottom: 20px;
+  }
+  .signal-side h2 {
+    font-size: 28px; font-weight: 800; letter-spacing: -1px;
+    margin-bottom: 20px; color: #111;
+  }
+  .signal-side ul { list-style: none; }
+  .signal-side ul li {
+    font-size: 14px; line-height: 2.2; color: #555;
+    padding-left: 20px; position: relative;
+  }
+  .signal-side ul li::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    width: 8px; height: 2px; border-radius: 1px;
+    transform: translateY(-50%);
+  }
+  .signal-side ul li:nth-child(1)::before { background: var(--blue); }
+  .signal-side ul li:nth-child(2)::before { background: var(--green); }
+  .signal-side ul li:nth-child(3)::before { background: var(--yellow); }
+  .signal-side ul li:nth-child(4)::before { background: var(--red); }
+
+  /* ============================== */
+  /* METHOD SECTION                 */
+  /* ============================== */
+  .method-section {
+    padding: 0 60px 120px;
+  }
+  .method-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px; padding-bottom: 24px;
+    border-bottom: 1px solid #E8E6E0;
+  }
+  .method-header h2 {
+    font-size: 40px; font-weight: 800; letter-spacing: -1.5px;
+  }
+  .method-header .method-sub {
+    font-family: var(--mono); font-size: 11px; color: #BBB;
+    letter-spacing: 1px; text-transform: uppercase;
+    max-width: 280px; text-align: right; line-height: 1.6;
+  }
+
+  .method-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .method-card {
+    padding: 48px 36px;
+    border-right: 1px solid #E8E6E0;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .method-card:last-child { border-right: none; }
+  .method-card:hover { background: #fff; }
+
+  /* Signal line across top of each card — animated */
+  .method-card .card-signal {
+    height: 48px; margin-bottom: 28px; position: relative;
+    overflow: hidden;
+  }
+  .method-card .card-signal svg {
+    width: 100%; height: 100%;
+  }
+  .card-wave {
+    fill: none; stroke-width: 2; stroke-linecap: round;
+    opacity: 0.6;
+  }
+  .method-card:nth-child(1) .card-wave { stroke: var(--green); }
+  .method-card:nth-child(2) .card-wave { stroke: var(--yellow); }
+  .method-card:nth-child(3) .card-wave { stroke: var(--red); }
+
+  /* Animated dot traveling along the wave */
+  .method-card .signal-dot {
+    position: absolute; width: 6px; height: 6px; border-radius: 50%;
+    top: 20px;
+    animation: dot-travel 4s ease-in-out infinite;
+  }
+  .method-card:nth-child(1) .signal-dot {
+    background: var(--green);
+    box-shadow: 0 0 12px rgba(62,207,142,0.5);
+  }
+  .method-card:nth-child(2) .signal-dot {
+    background: var(--yellow);
+    box-shadow: 0 0 12px rgba(232,185,49,0.5);
+    animation-delay: -1.3s;
+  }
+  .method-card:nth-child(3) .signal-dot {
+    background: var(--red);
+    box-shadow: 0 0 12px rgba(239,90,90,0.5);
+    animation-delay: -2.6s;
+  }
+  @keyframes dot-travel {
+    0% { left: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: calc(100% - 6px); opacity: 0; }
+  }
+
+  .method-card .card-phase {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: #CCC; margin-bottom: 14px;
+  }
+  .method-card h3 {
+    font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
+    margin-bottom: 14px;
+  }
+  .method-card p {
+    font-size: 15px; line-height: 1.7; color: #888;
+  }
+
+  /* ============================== */
+  /* TESTIMONIAL                    */
+  /* ============================== */
+  .testimonial-section {
+    padding: 0 60px 120px;
+    display: flex; gap: 60px; align-items: flex-start;
+  }
+  .testimonial-signal {
+    flex-shrink: 0; width: 3px; min-height: 200px;
+    background: linear-gradient(180deg, var(--blue), var(--green), var(--yellow), var(--red));
+    border-radius: 2px;
+    position: relative;
+  }
+  .testimonial-signal .scan-dot {
+    position: absolute; left: -3px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 12px rgba(91,141,239,0.5);
+    animation: scan-down 5s ease-in-out infinite;
+  }
+  @keyframes scan-down {
+    0% { top: 0; background: var(--blue); box-shadow: 0 0 12px rgba(91,141,239,0.5); }
+    33% { background: var(--green); box-shadow: 0 0 12px rgba(62,207,142,0.5); }
+    66% { background: var(--yellow); box-shadow: 0 0 12px rgba(232,185,49,0.5); }
+    100% { top: calc(100% - 9px); background: var(--red); box-shadow: 0 0 12px rgba(239,90,90,0.5); }
+  }
+
+  .testimonial-content blockquote {
+    font-size: 24px; font-weight: 500; line-height: 1.6;
+    color: #333; margin-bottom: 20px; letter-spacing: -0.3px;
+  }
+  .testimonial-content cite {
+    font-family: var(--mono); font-size: 12px; font-style: normal;
+    color: #BBB; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ============================== */
+  /* CTA                            */
+  /* ============================== */
+  .cta-section {
+    padding: 80px 60px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Background wave for CTA */
+  .cta-wave {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    height: 200px; pointer-events: none; opacity: 0.06;
+  }
+  .cta-section h2 {
+    font-size: 48px; font-weight: 900; letter-spacing: -2px;
+    margin-bottom: 16px; position: relative; z-index: 2;
+  }
+  .cta-section p {
+    font-size: 16px; color: #999; margin-bottom: 40px;
+    position: relative; z-index: 2;
+  }
+  .cta-section .btn-primary {
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    background: #111; color: #fff; padding: 20px 44px;
+    border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; position: relative; z-index: 2;
+    transition: all 0.2s;
+  }
+  .cta-section .btn-primary:hover { background: #333; }
+
+  /* ============================== */
+  /* FOOTER                         */
+  /* ============================== */
+  .footer {
+    padding: 28px 60px;
+    border-top: 1px solid #E8E6E0;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer span {
+    font-family: var(--mono); font-size: 11px; color: #CCC;
+    letter-spacing: 1px;
+  }
+  .footer .footer-signal {
+    display: flex; gap: 6px; align-items: center;
+  }
+  .footer .footer-signal .f-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+  }
+
+  /* ============================== */
+  /* RESPONSIVE                     */
+  /* ============================== */
+  @media (max-width: 900px) {
+    .nav { padding: 20px 24px; }
+    .nav-right .nav-link { display: none; }
+    .hero { padding: 40px 24px 0; min-height: 80vh; }
+    .hero h1 { font-size: 40px; }
+    .hero-channels { display: none; }
+    .signal-break { padding: 0 24px; }
+    .transform-section { grid-template-columns: 1fr; padding: 0 24px 80px; }
+    .transform-arrow { transform: rotate(90deg); padding: 20px; }
+    .method-section { padding: 0 24px 80px; }
+    .method-cards { grid-template-columns: 1fr; }
+    .method-card { border-right: none; border-bottom: 1px solid #E8E6E0; }
+    .method-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .method-header .method-sub { text-align: left; }
+    .testimonial-section { padding: 0 24px 80px; }
+    .cta-section { padding: 60px 24px; }
+    .cta-section h2 { font-size: 32px; }
+    .footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">Cipher</div>
+  <div class="nav-right">
+    <a class="nav-link" href="#">Method</a>
+    <a class="nav-link" href="#">About</a>
+    <a class="nav-link" href="#">Results</a>
+    <a class="nav-cta" href="#">Start Diagnostic</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Giant animated waveforms -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1400 500" preserveAspectRatio="none">
+      <path class="wave-main wave-blue" d="M-100,250 Q100,100 300,250 Q500,400 700,250 Q900,100 1100,250 Q1300,400 1500,250" />
+      <path class="wave-main wave-green" d="M-100,250 Q150,150 350,250 Q550,350 750,250 Q950,150 1150,250 Q1350,350 1500,250" />
+      <path class="wave-main wave-red" d="M-100,250 Q200,180 400,250 Q600,320 800,250 Q1000,180 1200,250 Q1400,320 1500,250" />
+      <!-- The clean signal — this is what you find -->
+      <path class="wave-main wave-signal" d="M-100,250 Q50,200 200,250 Q350,300 500,250 Q650,200 800,250 Q950,300 1100,250 Q1250,200 1400,250" />
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-label">
+      <span class="live-dot"></span>
+      Decode what works for you
+    </div>
+    <h1>Find your <span class="signal-word">signal</span>.<br>Lose the noise.</h1>
+    <p class="hero-body">Your body is broadcasting data every second. Cipher helps you read it — through personalized experiments, data synthesis, and a human who actually knows your frequency.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="#">Start Your Diagnostic</a>
+      <a class="btn-ghost" href="#">See the method &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Channel indicators — right side -->
+  <div class="hero-channels">
+    <div class="channel">
+      <div class="channel-line"></div>
+      Sleep
+    </div>
+    <div class="channel">
+      <div class="channel-line"></div>
+      Recovery
+    </div>
+    <div class="channel">
+      <div class="channel-line"></div>
+      Metabolic
+    </div>
+    <div class="channel">
+      <div class="channel-line"></div>
+      Cognitive
+    </div>
+  </div>
+</section>
+
+<!-- SIGNAL READOUT BREAK -->
+<div class="signal-break">
+  <div class="signal-break-inner">
+    <div class="signal-break-header">
+      <span>Health Signal Analysis</span>
+      <div class="signal-break-channels">
+        <div class="ch"><span class="ch-dot" style="background:var(--blue)"></span> HRV</div>
+        <div class="ch"><span class="ch-dot" style="background:var(--green)"></span> Sleep</div>
+        <div class="ch"><span class="ch-dot" style="background:var(--yellow)"></span> Glucose</div>
+        <div class="ch"><span class="ch-dot" style="background:var(--red)"></span> Strain</div>
+      </div>
+    </div>
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path class="sb-line sb-blue" d="M0,60 L30,60 L35,20 L40,90 L45,40 L50,70 L55,60 Q150,30 300,60 Q450,90 600,60 Q750,25 900,60 Q1050,85 1200,60" />
+      <path class="sb-line sb-green" d="M0,60 Q100,40 200,60 Q300,80 400,60 Q500,35 600,60 Q700,80 800,60 Q900,42 1000,60 Q1100,75 1200,60" />
+      <path class="sb-line sb-yellow" d="M0,60 Q150,50 300,60 Q450,72 600,60 Q750,48 900,60 Q1050,70 1200,60" />
+      <path class="sb-line sb-red" d="M0,60 Q200,45 400,60 Q600,75 800,60 Q1000,45 1200,60" />
+    </svg>
+  </div>
+</div>
+
+<!-- NOISE → SIGNAL TRANSFORMATION -->
+<section class="transform-section">
+  <div class="noise-side">
+    <svg class="noise-visual" viewBox="0 0 400 300">
+      <line x1="0" y1="30" x2="400" y2="45" /><line x1="0" y1="60" x2="400" y2="52" />
+      <line x1="0" y1="90" x2="400" y2="105" /><line x1="0" y1="120" x2="400" y2="110" />
+      <line x1="0" y1="150" x2="400" y2="165" /><line x1="0" y1="180" x2="400" y2="172" />
+      <line x1="0" y1="210" x2="400" y2="220" /><line x1="0" y1="240" x2="400" y2="235" />
+      <line x1="0" y1="270" x2="400" y2="280" /><line x1="50" y1="0" x2="45" y2="300" />
+      <line x1="120" y1="0" x2="130" y2="300" /><line x1="200" y1="0" x2="195" y2="300" />
+      <line x1="280" y1="0" x2="285" y2="300" /><line x1="350" y1="0" x2="345" y2="300" />
+    </svg>
+    <div class="side-label">Before Cipher</div>
+    <h2>The Noise</h2>
+    <ul>
+      <li>Conflicting health advice from every direction</li>
+      <li>Wearable data you can't interpret</li>
+      <li>Generic protocols that weren't built for you</li>
+      <li>Paralysis from too many options</li>
+    </ul>
+  </div>
+
+  <div class="transform-arrow">
+    <svg viewBox="0 0 32 32">
+      <path class="arrow-path" d="M8,16 L24,16 M18,10 L24,16 L18,22" />
+    </svg>
+  </div>
+
+  <div class="signal-side">
+    <div class="side-label">After Cipher</div>
+    <h2>Your Signal</h2>
+    <ul>
+      <li>Clarity on what works for your body</li>
+      <li>Data synthesized into actionable experiments</li>
+      <li>A system you own and can run yourself</li>
+      <li>Confidence that compounds over decades</li>
+    </ul>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method-section">
+  <div class="method-header">
+    <h2>The Method</h2>
+    <div class="method-sub">Three phases. Personalized to you. Built for the long game.</div>
+  </div>
+
+  <div class="method-cards">
+    <div class="method-card">
+      <div class="card-signal">
+        <svg viewBox="0 0 300 48" preserveAspectRatio="none">
+          <path class="card-wave" d="M0,24 Q30,8 60,24 Q90,40 120,24 Q150,8 180,24 Q210,40 240,24 Q270,8 300,24" />
+        </svg>
+        <div class="signal-dot"></div>
+      </div>
+      <div class="card-phase">Phase 01 — Diagnostic</div>
+      <h3>Map the terrain</h3>
+      <p>We audit your tools, habits, beliefs, and data. Build a complete picture of where you are — the first step to finding where you're going.</p>
+    </div>
+
+    <div class="method-card">
+      <div class="card-signal">
+        <svg viewBox="0 0 300 48" preserveAspectRatio="none">
+          <path class="card-wave" d="M0,24 Q50,6 100,24 Q150,42 200,24 Q250,6 300,24" />
+        </svg>
+        <div class="signal-dot"></div>
+      </div>
+      <div class="card-phase">Phase 02 — Experiment</div>
+      <h3>Test the hypothesis</h3>
+      <p>4-week experiment cycles. Test, measure, learn, adjust. Each cycle sharpens the signal. Each result builds on the last.</p>
+    </div>
+
+    <div class="method-card">
+      <div class="card-signal">
+        <svg viewBox="0 0 300 48" preserveAspectRatio="none">
+          <path class="card-wave" d="M0,24 L300,24" />
+        </svg>
+        <div class="signal-dot"></div>
+      </div>
+      <div class="card-phase">Phase 03 — Own It</div>
+      <h3>Read it yourself</h3>
+      <p>The signal becomes clear. You learn to read it, run experiments, and make decisions on your own. Independence is the point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-signal">
+    <div class="scan-dot"></div>
+  </div>
+  <div class="testimonial-content">
+    <blockquote>"I had an Oura, a Whoop, and blood panels — but no idea what to actually do with any of it. Cipher connected the dots I couldn't see."</blockquote>
+    <cite>— Future client testimonial</cite>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <svg class="cta-wave" viewBox="0 0 1400 200" preserveAspectRatio="none">
+    <path d="M0,100 Q200,20 400,100 Q600,180 800,100 Q1000,20 1200,100 Q1400,180 1600,100" fill="none" stroke="#111" stroke-width="3" />
+    <path d="M0,100 Q250,40 500,100 Q750,160 1000,100 Q1250,40 1500,100" fill="none" stroke="#111" stroke-width="2" />
+  </svg>
+  <h2>Ready to find your signal?</h2>
+  <p>Start with a free diagnostic conversation. No commitment, no pitch.</p>
+  <a class="btn-primary" href="#">Book a Conversation</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span>&copy; 2026 Cipher</span>
+  <div class="footer-signal">
+    <span class="f-dot" style="background:var(--blue)"></span>
+    <span class="f-dot" style="background:var(--green)"></span>
+    <span class="f-dot" style="background:var(--yellow)"></span>
+    <span class="f-dot" style="background:var(--red)"></span>
+  </div>
+  <span>Your health. Your code.</span>
+</footer>
+
+</body>
+</html>

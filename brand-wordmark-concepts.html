@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Wordmark Exploration</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #FAFAF8;
+    color: #111;
+    padding: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: 60px;
+    border-bottom: 2px solid #111;
+    padding-bottom: 24px;
+  }
+
+  .page-header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .page-header h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header p {
+    font-size: 16px;
+    color: #666;
+    margin-top: 8px;
+    max-width: 640px;
+    line-height: 1.5;
+  }
+
+  .section {
+    margin-bottom: 72px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 6px;
+  }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5B8DEF;
+  }
+
+  .section-name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 32px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .wordmark-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .wordmark-card {
+    padding: 48px 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+  }
+
+  .wordmark-card.dark {
+    background: #111;
+    border-color: #333;
+  }
+
+  .wordmark-card .variant-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    position: absolute;
+    top: 16px;
+    left: 20px;
+  }
+
+  .wordmark-card.dark .variant-label {
+    color: #555;
+  }
+
+  /* ===== WORDMARK STYLES ===== */
+
+  /* A: Clean Mono */
+  .wm-clean-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #111;
+  }
+  .dark .wm-clean-mono { color: #FAFAF8; }
+
+  /* A variant: lighter weight */
+  .wm-clean-mono-light {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: #111;
+  }
+  .dark .wm-clean-mono-light { color: #FAFAF8; }
+
+  /* B: Inter Black */
+  .wm-inter-black {
+    font-family: 'Inter', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #111;
+    text-transform: uppercase;
+  }
+  .dark .wm-inter-black { color: #FAFAF8; }
+
+  /* B variant: Inter tight tracking */
+  .wm-inter-tight {
+    font-family: 'Inter', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #111;
+    text-transform: uppercase;
+  }
+  .dark .wm-inter-tight { color: #FAFAF8; }
+
+  /* C: Mono with color accent */
+  .wm-mono-accent {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #111;
+  }
+  .wm-mono-accent .accent { color: #5B8DEF; }
+  .dark .wm-mono-accent { color: #FAFAF8; }
+  .dark .wm-mono-accent .accent { color: #5B8DEF; }
+
+  /* D: Mixed typography */
+  .wm-mixed {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #111;
+  }
+  .wm-mixed .mono-part {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .wm-mixed .sans-part {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+  }
+  .dark .wm-mixed { color: #FAFAF8; }
+
+  /* E: Lowercase mono */
+  .wm-lowercase {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #111;
+  }
+  .dark .wm-lowercase { color: #FAFAF8; }
+
+  /* F: Spaced caps */
+  .wm-spaced {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: #111;
+  }
+  .dark .wm-spaced { color: #FAFAF8; }
+
+  /* Tagline pairing */
+  .tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #888;
+    letter-spacing: 0.02em;
+  }
+  .dark .tagline { color: #666; }
+
+  .tagline-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    color: #999;
+    letter-spacing: 0.04em;
+  }
+  .dark .tagline-mono { color: #555; }
+
+  .divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 56px 0;
+  }
+
+  /* Size test strip */
+  .size-strip {
+    display: flex;
+    align-items: baseline;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 32px 0;
+  }
+
+  .size-strip .sz-lg { font-size: 48px; }
+  .size-strip .sz-md { font-size: 32px; }
+  .size-strip .sz-sm { font-size: 20px; }
+  .size-strip .sz-xs { font-size: 14px; }
+  .size-strip .sz-xxs { font-size: 11px; }
+
+  /* Lockup with tagline */
+  .lockup-section {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .lockup-box {
+    padding: 40px 48px;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .lockup-box.dark {
+    background: #111;
+    border-color: #333;
+  }
+
+  /* Context mockups */
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .context-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .context-card .context-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .context-card .context-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Favicon mockup */
+  .favicon-row {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  .favicon-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .favicon-box.light { background: #fff; border: 1px solid #ddd; color: #111; }
+  .favicon-box.dark { background: #111; color: #FAFAF8; }
+  .favicon-box.blue { background: #5B8DEF; color: #fff; }
+  .favicon-box.black-on-white { background: #FAFAF8; color: #111; border: 1px solid #e0e0e0; }
+
+  .favicon-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #999;
+  }
+
+  .notes {
+    background: #f5f5f3;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-top: 24px;
+    max-width: 640px;
+  }
+
+  .notes h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .notes p, .notes li {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .notes ul {
+    padding-left: 20px;
+    margin-top: 8px;
+  }
+
+  .rec-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: #5B8DEF;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Cipher / Wordmark Exploration</h1>
+  <h2>Six Directions for the Wordmark</h2>
+  <p>All options use the brand type system (Inter + JetBrains Mono). React to weight, spacing, casing, and overall energy. A designer will refine the chosen direction.</p>
+</div>
+
+<!-- ===== SECTION A: JETBRAINS MONO BOLD ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">A</span>
+    <span class="section-name">Mono Bold <span class="rec-badge">Recommended</span></span>
+  </div>
+  <p class="section-desc">
+    JetBrains Mono at full weight, moderate tracking. Technical authority. Data-forward. This is the IDE / terminal energy that maps to the "decoding" concept. Feels like a tool, not a spa.
+  </p>
+
+  <div class="wordmark-grid">
+    <div class="wordmark-card">
+      <span class="variant-label">Light</span>
+      <span class="wm-clean-mono">CIPHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+    <div class="wordmark-card dark">
+      <span class="variant-label">Dark</span>
+      <span class="wm-clean-mono">CIPHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+  </div>
+
+  <div class="size-strip">
+    <span class="wm-clean-mono sz-lg">CIPHER</span>
+    <span class="wm-clean-mono sz-md">CIPHER</span>
+    <span class="wm-clean-mono sz-sm">CIPHER</span>
+    <span class="wm-clean-mono sz-xs">CIPHER</span>
+    <span class="wm-clean-mono sz-xxs">CIPHER</span>
+  </div>
+</div>
+
+<!-- ===== SECTION B: MONO LIGHT ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">B</span>
+    <span class="section-name">Mono Light</span>
+  </div>
+  <p class="section-desc">
+    Same monospace, lighter weight with wider tracking. More elegant, quietly confident. Stripe/Linear energy. Lets the name breathe.
+  </p>
+
+  <div class="wordmark-grid">
+    <div class="wordmark-card">
+      <span class="variant-label">Light</span>
+      <span class="wm-clean-mono-light">CIPHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+    <div class="wordmark-card dark">
+      <span class="variant-label">Dark</span>
+      <span class="wm-clean-mono-light">CIPHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+  </div>
+
+  <div class="size-strip">
+    <span class="wm-clean-mono-light sz-lg">CIPHER</span>
+    <span class="wm-clean-mono-light sz-md">CIPHER</span>
+    <span class="wm-clean-mono-light sz-sm">CIPHER</span>
+    <span class="wm-clean-mono-light sz-xs">CIPHER</span>
+    <span class="wm-clean-mono-light sz-xxs">CIPHER</span>
+  </div>
+</div>
+
+<!-- ===== SECTION C: INTER BLACK ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">C</span>
+    <span class="section-name">Sans-Serif Black</span>
+  </div>
+  <p class="section-desc">
+    Inter at maximum weight, tight tracking. Bold, modern, punchy. More brand/media energy than technical energy. Feels like a movement name.
+  </p>
+
+  <div class="wordmark-grid">
+    <div class="wordmark-card">
+      <span class="variant-label">Light</span>
+      <span class="wm-inter-black">CIPHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+    <div class="wordmark-card dark">
+      <span class="variant-label">Dark</span>
+      <span class="wm-inter-black">CIPHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+  </div>
+
+  <div class="size-strip">
+    <span class="wm-inter-black sz-lg">CIPHER</span>
+    <span class="wm-inter-black sz-md">CIPHER</span>
+    <span class="wm-inter-black sz-sm">CIPHER</span>
+    <span class="wm-inter-black sz-xs">CIPHER</span>
+    <span class="wm-inter-black sz-xxs">CIPHER</span>
+  </div>
+</div>
+
+<!-- ===== SECTION D: MONO WITH ACCENT ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">D</span>
+    <span class="section-name">Mono + Color Accent</span>
+  </div>
+  <p class="section-desc">
+    JetBrains Mono with a single letter highlighted in brand blue. The "i" as a signal point — a dot of data, a moment of clarity. Subtle but distinctive.
+  </p>
+
+  <div class="wordmark-grid">
+    <div class="wordmark-card">
+      <span class="variant-label">Light</span>
+      <span class="wm-mono-accent">C<span class="accent">I</span>PHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+    <div class="wordmark-card dark">
+      <span class="variant-label">Dark</span>
+      <span class="wm-mono-accent">C<span class="accent">I</span>PHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+  </div>
+
+  <div class="size-strip">
+    <span class="wm-mono-accent sz-lg">C<span class="accent">I</span>PHER</span>
+    <span class="wm-mono-accent sz-md">C<span class="accent">I</span>PHER</span>
+    <span class="wm-mono-accent sz-sm">C<span class="accent">I</span>PHER</span>
+    <span class="wm-mono-accent sz-xs">C<span class="accent">I</span>PHER</span>
+    <span class="wm-mono-accent sz-xxs">C<span class="accent">I</span>PHER</span>
+  </div>
+</div>
+
+<!-- ===== SECTION E: LOWERCASE ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">E</span>
+    <span class="section-name">Lowercase Mono</span>
+  </div>
+  <p class="section-desc">
+    All lowercase, medium weight. Approachable, dev-tool energy (like "vercel" or "linear"). Less commanding, more inviting. The anti-guru positioning in typography.
+  </p>
+
+  <div class="wordmark-grid">
+    <div class="wordmark-card">
+      <span class="variant-label">Light</span>
+      <span class="wm-lowercase">cipher</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+    <div class="wordmark-card dark">
+      <span class="variant-label">Dark</span>
+      <span class="wm-lowercase">cipher</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+  </div>
+
+  <div class="size-strip">
+    <span class="wm-lowercase sz-lg">cipher</span>
+    <span class="wm-lowercase sz-md">cipher</span>
+    <span class="wm-lowercase sz-sm">cipher</span>
+    <span class="wm-lowercase sz-xs">cipher</span>
+    <span class="wm-lowercase sz-xxs">cipher</span>
+  </div>
+</div>
+
+<!-- ===== SECTION F: ULTRA-SPACED ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">F</span>
+    <span class="section-name">Ultra-Spaced</span>
+  </div>
+  <p class="section-desc">
+    Wide letter-spacing, medium weight. Premium, architectural. Each letter stands alone — like data points on a timeline. Luxury tech energy.
+  </p>
+
+  <div class="wordmark-grid">
+    <div class="wordmark-card">
+      <span class="variant-label">Light</span>
+      <span class="wm-spaced">CIPHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+    <div class="wordmark-card dark">
+      <span class="variant-label">Dark</span>
+      <span class="wm-spaced">CIPHER</span>
+      <span class="tagline">Decode what works for you</span>
+    </div>
+  </div>
+
+  <div class="size-strip">
+    <span class="wm-spaced sz-lg">CIPHER</span>
+    <span class="wm-spaced sz-md">CIPHER</span>
+    <span class="wm-spaced sz-sm">CIPHER</span>
+    <span class="wm-spaced sz-xs">CIPHER</span>
+    <span class="wm-spaced sz-xxs">CIPHER</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== TAGLINE LOCKUPS ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">07</span>
+    <span class="section-name">Tagline Lockups (Using Recommended: A)</span>
+  </div>
+  <p class="section-desc">How the wordmark pairs with the tagline in different configurations.</p>
+
+  <div class="lockup-section">
+    <!-- Stacked -->
+    <div class="lockup-box">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; letter-spacing:0.08em; color:#111;">CIPHER</span>
+      <span style="font-family:'Inter',sans-serif; font-size:14px; color:#888; letter-spacing:0.01em;">Decode what works for you</span>
+    </div>
+
+    <!-- Stacked dark -->
+    <div class="lockup-box dark">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; letter-spacing:0.08em; color:#FAFAF8;">CIPHER</span>
+      <span style="font-family:'Inter',sans-serif; font-size:14px; color:#666; letter-spacing:0.01em;">Decode what works for you</span>
+    </div>
+
+    <!-- Inline with divider -->
+    <div class="lockup-box">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; letter-spacing:0.08em; color:#111;">CIPHER</span>
+        <span style="color:#ddd; font-size:28px; font-weight:200;">|</span>
+        <span style="font-family:'Inter',sans-serif; font-size:13px; color:#888;">Decode what works for you</span>
+      </div>
+    </div>
+
+    <!-- Inline with dot -->
+    <div class="lockup-box dark">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; letter-spacing:0.08em; color:#FAFAF8;">CIPHER</span>
+        <span style="color:#5B8DEF; font-size:8px;">&#9679;</span>
+        <span style="font-family:'Inter',sans-serif; font-size:13px; color:#666;">Decode what works for you</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== FAVICON / AVATAR ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">08</span>
+    <span class="section-name">Favicon & Avatar Options</span>
+  </div>
+  <p class="section-desc">The "C" lettermark for small-scale use — favicons, social avatars, app icons.</p>
+
+  <div class="favicon-row">
+    <div style="text-align:center; display:flex; flex-direction:column; gap:8px; align-items:center;">
+      <div style="width:48px; height:48px; border-radius:10px; background:#111; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:28px; color:#FAFAF8;">C</div>
+      <span class="favicon-label">White on black</span>
+    </div>
+
+    <div style="text-align:center; display:flex; flex-direction:column; gap:8px; align-items:center;">
+      <div style="width:48px; height:48px; border-radius:10px; background:#FAFAF8; border:1px solid #e0e0e0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:28px; color:#111;">C</div>
+      <span class="favicon-label">Black on white</span>
+    </div>
+
+    <div style="text-align:center; display:flex; flex-direction:column; gap:8px; align-items:center;">
+      <div style="width:48px; height:48px; border-radius:10px; background:#111; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:28px; color:#5B8DEF;">C</div>
+      <span class="favicon-label">Blue on black</span>
+    </div>
+
+    <div style="text-align:center; display:flex; flex-direction:column; gap:8px; align-items:center;">
+      <div style="width:48px; height:48px; border-radius:24px; background:#111; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:28px; color:#FAFAF8;">C</div>
+      <span class="favicon-label">Circle — white/black</span>
+    </div>
+
+    <div style="text-align:center; display:flex; flex-direction:column; gap:8px; align-items:center;">
+      <div style="width:48px; height:48px; border-radius:24px; background:#111; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:24px; color:#FAFAF8; position:relative;">C<span style="position:absolute; top:-2px; right:-4px; width:6px; height:6px; background:#5B8DEF; border-radius:50%;"></span></span>
+      </div>
+      <span class="favicon-label">Circle — blue dot</span>
+    </div>
+  </div>
+
+  <!-- Smaller sizes -->
+  <div class="favicon-row" style="margin-top:24px;">
+    <span class="favicon-label" style="width:60px;">32px:</span>
+    <div style="width:32px; height:32px; border-radius:6px; background:#111; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:18px; color:#FAFAF8;">C</div>
+    <div style="width:32px; height:32px; border-radius:6px; background:#FAFAF8; border:1px solid #ddd; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:18px; color:#111;">C</div>
+    <div style="width:32px; height:32px; border-radius:6px; background:#111; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:18px; color:#5B8DEF;">C</div>
+
+    <span class="favicon-label" style="width:60px; margin-left:24px;">16px:</span>
+    <div style="width:16px; height:16px; border-radius:3px; background:#111; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10px; color:#FAFAF8;">C</div>
+    <div style="width:16px; height:16px; border-radius:3px; background:#FAFAF8; border:1px solid #ddd; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10px; color:#111;">C</div>
+    <div style="width:16px; height:16px; border-radius:3px; background:#111; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10px; color:#5B8DEF;">C</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== CONTEXT MOCKUPS ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">09</span>
+    <span class="section-name">In Context</span>
+  </div>
+  <p class="section-desc">How the recommended wordmark (A: Mono Bold) shows up in real placements.</p>
+
+  <div class="context-grid">
+    <!-- X Bio -->
+    <div class="context-card">
+      <div class="context-label">X Bio</div>
+      <div class="context-body" style="align-items:flex-start; gap:10px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:28px; height:28px; border-radius:14px; background:#111; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px; color:#FAFAF8;">C</div>
+          <div>
+            <div style="font-weight:700; font-size:14px;">Jordan Carlisle</div>
+            <div style="font-size:12px; color:#888;">@jordantcarlisle</div>
+          </div>
+        </div>
+        <p style="font-size:13px; line-height:1.5; color:#333;">CTO @SoberSidekick. Building <span style="font-family:'JetBrains Mono',monospace; font-weight:600; font-size:12px;">CIPHER</span> — health coaching for people with too much data and not enough answers. Decode what works for you.</p>
+      </div>
+    </div>
+
+    <!-- Email Signature -->
+    <div class="context-card">
+      <div class="context-label">Email Signature</div>
+      <div class="context-body" style="align-items:flex-start; gap:4px;">
+        <div style="font-size:13px; color:#333; margin-bottom:8px;">Best,<br>Jordan</div>
+        <div style="border-top:1px solid #eee; padding-top:8px; width:100%;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; letter-spacing:0.06em;">CIPHER</span>
+          <span style="color:#ccc; margin:0 6px;">|</span>
+          <span style="font-size:12px; color:#888;">Decode what works for you</span>
+          <div style="font-size:11px; color:#aaa; margin-top:4px;">cipher.health</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Website Nav -->
+    <div class="context-card">
+      <div class="context-label">Website Nav</div>
+      <div class="context-body" style="flex-direction:row; justify-content:space-between; width:100%; padding:8px 0;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:18px; font-weight:700; letter-spacing:0.08em;">CIPHER</span>
+        <div style="display:flex; gap:20px; font-size:13px; color:#888;">
+          <span>About</span>
+          <span>Approach</span>
+          <span style="color:#111; font-weight:600;">Start</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== RECOMMENDATION ===== -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">10</span>
+    <span class="section-name">Recommendation</span>
+  </div>
+
+  <div class="notes">
+    <h4>My Take</h4>
+    <p><strong>Direction A (Mono Bold)</strong> is the strongest fit for Cipher because:</p>
+    <ul>
+      <li><strong>Monospace = decoding.</strong> It's the typeface of terminals, code editors, data readouts — exactly the "cipher" metaphor</li>
+      <li><strong>Bold weight gives authority</strong> without needing a symbol. It commands attention.</li>
+      <li><strong>Moderate tracking</strong> keeps it readable at all sizes while maintaining technical character</li>
+      <li><strong>Pairs naturally</strong> with the Inter tagline — the type contrast (mono + sans) IS the brand system</li>
+    </ul>
+    <p style="margin-top:12px;"><strong>For the favicon/avatar:</strong> JetBrains Mono bold "C" in white on black (rounded square). Clean, scales perfectly, recognizable.</p>
+    <p style="margin-top:12px;"><strong>What to tell a designer:</strong> "Refine the letterspacing, explore minor custom touches to the letterforms (especially the C and H), and build out the full lockup system with tagline variants."</p>
+  </div>
+</div>
+
+</body>
+</html>

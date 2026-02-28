@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Brand Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #5B8DEF;
+    --green: #3ECF8E;
+    --yellow: #E8B931;
+    --red: #EF5A5A;
+    --black: #111111;
+    --off-white: #FAFAF8;
+    --gray-100: #f5f5f3;
+    --gray-200: #e8e8e6;
+    --gray-300: #d0d0ce;
+    --gray-400: #999;
+    --gray-500: #777;
+    --gray-600: #555;
+    --gray-700: #333;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 48px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav .nav-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  nav .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  nav .nav-links a:hover { color: var(--black); }
+
+  /* ===== LAYOUT ===== */
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 17px;
+    color: var(--gray-600);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    margin-top: 40px;
+    letter-spacing: -0.01em;
+  }
+
+  h3:first-of-type { margin-top: 0; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 84px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  .hero-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--gray-500);
+    letter-spacing: 0.01em;
+    margin-bottom: 48px;
+  }
+
+  .hero-mark {
+    margin-bottom: 48px;
+  }
+
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-400);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ===== GRID HELPERS ===== */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .card.dark {
+    background: var(--black);
+    border-color: var(--gray-700);
+    color: var(--off-white);
+  }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+  }
+
+  .card.dark .card-label { color: var(--gray-500); }
+
+  /* ===== LOGO SECTION ===== */
+  .logo-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 40px;
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    background: #fff;
+  }
+
+  .logo-display.dark {
+    background: var(--black);
+    border-color: var(--gray-700);
+  }
+
+  .wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--black);
+  }
+
+  .dark .wordmark { color: var(--off-white); }
+
+  /* ===== COLOR SWATCHES ===== */
+  .swatch-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    background: #fff;
+  }
+
+  .swatch-color {
+    height: 100px;
+  }
+
+  .swatch-info {
+    padding: 16px 20px;
+  }
+
+  .swatch-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gray-500);
+  }
+
+  .swatch-role {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 4px;
+  }
+
+  /* ===== TYPE SPECIMENS ===== */
+  .type-specimen {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .type-specimen:last-child { border-bottom: none; }
+
+  .type-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 12px;
+  }
+
+  .type-meta span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-400);
+    letter-spacing: 0.04em;
+  }
+
+  /* ===== VOICE TABLE ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+
+  th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+
+  td {
+    font-size: 14px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  /* ===== DO / DON'T ===== */
+  .do-dont-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .do-box, .dont-box {
+    border-radius: 12px;
+    padding: 24px 28px;
+  }
+
+  .do-box {
+    background: #f0faf4;
+    border: 1px solid #c6f0d4;
+  }
+
+  .dont-box {
+    background: #fdf2f2;
+    border: 1px solid #f5c6c6;
+  }
+
+  .do-box h4, .dont-box h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .do-box h4 { color: #2d8a4e; }
+  .dont-box h4 { color: #c53030; }
+
+  .do-box li, .dont-box li {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 6px;
+    color: var(--gray-600);
+  }
+
+  .do-box ul, .dont-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .do-box li::before { content: "✓ "; color: #2d8a4e; font-weight: 600; }
+  .dont-box li::before { content: "✗ "; color: #c53030; font-weight: 600; }
+
+  /* ===== BLOCKQUOTE ===== */
+  blockquote {
+    border-left: 3px solid var(--blue);
+    padding: 16px 24px;
+    margin: 20px 0;
+    background: var(--gray-100);
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  blockquote strong { color: var(--black); }
+
+  /* ===== EXAMPLE BLOCKS ===== */
+  .example-block {
+    background: var(--gray-100);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-600);
+  }
+
+  .example-block .example-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 8px;
+  }
+
+  /* ===== TAGLINE CARDS ===== */
+  .tagline-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tagline-text {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .tagline-context {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-400);
+    letter-spacing: 0.04em;
+  }
+
+  .tagline-card.primary {
+    border-color: var(--blue);
+    border-width: 2px;
+    background: #f6f9ff;
+  }
+
+  /* ===== LOCKUP DISPLAYS ===== */
+  .lockup-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    background: #fff;
+  }
+
+  .lockup-display.dark {
+    background: var(--black);
+    border-color: var(--gray-700);
+  }
+
+  /* ===== ORIGIN STORY ===== */
+  .story-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--gray-600);
+    max-width: 680px;
+  }
+
+  .story-text p {
+    margin-bottom: 20px;
+  }
+
+  .story-text strong {
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  .story-pullquote {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    line-height: 1.3;
+    margin: 40px 0;
+    padding-left: 24px;
+    border-left: 4px solid var(--blue);
+    max-width: 580px;
+  }
+
+  /* ===== SIZE STRIP ===== */
+  .size-strip {
+    display: flex;
+    align-items: baseline;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding: 24px 0;
+  }
+
+  /* ===== FAVICON ROW ===== */
+  .favicon-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .favicon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .favicon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+  }
+
+  .favicon-box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-400);
+  }
+
+  /* ===== MESSAGING PILLARS ===== */
+  .pillar-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .pillar-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+
+  .pillar-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .pillar-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  /* ===== CONTEXT MOCKUPS ===== */
+  .mockup-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .mockup-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--gray-100);
+    background: var(--gray-100);
+  }
+
+  .mockup-body {
+    padding: 24px 20px;
+  }
+
+  /* ===== VALUES ===== */
+  .value-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .value-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .value-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  /* ===== GRADIENT BAR ===== */
+  .gradient-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    nav { padding: 0 24px; }
+    .hero-wordmark { font-size: 48px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .do-dont-grid { grid-template-columns: 1fr; }
+    section { padding: 56px 0; }
+    .nav-links { gap: 14px; }
+  }
+
+  /* ===== THEME TOGGLE ===== */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    transition: color 0.2s;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+  .theme-toggle:hover { color: var(--black); }
+  [data-theme="dark"] .theme-toggle:hover { color: #FAFAF8; }
+
+  .toggle-track {
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
+    background: var(--gray-200);
+    position: relative;
+    transition: background 0.3s;
+  }
+  .toggle-knob {
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background: #fff;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s, background 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  [data-theme="dark"] .toggle-track { background: var(--gray-300); }
+  [data-theme="dark"] .toggle-knob { transform: translateX(20px); background: #111; }
+
+  /* ===== DARK MODE ===== */
+  [data-theme="dark"] {
+    --gray-100: #161616;
+    --gray-200: #222;
+    --gray-300: #3a3a3a;
+    --gray-400: #777;
+    --gray-500: #999;
+    --gray-600: #bbb;
+    --gray-700: #ddd;
+  }
+
+  /* Page chrome */
+  [data-theme="dark"] body { background: #0a0a0a; color: #e0e0e0; }
+  [data-theme="dark"] nav { background: rgba(10,10,10,0.92); border-color: #222; }
+  [data-theme="dark"] nav .nav-brand { color: #FAFAF8; }
+  [data-theme="dark"] nav .nav-links a { color: #777; }
+  [data-theme="dark"] nav .nav-links a:hover { color: #FAFAF8; }
+  [data-theme="dark"] section { border-color: #1a1a1a; }
+
+  /* Text */
+  [data-theme="dark"] .section-title,
+  [data-theme="dark"] .hero-wordmark,
+  [data-theme="dark"] h3,
+  [data-theme="dark"] .wordmark,
+  [data-theme="dark"] .tagline-text,
+  [data-theme="dark"] .value-title,
+  [data-theme="dark"] .pillar-title,
+  [data-theme="dark"] .swatch-name,
+  [data-theme="dark"] .story-pullquote,
+  [data-theme="dark"] .story-text strong,
+  [data-theme="dark"] blockquote strong,
+  [data-theme="dark"] strong,
+  [data-theme="dark"] td { color: #FAFAF8; }
+
+  /* Override inline color:var(--black) — swap the variable for text contexts */
+  [data-theme="dark"] { --black: #FAFAF8; --off-white: #0a0a0a; }
+
+  /* Surfaces — override hardcoded #fff in stylesheet */
+  [data-theme="dark"] .card:not(.dark),
+  [data-theme="dark"] .value-card,
+  [data-theme="dark"] .pillar-card,
+  [data-theme="dark"] .tagline-card:not(.primary),
+  [data-theme="dark"] .lockup-display:not(.dark),
+  [data-theme="dark"] .logo-display:not(.dark),
+  [data-theme="dark"] .swatch-card,
+  [data-theme="dark"] .mockup-card {
+    background: #141414;
+    border-color: #252525;
+  }
+  [data-theme="dark"] .tagline-card.primary { background: #0f1828; border-color: var(--blue); }
+
+  /* Keep explicit .dark specimen cards fixed */
+  [data-theme="dark"] .logo-display.dark,
+  [data-theme="dark"] .lockup-display.dark,
+  [data-theme="dark"] .card.dark {
+    background: #111 !important;
+    border-color: #333 !important;
+    color: #FAFAF8 !important;
+  }
+  [data-theme="dark"] .dark .wordmark { color: #FAFAF8 !important; }
+  [data-theme="dark"] .lockup-display.dark span,
+  [data-theme="dark"] .logo-display.dark span { color: inherit; }
+
+  /* Do/Don't boxes */
+  [data-theme="dark"] .do-box { background: #0a1a10; border-color: #153020; }
+  [data-theme="dark"] .dont-box { background: #1a0a0a; border-color: #301515; }
+  [data-theme="dark"] .do-box h4 { color: #4ade80; }
+  [data-theme="dark"] .dont-box h4 { color: #f87171; }
+  [data-theme="dark"] .do-box li::before { color: #4ade80; }
+  [data-theme="dark"] .dont-box li::before { color: #f87171; }
+
+  /* Tables & type specimens */
+  [data-theme="dark"] th { border-color: #252525; }
+  [data-theme="dark"] .type-specimen { border-color: #252525; }
+
+  /* Blockquotes */
+  [data-theme="dark"] blockquote { background: #161616; color: #bbb; }
+
+  /* SVG stroke overrides — CSS overrides SVG presentation attributes */
+  [data-theme="dark"] svg polyline[stroke="#d0d0ce"] { stroke: #3a3a3a; }
+  [data-theme="dark"] svg polyline[stroke="#ccc"] { stroke: #3a3a3a; }
+  [data-theme="dark"] svg polyline[stroke="#999"] { stroke: #555; }
+  [data-theme="dark"] svg polyline[stroke="#bbb"] { stroke: #444; }
+  [data-theme="dark"] svg polyline[stroke="#111"] { stroke: #FAFAF8; }
+  [data-theme="dark"] svg circle[fill="#111"] { fill: #FAFAF8; }
+
+  /* Preserve SVGs inside explicit .dark containers */
+  [data-theme="dark"] .dark svg polyline[stroke="#444"] { stroke: #444 !important; }
+  [data-theme="dark"] .dark svg polyline[stroke="#777"] { stroke: #777 !important; }
+  [data-theme="dark"] .dark svg polyline[stroke="#FAFAF8"] { stroke: #FAFAF8 !important; }
+  [data-theme="dark"] .dark svg circle[fill="#5B8DEF"] { fill: #5B8DEF !important; }
+
+  /* Favicon boxes — keep them fixed */
+  [data-theme="dark"] .favicon-box { background: #111 !important; color: #FAFAF8 !important; }
+  [data-theme="dark"] .favicon-item:last-child .favicon-box { background: #FAFAF8 !important; color: #111 !important; border-color: #252525 !important; }
+
+  /* Mockup internals */
+  [data-theme="dark"] .mockup-label { background: #1a1a1a; border-color: #222; }
+  [data-theme="dark"] .mockup-body [style*="border-top"] { border-color: #252525 !important; }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="#hero" class="nav-brand">CIPHER</a>
+  <div style="display:flex; align-items:center; gap:32px;">
+    <ul class="nav-links">
+      <li><a href="#logo">Logo</a></li>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#type">Type</a></li>
+      <li><a href="#voice">Voice</a></li>
+      <li><a href="#messaging">Messaging</a></li>
+      <li><a href="#story">Story</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <span class="toggle-label">Light</span>
+      <div class="toggle-track"><div class="toggle-knob"></div></div>
+      <span class="toggle-label">Dark</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="container" style="text-align:center;">
+    <div class="hero-mark">
+      <svg width="200" height="60" viewBox="0 0 200 60">
+        <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+          fill="none" stroke="#d0d0ce" stroke-width="2" stroke-linecap="round"/>
+        <polyline points="60,32 70,28 80,34 90,26"
+          fill="none" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+        <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+          fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="146" cy="8" r="4" fill="#5B8DEF"/>
+      </svg>
+    </div>
+    <div class="hero-wordmark">CIPHER</div>
+    <div class="hero-tagline">Decode what works for you</div>
+    <div class="gradient-bar" style="width:200px; margin:0 auto 40px;"></div>
+    <div class="hero-meta">Brand Guide &middot; 2026</div>
+  </div>
+</section>
+
+<!-- ===== BRAND OVERVIEW ===== -->
+<section id="overview">
+  <div class="container">
+    <div class="section-label">01 / Overview</div>
+    <div class="section-title">The Brand</div>
+    <div class="section-subtitle">Cipher is a health optimization coaching business for data-driven professionals who collect health data but can't connect the dots. We provide the human layer — personalized experiments, data synthesis, and accountability.</div>
+
+    <div class="grid-2" style="gap:40px;">
+      <div>
+        <h3>Vision</h3>
+        <p style="font-size:15px; color:var(--gray-600); line-height:1.7;">Pioneer the agency movement in health. A world where people own their health — their data, their decisions, their outcomes. Active agents running their own experiments, not passive patients waiting for something to break.</p>
+
+        <h3>Mission</h3>
+        <p style="font-size:15px; color:var(--gray-600); line-height:1.7;">Help high-performing individuals move from overwhelmed to empowered through personalized experiments, data synthesis, and human partnership — so they can take control of their health for life.</p>
+      </div>
+      <div>
+        <h3>Core Values</h3>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div class="value-card">
+            <div class="value-title">Honesty Over Comfort</div>
+            <div class="value-desc">Tell hard truths. No hype. Even if it means saying "this won't work for you."</div>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Long-Term Over Quick Wins</div>
+            <div class="value-desc">Refuse shortcuts. Build sustainable change. Identity-based transformation, not 30-day challenges.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Empowerment Over Dependence</div>
+            <div class="value-desc">Success means they need you less. Teach people to run their own experiments.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGO SYSTEM ===== -->
+<section id="logo">
+  <div class="container">
+    <div class="section-label">02 / Logo System</div>
+    <div class="section-title">Wordmark + Mark</div>
+    <div class="section-subtitle">The logo system has two components: the CIPHER wordmark and the Signal Resolve mark. They work together or independently.</div>
+
+    <!-- Primary Lockup -->
+    <h3>Primary Lockup</h3>
+    <div class="grid-2">
+      <div class="lockup-display" style="flex-direction:column; gap:20px; padding:56px 40px;">
+        <svg width="160" height="40" viewBox="0 0 200 60" style="margin-bottom:4px;">
+          <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+            fill="none" stroke="#d0d0ce" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="60,32 70,28 80,34 90,26"
+            fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+            fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+        </svg>
+        <span class="wordmark" style="font-size:40px;">CIPHER</span>
+        <span style="font-size:13px; color:var(--gray-400);">Decode what works for you</span>
+      </div>
+      <div class="lockup-display dark" style="flex-direction:column; gap:20px; padding:56px 40px;">
+        <svg width="160" height="40" viewBox="0 0 200 60" style="margin-bottom:4px;">
+          <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+            fill="none" stroke="#444" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="60,32 70,28 80,34 90,26"
+            fill="none" stroke="#777" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+            fill="none" stroke="#FAFAF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+        </svg>
+        <span class="wordmark" style="font-size:40px; color:var(--off-white);">CIPHER</span>
+        <span style="font-size:13px; color:var(--gray-500);">Decode what works for you</span>
+      </div>
+    </div>
+
+    <!-- Wordmark Only -->
+    <h3>Wordmark</h3>
+    <p style="font-size:14px; color:var(--gray-500); margin-bottom:20px;">JetBrains Mono Bold (700) &middot; All caps &middot; 0.08em letter-spacing</p>
+    <div class="grid-2">
+      <div class="logo-display">
+        <span class="wordmark" style="font-size:48px;">CIPHER</span>
+      </div>
+      <div class="logo-display dark">
+        <span class="wordmark" style="font-size:48px; color:var(--off-white);">CIPHER</span>
+      </div>
+    </div>
+
+    <!-- Scale test -->
+    <div class="size-strip" style="margin-top:24px;">
+      <span class="wordmark" style="font-size:48px;">CIPHER</span>
+      <span class="wordmark" style="font-size:32px;">CIPHER</span>
+      <span class="wordmark" style="font-size:20px;">CIPHER</span>
+      <span class="wordmark" style="font-size:14px;">CIPHER</span>
+      <span class="wordmark" style="font-size:11px;">CIPHER</span>
+    </div>
+
+    <!-- Signal Resolve Mark -->
+    <h3>Signal Resolve Mark</h3>
+    <p style="font-size:14px; color:var(--gray-500); margin-bottom:20px;">A waveform transitioning from noise to clean signal. The blue dot marks the moment of clarity. The core Cipher metaphor in a single mark.</p>
+    <div class="grid-3">
+      <div class="logo-display" style="padding:48px 32px;">
+        <svg width="160" height="60" viewBox="0 0 200 60">
+          <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+            fill="none" stroke="#d0d0ce" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="60,32 70,28 80,34 90,26"
+            fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+            fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+        </svg>
+      </div>
+      <div class="logo-display dark" style="padding:48px 32px;">
+        <svg width="160" height="60" viewBox="0 0 200 60">
+          <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+            fill="none" stroke="#444" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="60,32 70,28 80,34 90,26"
+            fill="none" stroke="#777" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+            fill="none" stroke="#FAFAF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+        </svg>
+      </div>
+      <div class="logo-display" style="padding:48px 32px;">
+        <!-- Single color version -->
+        <svg width="160" height="60" viewBox="0 0 200 60">
+          <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+            fill="none" stroke="#d0d0ce" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="60,32 70,28 80,34 90,26"
+            fill="none" stroke="#bbb" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+            fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="146" cy="8" r="4.5" fill="#111"/>
+        </svg>
+      </div>
+    </div>
+    <div style="display:flex; gap:24px; margin-top:8px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-400); flex:1; text-align:center;">LIGHT MODE</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-400); flex:1; text-align:center;">DARK MODE</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-400); flex:1; text-align:center;">SINGLE COLOR</span>
+    </div>
+
+    <!-- Inline Lockups -->
+    <h3>Inline Lockups</h3>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="lockup-display" style="gap:16px;">
+        <svg width="100" height="32" viewBox="0 0 200 60">
+          <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+            fill="none" stroke="#d0d0ce" stroke-width="3" stroke-linecap="round"/>
+          <polyline points="60,32 70,28 80,34 90,26"
+            fill="none" stroke="#999" stroke-width="3" stroke-linecap="round"/>
+          <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+            fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="146" cy="8" r="5" fill="#5B8DEF"/>
+        </svg>
+        <span class="wordmark" style="font-size:28px;">CIPHER</span>
+      </div>
+      <div class="lockup-display">
+        <span class="wordmark" style="font-size:28px;">CIPHER</span>
+        <span style="color:var(--gray-300); font-size:28px; font-weight:200;">|</span>
+        <span style="font-size:13px; color:var(--gray-500);">Decode what works for you</span>
+      </div>
+    </div>
+
+    <!-- Favicon / Avatar -->
+    <h3>Favicon & Avatar</h3>
+    <p style="font-size:14px; color:var(--gray-500); margin-bottom:20px;">JetBrains Mono Bold "C" lettermark for small-scale use. The Signal Resolve mark simplifies at these sizes.</p>
+    <div class="favicon-row">
+      <div class="favicon-item">
+        <div class="favicon-box" style="width:56px; height:56px; border-radius:12px; background:var(--black); font-size:32px; color:var(--off-white);">C</div>
+        <span class="favicon-box-label">56px</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-box" style="width:40px; height:40px; border-radius:10px; background:var(--black); font-size:22px; color:var(--off-white);">C</div>
+        <span class="favicon-box-label">40px</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-box" style="width:32px; height:32px; border-radius:8px; background:var(--black); font-size:18px; color:var(--off-white);">C</div>
+        <span class="favicon-box-label">32px</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-box" style="width:16px; height:16px; border-radius:3px; background:var(--black); font-size:10px; color:var(--off-white);">C</div>
+        <span class="favicon-box-label">16px</span>
+      </div>
+      <div style="width:24px;"></div>
+      <div class="favicon-item">
+        <div class="favicon-box" style="width:56px; height:56px; border-radius:28px; background:var(--black); font-size:32px; color:var(--off-white);">C</div>
+        <span class="favicon-box-label">Circle</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-box" style="width:56px; height:56px; border-radius:12px; background:var(--off-white); border:1px solid var(--gray-200); font-size:32px; color:var(--black);">C</div>
+        <span class="favicon-box-label">Inverse</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLOR ===== -->
+<section id="color">
+  <div class="container">
+    <div class="section-label">03 / Color</div>
+    <div class="section-title">Color System</div>
+    <div class="section-subtitle">Colors are used as punctuation on a black-and-white canvas. Never flood a section with color. One or two accent colors per context maximum.</div>
+
+    <div class="gradient-bar" style="height:8px; border-radius:4px; margin-bottom:40px;"></div>
+
+    <!-- Primary -->
+    <h3>Foundation</h3>
+    <div class="grid-2" style="margin-bottom:32px;">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#111111; height:120px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Black</div>
+          <div class="swatch-hex">#111111</div>
+          <div class="swatch-role">Primary text, buttons, wordmark, authority</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#FAFAF8; height:120px; border-bottom:1px solid var(--gray-200);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Off-White</div>
+          <div class="swatch-hex">#FAFAF8</div>
+          <div class="swatch-role">Backgrounds, breathing room</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accent -->
+    <h3>Accent Palette</h3>
+    <div class="grid-4">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:var(--blue);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Blue</div>
+          <div class="swatch-hex">#5B8DEF</div>
+          <div class="swatch-role">Data, intelligence, clarity</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:var(--green);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Green</div>
+          <div class="swatch-hex">#3ECF8E</div>
+          <div class="swatch-role">Health, growth, success</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:var(--yellow);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Yellow</div>
+          <div class="swatch-hex">#E8B931</div>
+          <div class="swatch-role">Discovery, insight, warmth</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:var(--red);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Red</div>
+          <div class="swatch-hex">#EF5A5A</div>
+          <div class="swatch-role">Energy, human pulse, alive</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage rule -->
+    <div class="example-block" style="margin-top:32px; max-width:640px;">
+      <div class="example-label">Usage Rule</div>
+      <p>The canvas is black and white. Accent colors are used sparingly — like colored lights on a dark stage. They draw the eye to what matters: a signal dot, a CTA button, a data highlight. Never use more than two accents in a single context.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TYPOGRAPHY ===== -->
+<section id="type">
+  <div class="container">
+    <div class="section-label">04 / Typography</div>
+    <div class="section-title">Type System</div>
+    <div class="section-subtitle">Two typefaces. Monospace carries the "decode" energy. Sans-serif carries the human warmth. The contrast between them IS the brand.</div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <span>JetBrains Mono</span>
+        <span>Bold 700</span>
+        <span>Wordmark, Nav, Labels, CTAs</span>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:42px; font-weight:700; letter-spacing:0.04em;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:42px; font-weight:700; letter-spacing:0.04em; color:var(--gray-400);">
+        abcdefghijklmnopqrstuvwxyz
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:42px; font-weight:700; color:var(--gray-300);">
+        0123456789
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <span>Inter</span>
+        <span>400–900</span>
+        <span>Headlines, Body, Taglines</span>
+      </div>
+      <div style="font-family:'Inter',sans-serif; font-size:42px; font-weight:800; letter-spacing:-0.02em;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      </div>
+      <div style="font-family:'Inter',sans-serif; font-size:42px; font-weight:400; color:var(--gray-400);">
+        abcdefghijklmnopqrstuvwxyz
+      </div>
+      <div style="font-family:'Inter',sans-serif; font-size:42px; font-weight:400; color:var(--gray-300);">
+        0123456789
+      </div>
+    </div>
+
+    <h3>Hierarchy</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Font</th>
+          <th>Weight</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wordmark</td>
+          <td>JetBrains Mono</td>
+          <td>700, 0.08em</td>
+          <td><span style="font-family:'JetBrains Mono',monospace; font-weight:700; letter-spacing:0.08em;">CIPHER</span></td>
+        </tr>
+        <tr>
+          <td>Section Labels</td>
+          <td>JetBrains Mono</td>
+          <td>600, uppercase</td>
+          <td><span style="font-family:'JetBrains Mono',monospace; font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue);">Sleep Channel</span></td>
+        </tr>
+        <tr>
+          <td>Data / Readouts</td>
+          <td>JetBrains Mono</td>
+          <td>400-500</td>
+          <td><span style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:14px;">HRV: 62ms &middot; RHR: 54bpm</span></td>
+        </tr>
+        <tr>
+          <td>Headlines</td>
+          <td>Inter</td>
+          <td>700-900</td>
+          <td><span style="font-weight:800; font-size:20px; letter-spacing:-0.01em;">Your health has a pattern</span></td>
+        </tr>
+        <tr>
+          <td>Body Copy</td>
+          <td>Inter</td>
+          <td>400</td>
+          <td><span style="font-weight:400; font-size:15px; color:var(--gray-600);">Most people are stuck at Level 1, drowning in data they can't use.</span></td>
+        </tr>
+        <tr>
+          <td>Tagline</td>
+          <td>Inter</td>
+          <td>400</td>
+          <td><span style="font-weight:400; font-size:14px; color:var(--gray-500);">Decode what works for you</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== VOICE & TONE ===== -->
+<section id="voice">
+  <div class="container">
+    <div class="section-label">05 / Voice & Tone</div>
+    <div class="section-title">How Cipher Sounds</div>
+    <div class="section-subtitle">A sharp friend who happens to be a health strategist — direct enough to challenge you, warm enough that you trust them, curious enough to never stop experimenting.</div>
+
+    <!-- Three Rules -->
+    <h3>Three Voice Rules</h3>
+    <div class="grid-3" style="margin-bottom:40px;">
+      <div class="card">
+        <div class="card-label">Rule 1</div>
+        <div style="font-size:16px; font-weight:700; margin-bottom:8px;">Lead with Signal, Not Noise</div>
+        <p style="font-size:14px; color:var(--gray-600); line-height:1.5;">Every piece of content should cut something away. If you're not making something clearer, simpler, or more actionable — don't publish it.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Rule 2</div>
+        <div style="font-size:16px; font-weight:700; margin-bottom:8px;">Show the Experiment, Not the Answer</div>
+        <p style="font-size:14px; color:var(--gray-600); line-height:1.5;">Share your process, not your conclusions. "I tested X and here's what happened" beats "You should do X" every time.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Rule 3</div>
+        <div style="font-size:16px; font-weight:700; margin-bottom:8px;">You're the Guide, Not the Guru</div>
+        <p style="font-size:14px; color:var(--gray-600); line-height:1.5;">The client is the hero. Position yourself beside them, slightly ahead — never above. Empowerment over dependence.</p>
+      </div>
+    </div>
+
+    <!-- Writing Principles -->
+    <h3>Writing Principles</h3>
+    <div class="do-dont-grid">
+      <div class="do-box">
+        <h4>Do</h4>
+        <ul>
+          <li>Share specific numbers and data</li>
+          <li>Acknowledge what you don't know</li>
+          <li>Ask a question at the end — content is a conversation</li>
+          <li>Frame everything as an experiment, not a prescription</li>
+          <li>Credit sources ("Attia talks about this...")</li>
+          <li>Make the reader the hero — "you" more than "I"</li>
+          <li>Cut the first paragraph — your real opening is usually your second</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h4>Don't</h4>
+        <ul>
+          <li>Say "biohack" or "hack your health" — implies shortcuts</li>
+          <li>Say "you should" — prescriptive guru energy</li>
+          <li>Say "optimize your life" — robotic, overused</li>
+          <li>Say "crushing it" or "beast mode" — performative</li>
+          <li>Say "quick results" — contradicts the long game</li>
+          <li>Say "my protocol" — implies one-size-fits-all</li>
+          <li>Pretend you have all the answers</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tone Spectrum -->
+    <h3>Tone Spectrum</h3>
+    <p style="font-size:14px; color:var(--gray-500); margin-bottom:16px;">The voice stays consistent. The tone shifts by context.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Context</th>
+          <th>Tone</th>
+          <th>Energy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Replying to top voices (Attia, Huberman)</td>
+          <td>Sharp, substantive, peer-level</td>
+          <td>"Adding to the conversation, not applauding from below"</td>
+        </tr>
+        <tr>
+          <td>Replying to peers and builders</td>
+          <td>Collaborative, curious, generous</td>
+          <td>"I've been thinking about this too — here's what I found"</td>
+        </tr>
+        <tr>
+          <td>Replying to potential clients</td>
+          <td>Warm, empowering, direct</td>
+          <td>"You're closer than you think. Here's the one thing I'd try"</td>
+        </tr>
+        <tr>
+          <td>Original posts (health/data)</td>
+          <td>Contrarian, evidence-based, personal</td>
+          <td>"Everyone says X. I tested it. Here's what actually happened"</td>
+        </tr>
+        <tr>
+          <td>Original posts (worldview)</td>
+          <td>Bold, philosophical, accessible</td>
+          <td>"The future of health isn't what most people think"</td>
+        </tr>
+        <tr>
+          <td>Website copy</td>
+          <td>Confident, clean, no fluff</td>
+          <td>"Your health has a pattern. Let's find it."</td>
+        </tr>
+        <tr>
+          <td>DMs / outreach</td>
+          <td>Human, low-pressure, respectful</td>
+          <td>"Not selling — genuinely curious if this resonates"</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Examples -->
+    <h3>Voice in Action</h3>
+    <div class="grid-2" style="gap:20px; margin-top:16px;">
+      <div class="example-block">
+        <div class="example-label">X Post — Contrarian Insight</div>
+        <p>Everyone tracks sleep. Almost nobody tracks the 3 things that actually determine sleep quality:<br><br>Light exposure timing<br>Core body temperature curve<br>Last meal timing relative to melatonin onset<br><br>Your Oura score is the output. These are the inputs.</p>
+      </div>
+      <div class="example-block">
+        <div class="example-label">X Post — N=1 Experiment</div>
+        <p>I wore a CGM for 60 days while changing nothing else about my diet.<br><br>The most surprising finding: my glucose spiked more from stress than from any food I ate.<br><br>One stressful meeting = worse than a bowl of pasta.<br><br>Your metabolic health isn't just a nutrition problem.</p>
+      </div>
+      <div class="example-block">
+        <div class="example-label">Reply to Tier 1 — Add Depth</div>
+        <p>Interesting framing. I'd push back slightly on the sleep duration emphasis.<br><br>I tracked sleep architecture (not just duration) for 90 days. Nights with 6.5 hrs but 2+ hrs of deep sleep consistently outperformed 8 hr nights with fragmented deep sleep — on HRV, subjective energy, and next-day cognitive tests.<br><br>Duration is the wrong signal. Architecture is the right one.</p>
+      </div>
+      <div class="example-block">
+        <div class="example-label">Reply to Potential Client — Empower</div>
+        <p>You're actually further along than you think.<br><br>The fact that you're tracking and asking "what does this mean?" puts you ahead of 95% of people. The next step isn't more data — it's designing one small experiment with what you already have.<br><br>Pick one variable. Change it for 2 weeks. Watch what moves. That's the whole game.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MESSAGING ===== -->
+<section id="messaging">
+  <div class="container">
+    <div class="section-label">06 / Messaging</div>
+    <div class="section-title">Taglines & Positioning</div>
+    <div class="section-subtitle">One primary tagline. Four contextual lines. Five messaging pillars that reinforce the brand at every touchpoint.</div>
+
+    <!-- Taglines -->
+    <h3>Tagline System</h3>
+    <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:40px; max-width:640px;">
+      <div class="tagline-card primary">
+        <div class="tagline-context">Primary — Default Everywhere</div>
+        <div class="tagline-text">Decode what works for you</div>
+      </div>
+      <div class="tagline-card">
+        <div class="tagline-context">Website Hero</div>
+        <div class="tagline-text">Your health. Your code.</div>
+      </div>
+      <div class="tagline-card">
+        <div class="tagline-context">Calls to Action</div>
+        <div class="tagline-text">Crack your own code</div>
+      </div>
+      <div class="tagline-card">
+        <div class="tagline-context">Community / Movement</div>
+        <div class="tagline-text">Own the pattern</div>
+      </div>
+      <div class="tagline-card">
+        <div class="tagline-context">Social Sign-Off</div>
+        <div class="tagline-text">Find your pattern</div>
+      </div>
+    </div>
+
+    <!-- Positioning Statement -->
+    <h3>Positioning Statement</h3>
+    <blockquote>
+      I help high-performers decode what works for their body — through experiments, data, and a human who actually knows you.
+    </blockquote>
+
+    <!-- Messaging Pillars -->
+    <h3>Five Messaging Pillars</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+      <div class="pillar-card">
+        <div class="pillar-number">01</div>
+        <div class="pillar-title">Clarity Over Noise</div>
+        <div class="pillar-desc">The health world is full of conflicting advice, shiny gadgets, and guru claims. You cut through it to find what matters for THIS person.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number">02</div>
+        <div class="pillar-title">Personalization Over Protocol</div>
+        <div class="pillar-desc">No two bodies are the same. Generic advice fails. You design experiments tailored to the individual.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number">03</div>
+        <div class="pillar-title">Long Game Over Quick Fix</div>
+        <div class="pillar-desc">Identity-based change. Sustainable habits. Decades of compounding, not 30-day transformations.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number">04</div>
+        <div class="pillar-title">Data + Human</div>
+        <div class="pillar-desc">Technology enables; humans interpret. AI can't provide accountability, relationship, or nuanced judgment.</div>
+      </div>
+      <div class="pillar-card" style="grid-column: span 2;">
+        <div class="pillar-number">05</div>
+        <div class="pillar-title">Empowerment Over Dependence</div>
+        <div class="pillar-desc">The goal is to teach clients to run their own experiments. Success means they need you less, not more.</div>
+      </div>
+    </div>
+
+    <!-- The Transformation -->
+    <h3>The Transformation</h3>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card" style="border-left:3px solid var(--red);">
+        <div class="card-label">Before</div>
+        <div style="font-size:16px; font-weight:700; margin-bottom:8px;">Overwhelmed or Curious but Lost</div>
+        <ul style="font-size:14px; color:var(--gray-600); line-height:1.7; padding-left:20px;">
+          <li>Drowning in data, options, conflicting advice</li>
+          <li>Interested in health but don't know where to start</li>
+          <li>Paralyzed by choice, skeptical of gurus</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--green);">
+        <div class="card-label">After</div>
+        <div style="font-size:16px; font-weight:700; margin-bottom:8px;">Empowered</div>
+        <ul style="font-size:14px; color:var(--gray-600); line-height:1.7; padding-left:20px;">
+          <li>They know what works FOR THEM</li>
+          <li>They can run their own experiments</li>
+          <li>They have a system — health feels manageable</li>
+          <li>They don't need you forever (and that's the point)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ORIGIN STORY ===== -->
+<section id="story">
+  <div class="container">
+    <div class="section-label">07 / Origin Story</div>
+    <div class="section-title">The Cipher Story</div>
+    <div class="section-subtitle">For the About page, pitch decks, podcast intros, and anywhere the brand needs a human behind it.</div>
+
+    <div class="story-text">
+      <div class="story-pullquote">"I realized I could write my own story. That the narratives I'd been handed were wrong."</div>
+
+      <p>Senior year of high school. I'm sitting in class but I can't hear the person speaking right in front of me. Not because the room is loud — because I'm so exhausted my brain has stopped processing sound.</p>
+
+      <p>Not sleeping. Constantly overwhelmed. Heart always pounding. Brain fog so thick I couldn't think three steps ahead. We struggled financially, but I had access to schools and networks where people lived very differently. I could see what life looked like on the other side — and that was enough to know the gap was crossable.</p>
+
+      <p>But knowing it was crossable didn't matter if my body wouldn't cooperate. I couldn't focus. I couldn't sleep. I couldn't think.</p>
+
+      <p>So I wrote it down. All of it. A 50-year vision for my life in a notebook. Then I listed every habit that the person who reached that vision would have. And every habit I needed to let go of. Every day, I tracked whether I did them or not.</p>
+
+      <p>It wasn't sophisticated. It was just a notebook and intent. But it built something I didn't have before: <strong>awareness.</strong></p>
+
+      <p>By senior year of college, something deeper shifted. I'd been reading — not blog posts, but real research. People who had figured out how to build themselves into something different than where they started. And I realized: the story I'd been handed — "you are what you come from" — was wrong.</p>
+
+      <p><strong>I had agency. More agency than I'd ever believed.</strong></p>
+
+      <p>I started my first company that same year. Tried to build a platform for health coaches because I kept losing touch with mine when I moved around for school. It didn't work. But through that failure, I found the thing that's driven everything since:</p>
+
+      <blockquote style="font-size:17px; font-weight:600; color:var(--black); margin:24px 0;"><strong>Build and use technology to empower people to be true stewards of their health — not passive participants.</strong></blockquote>
+
+      <p>Not patients. Not followers. Stewards. People who run experiments, interpret their own data, and make decisions without waiting for permission.</p>
+
+      <p>That's what Cipher is.</p>
+
+      <p>I spent years learning how to decode my own biology. How to find the signal in the noise. How to turn wearables and data and research into a system that actually works for me — not a generic protocol someone else wrote.</p>
+
+      <p>Now I help other people do the same.</p>
+
+      <p>Not by giving you my answers. By teaching you how to find your own. Through experiments. Through data you already have. Through the kind of partnership that pushes you to see patterns you've been missing.</p>
+
+      <p><strong>Your health has a code. It's not hidden in some guru's protocol or the latest device. It's in you. In your patterns. In the way your body responds when you actually pay attention.</strong></p>
+
+      <p><strong>Let's decode it.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPLICATIONS ===== -->
+<section id="applications">
+  <div class="container">
+    <div class="section-label">08 / Applications</div>
+    <div class="section-title">In Context</div>
+    <div class="section-subtitle">How the brand shows up in real placements.</div>
+
+    <div class="grid-3">
+      <!-- X Bio -->
+      <div class="mockup-card">
+        <div class="mockup-label">X / Twitter Bio</div>
+        <div class="mockup-body">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+            <div style="width:32px; height:32px; border-radius:16px; background:var(--black); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px; color:var(--off-white);">C</div>
+            <div>
+              <div style="font-weight:700; font-size:14px;">Jordan Carlisle</div>
+              <div style="font-size:12px; color:var(--gray-400);">@jordantcarlisle</div>
+            </div>
+          </div>
+          <p style="font-size:13px; line-height:1.6; color:var(--gray-600);">CTO @SoberSidekick. Building <span style="font-family:'JetBrains Mono',monospace; font-weight:600; font-size:12px;">CIPHER</span> — health coaching for people with too much data and not enough answers. Decode what works for you.</p>
+        </div>
+      </div>
+
+      <!-- Email Sig -->
+      <div class="mockup-card">
+        <div class="mockup-label">Email Signature</div>
+        <div class="mockup-body">
+          <p style="font-size:13px; color:var(--gray-600); margin-bottom:12px;">Best,<br>Jordan</p>
+          <div style="border-top:1px solid var(--gray-200); padding-top:12px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; letter-spacing:0.06em;">CIPHER</span>
+            <span style="color:var(--gray-300); margin:0 8px;">|</span>
+            <span style="font-size:12px; color:var(--gray-400);">Decode what works for you</span>
+            <div style="font-size:11px; color:var(--gray-400); margin-top:4px;">cipher.health</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Website Nav -->
+      <div class="mockup-card">
+        <div class="mockup-label">Website Nav</div>
+        <div class="mockup-body" style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.08em;">CIPHER</span>
+          <div style="display:flex; gap:16px; font-size:12px; color:var(--gray-400);">
+            <span>About</span>
+            <span>Approach</span>
+            <span style="color:var(--black); font-weight:600;">Start</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:24px;">
+      <!-- Website Hero -->
+      <div class="mockup-card">
+        <div class="mockup-label">Website Hero</div>
+        <div class="mockup-body" style="text-align:center; padding:40px 24px;">
+          <svg width="140" height="36" viewBox="0 0 200 60" style="margin-bottom:16px;">
+            <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+              fill="none" stroke="#d0d0ce" stroke-width="2.5" stroke-linecap="round"/>
+            <polyline points="60,32 70,28 80,34 90,26"
+              fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
+            <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+              fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="146" cy="8" r="4.5" fill="#5B8DEF"/>
+          </svg>
+          <div style="font-size:32px; font-weight:800; letter-spacing:-0.02em; margin-bottom:8px;">Your health. Your code.</div>
+          <div style="font-size:15px; color:var(--gray-500); margin-bottom:20px; max-width:380px; margin-left:auto; margin-right:auto; line-height:1.5;">Health coaching for people with too much data and not enough answers. Personalized experiments. Human partnership. Real results.</div>
+          <div style="display:inline-block; background:var(--black); color:var(--off-white); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; padding:12px 28px; border-radius:8px; letter-spacing:0.04em;">CRACK YOUR OWN CODE</div>
+        </div>
+      </div>
+
+      <!-- Podcast -->
+      <div class="mockup-card">
+        <div class="mockup-label">Podcast Intro</div>
+        <div class="mockup-body" style="padding:32px 24px;">
+          <p style="font-size:15px; color:var(--gray-600); line-height:1.7; font-style:italic;">"This is Cipher, where we decode what works for you. I'm Jordan Carlisle — CTO, health data nerd, and someone who spent years drowning in the same noise you're drowning in before building a system that actually works. Each week, we run experiments, cut through health BS, and find the signal. Let's get into it."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISUAL DIRECTION ===== -->
+<section id="visual">
+  <div class="container">
+    <div class="section-label">09 / Visual Direction</div>
+    <div class="section-title">Design Principles</div>
+    <div class="section-subtitle">The visual language for all Cipher touchpoints — website, social media, presentations, client materials.</div>
+
+    <div class="grid-2" style="gap:40px;">
+      <div>
+        <h3>The Direction</h3>
+        <p style="font-size:15px; color:var(--gray-600); line-height:1.7;">The visual language is built around <strong style="color:var(--black);">finding the signal in noise</strong> — waveforms, frequency patterns, data channels. The concept is executed boldly, not as background decoration. Alive and kinetic energy.</p>
+
+        <h3>Key Visual Elements</h3>
+        <ul style="font-size:14px; color:var(--gray-600); line-height:2; padding-left:20px;">
+          <li><strong style="color:var(--black);">Animated waveforms</strong> — large-scale, sweep across hero sections</li>
+          <li><strong style="color:var(--black);">Signal readout panels</strong> — instrument-panel-style section breaks</li>
+          <li><strong style="color:var(--black);">Noise-to-signal transformation</strong> — before/after (static vs. clean)</li>
+          <li><strong style="color:var(--black);">Scanning dots</strong> — glowing colored dots along waveform paths</li>
+          <li><strong style="color:var(--black);">Channel indicators</strong> — color-coded health domains</li>
+          <li><strong style="color:var(--black);">Gradient color bar</strong> — four-color gradient for accents</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What It's Not</h3>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="background:var(--gray-100); border-radius:10px; padding:16px 20px;">
+            <div style="font-weight:600; font-size:14px; margin-bottom:4px;">Not clinical wellness</div>
+            <div style="font-size:13px; color:var(--gray-500);">No white coats, stethoscopes, or sterile stock photography</div>
+          </div>
+          <div style="background:var(--gray-100); border-radius:10px; padding:16px 20px;">
+            <div style="font-weight:600; font-size:14px; margin-bottom:4px;">Not soft pastels</div>
+            <div style="font-size:13px; color:var(--gray-500);">No sage green, dusty rose, or meditation-app energy</div>
+          </div>
+          <div style="background:var(--gray-100); border-radius:10px; padding:16px 20px;">
+            <div style="font-weight:600; font-size:14px; margin-bottom:4px;">Not bro performance</div>
+            <div style="font-size:13px; color:var(--gray-500);">No neon, dark gym photography, or "beast mode" energy</div>
+          </div>
+          <div style="background:var(--gray-100); border-radius:10px; padding:16px 20px;">
+            <div style="font-weight:600; font-size:14px; margin-bottom:4px;">Not generic SaaS</div>
+            <div style="font-size:13px; color:var(--gray-500);">No abstract blobs, gradient backgrounds, or illustration libraries</div>
+          </div>
+        </div>
+
+        <h3>Mood Board</h3>
+        <table style="margin-top:16px;">
+          <tbody>
+            <tr>
+              <td style="font-weight:600;">Stripe / Linear</td>
+              <td style="color:var(--gray-500);">Minimal precision, premium restraint</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Whoop / Eight Sleep</td>
+              <td style="color:var(--gray-500);">Performance energy, bold aesthetics</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Terminal / IDE</td>
+              <td style="color:var(--gray-500);">Monospace readouts, technical credibility</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Audio visualization</td>
+              <td style="color:var(--gray-500);">Waveform shapes, oscilloscope energy</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<section style="padding:48px 0; border-bottom:none; text-align:center;">
+  <div class="container">
+    <div class="gradient-bar" style="width:120px; margin:0 auto 24px;"></div>
+    <span class="wordmark" style="font-size:24px;">CIPHER</span>
+    <p style="font-size:13px; color:var(--gray-400); margin-top:8px;">Decode what works for you</p>
+    <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-300); margin-top:24px;">Brand Guide v1.0 &middot; February 2026</p>
+  </div>
+</section>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  // Check for saved preference
+  const saved = localStorage.getItem('cipher-theme');
+  if (saved === 'dark') {
+    html.setAttribute('data-theme', 'dark');
+  }
+
+  toggle.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('cipher-theme', 'light');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      localStorage.setItem('cipher-theme', 'dark');
+    }
+  });
+</script>
+</body>
+</html>

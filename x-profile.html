@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cipher — X Profile Image</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .profile {
+    width: 400px;
+    height: 400px;
+    background: #111111;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Subtle signal waveform in the background */
+  .bg-signal {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    opacity: 0.06;
+  }
+
+  /* The C lettermark */
+  .lettermark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 220px;
+    font-weight: 700;
+    color: #FAFAF8;
+    position: relative;
+    z-index: 2;
+    line-height: 1;
+    margin-top: -8px;
+  }
+
+  /* Blue dot accent — signature Cipher element */
+  .blue-dot {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #5B8DEF;
+    top: 82px;
+    right: 102px;
+    z-index: 3;
+  }
+
+  /* Subtle gradient bar at bottom — stays within circle crop */
+  .gradient-accent {
+    position: absolute;
+    bottom: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #5B8DEF, #3ECF8E, #E8B931, #EF5A5A);
+    z-index: 3;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="profile">
+
+  <!-- Very subtle waveform texture -->
+  <svg class="bg-signal" viewBox="0 0 400 400" preserveAspectRatio="none">
+    <polyline points="0,200 20,180 40,220 60,170 80,230 100,185 120,215 140,175 160,225 180,190 200,210 220,185 240,205 260,195 280,200 300,195 320,205 340,198 360,202 380,200 400,200"
+      fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    <polyline points="0,200 30,210 60,185 90,220 120,175 150,215 180,190 210,205 240,195 270,200 300,200 330,200 360,200 400,200"
+      fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="lettermark">C</div>
+  <div class="blue-dot"></div>
+  <div class="gradient-accent"></div>
+
+</div>
+
+</body>
+</html>

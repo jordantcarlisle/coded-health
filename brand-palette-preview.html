@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Palette Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Inter', 'Helvetica Neue', sans-serif; }
+
+  .palette-section { min-height: 100vh; padding: 60px 40px; }
+
+  /* Palette A: Dark Signal */
+  .palette-a { background: #1A1A2E; color: #F5F0EB; }
+  .palette-a .accent { color: #00E5CC; }
+  .palette-a .pop { color: #FF6B35; }
+  .palette-a .btn-primary { background: #00E5CC; color: #1A1A2E; }
+  .palette-a .btn-secondary { background: transparent; border: 1.5px solid #00E5CC; color: #00E5CC; }
+  .palette-a .card { background: #16213E; border: 1px solid rgba(0,229,204,0.15); }
+  .palette-a .card-highlight { border-left: 3px solid #FF6B35; }
+  .palette-a .nav { border-bottom: 1px solid rgba(245,240,235,0.1); }
+  .palette-a .nav-link { color: rgba(245,240,235,0.6); }
+  .palette-a .nav-link.active { color: #00E5CC; }
+  .palette-a .muted { color: rgba(245,240,235,0.5); }
+  .palette-a .tag { background: rgba(0,229,204,0.12); color: #00E5CC; }
+  .palette-a .divider { border-color: rgba(245,240,235,0.08); }
+  .palette-a .stat-number { color: #00E5CC; }
+  .palette-a .input { background: #16213E; border: 1px solid rgba(245,240,235,0.15); color: #F5F0EB; }
+  .palette-a .input:focus { border-color: #00E5CC; }
+  .palette-a .testimonial { background: #16213E; border-left: 3px solid #FF6B35; }
+  .palette-a .footer { background: #0F0F1E; border-top: 1px solid rgba(245,240,235,0.08); }
+  .palette-a .palette-label { background: rgba(0,229,204,0.1); color: #00E5CC; }
+
+  /* Palette B: Warm Edge */
+  .palette-b { background: #FAF8F5; color: #0D1B2A; }
+  .palette-b .accent { color: #F0A500; }
+  .palette-b .pop { color: #C4562A; }
+  .palette-b .btn-primary { background: #0D1B2A; color: #FAF8F5; }
+  .palette-b .btn-secondary { background: transparent; border: 1.5px solid #0D1B2A; color: #0D1B2A; }
+  .palette-b .card { background: #FFFFFF; border: 1px solid rgba(13,27,42,0.1); }
+  .palette-b .card-highlight { border-left: 3px solid #F0A500; }
+  .palette-b .nav { border-bottom: 1px solid rgba(13,27,42,0.1); }
+  .palette-b .nav-link { color: rgba(13,27,42,0.5); }
+  .palette-b .nav-link.active { color: #C4562A; }
+  .palette-b .muted { color: rgba(13,27,42,0.5); }
+  .palette-b .tag { background: rgba(240,165,0,0.12); color: #B88A00; }
+  .palette-b .divider { border-color: rgba(13,27,42,0.08); }
+  .palette-b .stat-number { color: #C4562A; }
+  .palette-b .input { background: #FFFFFF; border: 1px solid rgba(13,27,42,0.2); color: #0D1B2A; }
+  .palette-b .testimonial { background: #FFFFFF; border-left: 3px solid #F0A500; }
+  .palette-b .footer { background: #0D1B2A; color: #FAF8F5; border-top: none; }
+  .palette-b .footer .muted { color: rgba(250,248,245,0.5); }
+  .palette-b .palette-label { background: rgba(240,165,0,0.12); color: #B88A00; }
+
+  /* Palette C: Decode */
+  .palette-c { background: #0B0C10; color: #C5C6C7; }
+  .palette-c .accent { color: #45E3C8; }
+  .palette-c .pop { color: #E8543E; }
+  .palette-c h1, .palette-c h2, .palette-c h3, .palette-c .hero-headline { color: #EAEAEA; }
+  .palette-c .btn-primary { background: #45E3C8; color: #0B0C10; }
+  .palette-c .btn-secondary { background: transparent; border: 1.5px solid #45E3C8; color: #45E3C8; }
+  .palette-c .card { background: #1F2833; border: 1px solid rgba(69,227,200,0.1); }
+  .palette-c .card-highlight { border-left: 3px solid #E8543E; }
+  .palette-c .nav { border-bottom: 1px solid rgba(197,198,199,0.1); }
+  .palette-c .nav-link { color: rgba(197,198,199,0.5); }
+  .palette-c .nav-link.active { color: #45E3C8; }
+  .palette-c .muted { color: rgba(197,198,199,0.45); }
+  .palette-c .tag { background: rgba(69,227,200,0.1); color: #45E3C8; }
+  .palette-c .divider { border-color: rgba(197,198,199,0.08); }
+  .palette-c .stat-number { color: #45E3C8; }
+  .palette-c .input { background: #1F2833; border: 1px solid rgba(197,198,199,0.15); color: #C5C6C7; }
+  .palette-c .testimonial { background: #1F2833; border-left: 3px solid #E8543E; }
+  .palette-c .footer { background: #060608; border-top: 1px solid rgba(197,198,199,0.08); }
+  .palette-c .palette-label { background: rgba(69,227,200,0.1); color: #45E3C8; }
+
+  /* Shared Layout Styles */
+  .palette-label {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    margin-bottom: 60px;
+  }
+  .nav-brand {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+
+  .hero { max-width: 720px; margin-bottom: 60px; }
+  .hero-tagline {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero-headline {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    opacity: 0.75;
+  }
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.85; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .stat-card { text-align: center; padding: 32px 20px; border-radius: 10px; }
+  .stat-number { font-size: 36px; font-weight: 700; margin-bottom: 6px; }
+  .stat-label { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+  .section-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .section-header p {
+    font-size: 16px;
+    opacity: 0.65;
+    max-width: 540px;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+  .card {
+    padding: 28px;
+    border-radius: 10px;
+  }
+  .card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .card p {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.7;
+  }
+  .tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .testimonial {
+    padding: 28px 32px;
+    border-radius: 8px;
+    margin-bottom: 60px;
+    max-width: 600px;
+  }
+  .testimonial blockquote {
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .testimonial cite {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 48px 0;
+    margin-bottom: 40px;
+  }
+  .cta-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .cta-section p {
+    font-size: 16px;
+    opacity: 0.65;
+    margin-bottom: 28px;
+  }
+  .cta-section .btn-row { justify-content: center; }
+
+  .footer {
+    padding: 28px 0;
+    border-radius: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin: 0 -40px -60px;
+    padding: 28px 40px;
+  }
+
+  .divider { border: none; border-top: 1px solid; margin: 0 0 60px 0; }
+
+  @media (max-width: 768px) {
+    .palette-section { padding: 40px 24px; }
+    .hero-headline { font-size: 32px; }
+    .stats-row, .card-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- PALETTE A: DARK SIGNAL                       -->
+<!-- ============================================ -->
+<section class="palette-section palette-a">
+  <span class="palette-label">Palette A — Dark Signal</span>
+
+  <nav class="nav">
+    <div class="nav-brand accent">CIPHER</div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Method</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Results</a>
+      <a class="nav-link" href="#">Start</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tagline accent">Decode what works for you</div>
+    <h1 class="hero-headline">Your health has a pattern.<br>Let's find it.</h1>
+    <p class="hero-sub">Personalized health optimization through experiments, data synthesis, and a human who actually knows you. For high-performers who are done guessing.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#">Start Your Diagnostic</a>
+      <a class="btn btn-secondary" href="#">See the Method</a>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="card stat-card">
+      <div class="stat-number">4-Week</div>
+      <div class="stat-label muted">Experiment Cycles</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-number">N=1</div>
+      <div class="stat-label muted">Personalized to You</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label muted">Tool Agnostic</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-header">
+    <h2>The Cipher Method</h2>
+    <p>Three phases to decode your health and build systems that compound for decades.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card card-highlight">
+      <span class="tag">Phase 1</span>
+      <h3>Diagnostic</h3>
+      <p>We audit your tools, habits, beliefs, and data. The comprehensive inventory that becomes the foundation for everything.</p>
+    </div>
+    <div class="card card-highlight">
+      <span class="tag">Phase 2</span>
+      <h3>Experiment</h3>
+      <p>4-week cycles of test, measure, learn, adjust. Each experiment builds on the last. No guessing.</p>
+    </div>
+    <div class="card card-highlight">
+      <span class="tag">Phase 3</span>
+      <h3>Own It</h3>
+      <p>You learn to run your own experiments. The goal is your independence — not a lifetime subscription.</p>
+    </div>
+  </div>
+
+  <div class="testimonial">
+    <blockquote>"I had an Oura, a Whoop, and blood panels — but no idea what to actually do with any of it. Cipher connected the dots I couldn't see."</blockquote>
+    <cite class="pop">— Future client testimonial</cite>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to crack your own code?</h2>
+    <p class="muted">Start with a free diagnostic conversation. No commitment, no pitch.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#">Book a Conversation</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="muted">&copy; 2026 Cipher</span>
+    <span class="muted">Your health. Your code.</span>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- PALETTE B: WARM EDGE                         -->
+<!-- ============================================ -->
+<section class="palette-section palette-b">
+  <span class="palette-label">Palette B — Warm Edge</span>
+
+  <nav class="nav">
+    <div class="nav-brand">CIPHER</div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Method</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Results</a>
+      <a class="nav-link" href="#">Start</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tagline pop">Decode what works for you</div>
+    <h1 class="hero-headline">Your health has a pattern.<br>Let's find it.</h1>
+    <p class="hero-sub">Personalized health optimization through experiments, data synthesis, and a human who actually knows you. For high-performers who are done guessing.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#">Start Your Diagnostic</a>
+      <a class="btn btn-secondary" href="#">See the Method</a>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="card stat-card">
+      <div class="stat-number">4-Week</div>
+      <div class="stat-label muted">Experiment Cycles</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-number">N=1</div>
+      <div class="stat-label muted">Personalized to You</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label muted">Tool Agnostic</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-header">
+    <h2>The Cipher Method</h2>
+    <p>Three phases to decode your health and build systems that compound for decades.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card card-highlight">
+      <span class="tag">Phase 1</span>
+      <h3>Diagnostic</h3>
+      <p>We audit your tools, habits, beliefs, and data. The comprehensive inventory that becomes the foundation for everything.</p>
+    </div>
+    <div class="card card-highlight">
+      <span class="tag">Phase 2</span>
+      <h3>Experiment</h3>
+      <p>4-week cycles of test, measure, learn, adjust. Each experiment builds on the last. No guessing.</p>
+    </div>
+    <div class="card card-highlight">
+      <span class="tag">Phase 3</span>
+      <h3>Own It</h3>
+      <p>You learn to run your own experiments. The goal is your independence — not a lifetime subscription.</p>
+    </div>
+  </div>
+
+  <div class="testimonial">
+    <blockquote>"I had an Oura, a Whoop, and blood panels — but no idea what to actually do with any of it. Cipher connected the dots I couldn't see."</blockquote>
+    <cite class="pop">— Future client testimonial</cite>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to crack your own code?</h2>
+    <p class="muted">Start with a free diagnostic conversation. No commitment, no pitch.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#">Book a Conversation</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="muted">&copy; 2026 Cipher</span>
+    <span class="muted">Your health. Your code.</span>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- PALETTE C: DECODE                            -->
+<!-- ============================================ -->
+<section class="palette-section palette-c">
+  <span class="palette-label">Palette C — Decode</span>
+
+  <nav class="nav">
+    <div class="nav-brand accent">CIPHER</div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Method</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Results</a>
+      <a class="nav-link" href="#">Start</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tagline accent">Decode what works for you</div>
+    <h1 class="hero-headline">Your health has a pattern.<br>Let's find it.</h1>
+    <p class="hero-sub">Personalized health optimization through experiments, data synthesis, and a human who actually knows you. For high-performers who are done guessing.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#">Start Your Diagnostic</a>
+      <a class="btn btn-secondary" href="#">See the Method</a>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="card stat-card">
+      <div class="stat-number">4-Week</div>
+      <div class="stat-label muted">Experiment Cycles</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-number">N=1</div>
+      <div class="stat-label muted">Personalized to You</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label muted">Tool Agnostic</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-header">
+    <h2>The Cipher Method</h2>
+    <p>Three phases to decode your health and build systems that compound for decades.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card card-highlight">
+      <span class="tag">Phase 1</span>
+      <h3>Diagnostic</h3>
+      <p>We audit your tools, habits, beliefs, and data. The comprehensive inventory that becomes the foundation for everything.</p>
+    </div>
+    <div class="card card-highlight">
+      <span class="tag">Phase 2</span>
+      <h3>Experiment</h3>
+      <p>4-week cycles of test, measure, learn, adjust. Each experiment builds on the last. No guessing.</p>
+    </div>
+    <div class="card card-highlight">
+      <span class="tag">Phase 3</span>
+      <h3>Own It</h3>
+      <p>You learn to run your own experiments. The goal is your independence — not a lifetime subscription.</p>
+    </div>
+  </div>
+
+  <div class="testimonial">
+    <blockquote>"I had an Oura, a Whoop, and blood panels — but no idea what to actually do with any of it. Cipher connected the dots I couldn't see."</blockquote>
+    <cite class="pop">— Future client testimonial</cite>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to crack your own code?</h2>
+    <p class="muted">Start with a free diagnostic conversation. No commitment, no pitch.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#">Book a Conversation</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="muted">&copy; 2026 Cipher</span>
+    <span class="muted">Your health. Your code.</span>
+  </div>
+</section>
+
+</body>
+</html>

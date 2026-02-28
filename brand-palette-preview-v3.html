@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Palette V3: Minimal Color</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+
+  :root {
+    --blue: #5B8DEF;
+    --green: #3ECF8E;
+    --red: #EF5A5A;
+    --yellow: #E8B931;
+  }
+
+  .palette-section { min-height: 100vh; padding: 80px 60px; }
+  .palette-label {
+    display: inline-block; padding: 5px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 60px;
+  }
+
+  /* ============================== */
+  /* LIGHT MODE                     */
+  /* ============================== */
+  .light {
+    background: #FAFAFA;
+    color: #111;
+  }
+  .light .palette-label { background: #F0F0F0; color: #888; }
+
+  .light .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 24px; margin-bottom: 80px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .light .nav-brand {
+    font-size: 18px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: #111;
+  }
+  .light .nav-links { display: flex; gap: 32px; }
+  .light .nav-link {
+    font-size: 13px; font-weight: 500; color: #999;
+    text-decoration: none; letter-spacing: 0.3px;
+  }
+  .light .nav-link.active { color: #111; }
+  .light .nav-cta {
+    font-size: 12px; font-weight: 600; color: #fff; background: #111;
+    padding: 8px 20px; border-radius: 4px; text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+
+  .light .hero { max-width: 640px; margin-bottom: 100px; }
+  .light .hero-tagline {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: #999; margin-bottom: 20px;
+  }
+  /* Color dot before tagline */
+  .light .hero-tagline::before {
+    content: ''; display: inline-block; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--blue); margin-right: 10px;
+    vertical-align: middle;
+  }
+  .light .hero-headline {
+    font-size: 52px; font-weight: 700; line-height: 1.1;
+    letter-spacing: -1.5px; color: #111; margin-bottom: 24px;
+  }
+  .light .hero-sub {
+    font-size: 17px; line-height: 1.7; color: #666; margin-bottom: 36px;
+    max-width: 520px;
+  }
+  .light .btn-row { display: flex; gap: 12px; align-items: center; }
+  .light .btn-primary {
+    display: inline-block; padding: 14px 28px; border-radius: 5px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
+    background: #111; color: #fff; text-decoration: none; border: none;
+  }
+  .light .btn-ghost {
+    font-size: 13px; font-weight: 500; color: #666;
+    text-decoration: none; padding: 14px 8px;
+  }
+  .light .btn-ghost span { border-bottom: 1px solid #CCC; }
+
+  /* Stats — minimal with color accents */
+  .light .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; margin-bottom: 100px; background: #E8E8E8;
+    border: 1px solid #E8E8E8; border-radius: 8px; overflow: hidden;
+  }
+  .light .stat-card {
+    background: #fff; padding: 36px 28px; text-align: center;
+  }
+  .light .stat-number {
+    font-size: 32px; font-weight: 700; color: #111; margin-bottom: 4px;
+  }
+  .light .stat-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: #999;
+  }
+  /* Thin color bar at top of each stat */
+  .light .stat-card:nth-child(1) { border-top: 2px solid var(--blue); }
+  .light .stat-card:nth-child(2) { border-top: 2px solid var(--green); }
+  .light .stat-card:nth-child(3) { border-top: 2px solid var(--yellow); }
+
+  .light .section-header { margin-bottom: 40px; }
+  .light .section-header h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: #999; margin-bottom: 12px;
+  }
+  .light .section-header p {
+    font-size: 28px; font-weight: 600; color: #111;
+    line-height: 1.3; max-width: 480px; letter-spacing: -0.5px;
+  }
+
+  .light .card-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-bottom: 100px;
+  }
+  .light .card {
+    background: #fff; padding: 32px; border-radius: 8px;
+    border: 1px solid #EBEBEB;
+  }
+  .light .card-number {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .light .color-dot {
+    width: 8px; height: 8px; border-radius: 50%; display: inline-block;
+  }
+  .light .card h3 {
+    font-size: 18px; font-weight: 600; color: #111; margin-bottom: 10px;
+  }
+  .light .card p {
+    font-size: 14px; line-height: 1.65; color: #777;
+  }
+
+  /* Pillar strip — horizontal with color indicators */
+  .light .pillar-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-bottom: 100px;
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .light .pillar-item {
+    padding: 28px 24px;
+    border-right: 1px solid #E8E8E8;
+  }
+  .light .pillar-item:last-child { border-right: none; }
+  .light .pillar-item h4 {
+    font-size: 13px; font-weight: 600; color: #111; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .light .pillar-item p {
+    font-size: 12px; line-height: 1.6; color: #999;
+  }
+
+  /* Testimonial */
+  .light .testimonial-section { margin-bottom: 100px; max-width: 560px; }
+  .light .testimonial-section blockquote {
+    font-size: 20px; font-weight: 400; line-height: 1.6;
+    color: #333; font-style: italic; margin-bottom: 16px;
+    padding-left: 20px; border-left: 2px solid var(--red);
+  }
+  .light .testimonial-section cite {
+    font-size: 13px; font-style: normal; color: #999;
+    padding-left: 20px;
+  }
+
+  /* CTA */
+  .light .cta-section {
+    padding: 60px 0; margin-bottom: 60px;
+    border-top: 1px solid #E8E8E8;
+    text-align: center;
+  }
+  .light .cta-section h2 {
+    font-size: 32px; font-weight: 700; color: #111;
+    letter-spacing: -0.5px; margin-bottom: 12px;
+  }
+  .light .cta-section p {
+    font-size: 15px; color: #999; margin-bottom: 32px;
+  }
+
+  /* Footer */
+  .light .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 24px; border-top: 1px solid #E8E8E8;
+    font-size: 12px; color: #BBB;
+  }
+
+  /* ============================== */
+  /* DARK MODE                      */
+  /* ============================== */
+  .dark {
+    background: #0C0C0F;
+    color: #E0DDD8;
+  }
+  .dark .palette-label { background: rgba(255,255,255,0.05); color: #666; }
+
+  .dark .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 24px; margin-bottom: 80px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .dark .nav-brand {
+    font-size: 18px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: #E0DDD8;
+  }
+  .dark .nav-links { display: flex; gap: 32px; }
+  .dark .nav-link {
+    font-size: 13px; font-weight: 500; color: #555;
+    text-decoration: none; letter-spacing: 0.3px;
+  }
+  .dark .nav-link.active { color: #E0DDD8; }
+  .dark .nav-cta {
+    font-size: 12px; font-weight: 600; color: #0C0C0F; background: #E0DDD8;
+    padding: 8px 20px; border-radius: 4px; text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+
+  .dark .hero { max-width: 640px; margin-bottom: 100px; }
+  .dark .hero-tagline {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: #555; margin-bottom: 20px;
+  }
+  .dark .hero-tagline::before {
+    content: ''; display: inline-block; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--blue); margin-right: 10px;
+    vertical-align: middle;
+  }
+  .dark .hero-headline {
+    font-size: 52px; font-weight: 700; line-height: 1.1;
+    letter-spacing: -1.5px; color: #F0EDE8; margin-bottom: 24px;
+  }
+  .dark .hero-sub {
+    font-size: 17px; line-height: 1.7; color: #777; margin-bottom: 36px;
+    max-width: 520px;
+  }
+  .dark .btn-row { display: flex; gap: 12px; align-items: center; }
+  .dark .btn-primary {
+    display: inline-block; padding: 14px 28px; border-radius: 5px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
+    background: #F0EDE8; color: #0C0C0F; text-decoration: none; border: none;
+  }
+  .dark .btn-ghost {
+    font-size: 13px; font-weight: 500; color: #777;
+    text-decoration: none; padding: 14px 8px;
+  }
+  .dark .btn-ghost span { border-bottom: 1px solid #444; }
+
+  .dark .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; margin-bottom: 100px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden;
+  }
+  .dark .stat-card {
+    background: #111114; padding: 36px 28px; text-align: center;
+  }
+  .dark .stat-number {
+    font-size: 32px; font-weight: 700; color: #F0EDE8; margin-bottom: 4px;
+  }
+  .dark .stat-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: #555;
+  }
+  .dark .stat-card:nth-child(1) { border-top: 2px solid var(--blue); }
+  .dark .stat-card:nth-child(2) { border-top: 2px solid var(--green); }
+  .dark .stat-card:nth-child(3) { border-top: 2px solid var(--yellow); }
+
+  .dark .section-header { margin-bottom: 40px; }
+  .dark .section-header h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: #555; margin-bottom: 12px;
+  }
+  .dark .section-header p {
+    font-size: 28px; font-weight: 600; color: #F0EDE8;
+    line-height: 1.3; max-width: 480px; letter-spacing: -0.5px;
+  }
+
+  .dark .card-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-bottom: 100px;
+  }
+  .dark .card {
+    background: #111114; padding: 32px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .dark .card-number {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+    color: #555;
+  }
+  .dark .card h3 {
+    font-size: 18px; font-weight: 600; color: #F0EDE8; margin-bottom: 10px;
+  }
+  .dark .card p {
+    font-size: 14px; line-height: 1.65; color: #666;
+  }
+
+  .dark .pillar-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-bottom: 100px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .dark .pillar-item {
+    padding: 28px 24px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .dark .pillar-item:last-child { border-right: none; }
+  .dark .pillar-item h4 {
+    font-size: 13px; font-weight: 600; color: #E0DDD8; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dark .pillar-item p {
+    font-size: 12px; line-height: 1.6; color: #555;
+  }
+
+  .dark .testimonial-section { margin-bottom: 100px; max-width: 560px; }
+  .dark .testimonial-section blockquote {
+    font-size: 20px; font-weight: 400; line-height: 1.6;
+    color: #BBB; font-style: italic; margin-bottom: 16px;
+    padding-left: 20px; border-left: 2px solid var(--red);
+  }
+  .dark .testimonial-section cite {
+    font-size: 13px; font-style: normal; color: #555;
+    padding-left: 20px;
+  }
+
+  .dark .cta-section {
+    padding: 60px 0; margin-bottom: 60px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .dark .cta-section h2 {
+    font-size: 32px; font-weight: 700; color: #F0EDE8;
+    letter-spacing: -0.5px; margin-bottom: 12px;
+  }
+  .dark .cta-section p {
+    font-size: 15px; color: #555; margin-bottom: 32px;
+  }
+
+  .dark .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px; color: #444;
+  }
+
+  /* Shared color dot utility */
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%; display: inline-block;
+    flex-shrink: 0;
+  }
+  .dot-blue { background: var(--blue); }
+  .dot-green { background: var(--green); }
+  .dot-red { background: var(--red); }
+  .dot-yellow { background: var(--yellow); }
+
+  /* Swatch bar */
+  .swatch-bar {
+    display: flex; gap: 8px; margin-bottom: 12px;
+  }
+  .swatch-mini {
+    width: 32px; height: 32px; border-radius: 6px;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 3px; font-size: 7px; font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .light .swatch-mini { color: rgba(0,0,0,0.4); }
+  .dark .swatch-mini { color: rgba(255,255,255,0.5); }
+  .light .swatch-mini.sw-bg { background: #FAFAFA; border: 1px solid #DDD; }
+  .light .swatch-mini.sw-fg { background: #111; }
+  .dark .swatch-mini.sw-bg { background: #0C0C0F; border: 1px solid #333; }
+  .dark .swatch-mini.sw-fg { background: #F0EDE8; }
+  .swatch-mini.sw-blue { background: var(--blue); }
+  .swatch-mini.sw-green { background: var(--green); }
+  .swatch-mini.sw-red { background: var(--red); }
+  .swatch-mini.sw-yellow { background: var(--yellow); }
+
+  .swatch-note {
+    font-size: 11px; color: #999; margin-bottom: 48px;
+  }
+  .dark .swatch-note { color: #555; }
+
+  @media (max-width: 768px) {
+    .palette-section { padding: 40px 24px; }
+    .light .hero-headline, .dark .hero-headline { font-size: 36px; }
+    .light .stats-row, .dark .stats-row,
+    .light .card-grid, .dark .card-grid { grid-template-columns: 1fr; }
+    .light .pillar-strip, .dark .pillar-strip { grid-template-columns: 1fr; }
+    .light .pillar-item, .dark .pillar-item { border-right: none; border-bottom: 1px solid #E8E8E8; }
+    .dark .pillar-item { border-bottom-color: rgba(255,255,255,0.06); }
+    .nav-links { display: none !important; }
+    .light .footer, .dark .footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- LIGHT MODE — Minimal Color                    -->
+<!-- ============================================ -->
+<section class="palette-section light">
+  <span class="palette-label">Light — Minimal Color</span>
+
+  <div class="swatch-bar">
+    <div class="swatch-mini sw-bg"></div>
+    <div class="swatch-mini sw-fg"></div>
+    <div class="swatch-mini sw-blue"></div>
+    <div class="swatch-mini sw-green"></div>
+    <div class="swatch-mini sw-red"></div>
+    <div class="swatch-mini sw-yellow"></div>
+  </div>
+  <p class="swatch-note">Colors used as punctuation, not paint. White + black do the heavy lifting.</p>
+
+  <nav class="nav">
+    <div class="nav-brand">CIPHER</div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Method</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Results</a>
+    </div>
+    <a class="nav-cta" href="#">Get Started</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tagline">Decode what works for you</div>
+    <h1 class="hero-headline">Your health has a pattern. Let's find it.</h1>
+    <p class="hero-sub">Personalized health optimization through experiments, data synthesis, and a human who actually knows you.</p>
+    <div class="btn-row">
+      <a class="btn-primary" href="#">Start Your Diagnostic</a>
+      <a class="btn-ghost" href="#"><span>See the method</span></a>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-number">4-Week</div>
+      <div class="stat-label">Experiment Cycles</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">N=1</div>
+      <div class="stat-label">Personalized to You</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Tool Agnostic</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2>The Method</h2>
+    <p>Three phases to decode your health and build systems that compound.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-number"><span class="dot dot-green"></span> PHASE 01</div>
+      <h3>Diagnostic</h3>
+      <p>We audit your tools, habits, beliefs, and data. The comprehensive inventory that becomes the foundation for everything.</p>
+    </div>
+    <div class="card">
+      <div class="card-number"><span class="dot dot-yellow"></span> PHASE 02</div>
+      <h3>Experiment</h3>
+      <p>4-week cycles of test, measure, learn, adjust. Each experiment builds on the last. No guessing.</p>
+    </div>
+    <div class="card">
+      <div class="card-number"><span class="dot dot-red"></span> PHASE 03</div>
+      <h3>Own It</h3>
+      <p>You learn to run your own experiments. The goal is your independence — not a lifetime subscription.</p>
+    </div>
+  </div>
+
+  <div class="pillar-strip">
+    <div class="pillar-item">
+      <h4><span class="dot dot-blue"></span> Clarity</h4>
+      <p>Cut through conflicting advice to find what matters for you.</p>
+    </div>
+    <div class="pillar-item">
+      <h4><span class="dot dot-green"></span> Long Game</h4>
+      <p>Identity-based change. Decades of compounding, not 30-day fixes.</p>
+    </div>
+    <div class="pillar-item">
+      <h4><span class="dot dot-yellow"></span> Personal</h4>
+      <p>No two bodies are the same. Experiments tailored to the individual.</p>
+    </div>
+    <div class="pillar-item">
+      <h4><span class="dot dot-red"></span> Human</h4>
+      <p>Technology enables. Humans interpret. Real accountability.</p>
+    </div>
+  </div>
+
+  <div class="testimonial-section">
+    <blockquote>"I had an Oura, a Whoop, and blood panels — but no idea what to actually do with any of it. Cipher connected the dots I couldn't see."</blockquote>
+    <cite>— Future client testimonial</cite>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to crack your own code?</h2>
+    <p>Start with a free diagnostic conversation. No commitment, no pitch.</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a class="btn-primary" href="#">Book a Conversation</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>&copy; 2026 Cipher</span>
+    <span>Your health. Your code.</span>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- DARK MODE — Minimal Color                     -->
+<!-- ============================================ -->
+<section class="palette-section dark">
+  <span class="palette-label">Dark — Minimal Color</span>
+
+  <div class="swatch-bar">
+    <div class="swatch-mini sw-bg"></div>
+    <div class="swatch-mini sw-fg"></div>
+    <div class="swatch-mini sw-blue"></div>
+    <div class="swatch-mini sw-green"></div>
+    <div class="swatch-mini sw-red"></div>
+    <div class="swatch-mini sw-yellow"></div>
+  </div>
+  <p class="swatch-note">Colors used as punctuation, not paint. Black + white do the heavy lifting.</p>
+
+  <nav class="nav">
+    <div class="nav-brand">CIPHER</div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Method</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Results</a>
+    </div>
+    <a class="nav-cta" href="#">Get Started</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tagline">Decode what works for you</div>
+    <h1 class="hero-headline">Your health has a pattern. Let's find it.</h1>
+    <p class="hero-sub">Personalized health optimization through experiments, data synthesis, and a human who actually knows you.</p>
+    <div class="btn-row">
+      <a class="btn-primary" href="#">Start Your Diagnostic</a>
+      <a class="btn-ghost" href="#"><span>See the method</span></a>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-number">4-Week</div>
+      <div class="stat-label">Experiment Cycles</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">N=1</div>
+      <div class="stat-label">Personalized to You</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Tool Agnostic</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2>The Method</h2>
+    <p>Three phases to decode your health and build systems that compound.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-number"><span class="dot dot-green"></span> PHASE 01</div>
+      <h3>Diagnostic</h3>
+      <p>We audit your tools, habits, beliefs, and data. The comprehensive inventory that becomes the foundation for everything.</p>
+    </div>
+    <div class="card">
+      <div class="card-number"><span class="dot dot-yellow"></span> PHASE 02</div>
+      <h3>Experiment</h3>
+      <p>4-week cycles of test, measure, learn, adjust. Each experiment builds on the last. No guessing.</p>
+    </div>
+    <div class="card">
+      <div class="card-number"><span class="dot dot-red"></span> PHASE 03</div>
+      <h3>Own It</h3>
+      <p>You learn to run your own experiments. The goal is your independence — not a lifetime subscription.</p>
+    </div>
+  </div>
+
+  <div class="pillar-strip">
+    <div class="pillar-item">
+      <h4><span class="dot dot-blue"></span> Clarity</h4>
+      <p>Cut through conflicting advice to find what matters for you.</p>
+    </div>
+    <div class="pillar-item">
+      <h4><span class="dot dot-green"></span> Long Game</h4>
+      <p>Identity-based change. Decades of compounding, not 30-day fixes.</p>
+    </div>
+    <div class="pillar-item">
+      <h4><span class="dot dot-yellow"></span> Personal</h4>
+      <p>No two bodies are the same. Experiments tailored to the individual.</p>
+    </div>
+    <div class="pillar-item">
+      <h4><span class="dot dot-red"></span> Human</h4>
+      <p>Technology enables. Humans interpret. Real accountability.</p>
+    </div>
+  </div>
+
+  <div class="testimonial-section">
+    <blockquote>"I had an Oura, a Whoop, and blood panels — but no idea what to actually do with any of it. Cipher connected the dots I couldn't see."</blockquote>
+    <cite>— Future client testimonial</cite>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to crack your own code?</h2>
+    <p>Start with a free diagnostic conversation. No commitment, no pitch.</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a class="btn-primary" href="#">Book a Conversation</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>&copy; 2026 Cipher</span>
+    <span>Your health. Your code.</span>
+  </div>
+</section>
+
+</body>
+</html>

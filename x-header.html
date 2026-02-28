@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cipher — X Header</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #5B8DEF;
+    --green: #3ECF8E;
+    --yellow: #E8B931;
+    --red: #EF5A5A;
+  }
+
+  body {
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header {
+    width: 1500px;
+    height: 500px;
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ===== NOISE TEXTURE — subtle background grid ===== */
+  .grid-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  /* ===== WAVEFORM SYSTEM ===== */
+  .waveforms {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  .waveforms svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .signal-mark {
+    margin-bottom: 28px;
+  }
+
+  .wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #FAFAF8;
+    margin-bottom: 16px;
+  }
+
+  .tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(250,250,248,0.4);
+    letter-spacing: 0.02em;
+    margin-bottom: 28px;
+  }
+
+  .gradient-bar {
+    width: 180px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+  }
+
+  /* ===== CHANNEL INDICATORS — right side ===== */
+  .channels {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 10;
+  }
+
+  .channel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,250,248,0.2);
+  }
+
+  .channel-line {
+    width: 32px;
+    height: 2px;
+    border-radius: 1px;
+  }
+
+  /* ===== DOMAIN — bottom right ===== */
+  .domain {
+    position: absolute;
+    bottom: 24px;
+    right: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(250,250,248,0.15);
+    z-index: 10;
+  }
+
+  /* ===== DOTS — bottom left accent (above profile pic area) ===== */
+  .dots {
+    position: absolute;
+    bottom: 24px;
+    left: 48px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+
+  <!-- Subtle grid texture -->
+  <svg class="grid-overlay" viewBox="0 0 1500 500" preserveAspectRatio="none">
+    <defs>
+      <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="0" y2="60" stroke="#fff" stroke-width="0.5"/>
+        <line x1="0" y1="0" x2="60" y2="0" stroke="#fff" stroke-width="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="1500" height="500" fill="url(#grid)"/>
+  </svg>
+
+  <!-- Waveform system -->
+  <div class="waveforms">
+    <svg viewBox="0 0 1500 500" preserveAspectRatio="none">
+
+      <!-- Noise zone — left side, chaotic low-opacity lines -->
+      <!-- Layer 1: very faint chaotic noise -->
+      <polyline points="0,250 15,220 30,280 45,210 60,290 75,230 90,270 105,215 120,285 135,225 150,265 165,240 180,260 195,235 210,255 225,245"
+        fill="none" stroke="#444" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+      <polyline points="0,260 18,230 36,275 54,218 72,282 90,228 108,268 126,222 144,278 162,232 180,262 198,242 216,258 234,248"
+        fill="none" stroke="#555" stroke-width="1" stroke-linecap="round" opacity="0.2"/>
+      <polyline points="0,240 20,270 40,215 60,280 80,225 100,275 120,220 140,272 160,228 180,265 200,238 220,258"
+        fill="none" stroke="#333" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+
+      <!-- Transition zone — mid section, lines start to organize -->
+      <polyline points="225,245 280,235 340,260 400,230 460,255 520,240"
+        fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+
+      <!-- Signal zone — right side, clean bold waveform -->
+      <!-- Main signal line -->
+      <polyline points="520,240 600,290 680,180 760,320 840,160 920,310 1000,190 1080,300 1160,200 1240,280 1320,220 1400,260 1500,240"
+        fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.12"/>
+
+      <!-- Blue accent signal — the primary signal -->
+      <polyline points="520,250 620,200 720,310 820,170 920,330 980,150 1040,290 1100,200 1160,280 1220,210 1280,260 1340,230 1400,250 1500,250"
+        fill="none" stroke="#5B8DEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/>
+
+      <!-- Blue dot — moment of clarity -->
+      <circle cx="980" cy="150" r="5" fill="#5B8DEF" opacity="0.6"/>
+      <circle cx="980" cy="150" r="12" fill="none" stroke="#5B8DEF" stroke-width="1" opacity="0.15"/>
+
+      <!-- Secondary signal lines — subtle health channels -->
+      <polyline points="600,260 700,240 800,275 900,235 1000,265 1100,245 1200,258 1300,248 1400,252 1500,250"
+        fill="none" stroke="#3ECF8E" stroke-width="1.5" stroke-linecap="round" opacity="0.1"/>
+
+      <polyline points="650,250 750,260 850,242 950,258 1050,248 1150,255 1250,250 1350,252 1450,250"
+        fill="none" stroke="#E8B931" stroke-width="1" stroke-linecap="round" opacity="0.08"/>
+
+      <polyline points="700,252 800,248 900,254 1000,246 1100,252 1200,248 1300,250 1400,250"
+        fill="none" stroke="#EF5A5A" stroke-width="1" stroke-linecap="round" opacity="0.06"/>
+
+      <!-- Subtle horizontal reference lines -->
+      <line x1="0" y1="250" x2="1500" y2="250" stroke="#333" stroke-width="0.5" opacity="0.2" stroke-dasharray="4,8"/>
+      <line x1="0" y1="180" x2="1500" y2="180" stroke="#333" stroke-width="0.5" opacity="0.08" stroke-dasharray="2,12"/>
+      <line x1="0" y1="320" x2="1500" y2="320" stroke="#333" stroke-width="0.5" opacity="0.08" stroke-dasharray="2,12"/>
+
+    </svg>
+  </div>
+
+  <!-- Center content -->
+  <div class="content">
+    <!-- Signal Resolve mark (small, above wordmark) -->
+    <div class="signal-mark">
+      <svg width="180" height="40" viewBox="0 0 200 60">
+        <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+          fill="none" stroke="#444" stroke-width="2" stroke-linecap="round"/>
+        <polyline points="60,32 70,28 80,34 90,26"
+          fill="none" stroke="#777" stroke-width="2" stroke-linecap="round"/>
+        <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+          fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="146" cy="8" r="4" fill="#5B8DEF"/>
+      </svg>
+    </div>
+    <div class="wordmark">CIPHER</div>
+    <div class="tagline">Decode what works for you</div>
+    <div class="gradient-bar"></div>
+  </div>
+
+  <!-- Channel indicators -->
+  <div class="channels">
+    <div class="channel">
+      <div class="channel-line" style="background: rgba(91,141,239,0.4);"></div>
+      Sleep
+    </div>
+    <div class="channel">
+      <div class="channel-line" style="background: rgba(62,207,142,0.3);"></div>
+      Recovery
+    </div>
+    <div class="channel">
+      <div class="channel-line" style="background: rgba(232,185,49,0.3);"></div>
+      Metabolic
+    </div>
+    <div class="channel">
+      <div class="channel-line" style="background: rgba(239,90,90,0.3);"></div>
+      Cognitive
+    </div>
+  </div>
+
+  <!-- Domain -->
+  <div class="domain">coded.health</div>
+
+  <!-- Color dots -->
+  <div class="dots">
+    <div class="dot" style="background: var(--blue);"></div>
+    <div class="dot" style="background: var(--green);"></div>
+    <div class="dot" style="background: var(--yellow);"></div>
+    <div class="dot" style="background: var(--red);"></div>
+  </div>
+
+</div>
+
+</body>
+</html>

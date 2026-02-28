@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Business Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #5B8DEF;
+    --green: #3ECF8E;
+    --yellow: #E8B931;
+    --red: #EF5A5A;
+    --black: #111111;
+    --off-white: #FAFAF8;
+    --gray-100: #f5f5f3;
+    --gray-200: #e8e8e6;
+    --gray-300: #d0d0ce;
+    --gray-400: #999;
+    --gray-500: #777;
+    --gray-600: #555;
+    --gray-700: #333;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #fff;
+    color: var(--black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== LAYOUT ===== */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ===== GRADIENT BAR ===== */
+  .gradient-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+  }
+
+  /* ===== COVER PAGE ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 80px 48px;
+  }
+
+  .cover-mark {
+    margin-bottom: 40px;
+  }
+
+  .cover-wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cover-tagline {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--gray-500);
+    margin-bottom: 56px;
+  }
+
+  .cover-title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 40px;
+  }
+
+  .cover-meta {
+    font-size: 14px;
+    color: var(--gray-500);
+    line-height: 2;
+  }
+
+  .cover-meta strong {
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-300);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 56px 0 48px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--gray-600);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  /* ===== HEADINGS ===== */
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    margin-top: 36px;
+    letter-spacing: -0.01em;
+  }
+
+  h3:first-of-type { margin-top: 0; }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 28px;
+  }
+
+  /* ===== BODY TEXT ===== */
+  p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .lead {
+    font-size: 17px;
+    color: var(--gray-600);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  ul, ol {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.75;
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+
+  li { margin-bottom: 4px; }
+
+  strong { color: var(--black); font-weight: 600; }
+
+  /* ===== BLOCKQUOTE ===== */
+  blockquote {
+    border-left: 3px solid var(--blue);
+    padding: 16px 24px;
+    margin: 20px 0;
+    background: var(--gray-100);
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  blockquote strong { color: var(--black); }
+
+  /* ===== PULLQUOTE ===== */
+  .pullquote {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    line-height: 1.35;
+    margin: 32px 0;
+    padding-left: 24px;
+    border-left: 4px solid var(--blue);
+    max-width: 600px;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* ===== GRID ===== */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* ===== TABLES ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+  }
+
+  thead th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+
+  td {
+    font-size: 14px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--gray-600);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td strong { color: var(--black); }
+
+  /* ===== PHASE CARDS ===== */
+  .phase-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  .phase-card.phase-1::before { background: var(--blue); }
+  .phase-card.phase-2::before { background: var(--green); }
+  .phase-card.phase-3::before { background: var(--yellow); }
+  .phase-card.phase-4::before { background: var(--red); }
+  .phase-card.phase-5::before { background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red)); }
+
+  .phase-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .phase-1 .phase-label { color: var(--blue); }
+  .phase-2 .phase-label { color: var(--green); }
+  .phase-3 .phase-label { color: var(--yellow); }
+  .phase-4 .phase-label { color: var(--red); }
+  .phase-5 .phase-label { color: var(--blue); }
+
+  .phase-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .phase-meta {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-bottom: 20px;
+  }
+
+  /* ===== VERTICAL CARDS ===== */
+  .vertical-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .vertical-header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .vertical-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .vertical-name {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .vertical-tagline {
+    font-size: 15px;
+    color: var(--gray-500);
+  }
+
+  .vertical-body {
+    padding: 24px 32px 28px;
+  }
+
+  /* ===== REVENUE BAR ===== */
+  .revenue-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--gray-100);
+    border-radius: 10px;
+    margin: 12px 0;
+  }
+
+  .revenue-bar .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-400);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    min-width: 100px;
+  }
+
+  .revenue-bar .value {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--black);
+  }
+
+  /* ===== RISK CARDS ===== */
+  .risk-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .risk-card .risk-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .risk-card .risk-title .risk-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: 0.04em;
+  }
+
+  .risk-card .risk-body {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  .risk-card .mitigation {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .risk-card .mitigation-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  /* ===== MILESTONE CARDS ===== */
+  .milestone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .milestone-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .milestone-month {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .milestone-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .milestone-body {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  .milestone-body ul {
+    font-size: 13px;
+    padding-left: 16px;
+    margin-bottom: 0;
+  }
+
+  .milestone-check {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  /* ===== CHECKLIST ===== */
+  .checklist {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .checklist li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--gray-600);
+  }
+
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--gray-300);
+    border-radius: 4px;
+  }
+
+  /* ===== COMPOSITION CHART ===== */
+  .comp-bar {
+    display: flex;
+    height: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+
+  .comp-bar > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .comp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+  }
+
+  /* ===== METHOD DIAGRAM ===== */
+  .method-cycle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+
+  .method-step {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    letter-spacing: 0.04em;
+  }
+
+  .method-arrow {
+    color: var(--gray-300);
+    font-size: 18px;
+  }
+
+  /* ===== TOC ===== */
+  .toc {
+    padding: 48px 0;
+  }
+
+  .toc-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 24px;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .toc-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 15px;
+  }
+
+  .toc-list li:last-child { border-bottom: none; }
+
+  .toc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    min-width: 32px;
+  }
+
+  .toc-text {
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  /* ===== APPENDIX TABLES ===== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+  }
+
+  .data-table th {
+    background: var(--gray-100);
+    border-radius: 0;
+  }
+
+  .data-table td {
+    font-size: 13px;
+  }
+
+  .data-table .number {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  /* ===== PAGE BREAK HELPERS ===== */
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+
+  /* ===== FOOTER ===== */
+  .doc-footer {
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  .doc-footer .wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--black);
+  }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    body { background: #fff; }
+
+    .cover {
+      min-height: 0;
+      height: 100vh;
+      page-break-after: always;
+    }
+
+    .toc { page-break-after: always; }
+
+    .section {
+      padding: 32px 0 28px;
+    }
+
+    .vertical-card,
+    .phase-card,
+    .risk-card,
+    .milestone-card,
+    .card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .container {
+      max-width: 100%;
+      padding: 0 32px;
+    }
+
+    table { font-size: 12px; }
+    td, th { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- COVER PAGE -->
+<!-- ============================================================ -->
+<div class="cover">
+  <div class="cover-mark">
+    <svg width="240" height="64" viewBox="0 0 200 60">
+      <polyline points="0,30 6,26 12,38 18,18 24,42 30,20 36,35 42,24 48,37 54,26 60,32"
+        fill="none" stroke="#d0d0ce" stroke-width="2" stroke-linecap="round"/>
+      <polyline points="60,32 70,28 80,34 90,26"
+        fill="none" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+      <polyline points="90,26 104,42 118,12 132,46 146,8 160,44 174,16 188,40 200,22"
+        fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="146" cy="8" r="4" fill="#5B8DEF"/>
+    </svg>
+  </div>
+  <div class="cover-wordmark">CIPHER</div>
+  <div class="cover-tagline">Decode what works for you</div>
+  <div class="gradient-bar" style="width:200px; margin:0 auto 48px;"></div>
+  <div class="cover-title">Business Plan</div>
+  <div class="cover-meta">
+    <strong>Version 1.0</strong><br>
+    February 2026<br>
+    Jordan Carlisle, Founder<br>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray-400); letter-spacing:0.04em;">coded.health</span>
+  </div>
+  <div class="cover-footer">Confidential &middot; Strategic Blueprint</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ============================================================ -->
+<div class="container toc">
+  <div class="toc-title">Contents</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">01</span><span class="toc-text">Vision & Thesis</span></li>
+    <li><span class="toc-num">02</span><span class="toc-text">The Five Verticals</span></li>
+    <li><span class="toc-num">03</span><span class="toc-text">The Phased Roadmap</span></li>
+    <li><span class="toc-num">04</span><span class="toc-text">Revenue Architecture</span></li>
+    <li><span class="toc-num">05</span><span class="toc-text">The Cipher Method</span></li>
+    <li><span class="toc-num">06</span><span class="toc-text">Competitive Moat Analysis</span></li>
+    <li><span class="toc-num">07</span><span class="toc-text">Key Risks & Mitigations</span></li>
+    <li><span class="toc-num">08</span><span class="toc-text">6-Month Bridge Plan</span></li>
+    <li><span class="toc-num">A</span><span class="toc-text">Key Brand Assets</span></li>
+    <li><span class="toc-num">B</span><span class="toc-text">Market Sizing</span></li>
+    <li><span class="toc-num">C</span><span class="toc-text">Comparable Valuations</span></li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: VISION & THESIS -->
+<!-- ============================================================ -->
+<div class="container">
+<div class="section page-break">
+  <div class="section-label">01 / Vision & Thesis</div>
+  <div class="section-title">The Operating System for Health Agency</div>
+  <div class="section-subtitle">Cipher becomes the premium lifestyle brand for people who take their health seriously &mdash; the intersection of Whoop's data obsession, Lululemon's cultural gravity, and Equinox's physical experience.</div>
+
+  <div class="pullquote">Pioneer the agency movement in health. A world where people own their health &mdash; their data, their decisions, their outcomes.</div>
+
+  <p><strong>10-year north star:</strong> A world where people are active agents running their own experiments and building systems that compound over decades. Not passive patients waiting for something to break.</p>
+
+  <h3>Thesis</h3>
+  <p>Start with media and coaching (digital, low-capital), use revenue and audience to fund expansion into products (supplements, apparel), then franchise the physical experience (health centers). Every phase earns its way to the next. No phase launches on hope &mdash; it launches on proof.</p>
+
+  <h3>Positioning</h3>
+  <p>Premium but accessible. Data-driven but human. <strong>"Decode what works for you"</strong> as the through-line across every product.</p>
+
+  <div class="grid-3" style="margin-top:24px;">
+    <div class="card" style="border-top:3px solid var(--red);">
+      <div class="card-label">Not This</div>
+      <div class="card-title">Wellness Pastels</div>
+      <div class="card-desc">Goop, Calm &mdash; too soft, too passive, too vague</div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--red);">
+      <div class="card-label">Not This</div>
+      <div class="card-title">Bro Performance</div>
+      <div class="card-desc">Most fitness brands &mdash; too loud, too dogmatic, too short-term</div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--red);">
+      <div class="card-label">Not This</div>
+      <div class="card-title">Clinical Tech</div>
+      <div class="card-desc">Parsley, Forward &mdash; too institutional, too expensive, too dependent</div>
+    </div>
+  </div>
+
+  <blockquote>
+    <strong>Cipher is the sharp strategist with warmth</strong> &mdash; contrarian, evidence-based, personal, and built for people who think in systems.
+  </blockquote>
+
+  <h3>Brand North Star</h3>
+  <p><strong>Agency.</strong> Every product, piece of content, and experience should make people more capable of owning their health. The measure of Cipher's success isn't how much clients depend on us &mdash; it's how much they don't need to.</p>
+
+  <h3>Target Customer</h3>
+  <p><strong>HENRYs</strong> &mdash; High Earners Not Rich Yet. 30-45, data-driven professionals. They already own an Oura ring or Whoop. They've read Huberman and listened to Attia. They have the data and the desire &mdash; but not the synthesis. They're drowning in information with no system for turning it into action.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: THE FIVE VERTICALS -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <div class="section-label">02 / The Five Verticals</div>
+  <div class="section-title">Five Businesses, One Ecosystem</div>
+  <div class="section-subtitle">Each vertical is independently viable. Together, they create a compounding flywheel where every business feeds the others.</div>
+
+  <!-- VERTICAL 1: MEDIA -->
+  <div class="vertical-card no-break" style="border-top:4px solid var(--blue);">
+    <div class="vertical-header">
+      <div class="vertical-number" style="color:var(--blue);">Vertical 01</div>
+      <div class="vertical-name">Media</div>
+      <div class="vertical-tagline">The Audience Engine &mdash; Launches first. Already started.</div>
+    </div>
+    <div class="vertical-body">
+      <p>Media is not a business unit &mdash; it's the oxygen supply for everything else. Every future vertical draws customers, credibility, and cultural relevance from the media engine.</p>
+
+      <h4>Channels (in launch sequence)</h4>
+      <ol>
+        <li><strong>X/Twitter</strong> &mdash; Daily posting. Build to 10K+ followers. Cipher voice.</li>
+        <li><strong>Newsletter</strong> &mdash; Weekly on coded.health. Deep experiments, data breakdowns.</li>
+        <li><strong>Podcast</strong> &mdash; Long-form conversations. "This is Cipher, where we decode what works for you."</li>
+        <li><strong>YouTube</strong> &mdash; Visual experiments, data walkthroughs, lab results.</li>
+        <li><strong>Blog on coded.health</strong> &mdash; SEO-driven evergreen content.</li>
+      </ol>
+
+      <h4>Content Pillars</h4>
+      <ol>
+        <li>N=1 experiments &mdash; "I tested X. Here's what happened."</li>
+        <li>Data interpretation &mdash; "What your Oura data is actually telling you."</li>
+        <li>Contrarian health takes &mdash; "Everyone says X. The data says otherwise."</li>
+        <li>Frameworks and mental models &mdash; "The 3 levels of health data."</li>
+        <li>Worldview (30%) &mdash; Solarpunk, transhumanism, AI, the future of health.</li>
+      </ol>
+
+      <h4>Revenue Model</h4>
+      <ul>
+        <li>Sponsorships and partnerships (brand-aligned only)</li>
+        <li>Paid newsletter tier (premium deep-dives, experiment templates)</li>
+        <li>Content licensing and syndication at scale</li>
+      </ul>
+
+      <h4>Comparables</h4>
+      <table>
+        <thead><tr><th>Company</th><th>Achievement</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Huberman Lab</strong></td><td>4.8M YouTube subs, est. $10M+/yr from podcast</td></tr>
+          <tr><td><strong>Peter Attia Drive</strong></td><td>Premium subscriber model ($15/mo), NYT bestseller pipeline</td></tr>
+          <tr><td><strong>Levels editorial</strong></td><td>Used content to build 800K+ waitlist before shipping product</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VERTICAL 2: COACHING -->
+  <div class="vertical-card no-break page-break" style="border-top:4px solid var(--green);">
+    <div class="vertical-header">
+      <div class="vertical-number" style="color:var(--green);">Vertical 02</div>
+      <div class="vertical-name">Software-Enabled Coaching</div>
+      <div class="vertical-tagline">The Core Engine &mdash; Where the customer relationship lives.</div>
+    </div>
+    <div class="vertical-body">
+      <p>Media gets attention. Coaching gets trust, data, and recurring revenue.</p>
+
+      <h4>Evolution Path</h4>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:16px 0 24px;">
+        <span class="method-step" style="background:var(--green); color:#fff;">1-on-1 Premium</span>
+        <span class="method-arrow">&rarr;</span>
+        <span class="method-step" style="background:rgba(62,207,142,0.15); color:var(--green);">Group Cohorts</span>
+        <span class="method-arrow">&rarr;</span>
+        <span class="method-step" style="background:rgba(62,207,142,0.15); color:var(--green);">Cipher App</span>
+        <span class="method-arrow">&rarr;</span>
+        <span class="method-step" style="background:rgba(62,207,142,0.15); color:var(--green);">Certification</span>
+      </div>
+
+      <h4>Phase A: Premium 1-on-1 (Current)</h4>
+      <table>
+        <tbody>
+          <tr><td><strong>Price</strong></td><td>$1,200/month (beta: $897/month)</td></tr>
+          <tr><td><strong>Commitment</strong></td><td>3-month minimum ($3,600 upfront; beta: 6-month at $5,382)</td></tr>
+          <tr><td><strong>Capacity</strong></td><td>3-5 clients while at Sober Sidekick; 15-20 full-time</td></tr>
+          <tr><td><strong>Includes</strong></td><td>Diagnostic, 4-week experiment cycles, weekly calls, daily async, wearable + biomarker review</td></tr>
+          <tr><td><strong>Entry point</strong></td><td>$297 diagnostic session (credits toward first month)</td></tr>
+          <tr><td><strong>Time per client</strong></td><td>~3 hours/week</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Revenue Tiers at Scale</h4>
+      <table>
+        <thead><tr><th>Tier</th><th>Price</th><th>Includes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Self-guided</strong></td><td class="number">$29/mo</td><td>App, experiment templates, community, AI coaching</td></tr>
+          <tr><td><strong>Group</strong></td><td class="number">$149/mo</td><td>App + cohort enrollment, group calls, certified coach</td></tr>
+          <tr><td><strong>1-on-1</strong></td><td class="number">$1,200/mo</td><td>App + personal certified Cipher coach, full method</td></tr>
+          <tr><td><strong>Concierge</strong></td><td class="number">$3,000+/mo</td><td>App + Jordan or senior coach, priority, white-glove</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Comparables</h4>
+      <table>
+        <thead><tr><th>Company</th><th>Achievement</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Noom</strong></td><td>$1B ARR &mdash; scaled coaching through AI + human hybrid</td></tr>
+          <tr><td><strong>Future</strong></td><td>$110M raised &mdash; premium async coaching at $199/mo</td></tr>
+          <tr><td><strong>Whoop</strong></td><td>$3.7B valuation &mdash; health data aggregation at massive scale</td></tr>
+          <tr><td><strong>Precision Nutrition</strong></td><td>100K+ coaches trained through certification</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VERTICAL 3: SUPPLEMENTS -->
+  <div class="vertical-card no-break page-break" style="border-top:4px solid var(--yellow);">
+    <div class="vertical-header">
+      <div class="vertical-number" style="color:var(--yellow);">Vertical 03</div>
+      <div class="vertical-name">Supplements</div>
+      <div class="vertical-tagline">Physical Product, Recurring Revenue &mdash; Cipher-formulated, experiment-backed.</div>
+    </div>
+    <div class="vertical-body">
+      <p>Every Cipher supplement connects to the Cipher Method. The app recommends them based on diagnostic results and experiment cycles. They're not just products &mdash; they're tools in the system.</p>
+
+      <h4>Initial Product Line</h4>
+      <table>
+        <thead><tr><th>Product</th><th>Channel</th><th>Core Function</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Signal:Rest</strong></td><td>Sleep</td><td>Sleep architecture support (not just "fall asleep faster")</td></tr>
+          <tr><td><strong>Signal:Recover</strong></td><td>Recovery</td><td>HRV and inflammation optimization</td></tr>
+          <tr><td><strong>Signal:Fuel</strong></td><td>Metabolic</td><td>Glucose regulation and metabolic flexibility</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Strategy</h4>
+      <ul>
+        <li>Evidence-based, transparent formulations (full ingredient disclosure)</li>
+        <li>Premium positioning: $50-80/product, subscription model</li>
+        <li>DTC first via coded.health, then select retail (Whole Foods, Erewhon)</li>
+        <li>60-70% gross margins</li>
+      </ul>
+
+      <h4>Comparables</h4>
+      <table>
+        <thead><tr><th>Company</th><th>Achievement</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Momentous</strong></td><td>$100M+ revenue est. &mdash; built on Huberman partnership</td></tr>
+          <tr><td><strong>AG1/Athletic Greens</strong></td><td>$1.2B valuation &mdash; one product, premium, subscription</td></tr>
+          <tr><td><strong>Thorne</strong></td><td>$200M+ revenue &mdash; trusted by practitioners</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VERTICAL 4: APPAREL -->
+  <div class="vertical-card no-break" style="border-top:4px solid var(--red);">
+    <div class="vertical-header">
+      <div class="vertical-number" style="color:var(--red);">Vertical 04</div>
+      <div class="vertical-name">Apparel</div>
+      <div class="vertical-tagline">Identity Worn &mdash; Not merch. Performance and lifestyle that signals community.</div>
+    </div>
+    <div class="vertical-body">
+      <p>Cipher apparel uses the Signal visual language &mdash; waveforms, monospace typography, the color system as punctuation on black and white. Wearing Cipher signals: "I take my health seriously, I'm data-driven, and I don't need to be loud about it."</p>
+
+      <h4>Drop Sequence</h4>
+      <table>
+        <thead><tr><th>Phase</th><th>Products</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Drop 1</strong></td><td>Performance tee, training shorts</td></tr>
+          <tr><td><strong>Drop 2</strong></td><td>Recovery hoodie, quarter-zip</td></tr>
+          <tr><td><strong>Drop 3</strong></td><td>Full training collection (compression, joggers, tank)</td></tr>
+          <tr><td><strong>Lifestyle</strong></td><td>Everyday wear &mdash; gym to street</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Comparables</h4>
+      <ul>
+        <li><strong>Lululemon</strong> ($42B market cap) &mdash; yoga-specific to cultural identity</li>
+        <li><strong>Tracksmith</strong> &mdash; premium running, limited drops, community-driven</li>
+        <li><strong>Whoop apparel</strong> &mdash; proved wearable brands can extend into clothing</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- VERTICAL 5: HEALTH CENTERS -->
+  <div class="vertical-card no-break page-break" style="border-top:4px solid linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red)); border-image:linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red)) 1;">
+    <div class="vertical-header">
+      <div class="vertical-number" style="background:linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Vertical 05</div>
+      <div class="vertical-name">Health Center Franchise</div>
+      <div class="vertical-tagline">The Physical Experience &mdash; Not a gym. A health optimization center.</div>
+    </div>
+    <div class="vertical-body">
+      <p>Think: Equinox meets wellness clinic meets biohacker's workshop. Diagnostics + recovery tech + coaching + community, in one space.</p>
+
+      <h4>The Cipher Center Experience</h4>
+      <ul>
+        <li><strong>Diagnostics suite:</strong> In-house lab work, body composition, VO2max testing, metabolic assessment</li>
+        <li><strong>Recovery suite:</strong> Cold plunge, sauna, compression therapy, red light</li>
+        <li><strong>Coaching rooms:</strong> 1-on-1 and group sessions with certified Cipher coaches</li>
+        <li><strong>Community space:</strong> Open workspace for health-minded professionals</li>
+        <li><strong>Retail:</strong> Cipher supplements, apparel, curated partner products</li>
+        <li><strong>Tech integration:</strong> Member's Cipher app syncs with center services</li>
+      </ul>
+
+      <h4>Business Model: Franchise</h4>
+      <table>
+        <thead><tr><th>Revenue Stream</th><th>Model</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Franchise fees</strong></td><td>$250K-$500K initial per location</td></tr>
+          <tr><td><strong>Royalties</strong></td><td>6-8% of gross revenue</td></tr>
+          <tr><td><strong>Product supply</strong></td><td>Supplements, apparel, equipment at wholesale</td></tr>
+          <tr><td><strong>Platform licensing</strong></td><td>Monthly SaaS fee per location</td></tr>
+          <tr><td><strong>Certification</strong></td><td>Center coaches must be Cipher-certified</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Launch Path</h4>
+      <ol>
+        <li>First location is company-owned (prove unit economics)</li>
+        <li>Second location tests franchise model with trusted operator</li>
+        <li>Scale: 10 &rarr; 50 &rarr; 200+ locations</li>
+      </ol>
+
+      <h4>Comparables</h4>
+      <ul>
+        <li><strong>Equinox</strong> ($2B+) &mdash; proved people pay $300+/mo for premium brand experience</li>
+        <li><strong>Restore Hyper Wellness</strong> (200+ locations) &mdash; proved wellness franchise demand</li>
+        <li><strong>Life Time Fitness</strong> ($6B+ market cap) &mdash; physical + digital integration</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: THE PHASED ROADMAP -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <div class="section-label">03 / The Phased Roadmap</div>
+  <div class="section-title">Five Phases to Scale</div>
+  <div class="section-subtitle">Each phase earns its way to the next. No phase launches on hope &mdash; it launches on proof.</div>
+
+  <!-- PHASE 1 -->
+  <div class="phase-card phase-1 no-break">
+    <div class="phase-label">Phase 1 &mdash; Months 0-6</div>
+    <div class="phase-title">Digital Foundation</div>
+    <div class="phase-meta">While still CTO at Sober Sidekick. ~15 hours/week dedicated to Cipher.</div>
+
+    <div class="grid-2" style="margin-bottom:0;">
+      <div>
+        <h4>Media</h4>
+        <ul>
+          <li>Daily X posting (Cipher voice)</li>
+          <li>Build to 5,000-10,000 followers</li>
+          <li>Start newsletter on coded.health (Month 2)</li>
+          <li>Begin podcast planning</li>
+        </ul>
+
+        <h4>Coaching</h4>
+        <ul>
+          <li>Land 3-5 beta clients</li>
+          <li>Deliver full Cipher Method</li>
+          <li>Document methodology rigorously</li>
+          <li>Collect testimonials and case studies</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li>coded.health landing page (email capture)</li>
+          <li>Application form + discovery call infrastructure</li>
+        </ul>
+
+        <div class="revenue-bar">
+          <span class="label">Revenue</span>
+          <span class="value">$2.7K-$4.5K<span style="font-size:14px; font-weight:400; color:var(--gray-500);">/mo</span></span>
+        </div>
+        <p style="font-size:13px; color:var(--gray-500);">3-5 beta clients at $897/month</p>
+
+        <h4 style="margin-top:20px;">Exit Criteria</h4>
+        <ul class="checklist" style="font-size:13px;">
+          <li>Audience growing consistently</li>
+          <li>3+ beta clients with documented results</li>
+          <li>2+ testimonials in hand</li>
+          <li>Revenue + pipeline covers expenses</li>
+          <li>Cipher Method v1 documented</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase-card phase-2 no-break">
+    <div class="phase-label">Phase 2 &mdash; Months 6-18</div>
+    <div class="phase-title">Full-Time + Build the Engine</div>
+    <div class="phase-meta">Jordan leaves Sober Sidekick. Cipher becomes full-time focus.</div>
+
+    <div class="grid-2" style="margin-bottom:0;">
+      <div>
+        <h4>Media</h4>
+        <ul>
+          <li>Launch podcast (biweekly &rarr; weekly)</li>
+          <li>Launch YouTube channel</li>
+          <li>Newsletter to 5K-10K subscribers</li>
+          <li>First sponsorship deals</li>
+        </ul>
+
+        <h4>Coaching</h4>
+        <ul>
+          <li>Scale to 15-20 active 1-on-1 clients</li>
+          <li>Hire first Cipher-trained coach</li>
+          <li>Launch first group cohort (8-12 people)</li>
+          <li>Begin certification curriculum</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Software</h4>
+        <ul>
+          <li>Build v1 data dashboard (Whoop + Oura + CGM)</li>
+          <li>Experiment tracking tool</li>
+          <li>Internal tool first, then public</li>
+        </ul>
+
+        <h4>Supplements</h4>
+        <ul>
+          <li>Begin R&D and formulation</li>
+          <li>Find manufacturing partner</li>
+          <li>Pre-launch interest list via media</li>
+        </ul>
+
+        <div class="revenue-bar">
+          <span class="label">Revenue</span>
+          <span class="value">$20K-$40K<span style="font-size:14px; font-weight:400; color:var(--gray-500);">/mo</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase-card phase-3 no-break page-break">
+    <div class="phase-label">Phase 3 &mdash; Months 18-36</div>
+    <div class="phase-title">Product Expansion</div>
+    <div class="phase-meta">Multiple revenue streams. Team growing. Brand becoming recognizable.</div>
+
+    <div class="grid-2" style="margin-bottom:0;">
+      <div>
+        <h4>Key Milestones</h4>
+        <ul>
+          <li>Podcast in top 50 health</li>
+          <li>50,000+ newsletter subscribers</li>
+          <li>Cipher Certification launches (10-15 coaches)</li>
+          <li>Cipher app public launch (all tiers)</li>
+          <li>First 3 supplement products DTC on coded.health</li>
+          <li>First apparel drop (2-3 pieces)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="revenue-bar">
+          <span class="label">Revenue</span>
+          <span class="value">$100K-$300K<span style="font-size:14px; font-weight:400; color:var(--gray-500);">/mo</span></span>
+        </div>
+        <table style="font-size:13px;">
+          <tbody>
+            <tr><td>Coaching platform</td><td class="number">$50K-$100K/mo</td></tr>
+            <tr><td>Certification</td><td class="number">$15K-$25K/mo</td></tr>
+            <tr><td>Supplements</td><td class="number">$40K-$80K/mo</td></tr>
+            <tr><td>Media</td><td class="number">$10K-$25K/mo</td></tr>
+            <tr><td>Apparel</td><td class="number">$5K-$15K/mo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase-card phase-4 no-break">
+    <div class="phase-label">Phase 4 &mdash; Years 3-5</div>
+    <div class="phase-title">Scale + Physical</div>
+    <div class="phase-meta">Cipher becomes a recognizable health brand. Revenue in the millions. Physical expansion begins.</div>
+
+    <div class="grid-2" style="margin-bottom:0;">
+      <div>
+        <h4>Key Milestones</h4>
+        <ul>
+          <li>200K+ newsletter, major social presence</li>
+          <li>50+ certified coaches</li>
+          <li>50,000+ app users, AI coaching v3+</li>
+          <li>Full supplement line (8-12 SKUs), retail partnerships</li>
+          <li>Seasonal apparel collections</li>
+          <li><strong>First flagship health center</strong> (company-owned)</li>
+          <li>Corporate wellness (B2B) launched</li>
+        </ul>
+      </div>
+      <div>
+        <div class="revenue-bar">
+          <span class="label">Revenue</span>
+          <span class="value">$1M-$3M<span style="font-size:14px; font-weight:400; color:var(--gray-500);">/mo</span></span>
+        </div>
+        <p style="font-size:14px; color:var(--gray-500);">$12M-$36M/year</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div class="phase-card phase-5 no-break">
+    <div class="phase-label">Phase 5 &mdash; Years 5-10</div>
+    <div class="phase-title">Franchise + Ecosystem</div>
+    <div class="phase-meta">The empire phase. Cipher is a platform, a brand, and a physical experience.</div>
+
+    <p>Health center franchise rolls out: 10 &rarr; 50 &rarr; 200+ locations. Each generating $1.5-3M/year gross revenue.</p>
+
+    <div class="revenue-bar" style="margin-top:16px;">
+      <span class="label">Revenue</span>
+      <span class="value">$50M-$133M+<span style="font-size:14px; font-weight:400; color:var(--gray-500);">/yr</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: REVENUE ARCHITECTURE -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <div class="section-label">04 / Revenue Architecture</div>
+  <div class="section-title">Revenue at Scale</div>
+  <div class="section-subtitle">Health and wellness brands with strong recurring revenue, brand identity, and franchise models trade at 8-12x revenue.</div>
+
+  <h3>Year 5 and Year 10 Projections</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Vertical</th>
+        <th>Revenue Model</th>
+        <th style="text-align:right;">Year 5</th>
+        <th style="text-align:right;">Year 10</th>
+        <th style="text-align:right;">Margin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Media</strong></td>
+        <td>Sponsorships, ads, paid content, licensing</td>
+        <td style="text-align:right;" class="number">$2M</td>
+        <td style="text-align:right;" class="number">$8M</td>
+        <td style="text-align:right;" class="number">70%</td>
+      </tr>
+      <tr>
+        <td><strong>Coaching Platform</strong></td>
+        <td>Subscriptions (self/group/1-on-1/concierge)</td>
+        <td style="text-align:right;" class="number">$8M</td>
+        <td style="text-align:right;" class="number">$25M</td>
+        <td style="text-align:right;" class="number">60%</td>
+      </tr>
+      <tr>
+        <td><strong>Certification</strong></td>
+        <td>Coach training cohorts + licensing fees</td>
+        <td style="text-align:right;" class="number">$1.5M</td>
+        <td style="text-align:right;" class="number">$5M</td>
+        <td style="text-align:right;" class="number">75%</td>
+      </tr>
+      <tr>
+        <td><strong>Supplements</strong></td>
+        <td>DTC subscriptions + retail wholesale</td>
+        <td style="text-align:right;" class="number">$5M</td>
+        <td style="text-align:right;" class="number">$30M</td>
+        <td style="text-align:right;" class="number">60%</td>
+      </tr>
+      <tr>
+        <td><strong>Apparel</strong></td>
+        <td>DTC drops + retail distribution</td>
+        <td style="text-align:right;" class="number">$2M</td>
+        <td style="text-align:right;" class="number">$15M</td>
+        <td style="text-align:right;" class="number">55%</td>
+      </tr>
+      <tr>
+        <td><strong>Health Centers</strong></td>
+        <td>Franchise fees + royalties + product supply</td>
+        <td style="text-align:right;" class="number">$3M</td>
+        <td style="text-align:right;" class="number">$40M</td>
+        <td style="text-align:right;" class="number">45%</td>
+      </tr>
+      <tr>
+        <td><strong>B2B Corporate</strong></td>
+        <td>Platform + coaching for employers</td>
+        <td style="text-align:right;" class="number">$2M</td>
+        <td style="text-align:right;" class="number">$10M</td>
+        <td style="text-align:right;" class="number">65%</td>
+      </tr>
+      <tr style="background:var(--gray-100);">
+        <td colspan="2"><strong style="font-size:15px;">Total</strong></td>
+        <td style="text-align:right;" class="number"><strong style="font-size:15px;">$23.5M</strong></td>
+        <td style="text-align:right;" class="number"><strong style="font-size:15px;">$133M</strong></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Valuation Math</h3>
+  <div class="grid-2" style="margin-top:16px;">
+    <div class="card" style="border-left:3px solid var(--blue);">
+      <div class="card-label">Year 5</div>
+      <div style="font-size:14px; color:var(--gray-600); margin-bottom:8px;">$23.5M &times; 8-12x</div>
+      <div style="font-size:28px; font-weight:800; letter-spacing:-0.02em;">$188M-$282M</div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div class="card-label">Year 10</div>
+      <div style="font-size:14px; color:var(--gray-600); margin-bottom:8px;">$133M &times; 8-12x</div>
+      <div style="font-size:28px; font-weight:800; letter-spacing:-0.02em;">$1.06B-$1.6B</div>
+    </div>
+  </div>
+
+  <h3>Revenue Composition Shift</h3>
+  <div style="margin-top:16px;">
+    <div class="comp-label">Year 1</div>
+    <div class="comp-bar">
+      <div style="flex:8; background:var(--green);">Coaching</div>
+      <div style="flex:2; background:var(--blue);">Media</div>
+    </div>
+
+    <div class="comp-label" style="margin-top:12px;">Year 3</div>
+    <div class="comp-bar">
+      <div style="flex:4; background:var(--green);">Coaching</div>
+      <div style="flex:3; background:var(--yellow);">Supps</div>
+      <div style="flex:2; background:var(--blue);">Media</div>
+      <div style="flex:1; background:#888;">App</div>
+    </div>
+
+    <div class="comp-label" style="margin-top:12px;">Year 5</div>
+    <div class="comp-bar">
+      <div style="flex:3; background:var(--green);">Coach</div>
+      <div style="flex:2.5; background:var(--yellow);">Supps</div>
+      <div style="flex:2; background:var(--red);">Centers</div>
+      <div style="flex:1.5; background:#888;">App</div>
+      <div style="flex:1; background:var(--blue);">Media</div>
+    </div>
+
+    <div class="comp-label" style="margin-top:12px;">Year 10</div>
+    <div class="comp-bar">
+      <div style="flex:4; background:var(--red);">Centers</div>
+      <div style="flex:3; background:var(--yellow);">Supps</div>
+      <div style="flex:2; background:var(--green);">Coach</div>
+      <div style="flex:1.5; background:#666;">Apparel</div>
+      <div style="flex:1; background:#888;">B2B</div>
+      <div style="flex:0.5; background:var(--blue);"></div>
+    </div>
+  </div>
+
+  <p style="margin-top:16px;">Health centers and supplements become the dominant revenue engines at scale. Media and coaching remain the top-of-funnel and relationship engines that feed everything downstream.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: THE CIPHER METHOD -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <div class="section-label">05 / The Cipher Method</div>
+  <div class="section-title">The Unifying IP</div>
+  <div class="section-subtitle">The diagnostic framework, experiment methodology, and coaching protocol that runs through every single vertical. The certifiable, franchisable, defensible intellectual property at the center of the empire.</div>
+
+  <h3>The 7-Dimension Diagnostic</h3>
+  <p>Every client (and eventually every app user) starts with a comprehensive diagnostic:</p>
+
+  <div class="grid-2" style="margin-top:16px;">
+    <div class="card no-break" style="border-left:3px solid var(--blue);">
+      <div class="card-title">Sleep</div>
+      <div class="card-desc">Architecture, timing, environment, quality vs. quantity</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--green);">
+      <div class="card-title">Nutrition</div>
+      <div class="card-desc">Dietary patterns, metabolic response, relationship with food</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--yellow);">
+      <div class="card-title">Movement</div>
+      <div class="card-desc">Exercise type/frequency, recovery, functional capacity</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--red);">
+      <div class="card-title">Recovery & Stress</div>
+      <div class="card-desc">HRV patterns, stress management, recovery practices</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--blue);">
+      <div class="card-title">Data & Tracking</div>
+      <div class="card-desc">Current tools, data literacy, interpretation ability</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--green);">
+      <div class="card-title">Mindset & Beliefs</div>
+      <div class="card-desc">Health beliefs, experimentation readiness, agency level</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--yellow); grid-column:span 2;">
+      <div class="card-title">Lifestyle & Constraints</div>
+      <div class="card-desc">Work demands, relationships, environment, time budgets</div>
+    </div>
+  </div>
+
+  <h3>The Experiment Cycle</h3>
+  <div class="method-cycle">
+    <span class="method-step" style="background:var(--blue); color:#fff;">Diagnose</span>
+    <span class="method-arrow">&rarr;</span>
+    <span class="method-step" style="background:var(--green); color:#fff;">Hypothesize</span>
+    <span class="method-arrow">&rarr;</span>
+    <span class="method-step" style="background:var(--yellow); color:#fff;">Experiment</span>
+    <span class="method-arrow">&rarr;</span>
+    <span class="method-step" style="background:var(--red); color:#fff;">Measure</span>
+    <span class="method-arrow">&rarr;</span>
+    <span class="method-step" style="background:var(--black); color:#fff;">Synthesize</span>
+    <span class="method-arrow">&rarr;</span>
+    <span class="method-step" style="background:var(--gray-100); color:var(--gray-600);">Repeat &circlearrowright;</span>
+  </div>
+
+  <p><strong>Each 4-week experiment cycle:</strong></p>
+  <ol>
+    <li><strong>Week 1:</strong> Review prior cycle. Select focus. Define hypothesis, metrics, protocol.</li>
+    <li><strong>Week 2-3:</strong> Execute. Daily tracking. Midpoint check-in. Adjust if needed.</li>
+    <li><strong>Week 4:</strong> Measure results vs. hypothesis. Document learnings. Plan next cycle.</li>
+  </ol>
+
+  <p>The power is in the compounding: each experiment builds on prior ones. After 6-12 months, a client has a personalized, evidence-backed health system that no generic protocol could provide.</p>
+
+  <h3>Where the Method Lives</h3>
+  <table>
+    <thead><tr><th>Vertical</th><th>How the Method Shows Up</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Media</strong></td><td>Content teaches the methodology (free education layer)</td></tr>
+      <tr><td><strong>Coaching</strong></td><td>Delivered by humans &mdash; Jordan, then certified coaches</td></tr>
+      <tr><td><strong>Software</strong></td><td>Codified into the app &mdash; diagnostic, experiment builder, AI synthesis</td></tr>
+      <tr><td><strong>Supplements</strong></td><td>Tied to experiment recommendations &mdash; "Your diagnostic suggests Signal:Rest"</td></tr>
+      <tr><td><strong>Apparel</strong></td><td>Visual identity reinforces the experiment mindset</td></tr>
+      <tr><td><strong>Health Centers</strong></td><td>In-person protocol &mdash; diagnostics, recovery, experiments on-site</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Why This Is Defensible</h3>
+  <div class="grid-3" style="margin-top:16px;">
+    <div class="card no-break">
+      <div class="card-label">Documented</div>
+      <div class="card-desc">Not just "what Jordan knows" but a codified, teachable system</div>
+    </div>
+    <div class="card no-break">
+      <div class="card-label">Certifiable</div>
+      <div class="card-desc">Other coaches can learn it, creating a network effect</div>
+    </div>
+    <div class="card no-break">
+      <div class="card-label">Software-encoded</div>
+      <div class="card-desc">The app embeds the methodology, making it scalable beyond human delivery</div>
+    </div>
+    <div class="card no-break">
+      <div class="card-label">Data-enriched</div>
+      <div class="card-desc">Every user running experiments improves the system for everyone</div>
+    </div>
+    <div class="card no-break" style="grid-column:span 2;">
+      <div class="card-label">Experience-integrated</div>
+      <div class="card-desc">Health centers deliver it physically, creating barriers to replication</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: COMPETITIVE MOAT -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <div class="section-label">06 / Competitive Moat</div>
+  <div class="section-title">The Moat Stack</div>
+  <div class="section-subtitle">No single moat wins. The strategy is stacking moats so that replicating Cipher requires replicating all of them simultaneously.</div>
+
+  <div class="grid-2">
+    <div class="card no-break" style="border-left:3px solid var(--blue);">
+      <div class="card-label">Moat 1</div>
+      <div class="card-title">Brand</div>
+      <div class="card-desc">"Sharp strategist with warmth" occupies a unique position. The Signal visual language, agency philosophy, and authentic voice create differentiation that can't be copied.</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--green);">
+      <div class="card-label">Moat 2</div>
+      <div class="card-title">Methodology</div>
+      <div class="card-desc">Documented, certifiable, and evolving. Certification creates a distributed network of practitioners who reinforce the same methodology.</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--yellow);">
+      <div class="card-label">Moat 3</div>
+      <div class="card-title">Data Flywheel</div>
+      <div class="card-desc">More users = more patterns = better AI = better recommendations. This compounding advantage can't be replicated without years of data.</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--red);">
+      <div class="card-label">Moat 4</div>
+      <div class="card-title">Community</div>
+      <div class="card-desc">Network effects: the community gets more valuable as it grows. A member in Austin learns from experiments in London. Hard to build, harder to leave.</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--blue);">
+      <div class="card-label">Moat 5</div>
+      <div class="card-title">Content</div>
+      <div class="card-desc">Years of content, audience relationships, and trust built through consistent publishing. You can't fast-forward audience trust.</div>
+    </div>
+    <div class="card no-break" style="border-left:3px solid var(--green);">
+      <div class="card-label">Moat 6</div>
+      <div class="card-title">Physical Presence</div>
+      <div class="card-desc">Health centers create real estate barriers, local community ties, and experiences that digital-only competitors can't match.</div>
+    </div>
+  </div>
+
+  <h3>Competitive Landscape</h3>
+  <table>
+    <thead>
+      <tr><th>Competitor</th><th>What They Do</th><th>Cipher Advantage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Noom</strong> ($1B ARR)</td><td>App-based behavioral coaching</td><td>More personalized, data-rich, premium</td></tr>
+      <tr><td><strong>Whoop</strong> ($3.7B)</td><td>Wearable + data platform</td><td>Aggregates ALL data sources, not just one device</td></tr>
+      <tr><td><strong>Eight Sleep</strong> ($500M+)</td><td>Smart mattress + sleep data</td><td>Spans all health dimensions</td></tr>
+      <tr><td><strong>Levels</strong> ($21M raised)</td><td>CGM + metabolic health</td><td>Integrates CGM as one input of many</td></tr>
+      <tr><td><strong>Future</strong> ($110M raised)</td><td>Premium async fitness coaching</td><td>Covers full health optimization, not fitness only</td></tr>
+      <tr><td><strong>Equinox</strong> ($2B+)</td><td>Premium gym experience</td><td>Coaching methodology + data platform + experiment framework</td></tr>
+      <tr><td><strong>Restore</strong></td><td>Recovery franchise</td><td>Recovery wrapped into a complete system</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: RISKS -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <div class="section-label">07 / Key Risks & Mitigations</div>
+  <div class="section-title">Eyes Open</div>
+  <div class="section-subtitle">Every ambitious plan has risks. These are the ones that could kill the business &mdash; and how we prevent each one.</div>
+
+  <div class="grid-2">
+    <div class="risk-card no-break">
+      <div class="risk-title"><span class="risk-number">Risk 01</span> Bottleneck on Jordan</div>
+      <div class="risk-body">Everything depends on one person &mdash; content, coaching, methodology, brand, decisions.</div>
+      <div class="mitigation">
+        <div class="mitigation-label">Mitigation</div>
+        <div class="risk-body">Certification trains others to deliver. AI coaching scales methodology. Content library grows as evergreen assets. Strong operators hired early.</div>
+      </div>
+    </div>
+
+    <div class="risk-card no-break">
+      <div class="risk-title"><span class="risk-number">Risk 02</span> Capital Intensity of Physical</div>
+      <div class="risk-body">Health centers require $500K-$2M buildout per location. Could overextend.</div>
+      <div class="mitigation">
+        <div class="mitigation-label">Mitigation</div>
+        <div class="risk-body">Franchise model (operators fund buildout). Company-owned flagship proves economics first. No expansion until digital revenue covers overhead.</div>
+      </div>
+    </div>
+
+    <div class="risk-card no-break">
+      <div class="risk-title"><span class="risk-number">Risk 03</span> Supplement Market Crowding</div>
+      <div class="risk-body">Market is saturated. AG1, Momentous, Thorne, hundreds of DTC brands.</div>
+      <div class="mitigation">
+        <div class="mitigation-label">Mitigation</div>
+        <div class="risk-body">Tied to methodology, not sold in isolation. App recommends based on diagnostics. Transparent formulations. Media provides built-in distribution. Only 3 products initially.</div>
+      </div>
+    </div>
+
+    <div class="risk-card no-break">
+      <div class="risk-title"><span class="risk-number">Risk 04</span> Apparel Inventory Risk</div>
+      <div class="risk-body">Tight margins. Overproduction kills companies.</div>
+      <div class="mitigation">
+        <div class="mitigation-label">Mitigation</div>
+        <div class="risk-body">Limited drops only. Pre-order model for early drops. No retail until DTC proven. Minimal SKUs (2-3 per drop).</div>
+      </div>
+    </div>
+
+    <div class="risk-card no-break">
+      <div class="risk-title"><span class="risk-number">Risk 05</span> Over-Extension Across Verticals</div>
+      <div class="risk-body">Five businesses at once dilutes focus and quality.</div>
+      <div class="mitigation">
+        <div class="mitigation-label">Mitigation</div>
+        <div class="risk-body"><strong>Sequential, not parallel.</strong> Phase gates with exit criteria. Media and coaching only for 12+ months. Kill underperforming verticals.</div>
+      </div>
+    </div>
+
+    <div class="risk-card no-break">
+      <div class="risk-title"><span class="risk-number">Risk 06</span> The Peloton Lesson</div>
+      <div class="risk-body">Growth-phase overinvestment in fixed costs creates existential risk when growth slows.</div>
+      <div class="mitigation">
+        <div class="mitigation-label">Mitigation</div>
+        <div class="risk-body">Capital-efficient at every phase. Franchise for physical, contract manufacturing for supps. Variable cost structure. Model 50% revenue decline scenarios. Bootstrap is the default.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-card no-break" style="margin-top:4px;">
+    <div class="risk-title"><span class="risk-number">Risk 07</span> Regulatory and Liability</div>
+    <div class="risk-body">Health coaching gray zone. Supplement claims FDA-regulated. Bad outcomes create liability.</div>
+    <div class="mitigation">
+      <div class="mitigation-label">Mitigation</div>
+      <div class="risk-body">Clear scope: coaching, not medical advice. Explicit agreements and terms. FDA-compliant supplement claims. Professional and product liability insurance. Legal review of all client-facing materials.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: 6-MONTH BRIDGE PLAN -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <div class="section-label">08 / 6-Month Bridge Plan</div>
+  <div class="section-title">Monthly Milestones</div>
+  <div class="section-subtitle">From February 2026 to full-time. Everything alongside the CTO role at Sober Sidekick. Budget: ~15 hours/week for Cipher.</div>
+
+  <div class="milestone-grid">
+    <!-- Month 1 -->
+    <div class="milestone-card no-break">
+      <div class="milestone-month">Month 1 &mdash; February 2026</div>
+      <div class="milestone-title">Foundation</div>
+      <div class="milestone-body">
+        <ul>
+          <li>Daily X posting (5-7 originals/week)</li>
+          <li>10 engagement replies/day</li>
+          <li>3 discovery calls with potential beta clients</li>
+          <li>Finalize application form + diagnostic intake</li>
+          <li>coded.health landing page live</li>
+          <li>Draft Cipher Method v1 document</li>
+        </ul>
+      </div>
+      <div class="milestone-check">Check: Discovery calls happening. Infrastructure built.</div>
+    </div>
+
+    <!-- Month 2 -->
+    <div class="milestone-card no-break">
+      <div class="milestone-month">Month 2 &mdash; March 2026</div>
+      <div class="milestone-title">First Revenue</div>
+      <div class="milestone-body">
+        <ul>
+          <li>Newsletter launches on coded.health (weekly)</li>
+          <li>First long-form content piece</li>
+          <li>Target: 500+ email subscribers</li>
+          <li>First beta client enrolled ($897/mo)</li>
+          <li>First diagnostic + experiment cycle</li>
+          <li>Draft coaching agreement / ToS</li>
+        </ul>
+      </div>
+      <div class="milestone-check">Check: First paying client. Newsletter live.</div>
+    </div>
+
+    <!-- Month 3 -->
+    <div class="milestone-card no-break">
+      <div class="milestone-month">Month 3 &mdash; April 2026</div>
+      <div class="milestone-title">Proving the Method</div>
+      <div class="milestone-body">
+        <ul>
+          <li>Newsletter: 750+ subscribers</li>
+          <li>Podcast planning: format, equipment, guest list</li>
+          <li>First case study from beta client data</li>
+          <li>3 beta clients active ($2,691/mo)</li>
+          <li>First experiment cycles completing</li>
+          <li>First free guide on coded.health</li>
+        </ul>
+      </div>
+      <div class="milestone-check">Check: 3 clients. Method being tested.</div>
+    </div>
+
+    <!-- Month 4 -->
+    <div class="milestone-card no-break">
+      <div class="milestone-month">Month 4 &mdash; May 2026</div>
+      <div class="milestone-title">Scaling Pipeline</div>
+      <div class="milestone-body">
+        <ul>
+          <li>Newsletter: 1,000+ subscribers</li>
+          <li>Begin podcast recording</li>
+          <li>5 beta clients active ($4,485/mo)</li>
+          <li>Capacity at max for dual role</li>
+          <li>Waitlist forming</li>
+          <li>coded.health fully functional</li>
+        </ul>
+      </div>
+      <div class="milestone-check">Check: 5 clients. Pipeline building.</div>
+    </div>
+
+    <!-- Month 5 -->
+    <div class="milestone-card no-break">
+      <div class="milestone-month">Month 5 &mdash; June 2026</div>
+      <div class="milestone-title">Transition Preparation</div>
+      <div class="milestone-body">
+        <ul>
+          <li>Newsletter: 1,500+ subscribers</li>
+          <li>Podcast launches (first 3 episodes)</li>
+          <li>First graduation + testimonial complete</li>
+          <li>Financial model: Months 7-12 projection</li>
+          <li>Supplement research begins</li>
+          <li>Phase 2 business plan update</li>
+        </ul>
+      </div>
+      <div class="milestone-check">Check: Podcast live. Transition case clear.</div>
+    </div>
+
+    <!-- Month 6 -->
+    <div class="milestone-card no-break" style="border:2px solid var(--blue);">
+      <div class="milestone-month">Month 6 &mdash; July 2026</div>
+      <div class="milestone-title">Go Full-Time Decision</div>
+      <div class="milestone-body">
+        <p style="font-size:13px; margin-bottom:12px;"><strong>Decision gate:</strong> Does the evidence support leaving Sober Sidekick?</p>
+        <ul class="checklist" style="font-size:12px;">
+          <li>Monthly coaching revenue $4,000+</li>
+          <li>Email list 2,000+ subscribers</li>
+          <li>5 active beta clients</li>
+          <li>2+ testimonials / case studies</li>
+          <li>3+ waitlisted prospects</li>
+          <li>Podcast launched</li>
+          <li>Cipher Method v1 documented</li>
+          <li>3-month cash runway without clients</li>
+        </ul>
+      </div>
+      <div class="milestone-check" style="color:var(--blue); font-weight:600;">If yes: Give notice. Begin Phase 2.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- APPENDICES -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <div class="section-label">Appendix A / Brand Assets</div>
+  <div class="section-title">Key Brand Assets</div>
+
+  <table>
+    <thead><tr><th>Asset</th><th>File</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Brand strategy</strong></td><td>brand-strategy.md</td><td>Locked</td></tr>
+      <tr><td><strong>Voice guide</strong></td><td>voice-guide.md</td><td>Locked</td></tr>
+      <tr><td><strong>Client journey & pricing</strong></td><td>client-journey.md</td><td>Locked</td></tr>
+      <tr><td><strong>Diagnostic framework</strong></td><td>diagnostic-framework.md</td><td>Locked</td></tr>
+      <tr><td><strong>Content queue</strong></td><td>content-queue.md</td><td>Active</td></tr>
+      <tr><td><strong>Visual identity</strong></td><td>brand-signal-bold.html</td><td>Locked</td></tr>
+      <tr><td><strong>Logo system</strong></td><td>brand-wordmark-concepts.html, brand-mark-concepts.html</td><td>Locked</td></tr>
+      <tr><td><strong>Designer brief</strong></td><td>designer-brief.md</td><td>Ready for handoff</td></tr>
+      <tr><td><strong>Social profile copy</strong></td><td>social-profile-copy.md</td><td>On hold until SS transition</td></tr>
+      <tr><td><strong>X engagement seed list</strong></td><td>x-engagement-seed-list.md</td><td>Active</td></tr>
+      <tr><td><strong>Social playbook</strong></td><td>daily-social-engagement.md</td><td>Active</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-label">Appendix B / Market Sizing</div>
+  <div class="section-title">Total Addressable Market</div>
+
+  <table>
+    <thead><tr><th>Market</th><th style="text-align:right;">Size</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Global wellness economy</strong></td><td style="text-align:right;" class="number">$6.8T</td><td>Global Wellness Institute</td></tr>
+      <tr><td><strong>Health coaching market</strong></td><td style="text-align:right;" class="number">$38B by 2034</td><td>Allied Market Research</td></tr>
+      <tr><td><strong>Biohacking market</strong></td><td style="text-align:right;" class="number">$75B by 2030</td><td>Grand View Research</td></tr>
+      <tr><td><strong>Digital health market</strong></td><td style="text-align:right;" class="number">$660B by 2030</td><td>Global Market Insights</td></tr>
+      <tr><td><strong>Sports nutrition / supplements</strong></td><td style="text-align:right;" class="number">$50B+ by 2030</td><td>Fortune Business Insights</td></tr>
+      <tr><td><strong>Athleisure apparel</strong></td><td style="text-align:right;" class="number">$550B by 2030</td><td>Allied Market Research</td></tr>
+    </tbody>
+  </table>
+
+  <blockquote>Cipher doesn't need to capture a meaningful share of any single market. It needs a tiny slice of several &mdash; and the cross-sell between verticals is where the real leverage lives.</blockquote>
+</div>
+
+<div class="section">
+  <div class="section-label">Appendix C / Comparable Valuations</div>
+  <div class="section-title">Comparable Companies</div>
+
+  <table>
+    <thead><tr><th>Company</th><th style="text-align:right;">Valuation</th><th style="text-align:right;">Revenue Est.</th><th style="text-align:right;">Multiple</th><th>Relevance</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Noom</strong></td><td style="text-align:right;" class="number">$3.7B</td><td style="text-align:right;" class="number">$1B ARR</td><td style="text-align:right;" class="number">3.7x</td><td>Software-scaled coaching</td></tr>
+      <tr><td><strong>Whoop</strong></td><td style="text-align:right;" class="number">$3.6B</td><td style="text-align:right;" class="number">~$500M</td><td style="text-align:right;" class="number">7x</td><td>Wearable + data platform</td></tr>
+      <tr><td><strong>Lululemon</strong></td><td style="text-align:right;" class="number">$42B</td><td style="text-align:right;" class="number">$9.6B</td><td style="text-align:right;" class="number">4.4x</td><td>Premium athletic lifestyle brand</td></tr>
+      <tr><td><strong>Peloton</strong></td><td style="text-align:right;" class="number">$8B</td><td style="text-align:right;" class="number">$2.8B</td><td style="text-align:right;" class="number">2.9x</td><td>Hardware + digital (cautionary)</td></tr>
+      <tr><td><strong>AG1</strong></td><td style="text-align:right;" class="number">$1.2B</td><td style="text-align:right;" class="number">~$500M</td><td style="text-align:right;" class="number">2.4x</td><td>Single-product premium supps</td></tr>
+      <tr><td><strong>Eight Sleep</strong></td><td style="text-align:right;" class="number">$500M+</td><td style="text-align:right;" class="number">~$150M</td><td style="text-align:right;" class="number">3.3x</td><td>Premium sleep tech</td></tr>
+      <tr><td><strong>Calm</strong></td><td style="text-align:right;" class="number">$2B</td><td style="text-align:right;" class="number">~$300M</td><td style="text-align:right;" class="number">6.7x</td><td>Wellness app + content</td></tr>
+      <tr><td><strong>Equinox</strong></td><td style="text-align:right;" class="number">$2B+</td><td style="text-align:right;" class="number">~$1.5B</td><td style="text-align:right;" class="number">1.3x</td><td>Premium physical fitness</td></tr>
+    </tbody>
+  </table>
+
+  <blockquote>High-growth brands with strong recurring revenue, community, and brand identity command 8-12x. Cipher's multi-vertical model with franchise upside is designed to reach the higher end of that range.</blockquote>
+</div>
+
+<!-- ============================================================ -->
+<!-- FOOTER -->
+<!-- ============================================================ -->
+<div class="doc-footer">
+  <div class="gradient-bar" style="width:120px; margin:0 auto 24px;"></div>
+  <div class="wordmark">CIPHER</div>
+  <p style="font-size:13px; color:var(--gray-400); margin-top:8px;">Decode what works for you</p>
+  <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-300); margin-top:24px;">Business Plan v1.0 &middot; February 2026 &middot; Confidential</p>
+  <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-300); margin-top:4px;">coded.health</p>
+</div>
+
+</div><!-- /.container -->
+
+</body>
+</html>
