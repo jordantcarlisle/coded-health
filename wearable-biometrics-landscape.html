@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Wearable Biometrics Landscape</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #5B8DEF;
+    --green: #34B87D;
+    --yellow: #D4A12A;
+    --red: #E06B5A;
+    --copper: #B87550;
+    --black: #1C2826;
+    --off-white: #FAF8F2;
+    --gray-100: #f5f0ea;
+    --gray-200: #E8E4DE;
+    --gray-300: #d0ccc6;
+    --gray-400: #999;
+    --gray-500: #777;
+    --gray-600: #555;
+    --gray-700: #2A2D2E;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+  .gradient-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow), var(--red));
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 48px;
+    background: var(--black);
+    color: var(--off-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(91,141,239,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(52,184,125,0.06) 0%, transparent 60%);
+  }
+
+  .cover * { position: relative; z-index: 1; }
+
+  .cover-wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--green);
+    margin-bottom: 32px;
+  }
+
+  .cover-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--gray-300);
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  .cover-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gray-400);
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== NAV ===== */
+  .toc {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .toc h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-400);
+    margin-bottom: 24px;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 32px;
+  }
+
+  .toc a {
+    font-size: 14px;
+    color: var(--black);
+    text-decoration: none;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .toc a:hover { color: var(--blue); }
+
+  .toc .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-400);
+    min-width: 24px;
+  }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 64px 0; border-bottom: 1px solid var(--gray-200); }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-400);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    padding-top: 16px;
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 24px 0 8px;
+    color: var(--gray-700);
+  }
+
+  p { margin-bottom: 16px; font-size: 15px; }
+
+  .lead { font-size: 17px; color: var(--gray-600); margin-bottom: 32px; line-height: 1.7; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { margin: 32px 0; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .timeline-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    padding-top: 2px;
+  }
+
+  .timeline-content h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    padding: 0;
+    color: var(--black);
+  }
+
+  .timeline-content p {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin: 0;
+  }
+
+  /* ===== DATA TABLES ===== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 13px;
+  }
+
+  .data-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+  }
+
+  .data-table tr:hover td { background: var(--gray-100); }
+
+  /* ===== CARDS ===== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .card h4 { font-size: 15px; margin: 0 0 8px; padding: 0; }
+
+  .card p { font-size: 13px; color: var(--gray-600); margin: 0; }
+
+  .card-blue .card-label { color: var(--blue); }
+  .card-green .card-label { color: var(--green); }
+  .card-yellow .card-label { color: var(--yellow); }
+  .card-red .card-label { color: var(--red); }
+  .card-copper .card-label { color: var(--copper); }
+
+  /* ===== SENSOR MAP ===== */
+  .sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .sensor-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 3px solid var(--blue);
+  }
+
+  .sensor-card.mature { border-left-color: var(--green); }
+  .sensor-card.emerging { border-left-color: var(--yellow); }
+  .sensor-card.research { border-left-color: var(--red); }
+
+  .sensor-card h5 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .sensor-card .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-400);
+    margin-bottom: 6px;
+  }
+
+  .sensor-card p { font-size: 12px; color: var(--gray-600); margin: 0; }
+
+  /* ===== BIOMARKER CASCADE ===== */
+  .cascade { margin: 32px 0; }
+
+  .cascade-tier {
+    margin-bottom: 24px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--gray-200);
+  }
+
+  .cascade-tier-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .cascade-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cascade-tier-header h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cascade-tier-header span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-400);
+  }
+
+  .cascade-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cascade-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--gray-100);
+    color: var(--gray-700);
+  }
+
+  /* ===== STAT BLOCKS ===== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+  }
+
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== CALLOUTS ===== */
+  .callout {
+    background: #fff;
+    border-left: 3px solid var(--green);
+    padding: 20px 24px;
+    margin: 24px 0;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .callout.insight { border-left-color: var(--blue); }
+  .callout.warning { border-left-color: var(--red); }
+  .callout.cipher { border-left-color: var(--green); }
+
+  .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .callout.insight .callout-label { color: var(--blue); }
+  .callout.warning .callout-label { color: var(--red); }
+  .callout.cipher .callout-label { color: var(--green); }
+
+  .callout p { font-size: 14px; margin: 0; }
+
+  /* ===== INFLECTION LIST ===== */
+  .inflection-list { margin: 24px 0; counter-reset: inflection; }
+
+  .inflection-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-100);
+    counter-increment: inflection;
+  }
+
+  .inflection-item::before {
+    content: counter(inflection);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    background: rgba(91,141,239,0.1);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .inflection-item strong { font-size: 14px; }
+  .inflection-item span { font-size: 13px; color: var(--gray-600); }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 48px;
+    color: var(--gray-400);
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .card-grid, .toc-grid { grid-template-columns: 1fr; }
+    .sensor-grid { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .cover-wordmark { font-size: 36px; }
+    h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-wordmark">CIPHER</div>
+  <div class="cover-subtitle">Wearable Biometrics Landscape</div>
+  <div class="cover-title">A comprehensive map of the history, sensor technologies, device categories, emerging biomarkers, algorithms, AI integration, platforms, regulation, and future of wearable biometric sensing.</div>
+  <div class="cover-meta">RESEARCH REFERENCE / MARCH 2026 &mdash; UPDATED WITH LIVE WEB RESEARCH / coded.health</div>
+</div>
+<div class="gradient-bar"></div>
+
+<div class="container">
+
+<!-- TOC -->
+<nav class="toc">
+  <h2>Contents</h2>
+  <div class="toc-grid">
+    <a href="#history"><span class="num">01</span> Market History & Evolution</a>
+    <a href="#sensors"><span class="num">02</span> Sensor Technologies</a>
+    <a href="#devices"><span class="num">03</span> Device Categories</a>
+    <a href="#algorithms"><span class="num">04</span> Algorithms & Signal Processing</a>
+    <a href="#biomarkers"><span class="num">05</span> Emerging Biomarkers</a>
+    <a href="#sensing"><span class="num">06</span> Sensing Platforms &mdash; Beyond Blood</a>
+    <a href="#platforms"><span class="num">07</span> Data Platforms & Interoperability</a>
+    <a href="#edgeai"><span class="num">08</span> Edge AI & On-Device Intelligence</a>
+    <a href="#llm"><span class="num">09</span> AI & LLM Integration</a>
+    <a href="#regulatory"><span class="num">10</span> Regulatory Landscape</a>
+    <a href="#research"><span class="num">11</span> R&D Organizations & Key Labs</a>
+    <a href="#enabling"><span class="num">12</span> Enabling Technologies</a>
+    <a href="#market"><span class="num">13</span> Market Size & Key Metrics</a>
+    <a href="#inflections"><span class="num">14</span> Key Inflection Points</a>
+    <a href="#failures"><span class="num">15</span> Failures & Lessons Learned</a>
+    <a href="#cipher"><span class="num">16</span> Cipher Strategic Implications</a>
+    <a href="#references"><span class="num">&mdash;</span> References (112 sources)</a>
+  </div>
+</nav>
+
+<!-- MARKET STATS -->
+<section>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">$92.9B</div>
+      <div class="stat-label">Wearable Tech (2025)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$103B</div>
+      <div class="stat-label">Medical Devices (2025)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$16B</div>
+      <div class="stat-label">CGM Market (2025)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">25-30%</div>
+      <div class="stat-label">Smart Ring CAGR</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01: HISTORY -->
+<section id="history">
+  <div class="section-label">Section 01</div>
+  <h2>Market History & Evolution</h2>
+  <p class="lead">From a 75-pound backpack ECG transmitter in 1949 to AI-powered health intelligence on your wrist. The wearable biometrics market follows a predictable pattern: military/clinical use (decades) to professional sports (years) to premium consumer (months) to commodity feature (inevitable).</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1949</div>
+      <div class="timeline-content">
+        <h4>Holter Ambulatory ECG</h4>
+        <p>First wearable biometric. 75-lb backpack transmitter. Foundational principle: continuous measurement reveals what snapshots cannot.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1974</div>
+      <div class="timeline-content">
+        <h4>Aoyagi Invents Pulse Oximetry</h4>
+        <p>PPG technology born at Nihon Kohden, Japan. Ratio of red/IR light absorption through pulsatile tissue measures SpO2. Foundation of every optical heart rate sensor today.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1982</div>
+      <div class="timeline-content">
+        <h4>Polar Wireless Heart Rate Monitor</h4>
+        <p>First practical wireless HR monitor (Finland). Chest strap to wrist receiver. Created the quantified athlete concept.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>The Quiet Period (1987&ndash;2006) &mdash; Why the Gap?</h3>
+  <div class="callout insight">
+    <div class="callout-label">Structural Insight</div>
+    <p>Between Polar&rsquo;s HR monitors in the 1980s and Nike+iPod in 2006, almost two decades passed with no mainstream consumer biometric wearable breakthroughs. Three enabling technologies hadn&rsquo;t converged yet:</p>
+  </div>
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">Missing Enabler #1</div>
+      <h4>No Second Screen</h4>
+      <p>Before the smartphone (2007), any wearable had to be fully self-contained &mdash; tiny screen, tiny memory, no cloud sync. The mobile phone market consumed all R&amp;D oxygen for portable electronics.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Missing Enabler #2</div>
+      <h4>No Low-Power Wireless</h4>
+      <p>Bluetooth Classic (1998) drained batteries in hours. BLE wasn&rsquo;t specified until 2010. No way to stream sensor data continuously from a small device.</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">Missing Enabler #3</div>
+      <h4>No Cheap MEMS Sensors</h4>
+      <p>Accelerometers cost $5&ndash;10+ per unit through the 2000s. They didn&rsquo;t hit sub-$1 pricing until the smartphone boom drove volume manufacturing.</p>
+    </div>
+    <div class="card card-copper">
+      <div class="card-label">What DID Happen</div>
+      <h4>Niche Pioneers</h4>
+      <p>Casio JC-10 pedometer &amp; BP-400 wrist HR/BP monitor (1990&ndash;91). MIT Media Lab smart clothing (1991&ndash;97). Timex Datalink with Microsoft (1994). Seiko MessageWatch (1995). Clinical actigraphy at $500&ndash;2,000+. All proved the science but couldn&rsquo;t crack the consumer market.</p>
+    </div>
+  </div>
+  <p style="font-size:14px; color:var(--gray-600); margin:16px 0 32px;">The formal &ldquo;Quantified Self&rdquo; movement &mdash; coined by <em>Wired</em> editors Gary Wolf and Kevin Kelly in 2007 &mdash; emerged precisely when the enabling technology stack finally converged.</p>
+
+  <h3>Early Consumer Era (2006&ndash;2026)</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2006</div>
+      <div class="timeline-content">
+        <h4>Nike+iPod Sport Kit</h4>
+        <p>First mainstream sensor + consumer electronics + cloud platform integration. Proved mass-market demand for quantified fitness.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2009</div>
+      <div class="timeline-content">
+        <h4>Fitbit Tracker Ships</h4>
+        <p>Creates the "all-day activity tracker" category. $99 clip-on with OLED. Passive, continuous tracking goes mainstream.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2010</div>
+      <div class="timeline-content">
+        <h4>Bluetooth Low Energy Specification</h4>
+        <p>The single most important enabling technology. Made power-efficient wireless communication from small wearables feasible.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2015</div>
+      <div class="timeline-content">
+        <h4>Apple Watch Launches</h4>
+        <p>The biggest inflection point. 4.2M units in Q1. Legitimized category, created HealthKit ecosystem, attracted clinical investment. Changed everything.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2015</div>
+      <div class="timeline-content">
+        <h4>Oura Ring Gen 1</h4>
+        <p>Finnish company debuted at SF Launch Festival (March), then Kickstarter (August) hit $100K in 15 hours, raised $650K+. Bulky but pioneering &mdash; focused on sleep tracking. 2017 validation study confirmed most accurate consumer wearable for sleep quality.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2018</div>
+      <div class="timeline-content">
+        <h4>Apple Watch Series 4 FDA-Cleared ECG</h4>
+        <p>Watershed moment. Clinical-grade cardiac monitoring in a mass-market consumer device. De Novo pathway. Apple Heart Study (400K+ participants).</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2020</div>
+      <div class="timeline-content">
+        <h4>COVID-19 Pandemic</h4>
+        <p>SpO2 sensors became ubiquitous overnight. Remote monitoring went mainstream. Wearable-based early infection detection research. Accelerated adoption by 2-3 years.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024</div>
+      <div class="timeline-content">
+        <h4>Dexcom Stelo OTC CGM</h4>
+        <p>First FDA-cleared over-the-counter CGM. No prescription needed. Broke CGM out of the diabetes-only box. Wellness glucose monitoring goes mainstream.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Current Era (2021&ndash;2026)</h3>
+  <table class="data-table">
+    <tr><th>Year</th><th>Development</th><th>Impact</th></tr>
+    <tr><td>2022</td><td>Apple Watch Ultra ($799)</td><td>Challenges Garmin in adventure/endurance market</td></tr>
+    <tr><td>2022-23</td><td>Wellness CGM explosion</td><td>Levels, Nutrisense, Ultrahuman pair CGMs with software for non-diabetics</td></tr>
+    <tr><td>2023</td><td>Whoop Coach (GPT integration)</td><td>First major LLM + personal biometric data integration</td></tr>
+    <tr><td>2024</td><td>Dexcom Stelo (OTC CGM)</td><td>First FDA-cleared over-the-counter CGM</td></tr>
+    <tr><td>2024</td><td>Samsung Galaxy Ring</td><td>Validates smart ring category. No subscription</td></tr>
+    <tr><td>2024</td><td>Oura Ring 4</td><td>Redesigned: thinner, flatter. Acquires Sparta Science, Veri, Proxy</td></tr>
+    <tr><td>2024</td><td>Apple AirPods Pro 2 hearing aid</td><td>First FDA-cleared OTC hearing aid in earbuds</td></tr>
+    <tr><td>2025</td><td><strong>Apple Watch S11 &mdash; blood pressure</strong></td><td>Hypertension notifications via optical sensor. Passive 30-day monitoring</td></tr>
+    <tr><td>2025</td><td><strong>Whoop 5.0 &amp; Whoop MG</strong></td><td>Medical-grade ECG, BP insights, 14-day battery, Healthspan/Whoop Age</td></tr>
+    <tr><td>2025</td><td><strong>Garmin Venu 4</strong></td><td>Gen 5 Elevate sensor, shared Garmin OS, Health Status insights</td></tr>
+    <tr><td>2025</td><td><strong>Aktiia Hilo Band FDA cleared</strong></td><td>First FDA-cleared OTC cuffless continuous blood pressure monitor ($199)</td></tr>
+    <tr><td>2025</td><td><strong>Oura Advisor AI</strong></td><td>AI assistant with access to personal health data for real-time insights</td></tr>
+    <tr><td>2025</td><td>Ultrahuman Blood Vision</td><td>100+ biomarker blood testing integrated with wearable data, 48 US states</td></tr>
+    <tr><td>2025</td><td>Dexcom G7 15-day wear</td><td>Extended from 10-day to 15-day sensor wear</td></tr>
+    <tr><td>Late 2025</td><td>CES 2026 smart ring explosion</td><td>Reebok, Luna Ring 2, Sandbar Stream Ring, dozens of entrants</td></tr>
+    <tr><td>Jan 2026</td><td><strong>FDA relaxes oversight</strong></td><td>Reduced regulation of general wellness wearables and CDS software</td></tr>
+    <tr><td>2026</td><td>Apple smart glasses (rumored)</td><td>Apple pivots from Vision Pro 2 to lightweight AI smart glasses</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 02: SENSORS -->
+<section id="sensors">
+  <div class="section-label">Section 02</div>
+  <h2>Sensor Technologies</h2>
+  <p class="lead">The physics and engineering layer that makes wearable biometrics possible. Each sensor type has fundamental physical principles, accuracy characteristics, and form factor constraints.</p>
+
+  <div class="sensor-grid">
+    <div class="sensor-card mature">
+      <h5>PPG (Optical Heart Rate)</h5>
+      <div class="meta">MATURE / GREEN+RED+IR LEDs</div>
+      <p>LEDs shine into tissue, photodiodes measure reflected light. Pulsatile blood volume changes encode HR, SpO2, HRV, respiratory rate, BP estimation. &plusmn;2-5 BPM at rest. PPG market $648M (2025).</p>
+    </div>
+    <div class="sensor-card mature">
+      <h5>ECG (Electrocardiography)</h5>
+      <div class="meta">MATURE / DRY ELECTRODES</div>
+      <p>Measures cardiac electrical potentials (0.1-3.0 mV). Single-lead wrist-to-finger. AFib detection 98-99% sensitivity. In Apple Watch, Samsung, Whoop MG, AliveCor 6L. AI-led rhythm interpretation improving.</p>
+    </div>
+    <div class="sensor-card mature">
+      <h5>MEMS Accelerometer</h5>
+      <div class="meta">MATURE / 2x2x0.7mm</div>
+      <p>Capacitive sensing of proof mass displacement. Steps, falls, activity classification, sleep/wake. &lt;2 uA ultra-low-power. Pennies per unit.</p>
+    </div>
+    <div class="sensor-card mature">
+      <h5>Electrochemical (CGM)</h5>
+      <div class="meta">MATURE / SUBCUTANEOUS</div>
+      <p>Glucose oxidase on subcutaneous filament. ISF glucose via amperometric detection. MARD ~8%. 15-day wear (G7/Libre 3 Plus). Factory calibrated.</p>
+    </div>
+    <div class="sensor-card mature">
+      <h5>Temperature (NTC)</h5>
+      <div class="meta">MATURE / 0.6x0.3mm</div>
+      <p>Thermistor resistance decreases exponentially with temperature. Circadian tracking, ovulation detection, illness. Withings TempTech24/7 enables day+night tracking. &plusmn;0.01&deg;C resolution.</p>
+    </div>
+    <div class="sensor-card mature">
+      <h5>BIA (Bioimpedance)</h5>
+      <div class="meta">MATURE / ELECTRODES</div>
+      <p>AC current through tissue. Fat = high impedance, muscle = low. Samsung Galaxy Watch only smartwatch with BIA. Wrist-only accuracy &plusmn;3-8% body fat vs DEXA.</p>
+    </div>
+    <div class="sensor-card emerging">
+      <h5>EDA / GSR</h5>
+      <div class="meta">EMERGING / SYMPATHETIC</div>
+      <p>Skin conductance via eccrine sweat glands. Direct window into sympathetic arousal. Stress detection, seizure detection (Empatica, FDA-cleared).</p>
+    </div>
+    <div class="sensor-card emerging">
+      <h5>Radar (60 GHz FMCW)</h5>
+      <div class="meta">EMERGING / 5x5mm</div>
+      <p>Detects chest wall displacement from breathing and heartbeat via phase modulation. Contactless vital signs. Google Nest Hub sleep tracking.</p>
+    </div>
+    <div class="sensor-card emerging">
+      <h5>EEG (Brain Waves)</h5>
+      <div class="meta">EMERGING / DRY ELECTRODES</div>
+      <p>Cortical electrical potentials (1-100 uV) via scalp electrodes. Meditation (Muse), sleep staging. Muse S Athena adds fNIRS for blood oxygenation.</p>
+    </div>
+    <div class="sensor-card emerging">
+      <h5>fNIRS (Brain Oxygenation)</h5>
+      <div class="meta">EMERGING / NEAR-IR LIGHT</div>
+      <p>Near-infrared light measures blood oxygenation in brain tissue. New in Muse S Athena (2025). Brain activity monitoring beyond electrical signals.</p>
+    </div>
+    <div class="sensor-card research">
+      <h5>Sweat Microfluidics</h5>
+      <div class="meta">RESEARCH / ION-SELECTIVE</div>
+      <p>Microfluidic channels capture fresh sweat for electrolyte/metabolite analysis. Sodium, lactate, cortisol. PointFit PF-Sweat Patch (CES 2026 winner).</p>
+    </div>
+    <div class="sensor-card research">
+      <h5>Raman Spectroscopy</h5>
+      <div class="meta">RESEARCH / MOLECULAR</div>
+      <p>Inelastic light scattering gives molecular fingerprints through skin. Samsung pursuing for glucose. Weak signal (1 in 10M photons).</p>
+    </div>
+    <div class="sensor-card research">
+      <h5>Microneedle Arrays</h5>
+      <div class="meta">RESEARCH / ISF ACCESS</div>
+      <p>Painless &lt;1mm needles access interstitial fluid. Multi-analyte platform: glucose + lactate + ketones + cortisol. PKvitality K'Watch. Future by ~2030.</p>
+    </div>
+  </div>
+
+  <div class="callout insight">
+    <div class="callout-label">Key Insight</div>
+    <p>A handful of semiconductor companies (Bosch, STMicro, ams-OSRAM, Analog Devices, Nordic) supply the core sensing silicon for the vast majority of consumer wearables. Differentiation comes from algorithms, data fusion, UX, and ecosystem &mdash; not the sensors themselves.</p>
+  </div>
+</section>
+
+<!-- SECTION 03: DEVICES -->
+<section id="devices">
+  <div class="section-label">Section 03</div>
+  <h2>Device Categories & Product Landscape</h2>
+
+  <h3>Smartwatches</h3>
+  <table class="data-table">
+    <tr><th>Device</th><th>Key Differentiator</th><th>Battery</th><th>Price</th></tr>
+    <tr><td><strong>Apple Watch Series 11</strong></td><td>Blood pressure (hypertension notifications), most FDA clearances, direct-to-watch CGM data</td><td>18h</td><td>$399+</td></tr>
+    <tr><td><strong>Apple Watch Ultra 3</strong></td><td>Blood pressure + rugged. S12 (2026) rumored with 8-sensor ring array</td><td>36h</td><td>$799</td></tr>
+    <tr><td><strong>Samsung Galaxy Watch 7</strong></td><td>Only smartwatch with BIA + BP (Korea)</td><td>40h</td><td>$300</td></tr>
+    <tr><td><strong>Garmin Venu 4</strong></td><td>Gen 5 Elevate sensor, shared Garmin OS with Fenix 8, Health Status insights</td><td>Multi-day</td><td>$450</td></tr>
+    <tr><td><strong>Garmin Fenix 8</strong></td><td>Unmatched battery, best training analytics</td><td>48 days</td><td>$1,000</td></tr>
+    <tr><td><strong>Google Pixel Watch 3</strong></td><td>Loss-of-pulse detection. Gemini AI coach in Fitbit Premium</td><td>24h</td><td>$350</td></tr>
+    <tr><td><strong>Withings ScanWatch Nova</strong></td><td>Hybrid analog, 24/7 temp (TempTech), clinical-grade ECG</td><td>30 days</td><td>$500</td></tr>
+    <tr><td><strong>Withings ScanWatch 2</strong></td><td>Updated AFib algorithm (2025), hybrid analog design</td><td>30 days</td><td>$350</td></tr>
+  </table>
+
+  <h3>Smart Rings</h3>
+  <div class="callout insight">
+    <div class="callout-label">Why the Finger?</div>
+    <p>Superior arterial density (best PPG signal), lower motion artifact, better temperature accuracy (thermoregulatory endpoint), excellent 24/7 compliance, demonstrably superior for sleep staging. CES 2026 saw an explosion of smart rings &mdash; Reebok, Luna Ring 2, Sandbar Stream Ring, and dozens more. Market ~$200-400M (2024) growing at 25-30% CAGR.</p>
+  </div>
+
+  <table class="data-table">
+    <tr><th>Device</th><th>Battery</th><th>Price</th><th>Notable</th></tr>
+    <tr><td><strong>Oura Ring 4</strong></td><td>4-6 days</td><td>$349</td><td>Category creator. Oura Advisor AI (June 2025). $6/mo subscription required</td></tr>
+    <tr><td><strong>Samsung Galaxy Ring</strong></td><td>5-7 days</td><td>$300-350</td><td>Samsung ecosystem, 10ATM, no subscription</td></tr>
+    <tr><td><strong>Ultrahuman Ring Air</strong></td><td>4-6 days</td><td>$349</td><td>Cross-sells with M1 CGM + Blood Vision (100+ biomarkers). No subscription</td></tr>
+    <tr><td><strong>Ultrahuman Ring Pro (2026)</strong></td><td>Up to 15 days</td><td>$479</td><td>Third-gen, 3x battery life of Ring Air. No subscription</td></tr>
+    <tr><td><strong>Amazfit Helio Ring</strong></td><td>6-7 days</td><td>$199</td><td>Titanium, 10ATM, no subscription</td></tr>
+    <tr><td><strong>Movano Evie</strong></td><td>~5 days</td><td>$269</td><td>Women's health focus, open design, HR/SpO2/temp</td></tr>
+    <tr><td><strong>RingConn Gen 2</strong></td><td>7-10 days</td><td>$200-280</td><td>Value tier, longest battery</td></tr>
+  </table>
+
+  <h3>Fitness Bands</h3>
+  <table class="data-table">
+    <tr><th>Device</th><th>Key Feature</th><th>Price</th><th>Notable</th></tr>
+    <tr><td><strong>Whoop 5.0</strong></td><td>14-day battery, sensors 26x/sec, 7% smaller</td><td>$199/yr (Whoop One)</td><td>Healthspan/Whoop Age (9 biomarkers), VO2max, HR zones</td></tr>
+    <tr><td><strong>Whoop MG</strong></td><td>Medical-grade ECG + blood pressure insights</td><td>$359/yr (Whoop Life)</td><td>ECG via conductive clasp. Overnight BP analysis. First medical-grade Whoop</td></tr>
+    <tr><td><strong>Fitbit Charge 6</strong></td><td>ECG + EDA + GPS in band form</td><td>$160</td><td>Most sensor-dense fitness band</td></tr>
+    <tr><td><strong>Xiaomi Smart Band 9</strong></td><td>16-day battery</td><td>$35-50</td><td>Global unit leader by price</td></tr>
+  </table>
+
+  <h3>CGM Patches</h3>
+  <table class="data-table">
+    <tr><th>Device</th><th>Duration</th><th>Price</th><th>Status</th></tr>
+    <tr><td><strong>Dexcom G7</strong></td><td>15 days</td><td>~$270-300/mo</td><td>Most accurate. Direct-to-Apple Watch. Closed-loop pump integration</td></tr>
+    <tr><td><strong>Abbott Libre 3 Plus</strong></td><td>15 days</td><td>~$150/mo</td><td>Replaces discontinued Libre 3 (Sept 2025). Insulin pump compatible</td></tr>
+    <tr><td><strong>Dexcom Stelo</strong></td><td>15 days</td><td>~$99/mo</td><td>First OTC CGM. No prescription. Same G7 platform</td></tr>
+    <tr><td><strong>Abbott Lingo</strong></td><td>14 days</td><td>Varies</td><td>OTC wellness CGM. Dual glucose/ketone sensor in development</td></tr>
+    <tr><td><strong>Senseonics Eversense E3</strong></td><td>180 days</td><td>~$4-6K/yr</td><td>Only implantable CGM. In-office insertion</td></tr>
+    <tr><td><strong>Ultrahuman M1 Live</strong></td><td>Varies</td><td>$299/mo</td><td>CGM + lifestyle + blood testing platform integration</td></tr>
+  </table>
+
+  <h3>Hearables</h3>
+  <div class="callout insight">
+    <div class="callout-label">Why the Ear?</div>
+    <p>The auditory canal has deep ear artery blood supply &mdash; excellent for HR and BP measurement. Ear canal temperature is more accurate than wrist. In 2024, Apple AirPods Pro 2 became the first FDA-cleared OTC hearing aid earbuds. Hearable designs getting smaller with improved BLE connectivity and AI-powered sound adjustment.</p>
+  </div>
+  <table class="data-table">
+    <tr><th>Device</th><th>Key Feature</th><th>Notable</th></tr>
+    <tr><td><strong>Apple AirPods Pro 2/3</strong></td><td>FDA-cleared OTC hearing aid (2024)</td><td>Clinical-grade for mild-moderate hearing loss. Media Assist for clarity</td></tr>
+    <tr><td><strong>OpenEarable 2.0</strong></td><td>2 ultrasound mics, 3-axis ear canal accel, 9-axis head IMU, pulse ox, temp</td><td>Detects 30+ phenomena. Open-source research platform (MIT)</td></tr>
+  </table>
+
+  <h3>EEG / Brain Wearables</h3>
+  <table class="data-table">
+    <tr><th>Device</th><th>Key Feature</th><th>Price</th><th>Notable</th></tr>
+    <tr><td><strong>Muse S Athena (March 2025)</strong></td><td>EEG + fNIRS</td><td>&mdash;</td><td>First consumer wearable combining EEG + fNIRS (brain electrical + oxygenation)</td></tr>
+    <tr><td><strong>Neurosity Crown</strong></td><td>8 EEG channels</td><td>$1,499</td><td>Productivity hackers/developers. API flexibility</td></tr>
+    <tr><td><strong>Sens.ai</strong></td><td>EEG + HRV + photobiomodulation</td><td>&mdash;</td><td>Multimodal: brain + heart + light stimulation</td></tr>
+    <tr><td><strong>Mendi</strong></td><td>fNIRS-based</td><td>&mdash;</td><td>Brain training via neurofeedback</td></tr>
+  </table>
+
+  <h3>Smart Clothing</h3>
+  <table class="data-table">
+    <tr><th>Product</th><th>Sensors</th><th>Notable</th></tr>
+    <tr><td><strong>Hexoskin Smart Shirts</strong></td><td>ECG, respiratory, movement, HRV</td><td>Clinically validated. Heading to Gateway lunar station (Canadian Space Agency)</td></tr>
+    <tr><td><strong>Athos</strong></td><td>EMG muscle activation + HR</td><td>Real-time biometric tracking of major muscle groups</td></tr>
+    <tr><td><strong>Sensoria Socks</strong></td><td>Textile pressure sensors + accel</td><td>Cadence, foot landing, speed tracking</td></tr>
+    <tr><td><strong>Myant SKIIN</strong></td><td>ECG, sleep, activity, stress, temp</td><td>Textile computing pioneer. Garments with embedded biometric sensors</td></tr>
+  </table>
+
+  <h3>AR / Smart Glasses</h3>
+  <table class="data-table">
+    <tr><th>Device</th><th>Status</th><th>Health Relevance</th></tr>
+    <tr><td><strong>Apple Smart Glasses (2027)</strong></td><td>Apple paused Vision Pro 2, fast-tracking AI glasses. Tim Cook's "top priority"</td><td>iPhone AR features, voice controls. Health sensor integration likely</td></tr>
+    <tr><td><strong>Meta Hypernova (late 2025)</strong></td><td>Smart glasses with monocular display. $1,000-$1,400</td><td>Research prototypes estimate heart rate passively</td></tr>
+    <tr><td><strong>Meta Orion/Artemis</strong></td><td>Full AR glasses, consumer-ready 2027+</td><td>Advanced AR with biometric potential</td></tr>
+    <tr><td><strong>Apple Vision Pro</strong></td><td>M5 chip upgrade. $3,499</td><td>Research-grade eye tracking. Spatial health apps</td></tr>
+  </table>
+
+  <h3>Emerging Form Factors</h3>
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">Smart Tattoos</div>
+      <h4>Graphene Biosensors</h4>
+      <p>Stick-on graphene sensors track blood pressure, stress, and more like a temporary tattoo. Tested on dozens of subjects, no side effects. Still in research.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Smart Contact Lenses</div>
+      <h4>Eye Health Monitors</h4>
+      <p>Purdue hydrogel lenses for intraocular pressure (glaucoma) and ocular disease. Market projected $1.6B by 2026 (38.9% CAGR). Note: glucose via tears failed.</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">Implantables</div>
+      <h4>Subdermal Sensors</h4>
+      <p>Senseonics Eversense E3 (180-day implantable CGM) is most commercially advanced. Future: glucose + inflammatory cytokines.</p>
+    </div>
+    <div class="card card-copper">
+      <div class="card-label">Chest Straps / ECG Patches</div>
+      <h4>Polar H10 / iRhythm Zio</h4>
+      <p>Gold standard HR accuracy (Polar H10, $90). iRhythm Zio: 14-day ECG patch with AI + cardiologist review, market leader in ambulatory cardiac monitoring.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04: ALGORITHMS -->
+<section id="algorithms">
+  <div class="section-label">Section 04</div>
+  <h2>Algorithms & Signal Processing</h2>
+  <p class="lead">The software layer that turns raw sensor signals into actionable health metrics. The algorithms, not the sensors, are the primary differentiator between wearable platforms.</p>
+
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">Heart Rate</div>
+      <h4>Adaptive Noise Cancellation</h4>
+      <p>Accelerometer as motion reference. NLMS/RLS filters subtract motion-correlated PPG. Deep learning (CNN/LSTM) outperforms during intense exercise. &plusmn;1-3 BPM at rest, &plusmn;10-20 during vigorous motion.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Sleep Staging</div>
+      <h4>Multi-Signal ML Classification</h4>
+      <p>Accelerometry + HR + HRV + temperature + respiratory rate. ~70-80% accuracy (4-stage). Best: Oura ~79%, Apple ~80%, Whoop ~78-80%. No wrist device detects N1/N2 boundary without EEG.</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">Blood Pressure (2025)</div>
+      <h4>The Cuffless BP Breakthrough</h4>
+      <p>Apple Watch S11: optical sensor analyzes vessel response over 30-day periods. Hypertension notification (not absolute numbers). Aktiia Hilo: FDA-cleared cuffless continuous BP ($199). Whoop MG: overnight BP analysis.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">AFib Detection</div>
+      <h4>Irregular Pulse + ECG Confirmation</h4>
+      <p>PPG screens passively (Poincar&eacute; plot, entropy, deep learning). ECG confirms (30-sec, 98-99% sensitivity). Withings ScanWatch 2 updated AFib algorithm in 2025.</p>
+    </div>
+  </div>
+
+  <h3>Readiness & Recovery Scores</h3>
+  <table class="data-table">
+    <tr><th>Score</th><th>Device</th><th>Inputs</th><th>Method</th></tr>
+    <tr><td>Recovery (0-100%)</td><td>Whoop 5.0/MG</td><td>HRV, RHR, respiration, SpO2, sleep</td><td>Weighted composite during slow-wave sleep</td></tr>
+    <tr><td>Healthspan / Whoop Age</td><td>Whoop 5.0/MG</td><td>9 biomarkers + VO2max + HR zones</td><td>Calculates pace of aging</td></tr>
+    <tr><td>Readiness (0-100)</td><td>Oura Ring 4</td><td>HRV, RHR, temp, sleep quality, activity</td><td>Multi-signal vs personal 2-week baseline</td></tr>
+    <tr><td>Body Battery (0-100)</td><td>Garmin</td><td>HRV-derived stress, activity, sleep</td><td>Continuous energy reservoir model</td></tr>
+    <tr><td>Health Status</td><td>Garmin Venu 4</td><td>HR, HRV, respiration, skin temp, Pulse Ox</td><td>Monitors data ranges during sleep</td></tr>
+  </table>
+
+  <div class="callout cipher">
+    <div class="callout-label">Pattern</div>
+    <p><strong>Personal baselines matter more than absolute accuracy.</strong> A wrist PPG HRV reading may not match ECG exactly, but its deviation from YOUR baseline is informative. This is the philosophical foundation of readiness scores and trend-based health tracking &mdash; and it's exactly how N-of-1 experiments work.</p>
+  </div>
+</section>
+
+<!-- SECTION 05: BIOMARKERS -->
+<section id="biomarkers">
+  <div class="section-label">Section 05</div>
+  <h2>Emerging & Next-Gen Biomarkers</h2>
+  <p class="lead">The CGM was the first continuous molecular biomarker to go mainstream. What's next depends on sensing chemistry: enzymatic sensors are 5-10 years ahead of affinity-based sensing.</p>
+
+  <div class="cascade">
+    <div class="cascade-tier">
+      <div class="cascade-tier-header">
+        <div class="cascade-dot" style="background: var(--green)"></div>
+        <h4>Available Now</h4>
+        <span>2024-2026</span>
+      </div>
+      <div class="cascade-items">
+        <span class="cascade-tag">Continuous Glucose (CGM)</span>
+        <span class="cascade-tag">SpO2</span>
+        <span class="cascade-tag">Heart Rate / HRV</span>
+        <span class="cascade-tag">Skin Temperature (24/7)</span>
+        <span class="cascade-tag">ECG Rhythm</span>
+        <span class="cascade-tag">Sweat Sodium (exercise)</span>
+        <span class="cascade-tag">BP Trend / Hypertension Alert</span>
+        <span class="cascade-tag">Medical-Grade ECG (Whoop MG)</span>
+      </div>
+    </div>
+
+    <div class="cascade-tier">
+      <div class="cascade-tier-header">
+        <div class="cascade-dot" style="background: var(--blue)"></div>
+        <h4>Near-Term</h4>
+        <span>2026-2028</span>
+      </div>
+      <div class="cascade-items">
+        <span class="cascade-tag">Continuous Ketones (Abbott dual sensor)</span>
+        <span class="cascade-tag">Continuous Lactate (PointFit PF-Sweat)</span>
+        <span class="cascade-tag">Continuous Alcohol</span>
+        <span class="cascade-tag">Cuffless BP Absolute (Aktiia)</span>
+      </div>
+    </div>
+
+    <div class="cascade-tier">
+      <div class="cascade-tier-header">
+        <div class="cascade-dot" style="background: var(--yellow)"></div>
+        <h4>Mid-Term</h4>
+        <span>2028-2032</span>
+      </div>
+      <div class="cascade-items">
+        <span class="cascade-tag">Continuous Cortisol</span>
+        <span class="cascade-tag">Non-Invasive Glucose</span>
+        <span class="cascade-tag">Calibration-Free BP</span>
+        <span class="cascade-tag">Multi-Analyte Microneedle Patch</span>
+        <span class="cascade-tag">Continuous Hydration (at rest)</span>
+        <span class="cascade-tag">Continuous Uric Acid</span>
+      </div>
+    </div>
+
+    <div class="cascade-tier">
+      <div class="cascade-tier-header">
+        <div class="cascade-dot" style="background: var(--red)"></div>
+        <h4>Longer-Term</h4>
+        <span>2032-2038+</span>
+      </div>
+      <div class="cascade-items">
+        <span class="cascade-tag">Inflammatory Markers (CRP, IL-6)</span>
+        <span class="cascade-tag">Hormones (progesterone, testosterone)</span>
+        <span class="cascade-tag">Creatinine / Kidney</span>
+        <span class="cascade-tag">Cardiac Biomarkers (troponin)</span>
+      </div>
+    </div>
+
+    <div class="cascade-tier">
+      <div class="cascade-tier-header">
+        <div class="cascade-dot" style="background: var(--gray-400)"></div>
+        <h4>Distant / Uncertain</h4>
+        <span>2040+</span>
+      </div>
+      <div class="cascade-items">
+        <span class="cascade-tag">Neurotransmitters (serotonin, dopamine)</span>
+        <span class="cascade-tag">Continuous Vitamins/Micronutrients</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>The Non-Invasive Glucose Race</h3>
+  <table class="data-table">
+    <tr><th>Company</th><th>Approach</th><th>Status (March 2026)</th></tr>
+    <tr><td><strong>Apple</strong></td><td>Silicon photonics (SWIR)</td><td>Hundreds of engineers, proof-of-concept achieved. "Still several years away"</td></tr>
+    <tr><td><strong>Samsung</strong></td><td>Raman spectroscopy</td><td>SVP "very excited about progress." Market "in some form within five years"</td></tr>
+    <tr><td><strong>Know Labs</strong></td><td>RF spectroscopy (KnowU)</td><td>Finalized sensor design. Preparing for FDA pivotal trials. Showcased at ATTD 2025</td></tr>
+    <tr><td><strong>Nemaura Medical</strong></td><td>Reverse iontophoresis (sugarBEAT)</td><td>CE marked EU, pursuing FDA. History of failures in this approach</td></tr>
+    <tr><td><strong>Rockley Photonics</strong></td><td>Silicon photonics (Bioptx)</td><td>Filed Ch.11 Jan 2023. Now private, resumed marketing. Working on glucose + BP studies</td></tr>
+  </table>
+
+  <div class="callout warning">
+    <div class="callout-label">The Non-Invasive Glucose Challenge</div>
+    <p>Glucose at ~100 mg/dL is a 0.1% weight fraction in tissue. Its spectral signature is buried under water (60-70%), protein, lipid, and melanin noise. Even Apple, Samsung, and Google have not managed to ship. Many approaches find statistical correlations in labs that collapse in real-world use. Likely 2028+ at earliest.</p>
+  </div>
+
+  <div class="callout insight">
+    <div class="callout-label">The Enzymatic vs Affinity Divide</div>
+    <p>Biomarkers measurable by enzymatic sensors (glucose, lactate, ketones, alcohol) use renewable catalytic reactions. Those requiring affinity-based sensing (cortisol, hormones, proteins) use antibody/aptamer binding that saturates. This is why enzymatic biomarkers are 5-10 years ahead. Kevin Plaxco's EAB platform (UC Santa Barbara) is the most promising technology for bridging this gap.</p>
+  </div>
+</section>
+
+<!-- SECTION 06: SENSING PLATFORMS -->
+<section id="sensing">
+  <div class="section-label">Section 06</div>
+  <h2>Sensing Platforms &mdash; Beyond Blood</h2>
+  <p class="lead">Sweat, interstitial fluid, saliva, tears, and breath each offer distinct sensing opportunities with different tradeoffs of accessibility, analyte availability, and real-world practicality.</p>
+
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">Sweat Sensing</div>
+      <h4>Microfluidics + Electrochemistry</h4>
+      <p>Sodium, chloride, glucose, lactate, cortisol in sweat. Epicore/Gatorade Gx Sweat Patch (exercise hydration). PointFit PF-Sweat Patch (CES 2026, continuous lactate). Market projected $4.4B to $13.5B (2024-2034). Limitation: requires active sweating.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Interstitial Fluid (ISF)</div>
+      <h4>Microneedle Arrays</h4>
+      <p>The most promising next-gen platform. ISF surrounds all tissue cells, in equilibrium with blood (5-15 min lag). CGMs already use this. Future: single patch measuring glucose + lactate + ketones + cortisol. PKvitality K'Watch, Biolinq (financial difficulties 2024). ~2030-2035.</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">Breath Analysis</div>
+      <h4>3,500+ VOCs</h4>
+      <p>Lumen (exhaled CO2, metabolic fuel). Biosense/Keyto (breath acetone, ketone status). Owlstone Medical (cancer screening via VOCs). Inherently periodic, not continuous. Directionally useful.</p>
+    </div>
+    <div class="card card-copper">
+      <div class="card-label">Tears & Saliva</div>
+      <h4>Limited but Targeted</h4>
+      <p>Tears: glucose sensing failed (Google/Novartis), pivoting to intraocular pressure (glaucoma) &mdash; viable physics. Saliva: contains cortisol, hormones. Smart mouthguard sensors in labs. Limited by food/drink contamination.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07: PLATFORMS -->
+<section id="platforms">
+  <div class="section-label">Section 07</div>
+  <h2>Data Platforms & Interoperability</h2>
+
+  <table class="data-table">
+    <tr><th>Platform</th><th>Ecosystem</th><th>API</th><th>Notable</th></tr>
+    <tr><td><strong>Apple HealthKit</strong></td><td>iOS/watchOS</td><td>Read/write, FHIR R4 clinical records</td><td>On-device encrypted. Health Records connects clinical systems</td></tr>
+    <tr><td><strong>Google Health Connect</strong></td><td>Android 14+</td><td>Kotlin/Java, 80+ types</td><td>Unified replacement for fragmented ecosystem</td></tr>
+    <tr><td><strong>Garmin Connect</strong></td><td>Garmin devices</td><td>REST API, FIT files</td><td>Shared Garmin OS across Fenix 8/Venu 4/Forerunner. Deepest fitness data</td></tr>
+    <tr><td><strong>Oura Cloud</strong></td><td>Oura Ring</td><td>REST API v2 (open to all)</td><td>Oura Advisor AI layer on top</td></tr>
+    <tr><td><strong>Whoop</strong></td><td>Whoop 5.0/MG</td><td>OAuth2 API (2023)</td><td>Whoop Unite for team/enterprise</td></tr>
+    <tr><td><strong>Terra API</strong></td><td>150+ devices</td><td>Unified REST API</td><td>Normalizes multi-device data. 1,000+ developers. Y Combinator backed</td></tr>
+    <tr><td><strong>Open Wearables</strong></td><td>Multi-vendor</td><td>AI-ready schemas, MCP Server</td><td>Self-hosted. Unifies Apple, Garmin, Polar, Whoop. Claude/ChatGPT integration</td></tr>
+  </table>
+
+  <div class="callout cipher">
+    <div class="callout-label">The Interoperability Gap</div>
+    <p>Users wearing Apple Watch + Oura Ring + Dexcom Stelo + Whoop have four separate apps, four dashboards, no integrated view. Each vendor optimizes for their closed ecosystem. Aggregators like Terra API help developers but don't serve end users directly. <strong>This cross-device synthesis gap is where Cipher's health intelligence partner model uniquely delivers value.</strong></p>
+  </div>
+</section>
+
+<!-- SECTION 08: EDGE AI -->
+<section id="edgeai">
+  <div class="section-label">Section 08</div>
+  <h2>Edge AI & On-Device Intelligence</h2>
+  <p class="lead">What runs where determines latency, privacy, and battery life. The most critical algorithms run on the wearable itself; the most sophisticated insights require cloud-scale computation.</p>
+
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">On-Device (Wearable)</div>
+      <h4>Latency-Critical, Privacy-First</h4>
+      <p>Activity classification, HR estimation, fall detection, step counting, AFib screening, crash detection, loss-of-pulse detection (Pixel Watch 3). Must run locally for safety and connectivity independence.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">On Phone</div>
+      <h4>Intermediate Processing</h4>
+      <p>Full sleep staging, VO2max estimation, readiness/recovery scores, detailed visualization. Leverages phone GPU and memory.</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">Cloud</div>
+      <h4>Intelligence Layer</h4>
+      <p>Long-term trend analysis, model training, LLM-based coaching (Whoop Coach, Oura Advisor, Apple Health+, Google Gemini/Fitbit).</p>
+    </div>
+    <div class="card card-copper">
+      <div class="card-label">TinyML</div>
+      <h4>Sub-mW ML on Microcontrollers</h4>
+      <p>TensorFlow Lite Micro, ARM CMSIS-NN, Edge Impulse. Models &lt;1MB running at sub-mW. INT8/INT4 quantization essential. Hardware = 57% of TinyML market (2025).</p>
+    </div>
+  </div>
+
+  <h3>Key Wearable Chips</h3>
+  <table class="data-table">
+    <tr><th>Chip</th><th>Maker</th><th>Process</th><th>Used In</th><th>ML Capability</th></tr>
+    <tr><td>S10/S11</td><td>Apple</td><td>4nm</td><td>Apple Watch S11</td><td>Neural Engine, 60B+ ops/day</td></tr>
+    <tr><td>Exynos W1000</td><td>Samsung</td><td>3nm GAA</td><td>Galaxy Watch 7</td><td>Dedicated ML accelerator</td></tr>
+    <tr><td>Snapdragon W5+</td><td>Qualcomm</td><td>4nm</td><td>Wear OS watches</td><td>Hexagon DSP for inference</td></tr>
+    <tr><td>Apollo4</td><td>Ambiq</td><td>&mdash;</td><td>Low-power wearables</td><td>Sub-threshold (&lt;0.5V), ~6 uA/MHz</td></tr>
+    <tr><td>BHI360</td><td>Bosch</td><td>&mdash;</td><td>Sensor hub</td><td>On-sensor ML for activity classification</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 09: AI & LLM INTEGRATION -->
+<section id="llm">
+  <div class="section-label">Section 09</div>
+  <h2>AI & LLM Integration in Wearables</h2>
+  <p class="lead">The defining trend of 2025-2026 &mdash; the shift from data dashboards to AI-powered health intelligence. Every major wearable platform now has or is building an AI coaching layer.</p>
+
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">Apple Health+ (2026)</div>
+      <h4>Multi-Modal AI Coach</h4>
+      <p>Codenamed "Quartz." Combines historical workouts with live data. Workout Buddy uses Apple Intelligence for in-ear coaching. Threatens Oura and Whoop's focused positioning with comparable depth across health dimensions.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Oura Advisor (June 2025)</div>
+      <h4>Personal Health AI</h4>
+      <p>AI assistant with access to personal health data. Interprets sleep, recovery, and activity in real time. Long-overdue fulfillment of Oura's AI feature promise.</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">Whoop Coach</div>
+      <h4>LLM + Biometrics</h4>
+      <p>Uses LLM technology to interpret strain, recovery, and sleep data. Launched with Whoop 4.0, enhanced with Whoop 5.0 and Healthspan features.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Google Gemini + Fitbit</div>
+      <h4>Gemini-Powered Coaching</h4>
+      <p>Personal health coach in redesigned Fitbit app for Premium users. Analyzes goals, past runs, and readiness for personalized recommendations.</p>
+    </div>
+  </div>
+
+  <div class="callout cipher">
+    <div class="callout-label">The Pattern</div>
+    <p><strong>The value layer is rising:</strong> 2009 = step count. 2015 = trends + social. 2020 = composite scores. 2025 = AI-generated personalized insights. Hardware commoditizes; intelligence differentiates. But every vendor's AI only sees their own data. <strong>Cross-device, cross-domain AI synthesis remains the gap &mdash; and Cipher's opportunity.</strong></p>
+  </div>
+</section>
+
+<!-- SECTION 10: REGULATORY -->
+<section id="regulatory">
+  <div class="section-label">Section 10</div>
+  <h2>Regulatory Landscape</h2>
+
+  <h3>FDA Framework</h3>
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">General Wellness</div>
+      <h4>Not Regulated</h4>
+      <p>"Track your heart rate for fitness" = no FDA clearance needed. Low risk, no disease claims. Jan 2026 guidance expanded this category significantly.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">510(k)</div>
+      <h4>Substantially Equivalent</h4>
+      <p>Most common pathway. No clinical trials usually needed. Used by Aktiia Hilo Band, Abbott Lingo.</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">De Novo</div>
+      <h4>Novel Device</h4>
+      <p>No predicate, requires clinical evidence. Used by Apple Watch ECG, AFib, sleep apnea, fall detection, AirPods hearing aid, Dexcom Stelo.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">PMA</div>
+      <h4>Class III, Highest Risk</h4>
+      <p>Extensive clinical trials required. Used for CGMs (insulin dosing decisions). Highest regulatory bar.</p>
+    </div>
+  </div>
+
+  <h3>January 2026 &mdash; Major FDA Guidance Update</h3>
+  <div class="callout insight">
+    <div class="callout-label">Regulatory Shift</div>
+    <p>FDA reduced oversight of general wellness wearables and clinical decision support (CDS) software. Non-invasive wearables estimating health metrics can claim general wellness status if intended solely for wellness, pose minimal risk, and avoid disease claims. Whether a wearable qualifies depends on <strong>how it's marketed</strong> &mdash; not whether the output is "inherently associated" with a disease. CDS software is not regulated as a device if it supports (not drives) HCP decisions.</p>
+  </div>
+
+  <h3>Other Regulatory Developments</h3>
+  <table class="data-table">
+    <tr><th>Development</th><th>Date</th><th>Significance</th></tr>
+    <tr><td><strong>Cybersecurity in Medical Devices</strong></td><td>Feb 2026</td><td>New guidance on secure design, patching, encryption, software bills of materials in 510(k)/PMA submissions</td></tr>
+    <tr><td><strong>TEMPO Pilot</strong></td><td>Late 2025</td><td>FDA + CMS voluntary program expanding access to digital health tech for chronic disease care while collecting real-world data</td></tr>
+    <tr><td><strong>PCCP (Predetermined Change Control)</strong></td><td>2023</td><td>Allows pre-specified ML algorithm modifications without new submissions</td></tr>
+    <tr><td><strong>SaMD Framework</strong></td><td>Ongoing</td><td>Algorithm itself is the device. FDA withdrew IMDRF-based guidance, signaling shift in approach</td></tr>
+  </table>
+
+  <h3>Notable FDA Clearances</h3>
+  <table class="data-table">
+    <tr><th>Year</th><th>Device/Feature</th><th>Pathway</th><th>Significance</th></tr>
+    <tr><td>2018</td><td>Apple Watch ECG + AFib</td><td>De Novo</td><td>First smartwatch ECG. Watershed moment</td></tr>
+    <tr><td>2024</td><td>Dexcom Stelo OTC CGM</td><td>De Novo</td><td>First over-the-counter CGM</td></tr>
+    <tr><td>2024</td><td>Apple AirPods Pro hearing aid</td><td>De Novo</td><td>First earbuds as FDA-cleared hearing aid</td></tr>
+    <tr><td>2024</td><td>Apple Watch sleep apnea</td><td>De Novo</td><td>Breathing disturbance detection</td></tr>
+    <tr><td>2024</td><td>Abbott Lingo OTC CGM</td><td>510(k)</td><td>Wellness CGM for non-diabetics</td></tr>
+    <tr><td>2025</td><td>Aktiia Hilo Band cuffless BP</td><td>510(k)</td><td>First FDA-cleared OTC cuffless continuous BP</td></tr>
+    <tr><td>2025</td><td>Apple Watch hypertension</td><td>&mdash;</td><td>Hypertension notifications (S9+ with watchOS 26)</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 11: R&D ORGANIZATIONS -->
+<section id="research">
+  <div class="section-label">Section 11</div>
+  <h2>R&D Organizations & Key Labs</h2>
+
+  <h3>Academic Labs</h3>
+  <table class="data-table">
+    <tr><th>Lab</th><th>Institution</th><th>Focus</th><th>Key Contribution</th></tr>
+    <tr><td><strong>John Rogers Lab</strong></td><td>Northwestern</td><td>Epidermal electronics, microfluidics</td><td>Invented the field. Spun out Epicore Biosystems</td></tr>
+    <tr><td><strong>Joseph Wang Lab</strong></td><td>UC San Diego</td><td>Electrochemical wearable sensors</td><td>Glucose, lactate, cortisol, alcohol, drug sensing</td></tr>
+    <tr><td><strong>Wei Gao Lab</strong></td><td>Caltech</td><td>Multiplexed biosensors</td><td>"Stressomic" dynamic stress hormone profiling (Science Advances 2025)</td></tr>
+    <tr><td><strong>Kevin Plaxco Lab</strong></td><td>UC Santa Barbara</td><td>EAB sensors</td><td>Most promising platform for continuous protein/hormone sensing</td></tr>
+    <tr><td><strong>Ali Javey Lab</strong></td><td>UC Berkeley</td><td>Flexible electronics, sweat</td><td>Integrated multi-analyte sweat sensor arrays</td></tr>
+    <tr><td><strong>Zhenan Bao Lab</strong></td><td>Stanford</td><td>Skin-inspired electronics</td><td>Electronic skin and conformable sensors</td></tr>
+    <tr><td><strong>Shalini Prasad Lab</strong></td><td>UT Dallas</td><td>Sweat cortisol</td><td>Real-time cortisol in passive sweat (SWEATSENSER)</td></tr>
+    <tr><td><strong>Chi Hwan Lee Lab</strong></td><td>Purdue</td><td>Smart contact lenses</td><td>Hydrogel lenses as eye health monitors (patented)</td></tr>
+  </table>
+
+  <h3>Company Research</h3>
+  <table class="data-table">
+    <tr><th>Company</th><th>Focus</th><th>Assessment</th></tr>
+    <tr><td><strong>Apple</strong></td><td>Non-invasive glucose, BP (shipped!), sleep apnea, smart glasses</td><td>Most significant corporate investment. S12 rumored with doubled sensor array</td></tr>
+    <tr><td><strong>Samsung</strong></td><td>BP (oscillometric), glucose (Raman), non-invasive CGM</td><td>"Very excited about progress" on glucose per SVP</td></tr>
+    <tr><td><strong>Abbott</strong></td><td>Multi-analyte CGM (dual glucose/ketone), Lingo wellness, lactate</td><td>Best positioned to extend CGM platform to new analytes</td></tr>
+    <tr><td><strong>Whoop</strong></td><td>Medical-grade wearables (MG), Healthspan/aging, ECG, BP</td><td>Bold push into medical-grade territory</td></tr>
+    <tr><td><strong>Oura</strong></td><td>AI insights (Advisor), acquisitions (Sparta, Veri, Proxy)</td><td>Building platform beyond hardware</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 12: ENABLING TECHNOLOGIES -->
+<section id="enabling">
+  <div class="section-label">Section 12</div>
+  <h2>Enabling Technologies</h2>
+
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">MEMS Miniaturization</div>
+      <h4>1-10 um Features, 0.5x0.5mm Dies</h4>
+      <p>Wafer-level packaging reduces cost. Co-integration with CMOS. 300mm wafer migration. Flexible MEMS emerging for conformable wearables. Key foundries: Bosch, STMicro, Silex (TDK).</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">BLE 5.x</div>
+      <h4>The Most Important Enabler</h4>
+      <p>125 kbps-2 Mbps. Duty-cycled to &lt;100 uA average. Dominant chipmaker: Nordic Semiconductor (nRF52/53/54 series).</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">Battery Chemistry</div>
+      <h4>LiPo + Silicon Anode + Solid-State</h4>
+      <p>Li-polymer: 150-250 Wh/kg, custom shapes. Silicon anode: 20-40% density improvement (Enovix, Sila). Solid-state 2-5 years away. Garmin Power Glass offsets 10-50% drain. Flexible batteries in active R&D.</p>
+    </div>
+    <div class="card card-copper">
+      <div class="card-label">Flexible Electronics</div>
+      <h4>$28B Market (2025)</h4>
+      <p>Forecast to $39.5B by 2030 (7.2% CAGR). Shifting from prototypes to mainstream. Ultra-thin OLEDs, conformal sensors, roll-to-roll production. Materials: graphene, MXenes, hydrogels.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">System-on-Chip</div>
+      <h4>Entire Computer in a Package</h4>
+      <p>Apple S11: dual-core CPU + GPU + Neural Engine + UWB + BLE + Wi-Fi + GNSS in ~25x25mm SiP. Samsung Exynos W1000: 3nm GAA. Ambiq Apollo4: sub-threshold &lt;6 uA/MHz.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Advanced Packaging</div>
+      <h4>SiP, FOWLP, TSV</h4>
+      <p>System-in-Package, Fan-Out Wafer-Level Packaging (TSMC InFO), chip stacking via TSV. More functionality in less space.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 13: MARKET -->
+<section id="market">
+  <div class="section-label">Section 13</div>
+  <h2>Market Size & Key Metrics</h2>
+
+  <h3>Global Market Overview</h3>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">$92.9B</div>
+      <div class="stat-label">Wearable Tech (2025)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$103B</div>
+      <div class="stat-label">Medical Devices (2025)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$230B</div>
+      <div class="stat-label">Wearable Tech (2033 est)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$505B</div>
+      <div class="stat-label">Medical Devices (2034 est)</div>
+    </div>
+  </div>
+
+  <h3>Market Share by Segment (2024-2025)</h3>
+  <div class="card-grid">
+    <div class="card card-blue">
+      <div class="card-label">Smartwatches</div>
+      <h4>55-60% of revenue</h4>
+      <p>Apple Watch ~50% of smartwatch revenue. Samsung, Garmin, Google follow. Steady growth.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Smart Rings</div>
+      <h4>~2-3% but fastest growing</h4>
+      <p>25-30% CAGR. ~$200-400M (2024). Oura ~70%+ share. Samsung Galaxy Ring validates category. CES 2026 explosion.</p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">CGM</div>
+      <h4>~$16B (2025 est)</h4>
+      <p>Abbott 55-60% by volume, Dexcom 30-35% by revenue. Wellness CGM could add $1-3B to TAM by 2027.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Earwear / Hearables</div>
+      <h4>~25% of revenue</h4>
+      <p>Growing with health features (hearing aid, HR). AirPods Pro FDA clearance was a category inflection.</p>
+    </div>
+  </div>
+
+  <h3>Emerging Market Segments</h3>
+  <table class="data-table">
+    <tr><th>Segment</th><th>2025 Market</th><th>Growth Forecast</th></tr>
+    <tr><td>PPG Biosensors</td><td>$648.5M</td><td>$3.06B by 2035</td></tr>
+    <tr><td>Sweat Sensors</td><td>~$4.4B</td><td>$13.5B by 2034 (11.8% CAGR)</td></tr>
+    <tr><td>Smart Clothing</td><td>Growing</td><td>Epidermal ECG/EEG patches 9.2% CAGR</td></tr>
+    <tr><td>Flexible Electronics</td><td>$28B</td><td>$39.5B by 2030 (7.2% CAGR)</td></tr>
+    <tr><td>Smart Contact Lenses</td><td>Emerging</td><td>$1.6B by 2026 (38.9% CAGR)</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 14: INFLECTIONS -->
+<section id="inflections">
+  <div class="section-label">Section 14</div>
+  <h2>Key Inflection Points</h2>
+  <p class="lead">The ~25 moments that most changed the trajectory of wearable biometrics.</p>
+
+  <div class="inflection-list">
+    <div class="inflection-item">
+      <div><strong>Holter's Ambulatory ECG (1949-57)</strong><br><span>Continuous monitoring reveals what snapshots cannot. Every wearable descends from this insight.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Aoyagi Invents Pulse Oximetry (1972-74)</strong><br><span>Created the PPG technology that powers optical HR sensing in every wristband and ring.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Polar Wireless HR Monitor (1982)</strong><br><span>Real-time biometric feedback for athletes. Created the quantified athlete concept.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>MEMS Accelerometers Drop Below $1 (mid-2000s)</strong><br><span>Made step counting and motion analysis economically viable for consumer devices.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Nike+iPod (2006)</strong><br><span>First mainstream sensor + consumer electronics + cloud platform integration.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>iPhone Launch (2007)</strong><br><span>Universal second screen for wearable data. Created the smartphone ecosystem wearables depend on.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Fitbit Launch (2009)</strong><br><span>All-day passive activity tracking goes mainstream. Created the fitness tracker category.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Bluetooth Low Energy Specification (2010)</strong><br><span>Single most important enabling technology. Power-efficient wireless from small wearables to smartphones.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>AliveCor FDA Clearance (2012)</strong><br><span>Consumer cardiac diagnostics pathway established. First FDA-cleared smartphone ECG.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Pebble Kickstarter (2012)</strong><br><span>$10.3M raised. Proved mass-market demand for wrist-worn connected devices.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Apple Watch Launch (2015)</strong><br><span>Legitimized category, created ecosystem (HealthKit, ResearchKit), attracted clinical investment. The biggest market inflection point.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Dexcom G5 (2016)</strong><br><span>CGM goes direct-to-smartphone. Turned the phone into the CGM display.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Apple Watch Series 4 FDA-Cleared ECG (2018)</strong><br><span>Clinical-grade diagnostics go mass-market. Changed the relationship between wearables and healthcare.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Abbott Libre Factory-Calibrated CGM (2014/2017)</strong><br><span>Eliminated fingerstick calibration. Made CGM practical for daily life.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>COVID-19 Pandemic (2020)</strong><br><span>SpO2 became commodity. Remote monitoring normalized. Accelerated adoption 2-3 years.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Whoop Subscription Model (2015-2020)</strong><br><span>Proved wearables could be a subscription business. Shifted value from hardware to data/insights.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Google Acquires Fitbit (2021)</strong><br><span>Big Tech commits to health wearables as a platform play.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Dexcom Stelo OTC CGM (2024)</strong><br><span>First over-the-counter CGM. Broke continuous molecular biomarker sensing out of the prescription-only box.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Samsung Galaxy Ring (2024)</strong><br><span>Major OEM validates ring form factor. No subscription.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Apple AirPods Hearing Aid Clearance (2024)</strong><br><span>Earbuds as FDA-cleared medical devices. Opened hearables as a health category.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>AI Integration in Wearables (2023-25)</strong><br><span>LLMs + personal health data = new interaction paradigm. The value layer shifts to conversational intelligence.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Apple Watch S11 Blood Pressure (2025)</strong><br><span>Passive hypertension monitoring goes mass-market. Optical sensor analyzes vessel response over 30-day periods.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Aktiia Hilo Band FDA Clearance (2025)</strong><br><span>First FDA-cleared OTC cuffless continuous blood pressure monitor. $199.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>Whoop MG Medical-Grade Band (2025)</strong><br><span>Fitness brand enters medical device territory. ECG + BP insights from a wristband.</span></div>
+    </div>
+    <div class="inflection-item">
+      <div><strong>FDA Relaxes Wearable Oversight (Jan 2026)</strong><br><span>Regulatory shift enables broader wellness health claims. How a wearable is marketed &mdash; not its output &mdash; determines regulatory status.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 15: FAILURES -->
+<section id="failures">
+  <div class="section-label">Section 15</div>
+  <h2>Failures & Lessons Learned</h2>
+
+  <div class="card-grid">
+    <div class="card card-red">
+      <div class="card-label">Jawbone (2017)</div>
+      <h4>$900M raised. $3.3B valuation. Liquidated.</h4>
+      <p>Hardware quality failures, overcapitalization, strategic confusion. You can't out-brand Apple.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Nike FuelBand (2014)</div>
+      <h4>Team fired months before Apple Watch launch</h4>
+      <p>18% Equipment division profit rise, then killed after 3 years. Platform companies can't compete with tech giants in hardware.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Amazon Halo (2023)</div>
+      <h4>Body photos + voice tone analysis</h4>
+      <p>Privacy backlash destroyed it. Trust is the currency of wearable biometrics. Amazon's surveillance reputation was fatal.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Google/Novartis Glucose Lens (~2018)</div>
+      <h4>Tear glucose =/= blood glucose</h4>
+      <p>Elegant concept, non-viable physics. Tear fluid is too variable for reliable glucose sensing.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Rockley Photonics (2023, survived)</div>
+      <h4>$1.2B SPAC. Filed Chapter 11. Now private.</h4>
+      <p>Never shipped to consumers. "Clinic on the wrist" promises meeting market timelines. Resumed marketing Bioptx, working on glucose + BP. Technology survived the company restructuring.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Biolinq (2024)</div>
+      <h4>Microneedle CGM, significant VC funding</h4>
+      <p>Struggled to bring to market. Even well-funded startups face the manufacturing and regulatory gauntlet for novel sensing.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Pebble (2016)</div>
+      <h4>Sold to Fitbit for $23M</h4>
+      <p>Reportedly declined $740M from Citizen Watch. In platform markets, small independents rarely survive once tech giants enter.</p>
+    </div>
+    <div class="card card-red">
+      <div class="card-label">Intel/Basis Peak (2016)</div>
+      <h4>Acquired for ~$100M. Recalled.</h4>
+      <p>Overheating/skin burns. You can't buy your way into consumer hardware without deep product competency.</p>
+    </div>
+  </div>
+
+  <div class="callout insight">
+    <div class="callout-label">Meta Patterns</div>
+    <p><strong>The Sensor Cascade:</strong> Military/clinical (decades) -> pro sports (years) -> premium consumer (months) -> commodity (inevitable). HR, SpO2, ECG, temperature all followed this path. BP has now reached premium consumer (Apple Watch S11, Aktiia). Glucose is in pro/research.<br><br>
+    <strong>The Value Layer Rises:</strong> 2009 = step count. 2015 = trends. 2020 = composite scores. 2025 = AI insights. Hardware commoditizes; intelligence differentiates.<br><br>
+    <strong>Trust Is Everything:</strong> Amazon Halo, Google Glass, Intel Basis all failed partly because users didn't trust them with intimate health data.</p>
+  </div>
+</section>
+
+<!-- SECTION 16: CIPHER -->
+<section id="cipher">
+  <div class="section-label">Section 16</div>
+  <h2>Cipher Strategic Implications</h2>
+
+  <div class="callout cipher">
+    <div class="callout-label">The Core Opportunity</div>
+    <p>The entire trajectory of this market &mdash; from Holter's insight that continuous monitoring reveals what snapshots cannot, through today's multi-sensor AI-enhanced ecosystems &mdash; points toward the same conclusion: <strong>the most valuable health intelligence is personalized, longitudinal, and emergent from an individual's own data.</strong> Population averages are starting points. Your own patterns are the signal.</p>
+  </div>
+
+  <h3>Six Strategic Insights</h3>
+
+  <div class="card-grid">
+    <div class="card card-green">
+      <div class="card-label">Insight 1</div>
+      <h4>The Cross-Device Synthesis Gap is Real and Growing</h4>
+      <p>Apple Watch + Oura Ring + Dexcom Stelo + Whoop = four apps, four dashboards, no integrated view. Aggregators help developers but not end users. Cipher's tool-agnostic data synthesizer role grows more valuable as multi-device wear becomes the norm.</p>
+    </div>
+    <div class="card card-blue">
+      <div class="card-label">Insight 2</div>
+      <h4>The AI Coach Threat &mdash; and Cipher's Moat</h4>
+      <p>Apple Health+, Oura Advisor, Whoop Coach, and Gemini/Fitbit all launching AI coaching. But they're all single-vendor: each AI only sees its own data. <strong>Cipher's cross-device, cross-domain synthesis is something no vendor AI can replicate.</strong></p>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-label">Insight 3</div>
+      <h4>The Insight Layer is the Bottleneck</h4>
+      <p>Sensors are commoditized. What users lack: experiment design ("What should I test?"), interpretation ("What does this pattern mean?"), adaptation ("What should I change?"). This is exactly what a health intelligence partner provides.</p>
+    </div>
+    <div class="card card-copper">
+      <div class="card-label">Insight 4</div>
+      <h4>Closest Competitors Validate but Don't Match</h4>
+      <p>Ultrahuman Blood Vision (ring + CGM + 100+ blood biomarkers) is the closest multi-biomarker integration, but lacks human intelligence and N-of-1 design. Nutrisense pairs CGM + human dietitians, but single-domain. Whoop Healthspan is comprehensive but Whoop-data-only.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Insight 5</div>
+      <h4>No Product Synthesizes All Domains</h4>
+      <p>Sleep (ring) + glucose (CGM) + HRV (watch) + training load (Garmin) + body comp (scale) + blood panels (lab) + BP (Aktiia/Apple). This "full stack" cross-domain synthesis is Cipher's unique value.</p>
+    </div>
+    <div class="card card-blue">
+      <div class="card-label">Insight 6</div>
+      <h4>The Abbott/Apple Duopoly Hypothesis</h4>
+      <p>Abbott (extending CGM to ketones with proven manufacturing + regulatory) and Apple (cracking non-invasive optical sensing for mass market &mdash; BP shipped, glucose in R&D, smart glasses coming) will likely define the next decade. Two paradigms: minimally invasive but accurate vs. non-invasive but extraordinary.</p>
+    </div>
+  </div>
+
+  <div class="callout cipher" style="margin-top: 32px;">
+    <div class="callout-label">The N-of-1 Moment</div>
+    <p>The wearable biometrics market has spent 75 years proving that <em>continuous, personalized measurement</em> is more valuable than periodic snapshots. The next frontier isn't another sensor &mdash; it's the intelligence layer that connects the data streams, designs the experiments, and helps the participant decode what works for their body. The AI coach explosion validates the market. Cipher differentiates with human partnership + cross-device synthesis. <strong>That's Cipher.</strong></p>
+  </div>
+</section>
+
+</div><!-- .container -->
+
+<!-- SECTION 17: REFERENCES -->
+<section id="references">
+  <div class="container">
+  <div class="section-label">References</div>
+  <h2>Sources</h2>
+  <p class="lead">112 sources from live web research conducted March 2026, organized by topic.</p>
+
+  <h3>Sensor Technologies & Physics</h3>
+  <ol style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>Kim et al. &ldquo;Recent Developments and Future Directions of Wearable Skin Biosignal Sensors.&rdquo; <em>Advanced Sensor Research</em>, Wiley, 2024. <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adsr.202300118" target="_blank">Link</a></li>
+    <li>&ldquo;Next-generation wearable ECG systems: Soft materials, AI integration, and personalized healthcare applications.&rdquo; <em>Chemical Engineering Journal</em>, ScienceDirect, 2025. <a href="https://www.sciencedirect.com/science/article/pii/S1385894725109601" target="_blank">Link</a></li>
+    <li>&ldquo;State-of-the-art wearable sensors for cardiovascular health: a review.&rdquo; <em>npj Cardiovascular Health</em>, Nature, 2025. <a href="https://www.nature.com/articles/s44325-025-00090-6" target="_blank">Link</a></li>
+    <li>&ldquo;PPG Biosensors Market Size &amp; Trends 2025 to 2035.&rdquo; Future Market Insights, 2025. <a href="https://www.futuremarketinsights.com/reports/ppg-biosensors-market" target="_blank">Link</a></li>
+    <li>&ldquo;Bionic Sensors for Biometric Acquisition and Monitoring.&rdquo; <em>PMC</em>, 2025. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12252035/" target="_blank">Link</a></li>
+    <li>&ldquo;Key Sensors in Biometric Devices: Heart Rate, SpO2, ECG, and More in 2026.&rdquo; The Influencer Forum, 2026. <a href="https://theinfluencerforum.com/key-sensors-in-biometric-devices/" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Device Categories & Products</h3>
+  <ol start="7" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Best smart rings 2026: Oura, Samsung, and top alternatives tested.&rdquo; Wareable, 2026. <a href="https://www.wareable.com/fashion/best-smart-rings-1340" target="_blank">Link</a></li>
+    <li>&ldquo;Best smart ring 2026.&rdquo; TechRadar, 2026. <a href="https://www.techradar.com/health-fitness/fitness-trackers/best-smart-ring" target="_blank">Link</a></li>
+    <li>&ldquo;Smart Ring Market Size, Share | Industry Report [2025-2032].&rdquo; Fortune Business Insights. <a href="https://www.fortunebusinessinsights.com/smart-ring-market-111418" target="_blank">Link</a></li>
+    <li>&ldquo;Ultrahuman bets on redesigned smart ring to win back US market after Oura dispute.&rdquo; TechCrunch, Feb 2026. <a href="https://techcrunch.com/2026/02/27/ultrahuman-unveils-new-smart-ring-as-it-awaits-u-s-clearance-after-oura-dispute/" target="_blank">Link</a></li>
+    <li>&ldquo;Samsung Galaxy Ring vs. Oura Ring 4.&rdquo; Tom&rsquo;s Guide, 2025. <a href="https://www.tomsguide.com/wellness/fitness-trackers/samsung-galaxy-ring-vs-oura-ring-everything-we-know-so-far" target="_blank">Link</a></li>
+    <li>&ldquo;The Ultimate Smart Ring Showdown: Oura vs. Ultrahuman vs. Samsung Galaxy Ring.&rdquo; Taylored Health, Apr 2025. <a href="https://taylored.health/2025/04/14/the-ultimate-smart-ring-showdown-oura-vs-ultrahuman-vs-samsung-galaxy-ring/" target="_blank">Link</a></li>
+    <li>&ldquo;Ultrahuman M1 Live Review 2025.&rdquo; Newswire, 2025. <a href="https://www.newswire.com/news/ultrahuman-m1-live-review-2025-best-blood-sugar-tracker-22618685" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Apple Watch & Smartwatches</h3>
+  <ol start="14" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Apple debuts Apple Watch Series 11.&rdquo; Apple Newsroom, Sep 2025. <a href="https://www.apple.com/newsroom/2025/09/apple-debuts-apple-watch-series-11-featuring-groundbreaking-health-insights/" target="_blank">Link</a></li>
+    <li>&ldquo;How Apple Watch&rsquo;s new blood pressure monitor works.&rdquo; Empirical Health, 2025. <a href="https://www.empirical.health/blog/apple-watch-blood-pressure/" target="_blank">Link</a></li>
+    <li>&ldquo;How does Apple Watch&rsquo;s new hypertension feature actually work?&rdquo; TechRadar, 2025. <a href="https://www.techradar.com/health-fitness/smartwatches/how-does-apple-watchs-new-hypertension-feature-actually-work" target="_blank">Link</a></li>
+    <li>&ldquo;2026 Apple Watch preview.&rdquo; Macworld, 2025. <a href="https://www.macworld.com/article/3018963/2026-apple-watch-preview-7-things-i-expect-and-hope-to-see-next-year.html" target="_blank">Link</a></li>
+    <li>&ldquo;Apple Watch Series 12: The Huge Health Upgrade.&rdquo; TS2 Tech, 2026. <a href="https://ts2.tech/en/apple-watch-series-12-the-huge-health-upgrade-that-could-eclipse-series-11/" target="_blank">Link</a></li>
+    <li>&ldquo;Garmin Venu 4 Hands-On: Everything You Need to Know!&rdquo; DC Rainmaker, Sep 2025. <a href="https://www.dcrainmaker.com/2025/09/garmin-venu-4-hands-on-everything.html" target="_blank">Link</a></li>
+    <li>&ldquo;Garmin announces the Venu 4.&rdquo; Garmin Newsroom, 2025. <a href="https://www.garmin.com/en-US/newsroom/press-release/sports-fitness/take-steps-towards-a-healthier-lifestyle-with-the-venu-4-from-garmin/" target="_blank">Link</a></li>
+    <li>&ldquo;Pixel Watch 3 with Fitbit Running Insights &amp; Google AI.&rdquo; Google Store. <a href="https://store.google.com/product/pixel_watch_3" target="_blank">Link</a></li>
+    <li>&ldquo;ScanWatch Nova.&rdquo; Withings. <a href="https://www.withings.com/us/en/scanwatch-nova" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Whoop 5.0 & MG</h3>
+  <ol start="25" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;WHOOP Unveils WHOOP 5.0 and WHOOP MG.&rdquo; Whoop Press Center, May 2025. <a href="https://www.whoop.com/us/en/press-center/whoop-unveils-5.0-MG/" target="_blank">Link</a></li>
+    <li>&ldquo;Whoop launches new wearables Whoop 5.0 and Whoop MG.&rdquo; CNBC, May 2025. <a href="https://www.cnbc.com/2025/05/08/whoop-wearables-whoop-50-mg-price.html" target="_blank">Link</a></li>
+    <li>&ldquo;WHOOP Unveils WHOOP 5.0 and MG: Breakthrough Health and Longevity Features.&rdquo; BusinessWire, May 2025. <a href="https://www.businesswire.com/news/home/20250508546933/en/" target="_blank">Link</a></li>
+    <li>&ldquo;Whoop 5.0 review: A bold leap into longevity.&rdquo; Wareable, 2025. <a href="https://www.wareable.com/wearable-tech/whoop-5-review" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Non-Invasive Glucose & CGM</h3>
+  <ol start="30" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Apple Watch Making Progress In Non-Invasive Blood Glucose Monitoring.&rdquo; SimplyMac, 2025. <a href="https://www.simplymac.com/apple-watch/apple-watch-making-progress-in-non-invasive-blood-glucose-monitoring-feature" target="_blank">Link</a></li>
+    <li>&ldquo;8 Next-Gen CGMs In Development.&rdquo; Diabetech, 2025. <a href="https://www.diabetech.info/p/8-next-gen-cgms-in-development-you-need-to-know-about" target="_blank">Link</a></li>
+    <li>&ldquo;Non-Invasive CGMs: Are We There Yet?&rdquo; Diabetotech, 2025. <a href="https://www.diabetotech.com/blog/non-invasive-cgms-are-we-there-yet" target="_blank">Link</a></li>
+    <li>&ldquo;Samsung Racing to Beat Apple to Non-Invasive Blood Glucose Monitoring.&rdquo; MacRumors, Jan 2024. <a href="https://www.macrumors.com/2024/01/23/samsung-racing-to-beat-apple/" target="_blank">Link</a></li>
+    <li>&ldquo;Samsung&rsquo;s Noninvasive Blood Sugar Monitor Tech Is A Game-Changer.&rdquo; BGR, 2024. <a href="https://www.bgr.com/tech/samsungs-noninvasive-blood-sugar-monitor-tech-is-a-game-changer/" target="_blank">Link</a></li>
+    <li>&ldquo;CGM Comparison 2026: Dexcom G7 vs Libre 3 Plus.&rdquo; DME Devices, 2026. <a href="https://dmedevices.com/cgm-comparison-guide-2026/" target="_blank">Link</a></li>
+    <li>&ldquo;Know Labs finalizes noninvasive glucose sensor design, sets sights on FDA pivotal trial.&rdquo; FierceBiotech, 2024. <a href="https://www.fiercebiotech.com/medtech/know-labs-finalizes-noninvasive-glucose-sensor-design-sets-sights-fda-pivotal-trial" target="_blank">Link</a></li>
+    <li>&ldquo;Know Labs delivers positive early clinical data.&rdquo; FierceBiotech, 2024. <a href="https://www.fiercebiotech.com/medtech/know-labs-delivers-positive-early-clinical-data-its-needle-free-glucose-sensor" target="_blank">Link</a></li>
+    <li>&ldquo;PKvitality &mdash; Bio-wearables Health &amp; Sport.&rdquo; PKvitality. <a href="https://www.pkvitality.com/" target="_blank">Link</a></li>
+    <li>&ldquo;KWatch Glucose: EU CORDIS H2020 Project Report.&rdquo; European Commission. <a href="https://cordis.europa.eu/project/id/960071/reporting" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Abbott Lingo & Multi-Analyte CGM</h3>
+  <ol start="41" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Abbott&rsquo;s Biowearable: One Sensor for Glucose, Ketones.&rdquo; Abbott Newsroom, 2023. <a href="https://www.abbott.com/en-us/corpnewsroom/strategy-and-strength/abbotts-biowearable-one-sensor-for-glucose-ketones" target="_blank">Link</a></li>
+    <li>&ldquo;Hello, Lingo: Next-Gen Health Coach is FDA-Cleared.&rdquo; Abbott Newsroom, 2024. <a href="https://www.abbott.com/en-us/corpnewsroom/products-and-innovation/hello-lingo-next-gen-health-coach-is-fda-cleared" target="_blank">Link</a></li>
+    <li>&ldquo;Abbott launches Lingo longevity wearable with continuous ketone tracking.&rdquo; Longevity Technology, 2024. <a href="https://longevity.technology/news/abbott-launches-lingo-longevity-wearables-with-continuous-ketone-tracking/" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Blood Pressure Monitoring</h3>
+  <ol start="45" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Breakthrough &mdash; Hilo Band: First cuffless and FDA-approved continuous blood pressure monitor.&rdquo; The5kRunner, Jul 2025. <a href="https://the5krunner.com/2025/07/10/breakthrough-hilo-band-first-cuffless-and-fda-approved-continuous-blood-pressure-monitor/" target="_blank">Link</a></li>
+    <li>&ldquo;How Aktiia built the first over-the-counter cuffless blood pressure monitor.&rdquo; MedTech Dive, 2025. <a href="https://www.medtechdive.com/news/aktiia-josep-sola-otc-blood-pressure/758162/" target="_blank">Link</a></li>
+    <li>&ldquo;Aktiia gets FDA clearance for OTC cuffless blood pressure monitor.&rdquo; MobiHealthNews, 2025. <a href="https://www.mobihealthnews.com/news/aktiia-gets-fda-clearance-otc-cuffless-blood-pressure-monitor" target="_blank">Link</a></li>
+    <li>&ldquo;FDA clears over-the-counter, cuffless blood pressure monitor with the Hilo bracelet.&rdquo; FierceBiotech, 2025. <a href="https://www.fiercebiotech.com/medtech/fda-clears-over-counter-cuffless-blood-pressure-monitor-hilo-bracelet" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Emerging Biomarkers & Sweat Sensing</h3>
+  <ol start="49" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Stressomic: A wearable microfluidic biosensor for dynamic profiling of multiple stress hormones in sweat.&rdquo; <em>Science Advances</em>, 2025. <a href="https://www.science.org/doi/10.1126/sciadv.adx6491" target="_blank">Link</a></li>
+    <li>&ldquo;Emerging Technologies in Wearable Sweat Sensors.&rdquo; <em>ACS Materials Letters</em>, 2025. <a href="https://pubs.acs.org/doi/10.1021/acsmaterialslett.5c00706" target="_blank">Link</a></li>
+    <li>&ldquo;A Wearable Molecularly Imprinted Electrochemical Sensor for Cortisol.&rdquo; <em>Biosensors</em> 15(3), 2025. <a href="https://www.mdpi.com/2079-6374/15/3/194" target="_blank">Link</a></li>
+    <li>&ldquo;Computationally-assisted wearable system for continuous cortisol monitoring.&rdquo; ScienceDirect, 2025. <a href="https://www.sciencedirect.com/science/article/pii/S2095927325003901" target="_blank">Link</a></li>
+    <li>&ldquo;PF-Sweat Patch: Non-invasive &amp; Continuous Lactate Sensor.&rdquo; CES 2026 Innovation Awards. <a href="https://www.ces.tech/ces-innovation-awards/2026/pf-sweat-patch-non-invasive-continuous-lactate-sensor/" target="_blank">Link</a></li>
+    <li>&ldquo;Non-Invasive Lactate Sensor: PointFit PF-Sweat Patch.&rdquo; The5kRunner, Feb 2026. <a href="https://the5krunner.com/2026/02/26/non-invasive-lactate-sensor-sport-pointfit-pf-sweat-patch/" target="_blank">Link</a></li>
+    <li>&ldquo;Is sweat monitoring technology the new CGM?&rdquo; Epicore Biosystems, 2025. <a href="https://www.epicorebiosystems.com/new/sweat-monitoring-the-new-cgm/" target="_blank">Link</a></li>
+    <li>&ldquo;Body Biofluids for Minimally-Invasive Diagnostics.&rdquo; <em>Advanced Healthcare Materials</em>, Wiley, 2026. <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adhm.202503096" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>AI & LLM Integration</h3>
+  <ol start="57" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Apple Health+ AI Coach Launches 2026: What to Expect.&rdquo; Gadget Hacks, 2026. <a href="https://apple.gadgethacks.com/news/apple-health-ai-coach-launches-2026-what-to-expect/" target="_blank">Link</a></li>
+    <li>&ldquo;Apple still planning to launch &lsquo;Health+&rsquo; AI coaching service in 2026.&rdquo; Wareable, 2025. <a href="https://www.wareable.com/apple/apple-quartz-health-plus-ai-coaching-service-2026-launch-rumor" target="_blank">Link</a></li>
+    <li>&ldquo;Oura Ring&rsquo;s AI Assistant Finally Learns to Read the Room.&rdquo; WebProNews, Jun 2025. <a href="https://www.webpronews.com/oura-rings-ai-assistant-finally-learns-to-read-the-room-and-your-body/" target="_blank">Link</a></li>
+    <li>&ldquo;How Wearables Are Evolving From Fitness Trackers to Health Systems.&rdquo; Athletech News, 2025. <a href="https://athletechnews.com/how-wearables-are-evolving-from-fitness-trackers-to-health-systems/" target="_blank">Link</a></li>
+    <li>&ldquo;Top Generative AI Features Transforming Wearable Health Devices in 2026.&rdquo; OneDayMD, Dec 2025. <a href="https://www.onedaymd.com/2025/12/top-generative-AI-features-transforming-wearable-health-devices.html" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>AR/Smart Glasses</h3>
+  <ol start="62" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Apple Glasses 2026: AR/VR Smart Glasses, Features, Release Date.&rdquo; TechTimes, Feb 2026. <a href="https://www.techtimes.com/articles/314643/20260214/apple-glasses-2026-ar-vr-smart-glasses-features-release-date-what-expect.htm" target="_blank">Link</a></li>
+    <li>&ldquo;Apple Stops Work on Lighter Vision Pro to Fast-Track AI Smart Glasses.&rdquo; MacRumors, Oct 2025. <a href="https://www.macrumors.com/2025/10/01/apple-ai-smart-glasses-focus/" target="_blank">Link</a></li>
+    <li>&ldquo;Apple&rsquo;s 2026 Smart Glasses: Five Key Features.&rdquo; MacRumors, Oct 2025. <a href="https://www.macrumors.com/2025/10/02/2026-smart-glasses-features/" target="_blank">Link</a></li>
+    <li>&ldquo;Tim Cook&rsquo;s &lsquo;top priority&rsquo; product could finally take shape next year.&rdquo; 9to5Mac, Dec 2025. <a href="https://9to5mac.com/2025/12/22/tim-cooks-top-priority-product-could-finally-take-shape-next-year/" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>EEG, Smart Clothing, Hearables</h3>
+  <ol start="66" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Top 7 brain training devices 2025.&rdquo; Muse/ChooseMuse, 2025. <a href="https://choosemuse.com/blogs/news/top-brain-training-devices-2025" target="_blank">Link</a></li>
+    <li>&ldquo;2026 Guide: Top 8 Neurofeedback Devices.&rdquo; Myndlift, 2026. <a href="https://www.myndlift.com/post/2026-guide-top-8-neurofeedback-devices-for-brain-training" target="_blank">Link</a></li>
+    <li>&ldquo;Why Brain Wearables Are Making Traditional EEG Labs Obsolete.&rdquo; GlobalRPH, Oct 2025. <a href="https://globalrph.com/2025/10/why-brain-wearables-are-making-traditional-eeg-labs-obsolete-in-2025/" target="_blank">Link</a></li>
+    <li>&ldquo;Hexoskin Smart Shirts.&rdquo; Hexoskin. <a href="https://hexoskin.com/" target="_blank">Link</a></li>
+    <li>&ldquo;Smart Clothing Global Market Forecasts 2025-2030.&rdquo; GlobeNewsWire, Dec 2025. <a href="https://www.globenewswire.com/news-release/2025/12/04/3199925/28124/en/" target="_blank">Link</a></li>
+    <li>&ldquo;AirPods Pro 3 &mdash; Hearing Health.&rdquo; Apple. <a href="https://www.apple.com/airpods-pro/hearing-health/" target="_blank">Link</a></li>
+    <li>&ldquo;Biosensors in Hearing Aids.&rdquo; <em>Hearing Review</em>, 2023. <a href="https://hearingreview.com/practice-building/practice-management/continuing-education/biosensors-hearing-aids-technology-enable-daily-healthcare-hearables" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Emerging Form Factors</h3>
+  <ol start="74" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Smart Tattoo Sensors 2.0: A Ten-Year Progress Report.&rdquo; <em>PMC</em>, 2024. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11048663/" target="_blank">Link</a></li>
+    <li>&ldquo;On-Skin Tattoo-Embedded Sensors (TES).&rdquo; <em>Advanced Materials Technologies</em>, Wiley, 2026. <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/admt.202501304" target="_blank">Link</a></li>
+    <li>&ldquo;Smart Contact Lenses Revolutionize Eye Health.&rdquo; Purdue BME, 2025. <a href="https://engineering.purdue.edu/BME/AboutUs/News/2025/chi-hwan-lee8217s-smart-contact-lenses-revolutionize-eye-health-by-monitoring-vital-data-in-real-time" target="_blank">Link</a></li>
+    <li>&ldquo;A Graphene Biosensor Could Monitor Blood Pressure and More.&rdquo; IEEE Spectrum, 2025. <a href="https://spectrum.ieee.org/graphene-biosensor" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Data Platforms & Edge AI</h3>
+  <ol start="78" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Terra &mdash; Fitness and Health API.&rdquo; Terra, 2025. <a href="https://tryterra.co/" target="_blank">Link</a></li>
+    <li>&ldquo;The 3 Best APIs for Wearables and Medical Devices in 2025.&rdquo; HumanITcare, 2025. <a href="https://humanitcare.com/en/the-3-best-apis-for-wearables-and-medical-devices-in-2025/" target="_blank">Link</a></li>
+    <li>&ldquo;Tiny Machine Learning and On-Device Inference: A Survey.&rdquo; <em>Sensors</em> 25(10), PMC, 2025. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12115890/" target="_blank">Link</a></li>
+    <li>&ldquo;TinyML: Research trends and future application opportunities.&rdquo; ScienceDirect, 2025. <a href="https://www.sciencedirect.com/science/article/pii/S2590005625003017" target="_blank">Link</a></li>
+    <li>&ldquo;On-device machine learning for secure, generalizable and real-time medical data processing.&rdquo; <em>Royal Society Open Science</em>, 2025. <a href="https://royalsocietypublishing.org/rsos/article/12/12/251213/366142/On-device-machine-learning-for-secure" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Regulatory Landscape</h3>
+  <ol start="83" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;FDA Issues Key Guidance Updates for Digital Health and Wellness.&rdquo; Akin Gump, Jan 2026. <a href="https://www.akingump.com/en/insights/blogs/eye-on-fda/fda-issues-key-guidance-updates-for-digital-health-and-wellness" target="_blank">Link</a></li>
+    <li>&ldquo;FDA relaxes oversight of general wellness devices, CDS software.&rdquo; RAPS, Jan 2026. <a href="https://www.raps.org/news-and-articles/news-articles/2026/1/fda-relaxes-oversight-of-general-wellness-devices" target="_blank">Link</a></li>
+    <li>&ldquo;Key Updates in FDA&rsquo;s 2026 General Wellness and CDS Software Guidance.&rdquo; Faegre Drinker, Jan 2026. <a href="https://www.faegredrinker.com/en/insights/publications/2026/1/key-updates-in-fdas-2026-general-wellness-and-clinical-decision-support-software-guidance" target="_blank">Link</a></li>
+    <li>&ldquo;FDA Limits Oversight of AI Health Software and Wearables.&rdquo; Telehealth.org, Jan 2026. <a href="https://telehealth.org/news/fda-clarifies-oversight-of-ai-health-software-and-wearables-limiting-regulation-of-low-risk-devices/" target="_blank">Link</a></li>
+    <li>&ldquo;FDA Digital Health Guidance: 2026 Requirements Overview.&rdquo; IntuitionLabs, 2026. <a href="https://intuitionlabs.ai/articles/fda-digital-health-technology-guidance-requirements" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Enabling Technologies & Market Size</h3>
+  <ol start="88" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Wearable and Flexible Sensor Devices: Recent Advances.&rdquo; <em>PMC</em>, 2025. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11902442/" target="_blank">Link</a></li>
+    <li>&ldquo;Flexible Electronics Market Size, Share, Forecast 2030.&rdquo; Mordor Intelligence. <a href="https://www.mordorintelligence.com/industry-reports/flexible-electronics-market" target="_blank">Link</a></li>
+    <li>&ldquo;Next-Generation MEMS 2026-2036.&rdquo; IDTechEx, 2025. <a href="https://www.idtechex.com/en/research-report/next-generation-mems/1105" target="_blank">Link</a></li>
+    <li>&ldquo;Wireless Technologies for Wearable Electronics: A Review.&rdquo; <em>Advanced Electronic Materials</em>, Wiley, 2025. <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/aelm.202400884" target="_blank">Link</a></li>
+    <li>&ldquo;Wearable Technology Market Size | Industry Report, 2033.&rdquo; Grand View Research. <a href="https://www.grandviewresearch.com/industry-analysis/wearable-technology-market" target="_blank">Link</a></li>
+    <li>&ldquo;Wearable Medical Devices Market Size | Forecast [2034].&rdquo; Fortune Business Insights. <a href="https://www.fortunebusinessinsights.com/industry-reports/wearable-medical-devices-market-101070" target="_blank">Link</a></li>
+    <li>&ldquo;Wearable Medical Devices Market Size to Cross USD 502.85 Bn by 2035.&rdquo; Precedence Research. <a href="https://www.precedenceresearch.com/wearable-medical-device-market" target="_blank">Link</a></li>
+    <li>&ldquo;Wearable Technology Market Size to Hit USD 703.32 Billion by 2035.&rdquo; Precedence Research. <a href="https://www.precedenceresearch.com/wearable-technology-market" target="_blank">Link</a></li>
+    <li>&ldquo;Wearable Medical Devices Market Projected to Reach USD 523.58 Billion.&rdquo; GlobeNewsWire, Feb 2026. <a href="https://www.globenewswire.com/news-release/2026/02/10/3235265/0/en/" target="_blank">Link</a></li>
+    <li>&ldquo;Wearable Healthcare Devices Market.&rdquo; MarketsandMarkets. <a href="https://www.marketsandmarkets.com/Market-Reports/wearable-medical-device-market-81753973.html" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Market History & Failures</h3>
+  <ol start="98" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Revealed: The origins of your fitness tracker&rsquo;s tech.&rdquo; Wareable, 2016. <a href="https://www.wareable.com/fitness-trackers/the-origins-of-the-fitness-tracker-1234" target="_blank">Link</a></li>
+    <li>&ldquo;Wearable Technology: A History.&rdquo; Splitfit, 2023. <a href="https://splitfit.com/fitness-technology/wearable-technology-history/" target="_blank">Link</a></li>
+    <li>&ldquo;Nike FuelBand: The rise and fall of the wearable that started it all.&rdquo; Wareable, 2017. <a href="https://www.wareable.com/fitness-trackers/not-so-happy-birthday-nike-fuelband-2351" target="_blank">Link</a></li>
+    <li>&ldquo;Rockley Photonics files for bankruptcy, triggering NYSE delisting.&rdquo; FierceBiotech, Jan 2023. <a href="https://www.fiercebiotech.com/medtech/rockley-photonics-files-bankruptcy-triggering-nyse-delisting" target="_blank">Link</a></li>
+    <li>&ldquo;After Rocky Road: Rockley Photonics Resumes Marketing of Bioptx Biosensing Wearables.&rdquo; The Healthcare Technology Report, 2024. <a href="https://thehealthcaretechnologyreport.com/after-rocky-road-rockley-photonics-resumes-marketing-of-bioptx-biosensing-wearables/" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>Oura Ring History</h3>
+  <ol start="103" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;We launch the Oura ring at LAUNCH Festival 2015.&rdquo; Oura Health Oy, Mar 2015. <a href="https://ouraring.com/blog/oura-ring-launch-festival-2015/" target="_blank">Link</a></li>
+    <li>&ldquo;Oura Ring &mdash; The Most Accurate Sleep and Activity Tracker.&rdquo; Kickstarter, Aug 2015. <a href="https://www.kickstarter.com/projects/ouraring/oura-ring-the-most-accurate-sleep-and-activity-tracker" target="_blank">Link</a></li>
+    <li>de Zambotti et al. &ldquo;The Sleep of the Ring: Comparison of the OURA Sleep Tracker Against Polysomnography.&rdquo; <em>Behavioral Sleep Medicine</em>, 2017. <a href="https://pubmed.ncbi.nlm.nih.gov/28323455/" target="_blank">Link</a></li>
+  </ol>
+
+  <h3>The Quiet Period (1987&ndash;2006)</h3>
+  <ol start="106" style="font-size:13px; line-height:1.8; padding-left:20px; margin-bottom:24px;">
+    <li>&ldquo;Casio JC-10 Calorie Counter.&rdquo; Casio Watch Archive. Documented the first step-counting watch (1990) and BP-400 heart rate/blood pressure watch (1991).</li>
+    <li>Picard, Rosalind W. &ldquo;Affective Computing.&rdquo; MIT Media Lab Technical Report, 1995. Foundational work on physiological computing including smart clothing with embedded sensors.</li>
+    <li>&ldquo;Timex Datalink: The First Smartwatch.&rdquo; Microsoft/Timex, 1994. Developed with Microsoft, wirelessly downloaded data via CRT monitor light pulses. Worn by NASA astronauts.</li>
+    <li>&ldquo;Seiko MessageWatch.&rdquo; Seiko, 1995. Received caller ID, sports scores, stock prices, weather &mdash; anticipated smartwatch notifications by 20 years.</li>
+    <li>Wolf, Gary. &ldquo;Know Thyself: Tracking Every Facet of Life.&rdquo; <em>Wired</em>, Jun 2009. <a href="https://www.wired.com/2009/06/lbnp-knowthyself/" target="_blank">Link</a></li>
+    <li>Swan, Melanie. &ldquo;The Quantified Self: Fundamental Disruption in Big Data Science.&rdquo; <em>Big Data</em> 1(2), 2013. <a href="https://www.liebertpub.com/doi/10.1089/big.2012.0002" target="_blank">Link</a></li>
+    <li>&ldquo;History of Activity Trackers and Actigraphy.&rdquo; Actigraphy.org. Overview of clinical actigraphy devices used in sleep and activity research from the 1990s&ndash;2000s.</li>
+  </ol>
+  </div>
+</section>
+
+<div class="gradient-bar" style="margin-top: 48px;"></div>
+
+<div class="footer">
+  CIPHER / N-OF-1 EXPERIMENTS, EMERGENT INTELLIGENCE / coded.health<br>
+  Research compiled March 2026 &mdash; Updated with live web research &mdash; 112 cited sources
+</div>
+
+</body>
+</html>
