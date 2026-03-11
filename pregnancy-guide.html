@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Your Pregnancy Wellness Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF8F2;
+    --forest: #1C2826;
+    --charcoal: #2A2D2E;
+    --stone: #E8E4DE;
+    --blue: #4A7699;
+    --green: #3E7A5C;
+    --gold: #D4A12A;
+    --coral: #E06B5A;
+    --copper: #B87550;
+    --sidebar-w: 260px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--forest);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--forest);
+    padding: 32px 20px;
+    z-index: 100;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    color: #fff;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    display: block;
+    margin-bottom: 28px;
+  }
+
+  .sidebar-nav h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  .sidebar-nav a {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1.4;
+  }
+
+  .sidebar-nav a:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+  }
+
+  .sidebar-nav a.active {
+    background: rgba(74,118,153,0.18);
+    color: var(--blue);
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 200;
+    background: var(--forest);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 90;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    max-width: 900px;
+    padding: 60px 56px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    margin-bottom: 56px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--stone);
+  }
+
+  .hero-wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 0.08em;
+    color: var(--forest);
+    line-height: 1;
+    display: block;
+  }
+
+  .hero-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--copper);
+    margin-top: 4px;
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--charcoal);
+    margin-top: 16px;
+    line-height: 1.3;
+  }
+
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(28,40,38,0.4);
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PERSONAL NOTE ── */
+  .personal-note {
+    margin-top: 32px;
+    background: #fff;
+    border: 1px solid var(--stone);
+    border-left: 4px solid var(--gold);
+    border-radius: 10px;
+    padding: 24px 28px;
+    position: relative;
+  }
+
+  .personal-note p {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--charcoal);
+  }
+
+  .personal-note .note-sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--gold);
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 64px;
+    scroll-margin-top: 32px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .section-marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .marker-blue { background: rgba(74,118,153,0.12); color: var(--blue); }
+  .marker-green { background: rgba(62,122,92,0.12); color: var(--green); }
+  .marker-gold { background: rgba(212,161,42,0.12); color: var(--gold); }
+  .marker-coral { background: rgba(224,107,90,0.12); color: var(--coral); }
+  .marker-copper { background: rgba(184,117,80,0.12); color: var(--copper); }
+
+  .section h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.2;
+  }
+
+  .section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 12px;
+    margin-top: 28px;
+  }
+
+  .section p {
+    margin-bottom: 14px;
+    color: var(--charcoal);
+    font-size: 15.5px;
+  }
+
+  .section ul, .section ol {
+    padding-left: 20px;
+    margin-bottom: 14px;
+  }
+
+  .section li {
+    margin-bottom: 6px;
+    font-size: 15.5px;
+    color: var(--charcoal);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: #fff;
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(28,40,38,0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 16px rgba(28,40,38,0.08);
+    transform: translateY(-1px);
+  }
+
+  .card-blue { border-left: 4px solid var(--blue); }
+  .card-green { border-left: 4px solid var(--green); }
+  .card-gold { border-left: 4px solid var(--gold); }
+  .card-coral { border-left: 4px solid var(--coral); }
+  .card-copper { border-left: 4px solid var(--copper); }
+
+  .card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+
+  .card p {
+    margin-bottom: 0;
+    font-size: 14.5px;
+  }
+
+  /* ── TOP 10 ── */
+  .top10-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .top10-item {
+    background: #fff;
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+    padding: 20px 22px;
+    box-shadow: 0 1px 4px rgba(28,40,38,0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .top10-item:hover {
+    box-shadow: 0 4px 16px rgba(28,40,38,0.08);
+    transform: translateY(-1px);
+  }
+
+  .top10-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .top10-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .top10-item p {
+    font-size: 13.5px;
+    color: #5a5a5a;
+    margin-bottom: 0;
+    line-height: 1.55;
+  }
+
+  /* ── TABLES ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--stone);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  thead tr {
+    background: var(--forest);
+    color: #fff;
+  }
+
+  thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  tbody tr:nth-child(even) {
+    background: rgba(232,228,222,0.35);
+  }
+
+  tbody tr:hover {
+    background: rgba(74,118,153,0.05);
+  }
+
+  tbody td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(232,228,222,0.7);
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--charcoal);
+  }
+
+  /* ── EVIDENCE BADGES ── */
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .badge-strong { background: rgba(62,122,92,0.15); color: #1e6645; }
+  .badge-moderate { background: rgba(212,161,42,0.15); color: #9a7010; }
+  .badge-consensus { background: rgba(74,118,153,0.15); color: #2a5a73; }
+  .badge-emerging { background: rgba(184,117,80,0.15); color: #8a4a20; }
+  .badge-low { background: rgba(184,117,80,0.12); color: #8a4a20; }
+  .badge-very-strong { background: rgba(62,122,92,0.22); color: #114d33; }
+
+  /* ── SYMPTOM CARDS ── */
+  .symptom-card {
+    background: #fff;
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(28,40,38,0.04);
+  }
+
+  .symptom-header {
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .symptom-header:hover { background: rgba(232,228,222,0.3); }
+
+  .symptom-title-group { flex: 1; }
+
+  .symptom-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+
+  .symptom-header h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--forest);
+    margin: 0 0 4px;
+  }
+
+  .symptom-prevalence {
+    font-size: 13px;
+    color: #777;
+    font-style: italic;
+  }
+
+  .symptom-body {
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--stone);
+  }
+
+  .symptom-intro {
+    font-size: 14.5px;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  .caution-box {
+    background: rgba(224,107,90,0.07);
+    border: 1px solid rgba(224,107,90,0.25);
+    border-left: 3px solid var(--coral);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--charcoal);
+    margin-top: 14px;
+    line-height: 1.55;
+  }
+
+  .caution-box strong {
+    color: var(--coral);
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .note-box {
+    background: rgba(74,118,153,0.06);
+    border: 1px solid rgba(74,118,153,0.2);
+    border-left: 3px solid var(--blue);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--charcoal);
+    margin-top: 14px;
+    line-height: 1.55;
+  }
+
+  .note-box strong {
+    color: var(--blue);
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ── PILLAR SECTIONS ── */
+  .pillar-intro {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--copper);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    padding-left: 16px;
+    border-left: 2px solid var(--copper);
+  }
+
+  /* ── TRIMESTER CARDS ── */
+  .trimester-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .trimester-card {
+    background: #fff;
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(28,40,38,0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .trimester-card:hover {
+    box-shadow: 0 4px 16px rgba(28,40,38,0.08);
+    transform: translateY(-2px);
+  }
+
+  .trimester-header {
+    padding: 18px 20px;
+    color: #fff;
+  }
+
+  .trimester-header.t1 { background: var(--blue); }
+  .trimester-header.t2 { background: var(--green); }
+  .trimester-header.t3 { background: var(--copper); }
+
+  .trimester-header .weeks {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .trimester-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .trimester-header .focus-label {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 3px;
+    font-style: italic;
+  }
+
+  .trimester-body {
+    padding: 18px 20px;
+  }
+
+  .trimester-body h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(28,40,38,0.45);
+    margin-bottom: 6px;
+    margin-top: 14px;
+  }
+
+  .trimester-body h4:first-child { margin-top: 0; }
+
+  .trimester-body ul {
+    padding-left: 16px;
+    margin: 0;
+  }
+
+  .trimester-body li {
+    font-size: 13px;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+    line-height: 1.45;
+  }
+
+  /* ── RED FLAGS ── */
+  .red-flags-section {
+    background: rgba(224,107,90,0.05);
+    border: 1px solid rgba(224,107,90,0.2);
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+
+  .red-flag-group {
+    margin-bottom: 24px;
+  }
+
+  .red-flag-group h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+
+  .rfg-911 h3 { background: var(--coral); color: #fff; }
+  .rfg-urgent h3 { background: rgba(224,107,90,0.2); color: var(--coral); }
+
+  .red-flag-group ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .red-flag-group li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    font-size: 15px;
+    color: var(--charcoal);
+    border-bottom: 1px solid rgba(224,107,90,0.1);
+    line-height: 1.5;
+  }
+
+  .red-flag-group li:last-child { border-bottom: none; }
+
+  .rfg-911 li::before {
+    content: "!";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 16px;
+    height: 16px;
+    background: var(--coral);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 16px;
+  }
+
+  .rfg-urgent li::before {
+    content: "→";
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    color: var(--coral);
+    font-size: 13px;
+  }
+
+  /* ── SOURCES ── */
+  .sources-toggle {
+    background: #fff;
+    border: 1px solid var(--stone);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .sources-toggle-btn {
+    width: 100%;
+    padding: 16px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--forest);
+  }
+
+  .sources-toggle-btn:hover { background: rgba(232,228,222,0.4); }
+
+  .sources-content {
+    display: none;
+    padding: 16px 20px 20px;
+    border-top: 1px solid var(--stone);
+  }
+
+  .sources-content.open { display: block; }
+
+  .sources-content h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(28,40,38,0.45);
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+
+  .sources-content h3:first-child { margin-top: 0; }
+
+  .sources-content ul {
+    padding-left: 16px;
+    margin: 0;
+  }
+
+  .sources-content li {
+    font-size: 13px;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  .sources-content a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  .sources-content a:hover { text-decoration: underline; }
+
+  /* ── NUTRIENT TABLE ── */
+  .nutrient-row-highlight {
+    background: rgba(62,122,92,0.06) !important;
+  }
+
+  /* ── SUPPLEMENT TIERS ── */
+  .tier-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .tier-1 { background: rgba(62,122,92,0.15); color: #1e6645; }
+  .tier-2 { background: rgba(74,118,153,0.15); color: #2a5a73; }
+  .tier-3 { background: rgba(212,161,42,0.15); color: #9a7010; }
+  .tier-avoid { background: rgba(224,107,90,0.12); color: #b04030; }
+
+  /* ── FOOTER ── */
+  .guide-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--stone);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--forest);
+  }
+
+  .footer-meta {
+    font-size: 12px;
+    color: rgba(28,40,38,0.4);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .sidebar-overlay.open {
+      display: block;
+    }
+    .hamburger {
+      display: flex;
+    }
+    .main {
+      margin-left: 0;
+      padding: 60px 24px 40px;
+    }
+    .top10-grid {
+      grid-template-columns: 1fr;
+    }
+    .trimester-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .main { padding: 60px 16px 32px; }
+    .hero-wordmark { font-size: 26px; }
+    .section h2 { font-size: 21px; }
+    .red-flags-section { padding: 20px; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .sidebar, .hamburger, .sidebar-overlay { display: none !important; }
+    .main { margin-left: 0; padding: 20px; max-width: 100%; }
+    .card, .symptom-card, .top10-item, .trimester-card { break-inside: avoid; box-shadow: none; }
+    .sources-content { display: block !important; }
+    a { color: inherit; text-decoration: none; }
+    /* Hide all decorative / animated elements in print */
+    .hero-waveform, .hero-particles, .section-wave-divider,
+    .trimester-timeline, .pull-quote, .page-bg-texture,
+    .signal-bars, .pulse-dot { display: none !important; }
+  }
+
+  /* ════════════════════════════════════════
+     SIGNAL + SOLARPUNK ENHANCEMENTS
+     ════════════════════════════════════════ */
+
+  /* ── PAGE BACKGROUND TEXTURE ── */
+  .page-bg-texture {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='60' cy='60' r='10' fill='none' stroke='%23E8E4DE' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='22' fill='none' stroke='%23E8E4DE' stroke-width='0.7'/%3E%3Ccircle cx='60' cy='60' r='36' fill='none' stroke='%23E8E4DE' stroke-width='0.5'/%3E%3Ccircle cx='60' cy='60' r='52' fill='none' stroke='%23E8E4DE' stroke-width='0.35'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+
+  /* ── HERO WAVEFORM ── */
+  .hero-waveform-wrap {
+    margin-top: 32px;
+    margin-bottom: 0;
+    height: 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-waveform {
+    width: 100%;
+    height: 72px;
+    display: block;
+  }
+
+  /* Animated waveform path */
+  @keyframes wave-shift {
+    0%   { d: path("M0,36 C20,20 35,52 55,36 C75,20 85,52 105,36 C125,20 135,52 155,36 C175,20 195,52 215,36 C230,28 245,40 260,36 C275,33 285,36 300,36"); }
+    50%  { d: path("M0,36 C20,52 35,20 55,36 C75,52 85,20 105,36 C125,52 135,20 155,36 C175,52 195,20 215,36 C230,44 245,32 260,36 C275,39 285,36 300,36"); }
+    100% { d: path("M0,36 C20,20 35,52 55,36 C75,20 85,52 105,36 C125,20 135,52 155,36 C175,20 195,52 215,36 C230,28 245,40 260,36 C275,33 285,36 300,36"); }
+  }
+
+  /* CSS fallback animation for the waveform (transform-based, broadly supported) */
+  .waveform-chaotic {
+    animation: waveform-animate-chaotic 6s ease-in-out infinite;
+  }
+  .waveform-resolved {
+    animation: waveform-animate-resolved 6s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+
+  @keyframes waveform-animate-chaotic {
+    0%, 100% { transform: translateY(0px); }
+    25% { transform: translateY(-6px); }
+    75% { transform: translateY(6px); }
+  }
+  @keyframes waveform-animate-resolved {
+    0%, 100% { transform: translateY(0px); }
+    25% { transform: translateY(-3px); }
+    75% { transform: translateY(3px); }
+  }
+
+  /* Gold clarity dot pulse */
+  @keyframes clarity-pulse {
+    0%, 100% { r: 4; opacity: 1; }
+    50% { r: 6; opacity: 0.75; }
+  }
+
+  /* ── HERO FLOATING PARTICLES ── */
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: particle-drift linear infinite;
+  }
+
+  @keyframes particle-drift {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: var(--p-opacity); }
+    90%  { opacity: var(--p-opacity); }
+    100% { transform: translateY(-120px) translateX(var(--p-drift)); opacity: 0; }
+  }
+
+  /* ── SECTION WAVE DIVIDERS ── */
+  .section-wave-divider {
+    width: 100%;
+    height: 28px;
+    display: block;
+    margin: -8px 0 40px;
+    opacity: 0.55;
+  }
+
+  /* ── TRIMESTER TIMELINE ── */
+  .trimester-timeline {
+    margin-bottom: 32px;
+    padding: 20px 24px;
+    background: #fff;
+    border: 1px solid var(--stone);
+    border-radius: 12px;
+  }
+
+  .timeline-label-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .timeline-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tl-t1 { color: var(--green); }
+  .tl-t2 { color: var(--blue); }
+  .tl-t3 { color: var(--gold); }
+
+  .timeline-bar-wrap {
+    position: relative;
+    height: 18px;
+    border-radius: 9px;
+    overflow: visible;
+    display: flex;
+    gap: 3px;
+  }
+
+  .tl-segment {
+    height: 18px;
+    border-radius: 9px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .tl-seg-t1 { background: var(--green);     width: calc(13/40 * 100%); opacity: 0.82; }
+  .tl-seg-t2 { background: var(--blue);      width: calc(14/40 * 100%); opacity: 0.82; }
+  .tl-seg-t3 { background: var(--gold);      width: calc(13/40 * 100%); opacity: 0.82; flex: 1; }
+
+  .tl-milestone {
+    position: absolute;
+    top: -6px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tl-milestone-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--charcoal);
+    margin-bottom: 2px;
+  }
+
+  .tl-milestone-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: rgba(28,40,38,0.55);
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+
+  .timeline-week-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding: 0 2px;
+  }
+
+  .timeline-week-markers span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(28,40,38,0.4);
+  }
+
+  /* ── SIGNAL READOUT CARDS (Top 10) ── */
+  .top10-item.signal-card {
+    position: relative;
+    border-left: 3px solid;
+  }
+
+  .top10-item.signal-card-green  { border-color: var(--green); }
+  .top10-item.signal-card-blue   { border-color: var(--blue); }
+  .top10-item.signal-card-copper { border-color: var(--copper); }
+
+  /* channel label above number */
+  .signal-channel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 4px;
+  }
+
+  /* pulse dot for top 3 items */
+  .pulse-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    animation: pulse-anim 2s ease-in-out infinite;
+  }
+
+  .pulse-dot-green  { background: var(--green); box-shadow: 0 0 0 0 rgba(62,122,92,0.4); }
+  .pulse-dot-blue   { background: var(--blue);  box-shadow: 0 0 0 0 rgba(74,118,153,0.4); }
+  .pulse-dot-copper { background: var(--copper); box-shadow: 0 0 0 0 rgba(184,117,80,0.4); }
+
+  @keyframes pulse-anim {
+    0%   { box-shadow: 0 0 0 0px rgba(62,122,92,0.45); }
+    70%  { box-shadow: 0 0 0 8px rgba(62,122,92,0); }
+    100% { box-shadow: 0 0 0 0px rgba(62,122,92,0); }
+  }
+
+  .pulse-dot-blue   { animation-name: pulse-anim-blue; }
+  .pulse-dot-copper { animation-name: pulse-anim-copper; }
+
+  @keyframes pulse-anim-blue {
+    0%   { box-shadow: 0 0 0 0px rgba(74,118,153,0.45); }
+    70%  { box-shadow: 0 0 0 8px rgba(74,118,153,0); }
+    100% { box-shadow: 0 0 0 0px rgba(74,118,153,0); }
+  }
+
+  @keyframes pulse-anim-copper {
+    0%   { box-shadow: 0 0 0 0px rgba(184,117,80,0.45); }
+    70%  { box-shadow: 0 0 0 8px rgba(184,117,80,0); }
+    100% { box-shadow: 0 0 0 0px rgba(184,117,80,0); }
+  }
+
+  /* ── SIGNAL STRENGTH BARS (badge icons) ── */
+  .signal-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    vertical-align: middle;
+    margin-left: 5px;
+    position: relative;
+    top: -1px;
+  }
+
+  .signal-bars span {
+    display: block;
+    width: 3px;
+    border-radius: 1px;
+    background: currentColor;
+    opacity: 0.28;
+  }
+
+  .signal-bars span.active { opacity: 0.9; }
+
+  .signal-bars span:nth-child(1) { height: 4px; }
+  .signal-bars span:nth-child(2) { height: 6px; }
+  .signal-bars span:nth-child(3) { height: 9px; }
+  .signal-bars span:nth-child(4) { height: 12px; }
+
+  /* ── PULL QUOTES ── */
+  .pull-quote {
+    margin: 40px 0;
+    padding: 24px 28px;
+    background: rgba(62,122,92,0.05);
+    border-left: 4px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    position: relative;
+  }
+
+  .pull-quote p {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin: 0;
+  }
+
+  .pull-quote::before {
+    content: '\201C';
+    font-family: 'Instrument Serif', serif;
+    font-size: 64px;
+    color: var(--green);
+    opacity: 0.22;
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    line-height: 1;
+  }
+
+  /* ── ENHANCED CARD HOVER GLOWS ── */
+  .card-blue:hover   { box-shadow: 0 4px 24px rgba(74,118,153,0.15),  0 1px 4px rgba(28,40,38,0.04); }
+  .card-green:hover  { box-shadow: 0 4px 24px rgba(62,122,92,0.15),   0 1px 4px rgba(28,40,38,0.04); }
+  .card-gold:hover   { box-shadow: 0 4px 24px rgba(212,161,42,0.15),  0 1px 4px rgba(28,40,38,0.04); }
+  .card-coral:hover  { box-shadow: 0 4px 24px rgba(224,107,90,0.15),  0 1px 4px rgba(28,40,38,0.04); }
+  .card-copper:hover { box-shadow: 0 4px 24px rgba(184,117,80,0.15),  0 1px 4px rgba(28,40,38,0.04); }
+
+  .symptom-card:hover { box-shadow: 0 6px 28px rgba(74,118,153,0.1); }
+
+  .top10-item:hover  { box-shadow: 0 4px 20px rgba(62,122,92,0.12); }
+
+  /* ── TRIMESTER CARD HOVER GLOW by type ── */
+  .trimester-card:has(.t1):hover { box-shadow: 0 6px 24px rgba(62,122,92,0.18); }
+  .trimester-card:has(.t2):hover { box-shadow: 0 6px 24px rgba(74,118,153,0.18); }
+  .trimester-card:has(.t3):hover { box-shadow: 0 6px 24px rgba(212,161,42,0.18); }
+
+  /* ── TRIMESTER HEADER COLORS → align with new palette for T1/T2/T3 ── */
+  .trimester-header.t1 { background: var(--green); }
+  .trimester-header.t2 { background: var(--blue); }
+  .trimester-header.t3 { background: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- PAGE BACKGROUND TEXTURE -->
+<div class="page-bg-texture" aria-hidden="true"></div>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- HAMBURGER -->
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle navigation">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <span class="sidebar-logo">CIPHER</span>
+  <span class="sidebar-tagline">Decode what works for you.</span>
+  <div class="sidebar-nav">
+    <h3>Overview</h3>
+    <a href="#top10">Top 10 Takeaways</a>
+    <h3>Roadmap</h3>
+    <a href="#trimesters">Trimester Guide</a>
+    <h3>Core Pillars</h3>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#exercise">Exercise</a>
+    <a href="#sleep-pillar">Sleep</a>
+    <a href="#stress">Stress</a>
+    <a href="#supplements">Supplements</a>
+    <h3>Symptoms</h3>
+    <a href="#nausea">Nausea</a>
+    <a href="#fatigue">Fatigue</a>
+    <a href="#back-pain">Back Pain</a>
+    <a href="#swelling">Swelling</a>
+    <a href="#heartburn">Heartburn</a>
+    <a href="#constipation">Constipation</a>
+    <a href="#sleep">Insomnia</a>
+    <a href="#mood">Mood &amp; Anxiety</a>
+    <a href="#gdm">GDM Risk</a>
+    <a href="#preeclampsia">Preeclampsia Risk</a>
+    <a href="#cramps">Leg Cramps</a>
+    <h3>Safety</h3>
+    <a href="#red-flags">Red Flags</a>
+    <a href="#sources">Sources</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- HERO -->
+  <section class="hero" id="hero" style="position:relative;">
+
+    <!-- Floating particles (hero only) -->
+    <div class="hero-particles" aria-hidden="true">
+      <div class="particle" style="width:3px;height:3px;left:8%;bottom:10%;background:var(--green);--p-opacity:0.25;--p-drift:12px;animation-duration:14s;animation-delay:0s;"></div>
+      <div class="particle" style="width:2px;height:2px;left:18%;bottom:5%;background:var(--blue);--p-opacity:0.2;--p-drift:-8px;animation-duration:18s;animation-delay:2s;"></div>
+      <div class="particle" style="width:3px;height:3px;left:32%;bottom:15%;background:var(--green);--p-opacity:0.22;--p-drift:6px;animation-duration:16s;animation-delay:5s;"></div>
+      <div class="particle" style="width:2px;height:2px;left:48%;bottom:8%;background:var(--blue);--p-opacity:0.18;--p-drift:-14px;animation-duration:20s;animation-delay:1s;"></div>
+      <div class="particle" style="width:3px;height:3px;left:60%;bottom:12%;background:var(--green);--p-opacity:0.2;--p-drift:10px;animation-duration:22s;animation-delay:8s;"></div>
+      <div class="particle" style="width:2px;height:2px;left:72%;bottom:6%;background:var(--blue);--p-opacity:0.22;--p-drift:-6px;animation-duration:15s;animation-delay:3s;"></div>
+      <div class="particle" style="width:3px;height:3px;left:82%;bottom:18%;background:var(--green);--p-opacity:0.18;--p-drift:8px;animation-duration:19s;animation-delay:6s;"></div>
+      <div class="particle" style="width:2px;height:2px;left:91%;bottom:9%;background:var(--blue);--p-opacity:0.2;--p-drift:-10px;animation-duration:17s;animation-delay:4s;"></div>
+      <div class="particle" style="width:3px;height:3px;left:25%;bottom:20%;background:var(--copper);--p-opacity:0.15;--p-drift:4px;animation-duration:21s;animation-delay:9s;"></div>
+      <div class="particle" style="width:2px;height:2px;left:55%;bottom:3%;background:var(--green);--p-opacity:0.18;--p-drift:-12px;animation-duration:23s;animation-delay:7s;"></div>
+    </div>
+
+    <span class="hero-wordmark">CIPHER</span>
+    <span class="hero-tagline">Decode what works for you.</span>
+    <p class="hero-subtitle">Your Pregnancy Wellness Guide</p>
+    <p class="hero-meta">COMPILED MARCH 2026 &nbsp;·&nbsp; SOURCES: ACOG, NIH, COCHRANE, PUBMED</p>
+
+    <!-- Animated SVG waveform: chaotic → resolved -->
+    <div class="hero-waveform-wrap" aria-hidden="true">
+      <svg class="hero-waveform" viewBox="0 0 900 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="var(--stone)"  stop-opacity="0.3"/>
+            <stop offset="45%"  stop-color="var(--blue)"   stop-opacity="0.5"/>
+            <stop offset="78%"  stop-color="var(--blue)"   stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="var(--blue)"   stop-opacity="0.9"/>
+          </linearGradient>
+          <clipPath id="leftClip">
+            <rect x="0" y="0" width="540" height="72"/>
+          </clipPath>
+          <clipPath id="rightClip">
+            <rect x="540" y="0" width="360" height="72"/>
+          </clipPath>
+        </defs>
+        <!-- Chaotic left segment -->
+        <g class="waveform-chaotic">
+          <path d="M0,36 C15,12 30,58 50,30 C68,8 80,62 100,38 C118,16 130,54 150,32 C170,10 182,60 200,36 C218,14 230,56 252,34 C268,18 278,50 298,30 C318,12 330,58 350,36 C368,16 380,54 400,32 C420,10 435,58 455,34 C475,16 488,52 510,36 C520,27 530,42 540,36"
+                fill="none" stroke="url(#waveGrad)" stroke-width="2" stroke-linecap="round" opacity="0.6" clip-path="url(#leftClip)"/>
+        </g>
+        <!-- Clean resolved right segment -->
+        <g class="waveform-resolved">
+          <path d="M540,36 C570,22 598,50 630,36 C662,22 690,50 720,36 C752,22 778,46 810,36 C840,28 858,40 876,36 L900,36"
+                fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" opacity="0.9" clip-path="url(#rightClip)"/>
+        </g>
+        <!-- Solar Gold clarity dot at peak resolution point -->
+        <circle cx="810" cy="26" r="5" fill="var(--gold)" opacity="0.95">
+          <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.95;0.65;0.95" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Tiny label -->
+        <text x="820" y="23" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--gold)" opacity="0.7" letter-spacing="0.08em">SIGNAL CLEAR</text>
+      </svg>
+    </div>
+
+    <div class="personal-note">
+      <p>For Kathryn — Your body is doing extraordinary things. This guide is here to help you decode what works for YOUR ecosystem during this journey. Every body is different. The science here is strong, but you are the expert on your own signals. Use this as a map, not a manual.</p>
+      <span class="note-sig">— J</span>
+    </div>
+  </section>
+
+  <!-- TOP 10 TAKEAWAYS -->
+  <section class="section" id="top10">
+    <div class="section-header">
+      <span class="section-marker marker-green">Quick Reference</span>
+      <h2>Top 10 Takeaways</h2>
+    </div>
+    <p style="margin-bottom:24px; color:#5a5a5a; font-size:15px;">The ten behaviors with the broadest evidence base — each affecting multiple symptoms simultaneously and carrying the lowest risk. If you do nothing else, do these.</p>
+
+    <div class="top10-grid">
+      <div class="top10-item signal-card signal-card-green" style="border-top: 3px solid var(--green);">
+        <div class="signal-channel" style="color:var(--green);">CH-01 · NUTRITION</div>
+        <div class="top10-num" style="color:var(--green);"><span class="pulse-dot pulse-dot-green"></span>01</div>
+        <h4>Take a high-quality prenatal vitamin — now</h4>
+        <p>Folic acid prevents neural tube defects. Iron prevents fatigue. Iodine supports brain development. Most prenatals underdose vitamin D, choline, and omega-3 — supplement those separately. Verify 150 mcg iodine is present.</p>
+      </div>
+      <div class="top10-item signal-card signal-card-blue" style="border-top: 3px solid var(--blue);">
+        <div class="signal-channel" style="color:var(--blue);">CH-02 · MOVEMENT</div>
+        <div class="top10-num" style="color:var(--blue);"><span class="pulse-dot pulse-dot-blue"></span>02</div>
+        <h4>150 minutes of moderate aerobic exercise per week</h4>
+        <p>The single intervention with the most overlapping benefits: reduces GDM risk, preeclampsia risk, back pain, depression, anxiety, constipation, fatigue, and sleep disruption. Walking is sufficient. Start in the first trimester, maintain through delivery.</p>
+      </div>
+      <div class="top10-item signal-card signal-card-copper" style="border-top: 3px solid var(--copper);">
+        <div class="signal-channel" style="color:var(--copper);">CH-03 · RESILIENCE</div>
+        <div class="top10-num" style="color:var(--copper);"><span class="pulse-dot pulse-dot-copper"></span>03</div>
+        <h4>Pelvic floor training from day one</h4>
+        <p>3 sets of 10–15 Kegel contractions, 3x/day. Evidence shows reduced urinary incontinence and possible reduction in episiotomy and perineal tearing rates. Most women skip this. Don't.</p>
+      </div>
+      <div class="top10-item" style="border-top: 3px solid var(--gold);">
+        <div class="top10-num" style="color:var(--gold);">04</div>
+        <h4>Eat small, frequent, nutrient-dense meals (5–6/day)</h4>
+        <p>Manages nausea, prevents heartburn, stabilizes blood sugar, and supports consistent fetal nutrient delivery. This single structural change addresses three of the most common adverse symptoms.</p>
+      </div>
+      <div class="top10-item" style="border-top: 3px solid var(--forest);">
+        <div class="top10-num" style="color:var(--forest);">05</div>
+        <h4>Sleep left-side with a pregnancy pillow from T2</h4>
+        <p>IPD meta-analysis links supine sleep with increased stillbirth risk. Left-side positioning also improves IVC blood flow, reduces edema, and reduces heartburn. A pregnancy pillow dramatically improves compliance.</p>
+      </div>
+      <div class="top10-item" style="border-top: 3px solid var(--coral);">
+        <div class="top10-num" style="color:var(--coral);">06</div>
+        <h4>Optimize iron intake and absorption</h4>
+        <p>Iron deficiency is the most common reversible cause of pregnancy fatigue. 27 mg/day. Pair with vitamin C; avoid calcium and coffee/tea within 1 hour of iron intake. Get ferritin checked — below 30 ng/mL warrants supplementation.</p>
+      </div>
+      <div class="top10-item" style="border-top: 3px solid var(--blue);">
+        <div class="top10-num" style="color:var(--blue);">07</div>
+        <h4>Supplement DHA/omega-3 separately (600–1,000 mg/day)</h4>
+        <p>Fetal brain and retina development depend on DHA, especially in the third trimester. Most prenatal vitamins contain inadequate amounts. A 2026 study confirmed omega-3 independently reduces preterm birth rates. Choose algae-based DHA if not eating fatty fish 2–3x/week.</p>
+      </div>
+      <div class="top10-item" style="border-top: 3px solid var(--green);">
+        <div class="top10-num" style="color:var(--green);">08</div>
+        <h4>Drink 8–12 cups of water daily — consistently</h4>
+        <p>Supports amniotic fluid volume, prevents constipation, reduces UTI risk, reduces edema, and may reduce preeclampsia risk. Paradoxically, drinking more water reduces water retention. Pale yellow urine is your practical target.</p>
+      </div>
+      <div class="top10-item" style="border-top: 3px solid var(--gold);">
+        <div class="top10-num" style="color:var(--gold);">09</div>
+        <h4>Actively manage stress with one evidence-based practice</h4>
+        <p>Chronic stress is a physiological risk factor, not just discomfort. Elevated cortisol is associated with preterm birth and low birth weight. Mindfulness programs, exercise, social support, and CBT-I all have evidence. Build at least one into daily routine.</p>
+      </div>
+      <div class="top10-item" style="border-top: 3px solid var(--coral);">
+        <div class="top10-num" style="color:var(--coral);">10</div>
+        <h4>Know the warning signs and seek care early</h4>
+        <p>No lifestyle protocol replaces prenatal care. Preeclampsia, preterm labor, GDM complications, and perinatal depression are all significantly better when caught early. Attend all appointments. Track fetal movement in T3. Advocate for yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER + PULL QUOTE 1 -->
+  <svg class="section-wave-divider" viewBox="0 0 900 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,14 C150,28 300,0 450,14 C600,28 750,0 900,14" fill="none" stroke="var(--stone)" stroke-width="1.5"/>
+  </svg>
+  <div class="pull-quote">
+    <p>Your body is running the most complex experiment it will ever run. Your job is to create the conditions for it to succeed.</p>
+  </div>
+
+  <!-- TRIMESTER ROADMAP -->
+  <section class="section" id="trimesters">
+    <div class="section-header">
+      <span class="section-marker marker-blue">Trimester Roadmap</span>
+      <h2>Week-by-Week Focus Areas</h2>
+    </div>
+    <p style="margin-bottom:28px; color:#5a5a5a; font-size:15px;">Each trimester has a distinct set of priorities. This is the sequence, not a checklist to do all at once.</p>
+
+    <!-- TRIMESTER TIMELINE -->
+    <div class="trimester-timeline" aria-label="Pregnancy journey timeline weeks 1 to 40">
+      <div class="timeline-label-row">
+        <span class="timeline-label tl-t1">T1 · Weeks 1–13 · Build Foundation</span>
+        <span class="timeline-label tl-t2">T2 · Weeks 14–27 · Performance Window</span>
+        <span class="timeline-label tl-t3">T3 · Weeks 28–40 · Prepare &amp; Protect</span>
+      </div>
+      <div class="timeline-bar-wrap">
+        <div class="tl-segment tl-seg-t1">
+          <!-- milestone: first prenatal -->
+          <div class="tl-milestone" style="left:62%;">
+            <div class="tl-milestone-dot" style="border-color:var(--green);"></div>
+            <div class="tl-milestone-label" style="color:var(--green);">Wk 9</div>
+          </div>
+        </div>
+        <div class="tl-segment tl-seg-t2">
+          <!-- milestone: anatomy scan -->
+          <div class="tl-milestone" style="left:43%;">
+            <div class="tl-milestone-dot" style="border-color:var(--blue);"></div>
+            <div class="tl-milestone-label" style="color:var(--blue);">Wk 20</div>
+          </div>
+          <!-- milestone: GDM screen -->
+          <div class="tl-milestone" style="left:85%;">
+            <div class="tl-milestone-dot" style="border-color:var(--blue);"></div>
+            <div class="tl-milestone-label" style="color:var(--blue);">Wk 28</div>
+          </div>
+        </div>
+        <div class="tl-segment tl-seg-t3">
+          <!-- milestone: perineal massage -->
+          <div class="tl-milestone" style="left:46%;">
+            <div class="tl-milestone-dot" style="border-color:var(--gold);"></div>
+            <div class="tl-milestone-label" style="color:var(--gold);">Wk 34</div>
+          </div>
+          <!-- milestone: full term -->
+          <div class="tl-milestone" style="left:87%;">
+            <div class="tl-milestone-dot" style="border-color:var(--gold); background:var(--gold);"></div>
+            <div class="tl-milestone-label" style="color:var(--gold);">Wk 40</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-week-markers">
+        <span>Wk 1</span>
+        <span>Wk 10</span>
+        <span>Wk 20</span>
+        <span>Wk 30</span>
+        <span>Wk 40</span>
+      </div>
+    </div>
+
+    <div class="trimester-grid">
+      <div class="trimester-card">
+        <div class="trimester-header t1">
+          <div class="weeks">Weeks 1–13</div>
+          <h3>First Trimester</h3>
+          <div class="focus-label">Build the Foundation</div>
+        </div>
+        <div class="trimester-body">
+          <h4>Nutrition</h4>
+          <ul>
+            <li>Start prenatal vitamin immediately</li>
+            <li>Verify folic acid and iodine coverage</li>
+            <li>Don't stress calories if nausea is severe — focus on tolerating food</li>
+            <li>Small, frequent meals; cold foods often more tolerable (less smell)</li>
+            <li>Ginger and B6 first-line for nausea</li>
+            <li>Begin iron-conscious eating: lean meats, legumes, leafy greens + vitamin C</li>
+          </ul>
+          <h4>Exercise</h4>
+          <ul>
+            <li>Continue pre-pregnancy exercise</li>
+            <li>If new: start with 10–15 min walks and build slowly</li>
+            <li>Honor severe fatigue in weeks 6–10</li>
+            <li>Begin pelvic floor exercises — start early, maintain throughout</li>
+            <li>Stay cool; exercise in climate-controlled environments</li>
+          </ul>
+          <h4>Sleep &amp; Stress</h4>
+          <ul>
+            <li>Lean into natural early bedtimes that fatigue enforces</li>
+            <li>Begin left-side sleeping habit before it becomes structural</li>
+            <li>Anxiety about the pregnancy is common and treatable — address it early</li>
+          </ul>
+          <h4>Key Appointments</h4>
+          <ul>
+            <li>First prenatal: typically weeks 8–10</li>
+            <li>Discuss supplements, genetic screening, exercise contraindications</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trimester-card">
+        <div class="trimester-header t2">
+          <div class="weeks">Weeks 14–27</div>
+          <h3>Second Trimester</h3>
+          <div class="focus-label">The Performance Window</div>
+        </div>
+        <div class="trimester-body">
+          <h4>Nutrition</h4>
+          <ul>
+            <li>Increase to +340 calories/day — nutrient-dense sources</li>
+            <li>DHA demand increases as fetal brain development accelerates (600–1,000 mg/day)</li>
+            <li>Choline critical for this window — eggs daily if tolerated</li>
+            <li>Monitor iron status with provider (blood volume expands rapidly)</li>
+            <li>Begin heartburn management: smaller meals, avoid triggers, elevate head of bed</li>
+            <li>Target 25–30g fiber/day to stay ahead of constipation</li>
+          </ul>
+          <h4>Exercise</h4>
+          <ul>
+            <li>Energy typically returns after week 14 — best trimester for fitness</li>
+            <li>Transition exercises off supine positions</li>
+            <li>Modify core: replace crunches with bird-dogs, standing core</li>
+            <li>Introduce prenatal yoga for back pain + mental health</li>
+            <li>Functional strength: squats, hinges, rows</li>
+          </ul>
+          <h4>Sleep</h4>
+          <ul>
+            <li>Begin using pregnancy pillow as belly growth disrupts natural position</li>
+            <li>If RLS emerges, discuss ferritin levels with provider</li>
+          </ul>
+          <h4>New Symptoms to Watch</h4>
+          <ul>
+            <li>Back pain emerges mid-T2 — begin stability work before it's severe</li>
+            <li>Round ligament pain peaks weeks 14–20 — move slowly</li>
+            <li>Heartburn often begins week 20+ — implement dietary strategies preemptively</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trimester-card">
+        <div class="trimester-header t3">
+          <div class="weeks">Weeks 28–40</div>
+          <h3>Third Trimester</h3>
+          <div class="focus-label">Prepare and Protect</div>
+        </div>
+        <div class="trimester-body">
+          <h4>Nutrition</h4>
+          <ul>
+            <li>Increase to +450 calories/day; protein targets critical</li>
+            <li>If GDM screening positive: LGI diet + consistent exercise immediately</li>
+            <li>Hydration critical — amniotic fluid volume depends on it</li>
+            <li>Small, frequent meals essential — stomach physically compressed</li>
+            <li>Continue DHA — highest brain accumulation occurs in T3</li>
+          </ul>
+          <h4>Exercise</h4>
+          <ul>
+            <li>Walking and swimming most universally appropriate</li>
+            <li>Reduce impact; avoid high-fall-risk activities</li>
+            <li>Birth prep movements: hip opening, cat-cow, supported squats</li>
+            <li>Continue pelvic floor work; add perineal massage after week 34</li>
+            <li>Vigorous exercise remains safe if you feel well and have no contraindications</li>
+          </ul>
+          <h4>Sleep</h4>
+          <ul>
+            <li>Full pregnancy pillow for complete support</li>
+            <li>Left-side sleeping most important now — IVC compression risk highest</li>
+            <li>Accept that perfect sleep is unlikely; prioritize rest over sleep</li>
+          </ul>
+          <h4>Mental Preparation</h4>
+          <ul>
+            <li>Birth plan development reduces anxiety</li>
+            <li>Childbirth education classes address fear of the unknown</li>
+            <li>Partner engagement is independently associated with better outcomes</li>
+          </ul>
+          <h4>Physical Monitoring</h4>
+          <ul>
+            <li>Establish baseline kick counts (10 movements in 2 hours)</li>
+            <li>Blood pressure surveillance increases — preeclampsia peaks late T3</li>
+            <li>Watch for preterm labor before week 37</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE PILLARS: NUTRITION -->
+  <section class="section" id="nutrition">
+    <div class="section-header">
+      <span class="section-marker marker-green">Core Pillar 01</span>
+      <h2>Nutrition</h2>
+    </div>
+    <p class="pillar-intro">Food is the primary input signal for two ecosystems at once. The goal isn't eating perfectly — it's covering the nutrients that are genuinely difficult to get from diet alone and setting a rhythm that works with your symptoms.</p>
+
+    <h3>Caloric Needs by Trimester</h3>
+    <div class="top10-grid" style="margin-bottom:24px;">
+      <div class="top10-item" style="border-top:3px solid var(--blue);">
+        <div class="top10-num" style="color:var(--blue); font-size:20px;">T1</div>
+        <h4>First Trimester (Weeks 1–13)</h4>
+        <p>No additional calories above pre-pregnancy baseline. If nausea is severe, just focus on tolerating food. Quality over quantity.</p>
+      </div>
+      <div class="top10-item" style="border-top:3px solid var(--green);">
+        <div class="top10-num" style="color:var(--green); font-size:20px;">T2</div>
+        <h4>Second Trimester (Weeks 14–27)</h4>
+        <p>+340 calories/day above baseline. Focus on nutrient-dense sources — this is not 340 calories of crackers.</p>
+      </div>
+      <div class="top10-item" style="border-top:3px solid var(--copper);">
+        <div class="top10-num" style="color:var(--copper); font-size:20px;">T3</div>
+        <h4>Third Trimester (Weeks 28–40)</h4>
+        <p>+450 calories/day. Protein targets become critical as fetal muscle development peaks. Small meals are essential — the stomach is physically compressed.</p>
+      </div>
+    </div>
+
+    <h3>Key Nutrients</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nutrient</th><th>Daily Target</th><th>Primary Sources</th><th>Why It Matters</th></tr></thead>
+        <tbody>
+          <tr class="nutrient-row-highlight"><td><strong>Folate / Folic Acid</strong></td><td>600 mcg (supplement: 400–800 mcg)</td><td>Leafy greens, legumes, fortified grains; prenatal supplement critical</td><td>Neural tube defect prevention — must begin before conception</td></tr>
+          <tr><td><strong>Iron</strong></td><td>27 mg</td><td>Lean red meat, poultry, fish, legumes, dark leafy greens, fortified cereals</td><td>Supports blood volume expansion; prevents anemia and fatigue</td></tr>
+          <tr class="nutrient-row-highlight"><td><strong>Calcium</strong></td><td>1,000 mg (1,300 mg if &lt;18)</td><td>Dairy, fortified plant milks, leafy greens, sardines</td><td>Fetal bone/teeth development; reduces preeclampsia risk</td></tr>
+          <tr><td><strong>Omega-3 (DHA+EPA)</strong></td><td>250–300 mg DHA minimum; experts recommend 600–1,000 mg total</td><td>Fatty fish (salmon, sardines, mackerel 2–3×/week), algae-based supplements</td><td>Fetal brain and retina development; reduces preterm birth risk</td></tr>
+          <tr class="nutrient-row-highlight"><td><strong>Choline</strong></td><td>450 mg</td><td>Eggs (1 egg = ~147mg), beef, chicken, fish, soybeans</td><td>Brain and spinal cord development; often absent from prenatal vitamins</td></tr>
+          <tr><td><strong>Vitamin D</strong></td><td>600–2,000 IU</td><td>Fortified milk, fatty fish, sunlight; most prenatal vitamins underdose this</td><td>Bone development, immune function, preeclampsia risk reduction</td></tr>
+          <tr class="nutrient-row-highlight"><td><strong>Iodine</strong></td><td>220 mcg</td><td>Iodized salt, dairy, seafood, prenatal vitamins with 150 mcg iodine</td><td>Thyroid hormone production; critical for fetal neurocognitive development</td></tr>
+          <tr><td><strong>Magnesium</strong></td><td>350–360 mg</td><td>Nuts, seeds, legumes, whole grains, dark chocolate, leafy greens</td><td>Muscle function, blood pressure, sleep; reduces cramp and preeclampsia risk</td></tr>
+          <tr class="nutrient-row-highlight"><td><strong>Vitamin B6</strong></td><td>1.9 mg (therapeutic for nausea: 10–25mg TID)</td><td>Poultry, fish, potatoes, bananas, fortified cereals</td><td>Fetal brain development; first-line nausea treatment</td></tr>
+          <tr><td><strong>Zinc</strong></td><td>11 mg</td><td>Red meat, shellfish, legumes, nuts, seeds</td><td>Cellular growth and immune function</td></tr>
+          <tr class="nutrient-row-highlight"><td><strong>Protein</strong></td><td>71–100g/day</td><td>Meat, poultry, fish, eggs, legumes, dairy, tofu</td><td>Fetal tissue building; meeting targets associated with better sleep quality</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+      <div class="card card-green">
+        <h4>Foods to Prioritize</h4>
+        <ul>
+          <li>Colorful vegetables — especially leafy greens (spinach, kale, broccoli)</li>
+          <li>Whole grains over refined grains (fiber + nutrients)</li>
+          <li>Legumes: beans, lentils, chickpeas (iron, folate, fiber, protein)</li>
+          <li>Fatty fish 2–3×/week: salmon, sardines, trout, herring (low-mercury)</li>
+          <li>Eggs daily if tolerated (choline, protein, vitamin D, B12)</li>
+          <li>Full-fat dairy or fortified plant alternatives (calcium, iodine, D)</li>
+          <li>Nuts and seeds (magnesium, healthy fats, protein)</li>
+          <li>Berries and citrus (vitamin C enhances iron absorption)</li>
+        </ul>
+      </div>
+      <div class="card card-coral">
+        <h4>Foods to Limit or Avoid</h4>
+        <ul>
+          <li>High-mercury fish: shark, swordfish, king mackerel, tilefish, bigeye tuna</li>
+          <li>Raw or undercooked meat, poultry, seafood (listeria, salmonella, toxoplasma)</li>
+          <li>Unpasteurized dairy and soft cheeses (listeria)</li>
+          <li>Raw sprouts (E. coli, salmonella)</li>
+          <li>Processed meats unless heated to steaming (listeria)</li>
+          <li>Caffeine &gt;200mg/day (~1 standard cup of coffee) per ACOG</li>
+          <li>Alcohol — no safe amount established</li>
+          <li>High-sodium processed foods (blood pressure, edema)</li>
+          <li>Added sugar and high-glycemic foods (GDM risk)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-gold">
+      <h4>Meal Timing Strategy</h4>
+      <ul>
+        <li>5–6 small meals rather than 3 large ones (manages nausea, heartburn, blood sugar)</li>
+        <li>Eat protein at every meal — stabilizes blood sugar and satiety</li>
+        <li>Breakfast within 30 minutes of waking — prevents nausea from empty stomach</li>
+        <li>Last meal 2–3 hours before bed — reduces heartburn</li>
+        <li>Pair iron-rich foods with vitamin C sources</li>
+        <li>Avoid calcium and coffee/tea within 1 hour of iron-rich meals</li>
+      </ul>
+    </div>
+
+    <div class="card card-blue">
+      <h4>Hydration Target: 8–12 cups (64–96 oz) per day</h4>
+      <p>ACOG recommendation. Total daily water intake target ~3L from all beverages and food. Supports amniotic fluid volume, prevents UTIs, reduces constipation, and counterintuitively helps reduce edema. Signs of adequate hydration: pale yellow urine. Increase in heat, humidity, or during exercise.</p>
+    </div>
+
+    <div class="note-box" style="margin-top:8px;">
+      <strong>Critical Finding on Prenatal Vitamins</strong>
+      A 2023 analysis of 421 prenatal supplements found that of 69 products containing six key nutrients, <em>only one</em> met ACOG target doses for all six. Most prenatal vitamins underdose iodine, choline, and omega-3. Supplement with choline and omega-3 (algae-based DHA if not eating fish) separately. Verify your prenatal contains 150 mcg iodine — this is the most commonly missing nutrient.
+    </div>
+  </section>
+
+  <!-- CORE PILLARS: EXERCISE -->
+  <section class="section" id="exercise">
+    <div class="section-header">
+      <span class="section-marker marker-blue">Core Pillar 02</span>
+      <h2>Exercise</h2>
+    </div>
+    <p class="pillar-intro">Movement is the most overlapping intervention in this entire guide. One practice that simultaneously reduces GDM risk, back pain, mood disorders, constipation, preeclampsia risk, and fatigue. If you only optimize one variable, make it this.</p>
+
+    <div class="card card-green" style="margin-bottom:20px;">
+      <h4>ACOG Recommendation</h4>
+      <p>At least 150 minutes of moderate-intensity aerobic activity per week for uncomplicated pregnancies. Regular exercise (3+ times/week) preferable to intermittent activity. Moderate intensity = able to hold a conversation, slightly breathless (RPE 12–14 on Borg scale).</p>
+    </div>
+
+    <div class="card card-blue" style="margin-bottom:20px;">
+      <h4>General Safety Principles</h4>
+      <ul>
+        <li>Stay cool and hydrated — overheating, especially in the first trimester, is the primary risk</li>
+        <li>Avoid lying flat on your back after the first trimester (compresses IVC)</li>
+        <li>Avoid contact sports and high-fall-risk activities in all trimesters</li>
+        <li>Stop if you experience pain, bleeding, dizziness, shortness of breath, or chest pain</li>
+      </ul>
+    </div>
+
+    <h3>Safe Exercises by Trimester</h3>
+    <div class="table-wrap" style="margin-bottom:20px;">
+      <table>
+        <thead><tr><th>Trimester</th><th>What Works Well</th><th>Key Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>First (Weeks 1–13)</strong></td>
+            <td>Walking, swimming, stationary cycling, yoga, Pilates, strength training, running (if already conditioned)</td>
+            <td>Continue pre-pregnancy exercise. Establish pelvic floor routine NOW. Honor severe fatigue in weeks 6–10 — even light movement maintains the habit.</td>
+          </tr>
+          <tr>
+            <td><strong>Second (Weeks 14–27)</strong></td>
+            <td>Walking, swimming, water aerobics, prenatal yoga, strength training, stationary cycling</td>
+            <td>Energy typically returns — best trimester for building fitness. Avoid supine exercises (flat on back). Balance shifts; avoid high-fall-risk activities. Pelvic floor critical as load increases.</td>
+          </tr>
+          <tr>
+            <td><strong>Third (Weeks 28–40)</strong></td>
+            <td>Walking, swimming, water aerobics, birth preparation movements (cat-cow, hip circles, squats)</td>
+            <td>Water-based exercise ideal — offloads joint stress. Reduce impact; ligaments maximally lax. Vigorous exercise remains safe per ACOG (2020) for healthy pregnancies — don't be bullied into stopping if you feel well.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Evidence-Backed Protocols</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+      <div class="card card-blue">
+        <h4>Walking</h4>
+        <p>The most accessible and evidence-supported intervention. 30 minutes most days reduces GDM risk, back pain, mood disorders, and constipation. Even 10-minute increments count toward the 150-minute weekly target.</p>
+      </div>
+      <div class="card card-green">
+        <h4>Swimming / Water Aerobics</h4>
+        <p>Non-weight-bearing protects joints; water pressure acts as natural compression for edema. Recommended as ideal third-trimester exercise. Comfort increases dramatically as belly grows.</p>
+      </div>
+      <div class="card card-gold">
+        <h4>Prenatal Yoga</h4>
+        <p>Systematic review (BMC Pregnancy &amp; Childbirth, 2022): benefits for anxiety, depression, low back pain, and sleep. Meta-analysis showed reduced in-labor cesarean rates. No adverse events in any published trial. Excellent for breath training applicable to labor.</p>
+      </div>
+      <div class="card card-copper">
+        <h4>Pelvic Floor Training (Kegels)</h4>
+        <p>Protocol: 3 sets of 10–15 contractions (hold 3–10 sec each), 3×/day. 2024 meta-analysis confirmed reduced urinary incontinence and possible reduction in episiotomy/perineal tear rates. Start Week 1. Maintain throughout. Add perineal massage after 34 weeks.</p>
+      </div>
+    </div>
+
+    <div class="card card-coral">
+      <h4>Absolute Contraindications (per ACOG)</h4>
+      <p>Severe anemia, unevaluated cardiac arrhythmia, placenta previa after 26 weeks, preterm labor, ruptured membranes, preeclampsia, incompetent cervix/cerclage, persistent second/third trimester bleeding. If any of these apply, exercise decisions must go through your provider.</p>
+    </div>
+
+    <div class="caution-box" style="margin-top:16px;">
+      <strong>Stop Exercise and Call Your Provider If:</strong>
+      Vaginal bleeding, dizziness, shortness of breath before exertion begins, chest pain, headache, calf pain or swelling, preterm labor contractions, amniotic fluid leaking, or decreased fetal movement.
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER + PULL QUOTE 2 -->
+  <svg class="section-wave-divider" viewBox="0 0 900 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,14 C150,0 300,28 450,14 C600,0 750,28 900,14" fill="none" stroke="var(--stone)" stroke-width="1.5"/>
+  </svg>
+  <div class="pull-quote">
+    <p>The evidence is clear on one thing: movement is medicine. 150 minutes a week touches more symptoms than any supplement.</p>
+  </div>
+
+  <!-- CORE PILLARS: SLEEP -->
+  <section class="section" id="sleep-pillar">
+    <div class="section-header">
+      <span class="section-marker marker-copper">Core Pillar 03</span>
+      <h2>Sleep</h2>
+    </div>
+    <p class="pillar-intro">Poor sleep in pregnancy is not merely uncomfortable — it's independently associated with gestational diabetes, preeclampsia, preterm birth, and postpartum depression. This is a physiological variable worth optimizing seriously.</p>
+
+    <div class="top10-grid" style="margin-bottom:20px;">
+      <div class="card card-green">
+        <h4>Positioning: Left-Side Sleeping</h4>
+        <p>Left-side sleeping is recommended from the second trimester onward. An IPD meta-analysis found an association between supine (back) sleeping and increased stillbirth risk, particularly in late pregnancy. Right-side sleeping is still considered safe — the goal is simply avoiding flat-back. A C-shaped or U-shaped pregnancy pillow or belly wedge + knee pillow achieves this with minimal friction.</p>
+      </div>
+      <div class="card card-blue">
+        <h4>Sleep Hygiene Adaptations</h4>
+        <ul>
+          <li>Consistent sleep and wake times — even through discomfort</li>
+          <li>Bedroom temperature 65–68°F (18–20°C) — metabolic demands make temperature regulation more critical</li>
+          <li>Eliminate screens 30–60 min before bed (blue light suppresses melatonin)</li>
+          <li>Wind-down routine: warm bath, light stretching, reading</li>
+          <li>Limit fluids 2 hours before bed to reduce nocturnal urination waking</li>
+          <li>Keep bathroom light dim at night — bright light causes significant arousal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-gold" style="margin-bottom:16px;">
+      <h4>CBT-I: Cognitive Behavioral Therapy for Insomnia — Gold Standard</h4>
+      <p>The most evidence-supported non-pharmacological treatment for pregnancy insomnia. A 2024 RCT found that a 5-week CBT-I intervention (weeks 12–28) not only improved sleep but significantly reduced depressive symptoms at 6 months postpartum. CBT-I apps (e.g., Sleepio) can deliver key components digitally. Core components: sleep restriction, stimulus control, cognitive restructuring, relaxation training.</p>
+    </div>
+
+    <div class="card card-copper" style="margin-bottom:16px;">
+      <h4>Supplements with Reasonable Safety Profiles</h4>
+      <p><strong>Magnesium glycinate 200–400mg before bed:</strong> Supports GABA activity, reduces muscle cramps, generally recognized as safe in pregnancy.</p>
+      <p style="margin-top:10px;"><strong>Melatonin:</strong> Limited data in pregnancy. Some providers cautiously approve short-term use of low doses (0.5–1mg). Melatonin does cross the placenta — consult your provider before using.</p>
+    </div>
+
+    <div class="note-box">
+      <strong>Rest Without Full Sleep</strong>
+      For insomnia that cannot be fully resolved, 20–30 minute daytime naps reduce total sleep debt without significantly disrupting nighttime architecture. Accept that perfect sleep may be off the table in the third trimester — the goal shifts to maximizing rest.
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER + PULL QUOTE 3 -->
+  <svg class="section-wave-divider" viewBox="0 0 900 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,14 C150,28 300,0 450,14 C600,28 750,0 900,14" fill="none" stroke="var(--stone)" stroke-width="1.5"/>
+  </svg>
+  <div class="pull-quote">
+    <p>Sleep isn't a luxury during pregnancy — it's infrastructure. Protect it like you'd protect any critical system.</p>
+  </div>
+
+  <!-- CORE PILLARS: STRESS -->
+  <section class="section" id="stress">
+    <div class="section-header">
+      <span class="section-marker marker-gold">Core Pillar 04</span>
+      <h2>Stress Management</h2>
+    </div>
+    <p class="pillar-intro">Chronic stress during pregnancy is not just a comfort issue — it's a physiological risk factor. Elevated cortisol is associated with preterm birth, low birth weight, and infant developmental outcomes. Managing stress is pregnancy healthcare.</p>
+
+    <h3>Evidence-Based Interventions</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+      <div class="card card-blue">
+        <h4>Mindfulness-Based Interventions (MBSR/MBCT)</h4>
+        <p>Multiple systematic reviews confirm benefits for anxiety, depression, and perceived stress. A comprehensive 2025 meta-analysis (Healthcare, MDPI) found significant reductions across all three measures. An 8-week MBCT program showed improvements in anxiety, depression, worry, and self-compassion. Even digital/app-based programs show benefit with less than 30 minutes per week of engagement (JMIR, 2025).</p>
+      </div>
+      <div class="card card-green">
+        <h4>Exercise</h4>
+        <p>Already documented across every other symptom category — moderate aerobic exercise is one of the most reliably effective interventions for mood and anxiety. 30 minutes most days. The mechanism is real and well-established.</p>
+      </div>
+      <div class="card card-copper">
+        <h4>Breathwork</h4>
+        <p>Diaphragmatic breathing and 4-7-8 breath patterns activate the parasympathetic nervous system within minutes. No pregnancy-specific RCT data, but the physiological mechanism is well-established. Useful for acute anxiety and as labor preparation — a skill you'll actually use.</p>
+      </div>
+      <div class="card card-gold">
+        <h4>Social Support</h4>
+        <p>One of the most robustly protective factors across all perinatal mental health research. Active maintenance of close relationships, participation in prenatal group classes, and peer support communities all matter. Partner involvement in prenatal care appointments is independently associated with better outcomes.</p>
+      </div>
+      <div class="card card-blue">
+        <h4>Nature Exposure</h4>
+        <p>Emerging evidence suggests regular time outdoors in natural settings reduces cortisol and improves mood. Consistent with exercise benefits when walks are taken in parks or natural environments — an easy way to stack two interventions.</p>
+      </div>
+      <div class="card card-copper">
+        <h4>Journaling / Expressive Writing</h4>
+        <p>Low-cost, zero-risk intervention with modest evidence for stress reduction. Particularly useful for processing anxieties about birth and parenting. No downside to trying it.</p>
+      </div>
+    </div>
+
+    <div class="caution-box">
+      <strong>When to Seek Professional Help</strong>
+      Anxiety or low mood persisting more than 2 weeks · Panic attacks or inability to function · Intrusive thoughts or fears that cannot be managed · History of depression, anxiety disorder, trauma, or eating disorder (all increase perinatal risk) · Any thoughts of self-harm. Perinatal mental health specialists, CBT therapists, and IPT practitioners have specific training in pregnancy-related presentations. Pharmacotherapy (SSRIs) is used when clinical need outweighs risk — this decision belongs to a qualified provider.
+    </div>
+  </section>
+
+  <!-- CORE PILLARS: SUPPLEMENTS -->
+  <section class="section" id="supplements">
+    <div class="section-header">
+      <span class="section-marker marker-copper">Core Pillar 05</span>
+      <h2>Supplementation</h2>
+    </div>
+    <p class="pillar-intro">Food first. Supplements fill gaps that cannot be closed with diet alone — especially when nausea limits intake or dietary restrictions apply. This is a tiered framework: start with universals, add the strongly recommended, then consider targeted options based on your specific signals.</p>
+
+    <div style="margin-bottom:24px;">
+      <span class="tier-label tier-1">Tier 1 — Universal</span>
+      <p style="font-size:14px; color:#5a5a5a; margin-bottom:12px;">Evidence very strong; ACOG/WHO recommend for all pregnancies</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Supplement</th><th>Dose</th><th>Timing</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Folic Acid</strong></td><td>400–800 mcg/day (higher doses for prior NTD history or certain medications)</td><td>Begin at least 1 month before conception; continue through 12 weeks minimum; maintain in prenatal through term</td><td>Neural tube defect reduction — well-established RCT + epidemiological evidence</td></tr>
+            <tr><td><strong>Prenatal Multivitamin</strong></td><td>Per product label</td><td>Daily throughout pregnancy</td><td>Baseline coverage of folate, iron, iodine, B12, zinc</td></tr>
+            <tr><td><strong>Iron</strong></td><td>27 mg/day total (from prenatal + diet); supplement separately if anemic</td><td>With vitamin C for absorption; avoid with calcium or coffee/tea</td><td>Prevents IDA; reduces fatigue, supports oxygen delivery to baby</td></tr>
+            <tr><td><strong>Iodine</strong></td><td>150 mcg/day from prenatal (verify it's there)</td><td>With prenatal</td><td>Fetal neurocognitive development; most commonly missing nutrient in prenatal vitamins</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <span class="tier-label tier-2">Tier 2 — Strongly Recommended for Most Women</span>
+      <p style="font-size:14px; color:#5a5a5a; margin-bottom:12px;">Evidence strong; dietary gaps are common regardless of diet quality</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Supplement</th><th>Dose</th><th>Timing</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td><strong>DHA / Omega-3</strong></td><td>200–300 mg DHA minimum; experts recommend 600–1,000 mg DHA+EPA</td><td>With a fatty meal</td><td>Fetal brain + retina development; 2026 study confirms reduced preterm birth and SGA rates independently</td></tr>
+            <tr><td><strong>Choline</strong></td><td>450 mg/day (most women don't reach this from diet alone)</td><td>With meals</td><td>Brain and spine development; typically absent from prenatal vitamins — must supplement separately</td></tr>
+            <tr><td><strong>Vitamin D</strong></td><td>1,500–2,000 IU/day (ACOG conditional; most women are deficient)</td><td>With a fatty meal</td><td>Bone development, immune function, preeclampsia risk; standard 600 IU in prenatal is likely insufficient for most women</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <span class="tier-label tier-3">Tier 3 — Targeted / Situational</span>
+      <p style="font-size:14px; color:#5a5a5a; margin-bottom:12px;">Use based on individual symptoms, testing, and provider guidance</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Supplement</th><th>Dose</th><th>Indication</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Magnesium Glycinate</strong></td><td>200–400 mg before bed</td><td>Leg cramps, sleep disruption, anxiety, blood pressure support</td><td>Moderate for cramps; clinical consensus for sleep and anxiety; generally safe</td></tr>
+            <tr><td><strong>Vitamin B6 (Pyridoxine)</strong></td><td>10–25 mg TID (with food)</td><td>Nausea / vomiting</td><td>Strong — ACOG first-line recommendation; 2025 Wiley review cautions against &gt;100mg/day</td></tr>
+            <tr><td><strong>Ginger</strong></td><td>250 mg capsule 4×/day (1g total/day)</td><td>Nausea / vomiting</td><td>Strong — multiple RCTs show comparable or superior efficacy to B6</td></tr>
+            <tr><td><strong>Probiotics</strong></td><td>Product-dependent</td><td>Constipation, gut dysbiosis</td><td>Emerging moderate evidence (2024); Lactobacillus-based products best studied</td></tr>
+            <tr><td><strong>Calcium</strong></td><td>1,000–1,200 mg/day from total diet + supplement</td><td>Preeclampsia prevention (low-intake populations), leg cramps, bone health</td><td>Strong for preeclampsia in calcium-deficient populations</td></tr>
+            <tr><td><strong>Low-dose Aspirin (81 mg)</strong></td><td>81 mg/day</td><td>High-risk preeclampsia prevention only — medical decision, never self-prescribed</td><td>Very strong (USPSTF Grade B); initiate before 16 weeks</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <span class="tier-label tier-avoid">Avoid or Use with Caution</span>
+    </div>
+    <div class="card card-coral">
+      <ul>
+        <li><strong>Vitamin A (retinol) &gt;10,000 IU/day:</strong> Teratogenic at high doses; beta-carotene is safe</li>
+        <li><strong>High-dose Vitamin B6 (&gt;100mg/day):</strong> Potential fetal risk confirmed in 2025 systematic review</li>
+        <li><strong>Herbal supplements:</strong> Most lack safety data in pregnancy; black cohosh, blue cohosh, pennyroyal, and many others are explicitly contraindicated — avoid unless specifically cleared by your provider</li>
+        <li><strong>Fat-soluble vitamins (A, D, E, K) at high doses:</strong> Risk of toxicity; do not double up on prenatal + additional high-dose supplements without provider oversight</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER + PULL QUOTE 4 -->
+  <svg class="section-wave-divider" viewBox="0 0 900 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,14 C150,0 300,28 450,14 C600,0 750,28 900,14" fill="none" stroke="var(--stone)" stroke-width="1.5"/>
+  </svg>
+  <div class="pull-quote">
+    <p>Every symptom is a signal. The goal isn't to silence them all — it's to understand what your ecosystem is telling you.</p>
+  </div>
+
+  <section class="section" id="symptoms">
+    <div class="section-header">
+      <span class="section-marker marker-blue">Symptom Guide</span>
+      <h2>Symptom-by-Symptom Protocols</h2>
+    </div>
+    <p style="margin-bottom:28px; color:#5a5a5a; font-size:15px;">Here's what the evidence actually says for each common symptom — organized by intervention strength, not by what's easiest to recommend. Every body responds differently; treat these as experiments worth running.</p>
+
+    <!-- NAUSEA -->
+    <div class="symptom-card" id="nausea">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 01</div>
+          <h3>Nausea / Morning Sickness</h3>
+          <div class="symptom-prevalence">Affects ~85% of pregnancies · Peaks week 9 · Typically resolves weeks 12–16</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">Nausea is one of the most common and most miserable early pregnancy experiences. The good news: several interventions have genuinely strong RCT evidence. You don't have to white-knuckle through it.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Eat small, frequent meals (5–6/day)</td><td><span class="badge badge-consensus">Consensus</span></td><td>Prevents empty stomach, which worsens nausea</td></tr>
+              <tr><td>Ginger (1g/day in divided doses — 250mg capsule 4×/day)</td><td><span class="badge badge-strong">Strong</span></td><td>Multiple RCTs; shown equivalent or superior to B6 in head-to-head trials</td></tr>
+              <tr><td>Vitamin B6 (pyridoxine) 10–25mg 3×/day</td><td><span class="badge badge-strong">Strong</span></td><td>ACOG first-line recommendation; two large RCTs confirmed significant reduction vs. placebo</td></tr>
+              <tr><td>Acupressure (P6 wrist point / Sea-Bands)</td><td><span class="badge badge-moderate">Moderate</span></td><td>Several RCTs show modest benefit; very low risk, worth trying</td></tr>
+              <tr><td>Cold, bland, low-fat foods</td><td><span class="badge badge-consensus">Consensus</span></td><td>High-fat and spicy foods are commonly reported triggers</td></tr>
+              <tr><td>Avoid strong smells</td><td><span class="badge badge-consensus">Consensus</span></td><td>Olfactory triggers are a major initiator for many women</td></tr>
+              <tr><td>Adequate hydration</td><td><span class="badge badge-consensus">Consensus</span></td><td>Dehydration worsens nausea in a feedback loop</td></tr>
+              <tr><td>Take prenatal vitamin with food or at bedtime</td><td><span class="badge badge-consensus">Consensus</span></td><td>Iron in prenatal vitamins can worsen nausea; try taking at night</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="caution-box">
+          <strong>Caution</strong>
+          A 2025 systematic review flagged that high-dose B6 above 100mg/day may carry fetal risk. Stay within the 10–25mg per dose, 3×/day therapeutic range. When lifestyle fails, escalate to doxylamine-B6 combination (Diclegis/Bonjesta). Hyperemesis gravidarum requires IV hydration and medical management — do not try to manage it with ginger alone.
+        </div>
+      </div>
+    </div>
+
+    <!-- FATIGUE -->
+    <div class="symptom-card" id="fatigue">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 02</div>
+          <h3>Fatigue</h3>
+          <div class="symptom-prevalence">First trimester (progesterone-driven) + third trimester (physical burden) · Iron deficiency is the most treatable cause</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">First-trimester fatigue is largely hormonal and cannot be fully overridden — but iron-deficiency anemia, the most common nutritional deficiency in pregnancy, is the big reversible variable. Get your ferritin checked.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Iron optimization (27mg/day from diet + supplements)</td><td><span class="badge badge-strong">Strong</span></td><td>IDA is the most common reversible cause of pregnancy fatigue</td></tr>
+              <tr><td>Moderate aerobic exercise (150 min/week)</td><td><span class="badge badge-strong">Moderate–Strong</span></td><td>Counterintuitive but true: exercise improves energy and reduces fatigue perception over time</td></tr>
+              <tr><td>Short naps (20–30 min)</td><td><span class="badge badge-consensus">Consensus</span></td><td>Brief naps reduce sleep debt without disrupting nighttime architecture</td></tr>
+              <tr><td>Protein adequacy (71–100g/day)</td><td><span class="badge badge-moderate">Moderate</span></td><td>Meeting protein targets associated with better sleep efficiency and sustained energy</td></tr>
+              <tr><td>Strategic caffeine reduction (cap at &lt;200mg/day)</td><td><span class="badge badge-consensus">Consensus</span></td><td>ACOG recommendation; excessive caffeine worsens sleep quality in a feedback loop</td></tr>
+              <tr><td>Pair iron foods with vitamin C; avoid calcium + coffee within 1hr of iron</td><td><span class="badge badge-consensus">Clinical Guidance</span></td><td>Vitamin C (e.g., OJ) can double iron absorption from plant sources</td></tr>
+              <tr><td>Rule out thyroid dysfunction (TSH screening)</td><td><span class="badge badge-consensus">Medical</span></td><td>Hypothyroidism is common in pregnancy and frequently missed; ask your provider</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK PAIN -->
+    <div class="symptom-card" id="back-pain">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 03</div>
+          <h3>Back Pain / Joint Pain</h3>
+          <div class="symptom-prevalence">Low back pain: ~50–70% · Pelvic girdle pain: ~20–25% · Relaxin loosens ligaments throughout</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">Exercise doesn't consistently prevent back pain from starting — but it significantly improves your ability to manage it and maintain function when it does. Treat movement as management and resilience, not purely prevention.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Regular exercise (aerobic + strengthening combined)</td><td><span class="badge badge-strong">Strong</span></td><td>2024 systematic review: exercise + education superior to education alone for pain management</td></tr>
+              <tr><td>Pelvic floor / core stabilization exercises</td><td><span class="badge badge-moderate">Moderate</span></td><td>Functional stability specifically targets pelvic girdle pain; start early</td></tr>
+              <tr><td>Prenatal yoga</td><td><span class="badge badge-moderate">Moderate</span></td><td>Multiple RCTs show reduced low back pain scores; also benefits sleep and mood</td></tr>
+              <tr><td>Proper body mechanics (bending, lifting, sleeping)</td><td><span class="badge badge-consensus">Consensus</span></td><td>Neutral spine positions reduce compressive load — no formal RCT needed to justify this</td></tr>
+              <tr><td>Pregnancy support belt / SI joint belt</td><td><span class="badge badge-consensus">Consensus</span></td><td>Reduces pelvic girdle stress; particularly useful for women with diagnosed PGP</td></tr>
+              <tr><td>Swimming / water exercise</td><td><span class="badge badge-consensus">Consensus</span></td><td>Offloads spine weight; warm water reduces muscle tension; ideal third-trimester exercise</td></tr>
+              <tr><td>Sleep with pillow between knees (side-lying)</td><td><span class="badge badge-consensus">Consensus</span></td><td>Maintains hip alignment, reduces lumbar torsion overnight</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">
+          <strong>Key Research Note</strong>
+          Exercise does not consistently prevent the <em>onset</em> of pelvic girdle pain or back pain, but it significantly improves ability to manage it and functional status when pain is present. A 2024 review (15 RCTs) found exercise reduces low back pain risk by ~9%. Not huge for prevention — but meaningful for resilience.
+        </div>
+      </div>
+    </div>
+
+    <!-- SWELLING -->
+    <div class="symptom-card" id="swelling">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 04</div>
+          <h3>Swelling (Edema)</h3>
+          <div class="symptom-prevalence">Physiological edema affects ~80% · Primarily third trimester · IVC compression + blood volume expansion</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">Edema is largely structural — your blood volume increases 40–50% during pregnancy. But there's a lot you can do to manage it. The compression stocking evidence is better than most people expect.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Compression stockings (15–20 mmHg, knee-high)</td><td><span class="badge badge-strong">Strong</span></td><td>RCT showed ~6× less ankle/calf diameter increase vs. control group — genuinely impressive result</td></tr>
+              <tr><td>Left-side sleeping</td><td><span class="badge badge-consensus">Consensus + Physiology</span></td><td>Relieves IVC compression; improves venous return from lower extremities</td></tr>
+              <tr><td>Leg elevation above heart level</td><td><span class="badge badge-consensus">Consensus</span></td><td>Reduces hydrostatic pressure; do this during seated work or rest breaks</td></tr>
+              <tr><td>Regular walking / movement breaks</td><td><span class="badge badge-consensus">Consensus</span></td><td>Even 5–10 min walks improve circulation and reduce venous pooling</td></tr>
+              <tr><td>Reduce sodium intake</td><td><span class="badge badge-consensus">Consensus</span></td><td>Excess dietary sodium promotes fluid retention throughout the body</td></tr>
+              <tr><td>Adequate hydration (8–12 cups/day)</td><td><span class="badge badge-consensus">Consensus</span></td><td>Counterintuitively, adequate hydration reduces fluid retention</td></tr>
+              <tr><td>Cool water immersion for feet (20 min)</td><td><span class="badge badge-consensus">Consensus</span></td><td>Reduces swelling acutely; pleasant and zero-risk</td></tr>
+              <tr><td>Avoid prolonged standing or sitting</td><td><span class="badge badge-consensus">Consensus</span></td><td>Stagnation worsens venous pooling; movement is the antidote</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="caution-box">
+          <strong>Red Flag</strong>
+          Sudden, severe, or asymmetric swelling — especially in the face or hands — warrants immediate evaluation for preeclampsia. Unilateral leg swelling with pain or redness requires DVT screening. These are not lifestyle-manageable presentations.
+        </div>
+      </div>
+    </div>
+
+    <!-- HEARTBURN -->
+    <div class="symptom-card" id="heartburn">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 05</div>
+          <h3>Heartburn / Acid Reflux (GERD)</h3>
+          <div class="symptom-prevalence">Affects ~66% of pregnant women · ~25% report daily symptoms · Progesterone relaxes the lower esophageal sphincter</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">GERD in pregnancy is mechanical and hormonal — the growing uterus physically pushes stomach acid upward while progesterone relaxes the valve that's supposed to stop it. Lifestyle modifications are genuinely first-line here.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Eat small, frequent meals</td><td><span class="badge badge-strong">Strong</span></td><td>Reduces gastric distension and acid production episodes</td></tr>
+              <tr><td>Avoid trigger foods</td><td><span class="badge badge-strong">Strong</span></td><td>Greasy, spicy, tomato-based, citrus, carbonated drinks, coffee, chocolate</td></tr>
+              <tr><td>Avoid lying down within 3 hours of eating</td><td><span class="badge badge-strong">Strong</span></td><td>Position-mediated reflux is significant — gravity is your ally</td></tr>
+              <tr><td>Elevate head of bed 6–8 inches</td><td><span class="badge badge-moderate">Moderate</span></td><td>Gravity helps prevent nocturnal reflux; use bed risers or a wedge pillow</td></tr>
+              <tr><td>Avoid tight clothing around waist</td><td><span class="badge badge-consensus">Consensus</span></td><td>Reduces intra-abdominal pressure that pushes acid upward</td></tr>
+              <tr><td>Drink liquids between meals, not with them</td><td><span class="badge badge-consensus">Consensus</span></td><td>Reduces gastric volume during eating</td></tr>
+              <tr><td>Calcium-containing antacids (Tums)</td><td><span class="badge badge-consensus">First-Line Pharma</span></td><td>Safe in pregnancy; calcium carbonate is preferred; also contributes to calcium intake</td></tr>
+              <tr><td>Alginate preparations</td><td><span class="badge badge-moderate">Moderate</span></td><td>Create mechanical barrier above acid pocket; evidence-backed option</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">
+          <strong>Step-Up Approach (ACOG)</strong>
+          Lifestyle first → antacids (Tums) → H2 blockers (famotidine) → PPIs (omeprazole) if needed. Large studies show PPIs are safe in pregnancy — don't suffer when the step-up approach works.
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSTIPATION -->
+    <div class="symptom-card" id="constipation">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 06</div>
+          <h3>Constipation / Digestive Issues</h3>
+          <div class="symptom-prevalence">Affects ~40% · Progesterone slows GI motility · Iron supplementation makes it worse</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">Progesterone slows gut motility throughout pregnancy — it's not going away. But fiber + hydration + movement is a genuinely effective stack. The probiotic evidence is newer and more interesting than most people realize.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Dietary fiber (25–30g/day)</td><td><span class="badge badge-strong">Strong</span></td><td>Soluble fiber (oats, beans, fruit) and insoluble (vegetables, whole grains) — both matter</td></tr>
+              <tr><td>Adequate hydration (8–12 cups/day)</td><td><span class="badge badge-strong">Strong</span></td><td>Fiber without water can actually worsen constipation — they work as a pair</td></tr>
+              <tr><td>Regular physical activity</td><td><span class="badge badge-strong">Moderate–Strong</span></td><td>Cardio exercise accelerates GI transit time</td></tr>
+              <tr><td>Probiotics (Lactobacillus-based)</td><td><span class="badge badge-emerging">Emerging Moderate</span></td><td>2024 research shows probiotics improve gut microbiota diversity and constipation symptoms beyond diet/lifestyle alone</td></tr>
+              <tr><td>Prune juice / prunes</td><td><span class="badge badge-consensus">Consensus</span></td><td>Natural sorbitol acts as osmotic agent; effective and safe</td></tr>
+              <tr><td>Switch to every-other-day iron dosing</td><td><span class="badge badge-consensus">Clinical Guidance</span></td><td>Evidence shows alternate-day iron may improve absorption with fewer GI side effects</td></tr>
+              <tr><td>Bulk-forming laxatives (psyllium) if needed</td><td><span class="badge badge-consensus">Consensus</span></td><td>Not absorbed; considered safe for long-term use in pregnancy</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSOMNIA -->
+    <div class="symptom-card" id="sleep">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 07</div>
+          <h3>Insomnia / Sleep Disruption</h3>
+          <div class="symptom-prevalence">Over 70% of pregnant women report insomnia symptoms · Physical discomfort, frequent urination, RLS, anxiety</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">Poor sleep during pregnancy is not merely discomfort — it's independently associated with gestational diabetes, preeclampsia, preterm birth, and postpartum depression. The CBT-I evidence is strong and worth investing in.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Cognitive Behavioral Therapy for Insomnia (CBT-I)</td><td><span class="badge badge-strong">Strong — Gold Standard</span></td><td>2024 RCT: 5-week CBT-I also reduced postpartum depression at 6 months. Apps like Sleepio deliver digitally.</td></tr>
+              <tr><td>Left-side sleeping (second/third trimester)</td><td><span class="badge badge-strong">Strong</span></td><td>Improves IVC blood flow; IPD meta-analysis associated supine sleep with increased stillbirth risk in late pregnancy</td></tr>
+              <tr><td>Pregnancy pillow / wedge support</td><td><span class="badge badge-consensus">Consensus</span></td><td>Supports hips, knees, belly simultaneously; dramatically improves positional compliance</td></tr>
+              <tr><td>Sleep hygiene (dark room, 65–68°F, consistent schedule)</td><td><span class="badge badge-consensus">Consensus</span></td><td>Standard CBT-I components apply in pregnancy; metabolic demands make temperature regulation more important</td></tr>
+              <tr><td>Limit fluids 2 hours before bed</td><td><span class="badge badge-consensus">Consensus</span></td><td>Reduces nocturnal waking for urination — simple and effective</td></tr>
+              <tr><td>RLS: iron supplementation + movement</td><td><span class="badge badge-moderate">Moderate</span></td><td>RLS in pregnancy is strongly associated with iron deficiency; check ferritin level specifically</td></tr>
+              <tr><td>Magnesium glycinate (200–400mg before bed)</td><td><span class="badge badge-moderate">Moderate</span></td><td>Promotes GABA-mediated relaxation; reduces muscle cramps; generally recognized as safe</td></tr>
+              <tr><td>Meeting protein targets (71–100g/day)</td><td><span class="badge badge-moderate">Moderate</span></td><td>Women meeting protein guidelines showed better sleep efficiency and total sleep time (PMC, 2023)</td></tr>
+              <tr><td>Mindfulness / progressive muscle relaxation at bedtime</td><td><span class="badge badge-moderate">Moderate</span></td><td>Reduces physiological arousal; component of effective CBT-I programs</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">
+          <strong>Note on Diphenhydramine (Benadryl)</strong>
+          Commonly used for pregnancy insomnia but evidence for efficacy is weak. Reserve for severe cases and consult your provider. The CBT-I stack is more effective and has no risks to baby.
+        </div>
+      </div>
+    </div>
+
+    <!-- MOOD -->
+    <div class="symptom-card" id="mood">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 08</div>
+          <h3>Mood Changes / Anxiety / Depression</h3>
+          <div class="symptom-prevalence">Antenatal depression: ~10–15% · Anxiety disorders: ~15–20% · Significantly underdiagnosed</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">Antenatal anxiety and depression are common, clinically significant, and treatable — but they're frequently dismissed as "normal pregnancy feelings." They have real consequences for fetal neurodevelopment if untreated. This is worth taking seriously.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Regular aerobic exercise</td><td><span class="badge badge-strong">Strong</span></td><td>One of the most evidence-supported interventions for mood; reduces depression and anxiety independently</td></tr>
+              <tr><td>Mindfulness-Based Cognitive Therapy (MBCT)</td><td><span class="badge badge-strong">Moderate–Strong</span></td><td>Systematic reviews show improvements in anxiety, depression, stress; 8-week programs most studied</td></tr>
+              <tr><td>Social support (maintained actively)</td><td><span class="badge badge-strong">Strong (epidemiological)</span></td><td>One of the most consistently protective factors in all perinatal mental health research</td></tr>
+              <tr><td>Omega-3 fatty acids (EPA+DHA)</td><td><span class="badge badge-moderate">Moderate</span></td><td>EPA specifically has antidepressant properties; higher EPA:DHA ratios associated with better antidepressant effect</td></tr>
+              <tr><td>Sleep optimization</td><td><span class="badge badge-strong">Strong (bidirectional)</span></td><td>Sleep disruption worsens mood; mood disorders worsen sleep — treating either improves both</td></tr>
+              <tr><td>Psychotherapy (CBT, Interpersonal Therapy)</td><td><span class="badge badge-strong">Strong</span></td><td>IPT is specifically validated for perinatal depression; CBT is broadly effective</td></tr>
+              <tr><td>Mindfulness mobile apps</td><td><span class="badge badge-emerging">Emerging Moderate</span></td><td>2025 JMIR RCT showed effectiveness for mild-moderate depression with &lt;30 min/week engagement</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="caution-box">
+          <strong>When to Escalate</strong>
+          Persistent low mood lasting over 2 weeks, inability to function, loss of interest in baby's wellbeing, or any thoughts of self-harm require immediate professional assessment. SSRIs are used in pregnancy when benefit outweighs risk — do not let stigma prevent treatment of severe antenatal depression. The risk of untreated depression is real; the risk of SSRIs is manageable and provider-guided.
+        </div>
+      </div>
+    </div>
+
+    <!-- GDM -->
+    <div class="symptom-card" id="gdm">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 09</div>
+          <h3>Gestational Diabetes Risk</h3>
+          <div class="symptom-prevalence">Affects 6–9% of US pregnancies · Universal screening at 24–28 weeks (1-hour glucose challenge)</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">GDM is largely preventable through lifestyle — the evidence base here is unusually strong, with a 2024 network meta-analysis of 116 studies and 40,000+ participants. Diet + exercise is the combination that matters most.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Combined diet + exercise intervention</td><td><span class="badge badge-strong">Strong</span></td><td>Network meta-analysis of 116 studies, 40,940 participants (Nature Communications Medicine, 2024) — most effective combination</td></tr>
+              <tr><td>Low glycemic index (LGI) diet</td><td><span class="badge badge-strong">Strong</span></td><td>Significantly reduces 2-hour postprandial glucose; shown most effective for glucose control specifically</td></tr>
+              <tr><td>DASH diet</td><td><span class="badge badge-strong">Strong</span></td><td>Reduces fasting glucose; lowers macrosomia by 89% and cesarean rate by 46% in studies</td></tr>
+              <tr><td>Aerobic exercise (150 min/week)</td><td><span class="badge badge-strong">Strong</span></td><td>Group-based, facility-delivered programs show strongest effects vs. home-based</td></tr>
+              <tr><td>Resistance / strength training</td><td><span class="badge badge-moderate">Moderate</span></td><td>Improves insulin sensitivity independently of aerobic exercise — both types matter</td></tr>
+              <tr><td>Dietary fiber (25–30g/day)</td><td><span class="badge badge-moderate">Moderate</span></td><td>Slows glucose absorption; reduces postprandial glucose excursions</td></tr>
+              <tr><td>Myoinositol supplementation</td><td><span class="badge badge-moderate">Moderate</span></td><td>Network meta-analysis identified as effective; discuss with provider</td></tr>
+              <tr><td>Weight management within GWG guidelines</td><td><span class="badge badge-strong">Strong</span></td><td>Excess gestational weight gain is a primary modifiable GDM risk factor</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREECLAMPSIA -->
+    <div class="symptom-card" id="preeclampsia">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 10</div>
+          <h3>Preeclampsia Risk</h3>
+          <div class="symptom-prevalence">Affects 5–8% of pregnancies · Leading cause of maternal and fetal morbidity · New-onset hypertension after 20 weeks</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">Preeclampsia is one of the more serious pregnancy complications — and it has a meaningful lifestyle prevention profile. The aspirin evidence in particular is very strong. This is a conversation to have with your provider early.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Low-dose aspirin (81–162mg/day, before 16 weeks)</td><td><span class="badge badge-very-strong">Very Strong — USPSTF A</span></td><td>Reduces preeclampsia risk ~15% in high-risk women. Critical: must start early in pregnancy. Medical decision only.</td></tr>
+              <tr><td>Calcium supplementation (1–2g/day, low-intake populations)</td><td><span class="badge badge-strong">Strong</span></td><td>49% reduction in preeclampsia risk vs. placebo; 30% reduction in gestational hypertension</td></tr>
+              <tr><td>Regular exercise</td><td><span class="badge badge-strong">Moderate–Strong</span></td><td>Network meta-analysis (130 RCTs, 2022) identified exercise as effective preventive strategy</td></tr>
+              <tr><td>Vitamin D adequacy</td><td><span class="badge badge-moderate">Moderate</span></td><td>Studies show benefit; optimal dose still under investigation</td></tr>
+              <tr><td>Healthy body weight / appropriate gestational weight gain</td><td><span class="badge badge-moderate">Moderate</span></td><td>Obesity is a primary risk factor; appropriate GWG matters</td></tr>
+              <tr><td>Low-sodium diet</td><td><span class="badge badge-consensus">Consensus</span></td><td>Reduces hypertensive risk; paired with adequate hydration</td></tr>
+              <tr><td>Adequate hydration</td><td><span class="badge badge-moderate">Moderate</span></td><td>Dehydration associated with higher preeclampsia risk in cohort studies</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="caution-box">
+          <strong>Medical Decision</strong>
+          Aspirin for preeclampsia prevention is a risk-stratified medical decision made with your provider. Do not self-prescribe. The optimal window is 12–16 weeks — if you have risk factors (first pregnancy, obesity, prior preeclampsia, hypertension, diabetes, multifetal gestation), raise this with your OB before 16 weeks.
+        </div>
+      </div>
+    </div>
+
+    <!-- LEG CRAMPS -->
+    <div class="symptom-card" id="cramps">
+      <div class="symptom-header">
+        <div class="symptom-title-group">
+          <div class="symptom-label">Symptom 11</div>
+          <h3>Leg Cramps</h3>
+          <div class="symptom-prevalence">Affects ~30–50% of pregnant women · Second and third trimesters · Often nocturnal</div>
+        </div>
+      </div>
+      <div class="symptom-body">
+        <p class="symptom-intro">The honest picture: the evidence for leg cramp interventions is weaker than most other symptom categories. A 2020 Cochrane review found "very low quality" evidence across all oral interventions. Magnesium shows the most consistent directional benefit — worth trying at low risk.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Intervention</th><th>Evidence</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Magnesium supplementation (oral)</td><td><span class="badge badge-low">Low–Moderate</span></td><td>Some RCTs show reduction in cramp frequency; evidence inconsistent but magnesium glycinate 200–300mg before bed is a reasonable, low-risk trial</td></tr>
+              <tr><td>Calf stretches before bed</td><td><span class="badge badge-consensus">Consensus</span></td><td>Strong safety profile; consistently recommended despite limited formal RCT evidence — just do it</td></tr>
+              <tr><td>Magnesium-rich diet (leafy greens, nuts, seeds, whole grains)</td><td><span class="badge badge-consensus">Consensus</span></td><td>Supports overall magnesium status; no downside</td></tr>
+              <tr><td>Hydration</td><td><span class="badge badge-consensus">Consensus</span></td><td>Dehydration is a known cramp trigger; easy to address</td></tr>
+              <tr><td>Walking / movement</td><td><span class="badge badge-consensus">Consensus</span></td><td>Improves circulation to lower extremities</td></tr>
+              <tr><td>Calcium</td><td><span class="badge badge-low">Low Evidence</span></td><td>Not shown to consistently reduce cramp frequency in trials</td></tr>
+              <tr><td>Vitamin D + Calcium combo</td><td><span class="badge badge-low">Low Evidence</span></td><td>Cochrane review found no effect on frequency, duration, or pain intensity</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">
+          <strong>Evidence Transparency</strong>
+          This is one area where the data doesn't support a confident recommendation. The 2020 Cochrane review (Luo et al.) found all oral interventions — magnesium, calcium, vitamin D, B vitamins, vitamin C — have "very low quality" evidence due to small sample sizes. We're telling you this because you deserve the honest picture, not just confident-sounding advice. Stretch your calves. Try magnesium if you want. Accept that this may be one you just manage with movement and warmth.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RED FLAGS -->
+  <section class="section" id="red-flags">
+    <div class="section-header">
+      <span class="section-marker marker-coral">Emergency Reference</span>
+      <h2>Red Flags — When to Seek Care Immediately</h2>
+    </div>
+    <p style="margin-bottom:24px; color:#5a5a5a; font-size:15px;">No lifestyle protocol replaces prenatal care. These symptoms require immediate medical evaluation — do not manage them at home.</p>
+
+    <div class="red-flags-section">
+      <div class="red-flag-group rfg-911">
+        <h3>Call 911 or Go to the Emergency Room</h3>
+        <ul>
+          <li>Sudden, severe headache — "worst of your life"</li>
+          <li>Changes in vision: blurring, spots, double vision, or loss of vision</li>
+          <li>Severe chest pain or difficulty breathing</li>
+          <li>Signs of stroke: facial drooping, arm weakness, speech difficulty</li>
+          <li>Severe abdominal pain that does not resolve</li>
+          <li>Seizure</li>
+          <li>Thoughts of harming yourself or your baby</li>
+          <li>Loss of consciousness or fainting</li>
+        </ul>
+      </div>
+
+      <div class="red-flag-group rfg-urgent">
+        <h3>Contact Your Provider Urgently — Same Day</h3>
+        <ul>
+          <li>Vaginal bleeding at any stage of pregnancy</li>
+          <li>Fluid leaking from the vagina (possible premature rupture of membranes)</li>
+          <li>Fever over 100.4°F / 38°C</li>
+          <li>Sudden, severe swelling of face or hands (possible preeclampsia)</li>
+          <li>Baby's movement has decreased or stopped — do not wait</li>
+          <li>Unilateral leg swelling with pain or redness (DVT screening)</li>
+          <li>Persistent, severe vomiting with inability to keep fluids down (hyperemesis gravidarum)</li>
+          <li>Burning or pain with urination (UTI can trigger preterm labor if untreated)</li>
+          <li>Regular uterine contractions before 37 weeks (preterm labor)</li>
+          <li>Severe heartburn unresponsive to lifestyle measures</li>
+          <li>Any feeling that "something is wrong" — trust your instinct</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>CDC HEAR HER Campaign</strong>
+      Research shows pregnant and postpartum women are sometimes not taken seriously by providers. If you feel something isn't right, speak up. If your provider is dismissive of symptoms you're concerned about, seek a second opinion. Advocate for yourself — your instincts are a clinical data point.
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="section" id="sources">
+    <div class="sources-toggle">
+      <button class="sources-toggle-btn" onclick="toggleSources()">
+        <span>Sources &amp; References</span>
+        <span id="sources-arrow">▼</span>
+      </button>
+      <div class="sources-content" id="sources-content">
+        <h3>ACOG Guidelines</h3>
+        <ul>
+          <li><a href="https://www.acog.org/womens-health/faqs/morning-sickness-nausea-and-vomiting-of-pregnancy" target="_blank">Morning Sickness: Nausea and Vomiting of Pregnancy | ACOG</a></li>
+          <li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period" target="_blank">Physical Activity and Exercise During Pregnancy (Committee Opinion 804) | ACOG</a></li>
+          <li><a href="https://www.acog.org/womens-health/faqs/exercise-during-pregnancy" target="_blank">Exercise During Pregnancy | ACOG</a></li>
+          <li><a href="https://www.acog.org/womens-health/faqs/nutrition-during-pregnancy" target="_blank">Nutrition During Pregnancy | ACOG</a></li>
+          <li><a href="https://www.acog.org/womens-health/experts-and-stories/ask-acog/how-much-water-should-i-drink-during-pregnancy" target="_blank">How Much Water Should I Drink During Pregnancy? | ACOG</a></li>
+        </ul>
+        <h3>Systematic Reviews &amp; Meta-Analyses</h3>
+        <ul>
+          <li><a href="https://www.nature.com/articles/s43856-024-00491-1" target="_blank">Effective Interventions in Preventing GDM: Network Meta-Analysis | Nature Communications Medicine (2024)</a></li>
+          <li><a href="https://www.sciencedirect.com/science/article/pii/S2161831324001649" target="_blank">Dietary Approaches and Exercise on GDM: Bayesian Network Meta-Analysis (2024)</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10431689/" target="_blank">Conventional Exercises on Low Back/Pelvic Girdle Pain: Systematic Review | PMC (2023)</a></li>
+          <li><a href="https://obgyn.onlinelibrary.wiley.com/doi/full/10.1002/ijgo.15000" target="_blank">Exercise + Education for Pelvic Pain: Systematic Review | IJGO (2024)</a></li>
+          <li><a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010655.pub3/full" target="_blank">Interventions for Leg Cramps in Pregnancy | Cochrane (2020)</a></li>
+          <li><a href="https://jcsm.aasm.org/doi/10.5664/jcsm.11696" target="_blank">Nonpharmacological Sleep Interventions in Pregnancy | Journal of Clinical Sleep Medicine</a></li>
+          <li><a href="https://www.mdpi.com/2227-9032/13/12/1378" target="_blank">Mindfulness Programmes on Anxiety, Depression and Stress in Pregnancy | MDPI Healthcare (2025)</a></li>
+          <li><a href="https://obgyn.onlinelibrary.wiley.com/doi/10.1111/aogs.14744" target="_blank">Pelvic Floor Muscle Training: Urinary Incontinence, Episiotomy, Perineal Tear | AOGS (2024)</a></li>
+          <li><a href="https://bmcpregnancychildbirth.biomedcentral.com/articles/10.1186/s12884-022-04474-9" target="_blank">Characteristics and Effectiveness of Prenatal Yoga | BMC Pregnancy and Childbirth (2022)</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4071443/" target="_blank">Interventions for Heartburn in Pregnancy | PMC</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9439837/" target="_blank">Evidence-Based Treatment for GERD During Pregnancy | PMC (2022)</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3418980/" target="_blank">Treating Constipation During Pregnancy | PMC</a></li>
+          <li><a href="https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2025.1693844/full" target="_blank">Omega-3 Supplementation and Preterm Birth Rates | Frontiers in Nutrition (2025/2026)</a></li>
+        </ul>
+        <h3>NIH &amp; Government Sources</h3>
+        <ul>
+          <li><a href="https://ods.od.nih.gov/factsheets/Pregnancy-HealthProfessional/" target="_blank">Dietary Supplements in Pregnancy: Health Professional Fact Sheet | NIH ODS</a></li>
+          <li><a href="https://www.cdc.gov/hearher/maternal-warning-signs/index.html" target="_blank">Urgent Maternal Warning Signs | CDC HEAR HER Campaign</a></li>
+          <li><a href="https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication" target="_blank">Low-Dose Aspirin for Preeclampsia Prevention | USPSTF</a></li>
+        </ul>
+        <h3>Specialty Journals</h3>
+        <ul>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4649576/" target="_blank">Comparing Ginger and Vitamin B6 for Nausea: RCT | PMC</a></li>
+          <li><a href="https://obgyn.onlinelibrary.wiley.com/doi/10.1002/ijgo.16032" target="_blank">High-Dose B6 Safety in Pregnancy | Wiley IJGO (2025)</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6860204/" target="_blank">Oral Magnesium for Pregnancy Leg Cramps: RCT | PMC</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10727057/" target="_blank">Identifying and Treating IDA in Pregnancy | PMC (ASH 2023)</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9275129/" target="_blank">Evidence-Based Recommendations for Optimal Prenatal Supplement | PMC</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8958436/" target="_blank">Compression Stockings in Pregnancy | PMC</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10574018/" target="_blank">Exercise and Nutrition Guidelines on Sleep During Pregnancy | PMC (2023)</a></li>
+          <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK573947/" target="_blank">Maternal Sleep Position During Pregnancy | NCBI Bookshelf</a></li>
+          <li><a href="https://www.jmir.org/2025/1/e75630" target="_blank">Mindfulness Mobile Intervention for Perinatal Mental Health | JMIR (2025)</a></li>
+          <li><a href="https://www.nature.com/articles/s41440-025-02144-9" target="_blank">Calcium Supplementation and Preeclampsia: Network Meta-Analysis</a></li>
+        </ul>
+        <p style="font-size:12px; color:#999; margin-top:16px; font-style:italic;">Confidence level: High for most recommendations. Sections with lower certainty (leg cramps, specific supplement dosing) are explicitly flagged in the guide. This report reflects literature available through early 2026. All supplementation and medical decisions should be reviewed with a qualified healthcare provider familiar with individual health history.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="guide-footer">
+    <span class="footer-wordmark">CIPHER</span>
+    <span class="footer-meta">COMPILED MARCH 2026 &nbsp;·&nbsp; FOR KATHRYN</span>
+  </footer>
+
+</main>
+
+<script>
+// Signal-strength bars for evidence badges
+(function() {
+  // Map badge class → number of active bars (out of 4)
+  const strengthMap = {
+    'badge-very-strong': 4,
+    'badge-strong':      4,
+    'badge-moderate':    3,
+    'badge-consensus':   3,
+    'badge-emerging':    2,
+    'badge-low':         1
+  };
+
+  function makeBars(activeBars) {
+    const wrap = document.createElement('span');
+    wrap.className = 'signal-bars';
+    wrap.setAttribute('aria-hidden', 'true');
+    for (let i = 1; i <= 4; i++) {
+      const bar = document.createElement('span');
+      if (i <= activeBars) bar.className = 'active';
+      wrap.appendChild(bar);
+    }
+    return wrap;
+  }
+
+  document.querySelectorAll('.badge').forEach(function(badge) {
+    for (const cls in strengthMap) {
+      if (badge.classList.contains(cls)) {
+        // Don't add twice
+        if (!badge.querySelector('.signal-bars')) {
+          badge.appendChild(makeBars(strengthMap[cls]));
+        }
+        break;
+      }
+    }
+  });
+})();
+
+function toggleSources() {
+  const c = document.getElementById('sources-content');
+  const a = document.getElementById('sources-arrow');
+  c.classList.toggle('open');
+  a.textContent = c.classList.contains('open') ? '▲' : '▼';
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// Active nav on scroll
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
