@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Brand Evolution: N-of-1 Experiments, Emergent Intelligence</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #111;
+    color: #eee;
+    overflow-x: hidden;
+  }
+
+  /* ============================== */
+  /* SECTION UTILITY                */
+  /* ============================== */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ============================== */
+  /* COVER                          */
+  /* ============================== */
+  .cover {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(52,184,125,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 40%, rgba(212,161,42,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cover-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 40px;
+  }
+  .cover h1 {
+    font-size: 56px; font-weight: 800; letter-spacing: -2px;
+    line-height: 1.1; margin-bottom: 24px;
+    background: linear-gradient(135deg, #FAF8F2, #34B87D);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover p {
+    font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.4);
+    max-width: 580px;
+  }
+  .cover-category {
+    margin-top: 60px;
+    display: flex; gap: 16px; align-items: center;
+  }
+  .cover-category-part {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    padding: 12px 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .cat-method {
+    color: rgba(91,141,239,0.6);
+    border-color: rgba(91,141,239,0.15);
+  }
+  .cat-outcome {
+    color: rgba(52,184,125,0.6);
+    border-color: rgba(52,184,125,0.15);
+  }
+  .cover-category-arrow {
+    color: rgba(255,255,255,0.15);
+    font-size: 14px;
+  }
+
+  /* ============================== */
+  /* PHILOSOPHY                     */
+  /* ============================== */
+  .philosophy {
+    padding: 120px 60px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .philosophy .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.2); margin-bottom: 40px;
+  }
+  .philosophy blockquote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px; font-style: italic;
+    line-height: 1.4; color: rgba(250,248,242,0.8);
+    margin-bottom: 32px;
+  }
+  .philosophy blockquote .hl-green { color: #34B87D; }
+  .philosophy blockquote .hl-gold { color: #D4A12A; }
+  .philosophy .attr {
+    font-size: 14px; color: rgba(255,255,255,0.25); line-height: 1.7;
+  }
+
+  /* ============================== */
+  /* CATEGORY STRUCTURE             */
+  /* ============================== */
+  .category-section {
+    padding: 100px 60px;
+  }
+  .category-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .category-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+    max-width: 560px;
+  }
+  .category-two-col {
+    display: grid; grid-template-columns: 1fr 80px 1fr; gap: 0;
+    align-items: start;
+  }
+  .category-card {
+    padding: 48px; border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .category-card .cc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .category-card h3 {
+    font-size: 28px; font-weight: 800; letter-spacing: -1px;
+    margin-bottom: 16px; color: #FAF8F2;
+  }
+  .category-card p {
+    font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+  .category-card .cc-keyword {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 4px;
+    display: inline-block;
+  }
+  .cc-method { background: rgba(91,141,239,0.04); }
+  .cc-method .cc-label { color: #5B8DEF; }
+  .cc-method .cc-keyword { color: #5B8DEF; background: rgba(91,141,239,0.08); }
+  .cc-outcome { background: rgba(52,184,125,0.04); }
+  .cc-outcome .cc-label { color: #34B87D; }
+  .cc-outcome .cc-keyword { color: #34B87D; background: rgba(52,184,125,0.08); }
+  .category-arrow {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.15); font-size: 20px;
+    padding-top: 60px;
+  }
+  .category-arrow span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.12); margin-top: 8px;
+  }
+
+  /* ============================== */
+  /* EMERGENCE ARC                  */
+  /* ============================== */
+  .emergence-section {
+    padding: 100px 60px;
+  }
+  .emergence-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .emergence-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+    max-width: 560px;
+  }
+  .emergence-arc {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    position: relative;
+  }
+  .emergence-arc::before {
+    content: '';
+    position: absolute;
+    top: 48px; left: 12.5%; right: 12.5%;
+    height: 2px;
+    background: linear-gradient(90deg,
+      rgba(91,141,239,0.3),
+      rgba(52,184,125,0.3),
+      rgba(212,161,42,0.3),
+      rgba(184,117,80,0.4));
+    z-index: 0;
+  }
+  .arc-step {
+    text-align: center;
+    position: relative;
+    padding: 0 16px;
+  }
+  .arc-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    margin: 38px auto 24px;
+    position: relative; z-index: 1;
+  }
+  .arc-step:nth-child(1) .arc-dot { background: rgba(91,141,239,0.3); border: 2px solid #5B8DEF; }
+  .arc-step:nth-child(2) .arc-dot { background: rgba(52,184,125,0.3); border: 2px solid #34B87D; }
+  .arc-step:nth-child(3) .arc-dot { background: rgba(212,161,42,0.3); border: 2px solid #D4A12A; }
+  .arc-step:nth-child(4) .arc-dot {
+    background: rgba(184,117,80,0.3); border: 2px solid #B87550;
+    width: 24px; height: 24px; margin-top: 36px;
+    box-shadow: 0 0 20px rgba(184,117,80,0.2);
+  }
+  .arc-phase {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .arc-step:nth-child(1) .arc-phase { color: #5B8DEF; }
+  .arc-step:nth-child(2) .arc-phase { color: #34B87D; }
+  .arc-step:nth-child(3) .arc-phase { color: #D4A12A; }
+  .arc-step:nth-child(4) .arc-phase { color: #B87550; }
+  .arc-title {
+    font-size: 18px; font-weight: 700; color: #FAF8F2;
+    margin-bottom: 8px;
+  }
+  .arc-desc {
+    font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.3);
+  }
+  .arc-emerges {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 13px; color: rgba(255,255,255,0.25);
+    margin-top: 12px;
+  }
+
+  /* ============================== */
+  /* WHY EMERGENT (4 layers)        */
+  /* ============================== */
+  .layers-section {
+    padding: 100px 60px;
+  }
+  .layers-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .layers-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+    max-width: 640px;
+  }
+  .layers-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+  }
+  .layer-card {
+    padding: 40px; border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+  }
+  .layer-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+  .layer-card .lc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 48px; font-weight: 700;
+    position: absolute; top: 24px; right: 28px;
+    opacity: 0.06;
+  }
+  .layer-card .lc-title {
+    font-size: 18px; font-weight: 700; color: #FAF8F2;
+    margin-bottom: 12px;
+  }
+  .layer-card .lc-body {
+    font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.4);
+  }
+  .layer-card .lc-body strong { color: rgba(255,255,255,0.6); }
+  .layer-card .lc-pullquote {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 15px; color: rgba(255,255,255,0.3);
+    margin-top: 16px; padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .lc-science::before { background: #5B8DEF; }
+  .lc-science .lc-num { color: #5B8DEF; }
+  .lc-solarpunk::before { background: #34B87D; }
+  .lc-solarpunk .lc-num { color: #34B87D; }
+  .lc-arc::before { background: #D4A12A; }
+  .lc-arc .lc-num { color: #D4A12A; }
+  .lc-ai::before { background: #B87550; }
+  .lc-ai .lc-num { color: #B87550; }
+
+  /* ============================== */
+  /* PALETTE COMPARISON             */
+  /* ============================== */
+  .palette-section {
+    padding: 100px 60px;
+  }
+  .palette-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .palette-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+    max-width: 500px;
+  }
+
+  .palette-grid {
+    display: grid; grid-template-columns: 1fr 60px 1fr;
+    gap: 0; align-items: start;
+  }
+  .palette-col h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 32px;
+  }
+  .palette-arrow {
+    display: flex; align-items: center; justify-content: center;
+    padding-top: 80px;
+    color: rgba(255,255,255,0.15); font-size: 24px;
+  }
+  .swatch-row {
+    display: flex; gap: 12px; margin-bottom: 16px; align-items: center;
+  }
+  .swatch {
+    width: 64px; height: 64px; border-radius: 12px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .swatch-info {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .swatch-name {
+    font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8);
+  }
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: rgba(255,255,255,0.3);
+  }
+  .swatch-role {
+    font-size: 11px; color: rgba(255,255,255,0.2);
+  }
+
+  /* ============================== */
+  /* MOOD COMPARISON                */
+  /* ============================== */
+  .mood-section {
+    padding: 100px 60px;
+  }
+  .mood-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .mood-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+  }
+  .mood-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .mood-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+  }
+  .mood-card-label {
+    position: absolute; top: 20px; left: 20px; z-index: 5;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 4px;
+  }
+  .mood-current {
+    background: #FAFAF8;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; padding: 60px;
+    position: relative; overflow: hidden;
+  }
+  .mood-current .mood-card-label { color: #999; background: rgba(0,0,0,0.05); }
+  .mood-current .mood-wave { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+  .mood-current .mood-wave svg { width: 100%; height: 100%; }
+  .mood-current-text { position: relative; z-index: 2; text-align: center; }
+  .mood-current-text .wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px; font-weight: 700; letter-spacing: 8px;
+    text-transform: uppercase; color: #111; margin-bottom: 12px;
+  }
+  .mood-current-text .tagline { font-size: 14px; color: #999; }
+  .mood-current-text .tag-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: #ccc; margin-top: 24px; letter-spacing: 1px;
+  }
+  .mood-evolved {
+    background: #1C2826;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; padding: 60px;
+    position: relative; overflow: hidden;
+  }
+  .mood-evolved::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(52,184,125,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 60%, rgba(212,161,42,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .mood-evolved .mood-card-label { color: #D4A12A; background: rgba(212,161,42,0.1); }
+  .mood-evolved .mood-wave { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+  .mood-evolved .mood-wave svg { width: 100%; height: 100%; }
+  .mood-evolved-text { position: relative; z-index: 2; text-align: center; }
+  .mood-evolved-text .wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px; font-weight: 700; letter-spacing: 8px;
+    text-transform: uppercase; color: #FAF8F2; margin-bottom: 12px;
+  }
+  .mood-evolved-text .tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 16px; color: rgba(250,248,242,0.5);
+  }
+  .mood-evolved-text .tag-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: rgba(250,248,242,0.25); margin-top: 24px; letter-spacing: 1px;
+  }
+
+  /* ============================== */
+  /* HERO COMPARISON                */
+  /* ============================== */
+  .hero-compare {
+    padding: 100px 60px;
+  }
+  .hero-compare h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .hero-compare .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+  }
+  .hero-mock { border-radius: 16px; overflow: hidden; margin-bottom: 40px; position: relative; }
+
+  .hero-mock-current {
+    background: #FAFAF8;
+    padding: 80px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-mock-current .hero-wave-bg {
+    position: absolute; top: 50%; left: 0; width: 100%;
+    transform: translateY(-50%); height: 300px; pointer-events: none;
+  }
+  .hero-mock-current .hero-wave-bg svg { width: 100%; height: 100%; }
+  .hero-mock-current .mock-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 60px; position: relative; z-index: 2;
+  }
+  .hero-mock-current .mock-nav .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700; letter-spacing: 5px;
+    text-transform: uppercase; color: #111;
+  }
+  .hero-mock-current .mock-nav .links { display: flex; gap: 24px; }
+  .hero-mock-current .mock-nav .links span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: #bbb; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .hero-mock-current .mock-content { position: relative; z-index: 2; max-width: 560px; }
+  .hero-mock-current .mock-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: #bbb; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-mock-current .mock-label .dot { width: 6px; height: 6px; border-radius: 50%; background: #3ECF8E; }
+  .hero-mock-current h3 {
+    font-size: 44px; font-weight: 900; letter-spacing: -2px;
+    line-height: 1.05; color: #111; margin-bottom: 20px;
+  }
+  .hero-mock-current h3 .accent {
+    text-decoration-line: underline;
+    text-decoration-color: #5B8DEF;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 3px;
+  }
+  .hero-mock-current p { font-size: 16px; line-height: 1.7; color: #888; margin-bottom: 32px; max-width: 440px; }
+  .hero-mock-current .btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; background: #111; color: #fff;
+    padding: 14px 28px; display: inline-block;
+  }
+  .hero-mock-current .mock-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 5;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: #999; background: rgba(0,0,0,0.04); padding: 5px 10px; border-radius: 3px;
+  }
+
+  .hero-mock-evolved {
+    background: #1C2826;
+    padding: 80px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-mock-evolved::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(52,184,125,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, rgba(212,161,42,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(184,117,80,0.05) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .hero-mock-evolved::after {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.03; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+  }
+  .hero-mock-evolved .hero-wave-bg {
+    position: absolute; top: 50%; left: 0; width: 100%;
+    transform: translateY(-50%); height: 300px; pointer-events: none; z-index: 1;
+  }
+  .hero-mock-evolved .hero-wave-bg svg { width: 100%; height: 100%; }
+  .hero-mock-evolved .mock-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 60px; position: relative; z-index: 2;
+  }
+  .hero-mock-evolved .mock-nav .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700; letter-spacing: 5px;
+    text-transform: uppercase; color: #FAF8F2;
+  }
+  .hero-mock-evolved .mock-nav .links { display: flex; gap: 24px; }
+  .hero-mock-evolved .mock-nav .links span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: rgba(250,248,242,0.3); letter-spacing: 1px; text-transform: uppercase;
+  }
+  .hero-mock-evolved .mock-content { position: relative; z-index: 2; max-width: 600px; }
+  .hero-mock-evolved .mock-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(250,248,242,0.25); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-mock-evolved .mock-label .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #34B87D;
+    box-shadow: 0 0 8px rgba(52,184,125,0.4);
+  }
+  .hero-mock-evolved h3 {
+    font-size: 44px; font-weight: 800; letter-spacing: -2px;
+    line-height: 1.1; color: #FAF8F2; margin-bottom: 20px;
+  }
+  .hero-mock-evolved h3 .accent { color: #D4A12A; }
+  .hero-mock-evolved h3 .serif-accent {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-weight: 400;
+  }
+  .hero-mock-evolved p {
+    font-size: 16px; line-height: 1.8; color: rgba(250,248,242,0.45);
+    margin-bottom: 36px; max-width: 480px;
+  }
+  .hero-mock-evolved .btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: #D4A12A; color: #1C2826;
+    padding: 14px 28px; display: inline-block;
+    transition: all 0.2s;
+  }
+  .hero-mock-evolved .btn:hover { background: #E8B931; }
+  .hero-mock-evolved .btn-secondary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    color: rgba(250,248,242,0.3); margin-left: 24px;
+  }
+  .hero-mock-evolved .mock-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 5;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: #D4A12A; background: rgba(212,161,42,0.08); padding: 5px 10px; border-radius: 3px;
+  }
+
+  /* ============================== */
+  /* TYPOGRAPHY SECTION             */
+  /* ============================== */
+  .type-section {
+    padding: 100px 60px;
+  }
+  .type-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .type-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+  }
+  .type-layers {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+  }
+  .type-card {
+    padding: 40px; border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .type-card .layer-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .type-card .sample { margin-bottom: 20px; }
+  .type-card .desc { font-size: 13px; color: rgba(255,255,255,0.3); line-height: 1.6; }
+  .type-tech { background: rgba(91,141,239,0.04); }
+  .type-tech .layer-name { color: #5B8DEF; }
+  .type-tech .sample {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px; font-weight: 700; letter-spacing: 6px;
+    text-transform: uppercase; color: #FAF8F2;
+  }
+  .type-human { background: rgba(52,184,125,0.04); }
+  .type-human .layer-name { color: #34B87D; }
+  .type-human .sample {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px; font-weight: 700; letter-spacing: -1px;
+    color: #FAF8F2;
+  }
+  .type-nature { background: rgba(212,161,42,0.04); }
+  .type-nature .layer-name { color: #D4A12A; }
+  .type-nature .sample {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-size: 32px; color: #FAF8F2;
+  }
+
+  /* ============================== */
+  /* MOTIFS SECTION                 */
+  /* ============================== */
+  .motifs-section {
+    padding: 100px 60px;
+  }
+  .motifs-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .motifs-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+  }
+  .motifs-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;
+  }
+  .motif-card {
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .motif-visual {
+    height: 200px; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .motif-visual svg { width: 80%; height: 80%; }
+  .motif-info { padding: 28px; }
+  .motif-info h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #FAF8F2; }
+  .motif-info p { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.35); }
+  .motif-info .motif-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    display: inline-block; padding: 4px 8px; border-radius: 3px; margin-top: 12px;
+  }
+  .motif-growth .motif-visual { background: rgba(52,184,125,0.06); }
+  .motif-growth .motif-tag { color: #34B87D; background: rgba(52,184,125,0.1); }
+  .motif-rings .motif-visual { background: rgba(212,161,42,0.06); }
+  .motif-rings .motif-tag { color: #D4A12A; background: rgba(212,161,42,0.1); }
+  .motif-roots .motif-visual { background: rgba(184,117,80,0.06); }
+  .motif-roots .motif-tag { color: #B87550; background: rgba(184,117,80,0.1); }
+  .motif-light .motif-visual { background: rgba(91,141,239,0.06); }
+  .motif-light .motif-tag { color: #5B8DEF; background: rgba(91,141,239,0.1); }
+
+  /* ============================== */
+  /* INTELLIGENCE BRIEFING MOCK     */
+  /* ============================== */
+  .briefing-section {
+    padding: 100px 60px;
+  }
+  .briefing-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .briefing-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+  }
+  .briefing-mock {
+    background: #1C2826;
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .briefing-mock::after {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.02; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+  .briefing-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid rgba(250,248,242,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .briefing-header .bh-left { display: flex; align-items: center; gap: 12px; }
+  .briefing-header .bh-left .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #34B87D;
+    box-shadow: 0 0 6px rgba(52,184,125,0.4);
+  }
+  .briefing-header .bh-left span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(250,248,242,0.3);
+  }
+  .briefing-header .bh-right span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: rgba(250,248,242,0.15); letter-spacing: 1px;
+  }
+  .briefing-body {
+    padding: 40px 32px;
+    display: grid; grid-template-columns: 2fr 1fr; gap: 40px;
+    position: relative; z-index: 2;
+  }
+  .briefing-main h4 {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 24px; color: #FAF8F2; margin-bottom: 20px;
+  }
+  .briefing-main .insight-card {
+    padding: 20px; border-radius: 12px;
+    background: rgba(250,248,242,0.03);
+    border: 1px solid rgba(250,248,242,0.05);
+    margin-bottom: 16px;
+  }
+  .briefing-main .insight-card .ic-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .briefing-main .insight-card p { font-size: 14px; line-height: 1.65; color: rgba(250,248,242,0.55); }
+  .briefing-main .insight-card .metric {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: rgba(250,248,242,0.4); margin-top: 8px;
+  }
+  .ic-sleep .ic-label { color: #5B8DEF; }
+  .ic-metabolic .ic-label { color: #34B87D; }
+  .ic-emergence .ic-label { color: #D4A12A; }
+  .ic-experiment .ic-label { color: #B87550; }
+
+  .briefing-sidebar h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(250,248,242,0.2); margin-bottom: 20px;
+  }
+  .benchmark { margin-bottom: 20px; }
+  .benchmark .bm-label { font-size: 12px; color: rgba(250,248,242,0.4); margin-bottom: 6px; }
+  .benchmark .bm-bar {
+    height: 6px; border-radius: 3px; background: rgba(250,248,242,0.06);
+    position: relative; overflow: hidden;
+  }
+  .benchmark .bm-fill { height: 100%; border-radius: 3px; position: absolute; top: 0; left: 0; }
+  .benchmark .bm-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: rgba(250,248,242,0.25); margin-top: 4px;
+  }
+  .briefing-footer {
+    padding: 20px 32px;
+    border-top: 1px solid rgba(250,248,242,0.06);
+    position: relative; z-index: 2;
+  }
+  .briefing-footer p {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 15px; color: rgba(250,248,242,0.3);
+  }
+
+  /* ============================== */
+  /* LANGUAGE SECTION               */
+  /* ============================== */
+  .language-section {
+    padding: 100px 60px;
+  }
+  .language-section h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 12px;
+  }
+  .language-section .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 60px;
+    max-width: 560px;
+  }
+  .lang-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .lang-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    text-align: left;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .lang-table td {
+    padding: 16px 20px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .lang-table .lang-old {
+    color: rgba(255,255,255,0.25);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,255,255,0.1);
+  }
+  .lang-table .lang-new {
+    color: rgba(250,248,242,0.7);
+    font-weight: 500;
+  }
+  .lang-table .lang-arrow {
+    color: rgba(255,255,255,0.1);
+    text-align: center;
+    font-size: 14px;
+    width: 40px;
+  }
+
+  /* ============================== */
+  /* FEELING SECTION                */
+  /* ============================== */
+  .feeling-section {
+    padding: 120px 60px;
+    text-align: center;
+  }
+  .feeling-section .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.2); margin-bottom: 40px;
+  }
+  .feeling-section blockquote {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 28px; line-height: 1.5;
+    color: rgba(250,248,242,0.5);
+    max-width: 700px; margin: 0 auto 60px;
+  }
+  .feeling-words {
+    display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+  }
+  .feeling-word {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 10px 20px; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .fw-1 { color: #5B8DEF; background: rgba(91,141,239,0.06); }
+  .fw-2 { color: #D4A12A; background: rgba(212,161,42,0.06); }
+  .fw-3 { color: #34B87D; background: rgba(52,184,125,0.06); }
+  .fw-4 { color: #E06B5A; background: rgba(224,107,90,0.06); }
+  .fw-5 { color: #B87550; background: rgba(184,117,80,0.06); }
+
+  /* ============================== */
+  /* REFERENCES                     */
+  /* ============================== */
+  .references {
+    padding: 100px 60px;
+  }
+  .references h2 {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 60px;
+  }
+  .ref-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .ref-card {
+    padding: 32px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+  }
+  .ref-card .ref-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.2); margin-bottom: 12px;
+  }
+  .ref-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #FAF8F2; }
+  .ref-card p { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.3); }
+
+  /* ============================== */
+  /* FOOTER                         */
+  /* ============================== */
+  .page-footer {
+    padding: 40px 60px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: space-between;
+  }
+  .page-footer span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 1px;
+  }
+
+  /* ============================== */
+  /* RESPONSIVE                     */
+  /* ============================== */
+  @media (max-width: 900px) {
+    .cover h1 { font-size: 36px; }
+    .cover-category { flex-direction: column; }
+    .palette-grid { grid-template-columns: 1fr; gap: 40px; }
+    .palette-arrow { display: none; }
+    .mood-grid { grid-template-columns: 1fr; }
+    .type-layers { grid-template-columns: 1fr; }
+    .motifs-grid { grid-template-columns: 1fr; }
+    .briefing-body { grid-template-columns: 1fr; }
+    .ref-grid { grid-template-columns: 1fr; }
+    .hero-mock-current, .hero-mock-evolved { padding: 40px 24px; }
+    .hero-mock-current h3, .hero-mock-evolved h3 { font-size: 28px; }
+    .philosophy blockquote { font-size: 24px; }
+    .emergence-arc { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .emergence-arc::before { display: none; }
+    .layers-grid { grid-template-columns: 1fr; }
+    .category-two-col { grid-template-columns: 1fr; gap: 24px; }
+    .category-arrow { display: none; }
+    .lang-table { font-size: 13px; }
+    section { padding-left: 24px !important; padding-right: 24px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================================ -->
+<!-- COVER                            -->
+<!-- ================================ -->
+<section class="cover">
+  <div class="cover-label">Brand Evolution</div>
+  <h1>N-of-1 Experiments.<br>Emergent Intelligence.</h1>
+  <p>The method is personalized experiments on your own biology. The outcome is intelligence that reveals itself — emerging from synthesis, compounding over time.</p>
+  <div class="cover-category">
+    <span class="cover-category-part cat-method">N-of-1 Experiments</span>
+    <span class="cover-category-arrow">→</span>
+    <span class="cover-category-part cat-outcome">Emergent Intelligence</span>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- PHILOSOPHY                       -->
+<!-- ================================ -->
+<section class="philosophy">
+  <div class="label">The Philosophy</div>
+  <blockquote>"Your body is not a machine to optimize. It's an <span class="hl-green">ecosystem</span> to understand. Intelligence doesn't arrive. It <span class="hl-gold">emerges</span>."</blockquote>
+  <p class="attr">The shift from optimization to adaptation. From engineering to ecology. From protocol to experiment. From delivery to emergence.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- CATEGORY STRUCTURE               -->
+<!-- ================================ -->
+<section class="category-section">
+  <h2>The Category</h2>
+  <p class="subtitle">Two components, each doing distinct work. One defines the method. The other names what you get.</p>
+
+  <div class="category-two-col">
+    <div class="category-card cc-method">
+      <div class="cc-label">The Method — What We Do</div>
+      <h3>N-of-1 Experiments</h3>
+      <p>Personalized, rigorous, scientific trials on your own biology. Each experiment is a 4-week cycle with a clear hypothesis, one variable, and measurable outcomes. Your body is the study. You are the only participant.</p>
+      <span class="cc-keyword">Rigorous · Personal · Scientific</span>
+    </div>
+
+    <div class="category-arrow">
+      →
+      <span>Produces</span>
+    </div>
+
+    <div class="category-card cc-outcome">
+      <div class="cc-label">The Outcome — What You Get</div>
+      <h3>Emergent Intelligence</h3>
+      <p>Understanding that reveals itself through the process — not delivered to you. Patterns that aren't visible in any single data point become clear when the system is observed as a whole. Each experiment adds resolution. The intelligence compounds.</p>
+      <span class="cc-keyword">Alive · Compounding · Yours</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- EMERGENCE ARC                    -->
+<!-- ================================ -->
+<section class="emergence-section">
+  <h2>The Emergence Arc</h2>
+  <p class="subtitle">Intelligence doesn't arrive all at once. It emerges through the experiment process — getting richer, more personal, more actionable with every cycle.</p>
+
+  <div class="emergence-arc">
+    <div class="arc-step">
+      <div class="arc-dot"></div>
+      <div class="arc-phase">Experiment</div>
+      <div class="arc-title">A Data Point</div>
+      <div class="arc-desc">You run your first N-of-1 trial. One clear result. One variable tested against your own biology.</div>
+      <div class="arc-emerges">A signal appears.</div>
+    </div>
+    <div class="arc-step">
+      <div class="arc-dot"></div>
+      <div class="arc-phase">Pattern</div>
+      <div class="arc-title">Connections Form</div>
+      <div class="arc-desc">Across experiments, domains start linking. Sleep affects recovery affects cognition. The dots connect.</div>
+      <div class="arc-emerges">Patterns emerge.</div>
+    </div>
+    <div class="arc-step">
+      <div class="arc-dot"></div>
+      <div class="arc-phase">System</div>
+      <div class="arc-title">The Picture Reveals</div>
+      <div class="arc-desc">Your personal health architecture becomes visible. Not generic advice — YOUR system, YOUR responses, YOUR code.</div>
+      <div class="arc-emerges">Intelligence emerges.</div>
+    </div>
+    <div class="arc-step">
+      <div class="arc-dot"></div>
+      <div class="arc-phase">Independence</div>
+      <div class="arc-title">You ARE the Intelligence</div>
+      <div class="arc-desc">You can read your own signal, design your own experiments, decode your own data. You don't need an analyst. You became one.</div>
+      <div class="arc-emerges">You emerge.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- WHY "EMERGENT" — 4 LAYERS        -->
+<!-- ================================ -->
+<section class="layers-section">
+  <h2>Why "Emergent" Changes Everything</h2>
+  <p class="subtitle">"Health Intelligence" is a noun — a thing you receive. "Emergent Intelligence" is a process — something that reveals itself. That distinction changes the entire brand.</p>
+
+  <div class="layers-grid">
+    <div class="layer-card lc-science">
+      <div class="lc-num">01</div>
+      <div class="lc-title">Scientifically Precise</div>
+      <div class="lc-body">Emergence is how complex systems behave. Patterns that aren't visible in any single data point become clear when the system is observed as a whole. <strong>Your Oura data alone is noise. Your bloodwork alone is noise. Together, synthesized, intelligence emerges that none of them could produce independently.</strong></div>
+      <div class="lc-pullquote">The whole is greater than the sum of its parts.</div>
+    </div>
+
+    <div class="layer-card lc-solarpunk">
+      <div class="lc-num">02</div>
+      <div class="lc-title">Solarpunk-Native</div>
+      <div class="lc-body">Emergence is the core concept of ecological thinking. Ecosystems don't have a designer or central controller. <strong>Intelligence emerges from the interactions between organisms, environment, and time.</strong> Your body works the same way — it's an ecosystem where intelligence emerges from paying attention.</div>
+      <div class="lc-pullquote">Technology and nature integrated. Human agency as participation, not control.</div>
+    </div>
+
+    <div class="layer-card lc-arc">
+      <div class="lc-num">03</div>
+      <div class="lc-title">Describes the Client's Arc</div>
+      <div class="lc-body">Intelligence isn't handed to the client. It <strong>emerges</strong> through the experiment process. First cycle, you see a pattern. Third cycle, you see a system. By graduation, <strong>you ARE the emergent intelligence</strong> — you can read your own signal.</div>
+      <div class="lc-pullquote">The word captures compounding. Each experiment adds resolution to the picture.</div>
+    </div>
+
+    <div class="layer-card lc-ai">
+      <div class="lc-num">04</div>
+      <div class="lc-title">Nods to AI Without Saying "AI"</div>
+      <div class="lc-body">Emergent intelligence is one of the foundational concepts that made AI possible — complex behavior emerging from simpler components interacting. <strong>AI handles data processing, the human handles strategy and relationship, and the intelligence that emerges is greater than either alone.</strong></div>
+      <div class="lc-pullquote">A quiet signal to the technically literate: this is AI-augmented work.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- PALETTE COMPARISON               -->
+<!-- ================================ -->
+<section class="palette-section">
+  <h2>Color Evolution</h2>
+  <p class="subtitle">Same structure. Warmer foundation. Colors that feel like they exist in sunlight — alive, not rendered.</p>
+
+  <div class="palette-grid">
+    <div class="palette-col">
+      <h3>Current — Signal</h3>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#111;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Black</span>
+          <span class="swatch-hex">#111111</span>
+          <span class="swatch-role">Void</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#FAFAF8; border-color: rgba(0,0,0,0.08);"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Off-white</span>
+          <span class="swatch-hex">#FAFAF8</span>
+          <span class="swatch-role">Cool paper</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#5B8DEF;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Blue</span>
+          <span class="swatch-hex">#5B8DEF</span>
+          <span class="swatch-role">Data</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#3ECF8E;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Green</span>
+          <span class="swatch-hex">#3ECF8E</span>
+          <span class="swatch-role">Neon growth</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#E8B931;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Yellow</span>
+          <span class="swatch-hex">#E8B931</span>
+          <span class="swatch-role">Highlight</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#EF5A5A;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Red</span>
+          <span class="swatch-hex">#EF5A5A</span>
+          <span class="swatch-role">Alert</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-arrow">→</div>
+
+    <div class="palette-col">
+      <h3>Evolved — Emergent</h3>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#1C2826;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Deep Forest</span>
+          <span class="swatch-hex">#1C2826</span>
+          <span class="swatch-role">Forest at night</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#FAF8F2; border-color: rgba(0,0,0,0.08);"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Warm Cream</span>
+          <span class="swatch-hex">#FAF8F2</span>
+          <span class="swatch-role">Rice paper</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#5B8DEF;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Clear Blue</span>
+          <span class="swatch-hex">#5B8DEF</span>
+          <span class="swatch-role">Intelligence</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#34B87D;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Living Green</span>
+          <span class="swatch-hex">#34B87D</span>
+          <span class="swatch-role">Living plant</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#D4A12A;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Solar Gold</span>
+          <span class="swatch-hex">#D4A12A</span>
+          <span class="swatch-role">The emergence / the unlock</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#E06B5A;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Warm Coral</span>
+          <span class="swatch-hex">#E06B5A</span>
+          <span class="swatch-role">Living pulse</span>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#B87550;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Copper Earth</span>
+          <span class="swatch-hex">#B87550</span>
+          <span class="swatch-role">Grounding / nature-tech bridge</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- MOOD COMPARISON                  -->
+<!-- ================================ -->
+<section class="mood-section">
+  <h2>Mood Shift</h2>
+  <p class="subtitle">From "midnight in the terminal" to "dawn in the field lab."</p>
+
+  <div class="mood-grid">
+    <div class="mood-card mood-current">
+      <div class="mood-card-label">Current</div>
+      <div class="mood-wave">
+        <svg viewBox="0 0 600 400" preserveAspectRatio="none">
+          <path d="M0,200 Q75,100 150,200 Q225,300 300,200 Q375,100 450,200 Q525,300 600,200" fill="none" stroke="#5B8DEF" stroke-width="2" opacity="0.15"/>
+          <path d="M0,200 Q100,130 200,200 Q300,270 400,200 Q500,130 600,200" fill="none" stroke="#3ECF8E" stroke-width="1.5" opacity="0.1"/>
+        </svg>
+      </div>
+      <div class="mood-current-text">
+        <div class="wordmark">CIPHER</div>
+        <div class="tagline">Decode what works for you.</div>
+        <div class="tag-desc">Cool · Precise · Terminal</div>
+      </div>
+    </div>
+
+    <div class="mood-card mood-evolved">
+      <div class="mood-card-label">Evolved</div>
+      <div class="mood-wave">
+        <svg viewBox="0 0 600 400" preserveAspectRatio="none">
+          <!-- Organic growth waveform -->
+          <path d="M0,220 C50,180 80,240 130,200 C180,160 200,230 260,190 C320,150 340,210 400,180 C460,150 480,200 540,170 C570,155 590,180 600,175" fill="none" stroke="#34B87D" stroke-width="2" opacity="0.2" stroke-linecap="round"/>
+          <path d="M0,250 C70,220 120,260 180,230 C240,200 280,250 350,220 C420,190 460,240 520,210 C560,195 590,215 600,210" fill="none" stroke="#D4A12A" stroke-width="1.5" opacity="0.15" stroke-linecap="round"/>
+          <!-- Subtle branching emergence -->
+          <path d="M260,190 C270,170 285,160 295,145" fill="none" stroke="#34B87D" stroke-width="0.8" opacity="0.08" stroke-linecap="round"/>
+          <path d="M400,180 C410,160 425,150 435,135" fill="none" stroke="#34B87D" stroke-width="0.8" opacity="0.06" stroke-linecap="round"/>
+          <!-- Root network below -->
+          <path d="M100,380 C120,340 150,320 180,300 C200,280 180,260 200,240" fill="none" stroke="#B87550" stroke-width="0.8" opacity="0.08" stroke-linecap="round"/>
+          <path d="M200,390 C210,360 230,330 260,310 C280,290 260,270 280,250" fill="none" stroke="#B87550" stroke-width="0.8" opacity="0.06" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="mood-evolved-text">
+        <div class="wordmark">CIPHER</div>
+        <div class="tagline">Intelligence emerges.</div>
+        <div class="tag-desc">Warm · Alive · Emergent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- HERO COMPARISON                  -->
+<!-- ================================ -->
+<section class="hero-compare">
+  <h2>Hero Section Evolution</h2>
+  <p class="subtitle">Same brand. Warmer world. Emergent intelligence as the promise.</p>
+
+  <div class="hero-mock hero-mock-current">
+    <div class="mock-badge">Current Direction</div>
+    <div class="hero-wave-bg">
+      <svg viewBox="0 0 1200 300" preserveAspectRatio="none">
+        <path d="M0,150 Q150,50 300,150 Q450,250 600,150 Q750,50 900,150 Q1050,250 1200,150" fill="none" stroke="#5B8DEF" stroke-width="2" opacity="0.12"/>
+        <path d="M0,150 Q200,80 400,150 Q600,220 800,150 Q1000,80 1200,150" fill="none" stroke="#3ECF8E" stroke-width="1.5" opacity="0.08"/>
+      </svg>
+    </div>
+    <div class="mock-nav">
+      <div class="brand">CIPHER</div>
+      <div class="links">
+        <span>Method</span>
+        <span>About</span>
+        <span>Results</span>
+      </div>
+    </div>
+    <div class="mock-content">
+      <div class="mock-label"><span class="dot"></span> Decode what works for you</div>
+      <h3>Find your <span class="accent">signal</span>.<br>Lose the noise.</h3>
+      <p>Your body is broadcasting data every second. Cipher helps you read it — through personalized experiments, data synthesis, and a human who actually knows your frequency.</p>
+      <span class="btn">Start Your Diagnostic</span>
+    </div>
+  </div>
+
+  <div class="hero-mock hero-mock-evolved">
+    <div class="mock-badge">Evolved Direction</div>
+    <div class="hero-wave-bg">
+      <svg viewBox="0 0 1200 300" preserveAspectRatio="none">
+        <path d="M0,160 C80,120 120,180 200,140 C280,100 320,170 420,130 C520,90 560,160 660,120 C760,80 800,150 900,110 C1000,70 1040,140 1140,100 L1200,90" fill="none" stroke="#34B87D" stroke-width="2" opacity="0.15" stroke-linecap="round"/>
+        <path d="M0,190 C100,160 160,210 260,170 C360,130 400,200 520,160 C640,120 680,190 800,150 C920,110 960,180 1080,140 L1200,130" fill="none" stroke="#D4A12A" stroke-width="1.5" opacity="0.1" stroke-linecap="round"/>
+        <!-- Emergence branches -->
+        <path d="M420,130 C435,110 450,100 465,82" fill="none" stroke="#34B87D" stroke-width="0.8" opacity="0.06" stroke-linecap="round"/>
+        <path d="M660,120 C675,100 690,92 710,78" fill="none" stroke="#34B87D" stroke-width="0.8" opacity="0.05" stroke-linecap="round"/>
+        <path d="M900,110 C912,92 925,85 940,72" fill="none" stroke="#34B87D" stroke-width="0.8" opacity="0.04" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="mock-nav">
+      <div class="brand">CIPHER</div>
+      <div class="links">
+        <span>Intelligence</span>
+        <span>Method</span>
+        <span>About</span>
+      </div>
+    </div>
+    <div class="mock-content">
+      <div class="mock-label"><span class="dot"></span> N-of-1 Experiments · Emergent Intelligence</div>
+      <h3>Run the experiment.<br>Watch <span class="serif-accent"><span class="accent">intelligence emerge</span></span>.</h3>
+      <p>You have the data — Oura, bloodwork, CGM, years of tracking. What you don't have is the picture. We synthesize it all, design the one experiment that matters most, and the understanding you've been missing starts to surface.</p>
+      <span class="btn">See What Emerges</span>
+      <span class="btn-secondary">How it works →</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- TYPOGRAPHY                       -->
+<!-- ================================ -->
+<section class="type-section">
+  <h2>Three-Layer Type System</h2>
+  <p class="subtitle">Technology + Human + Nature — each with its own typographic voice.</p>
+
+  <div class="type-layers">
+    <div class="type-card type-tech">
+      <div class="layer-name">Technology Layer</div>
+      <div class="sample">CIPHER</div>
+      <p class="desc">JetBrains Mono — precision, data, readouts. The machine that processes. Used for: brand name, data values, labels, metadata, CTAs.</p>
+    </div>
+    <div class="type-card type-human">
+      <div class="layer-name">Human Layer</div>
+      <div class="sample">Your health, decoded.</div>
+      <p class="desc">Inter — clarity, communication, interface. The bridge between data and understanding. Used for: headlines, body copy, UI elements.</p>
+    </div>
+    <div class="type-card type-nature">
+      <div class="layer-name">Nature Layer</div>
+      <div class="sample">Intelligence emerges.</div>
+      <p class="desc">Instrument Serif — warmth, narrative, the alive voice. The emergence. Used sparingly for: taglines, philosophical statements, the "unlock moment," editorial headlines.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- MOTIFS                           -->
+<!-- ================================ -->
+<section class="motifs-section">
+  <h2>Evolved Visual Motifs</h2>
+  <p class="subtitle">Data Botany — data visualizations that grow instead of being rendered. Emergence made visible.</p>
+
+  <div class="motifs-grid">
+    <div class="motif-card motif-growth">
+      <div class="motif-visual">
+        <svg viewBox="0 0 400 180">
+          <path d="M20,120 C30,115 35,130 45,110 C50,100 55,125 65,105 C70,98 78,118 88,95 C95,85 105,108 118,82 C128,72 140,95 155,70 C165,60 178,80 195,58 C210,48 225,65 245,50 C260,42 275,52 295,42 C310,38 325,44 345,38 C360,35 375,40 390,36" fill="none" stroke="#34B87D" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+          <!-- Branches emerging -->
+          <path d="M155,70 C160,55 170,48 175,35" fill="none" stroke="#34B87D" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+          <path d="M245,50 C252,38 260,32 268,22" fill="none" stroke="#34B87D" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+          <path d="M295,42 C298,32 305,28 310,20" fill="none" stroke="#34B87D" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+          <path d="M345,38 C350,28 356,22 362,14" fill="none" stroke="#34B87D" stroke-width="0.6" stroke-linecap="round" opacity="0.15"/>
+          <!-- Gold emergence point -->
+          <circle cx="390" cy="36" r="4" fill="#D4A12A" opacity="0.8"/>
+          <circle cx="390" cy="36" r="8" fill="none" stroke="#D4A12A" stroke-width="0.5" opacity="0.3"/>
+          <circle cx="390" cy="36" r="14" fill="none" stroke="#D4A12A" stroke-width="0.3" opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="motif-info">
+        <h4>Growth Waveform</h4>
+        <p>Noise resolves into organic rhythm. Branches emerge like living data finding its path. The signal doesn't just clarify — it grows.</p>
+        <span class="motif-tag">Emergence from noise</span>
+      </div>
+    </div>
+
+    <div class="motif-card motif-rings">
+      <div class="motif-visual">
+        <svg viewBox="0 0 400 180">
+          <ellipse cx="200" cy="90" rx="20" ry="18" fill="none" stroke="#D4A12A" stroke-width="1.5" opacity="0.6"/>
+          <ellipse cx="200" cy="90" rx="35" ry="30" fill="none" stroke="#D4A12A" stroke-width="1.2" opacity="0.45"/>
+          <ellipse cx="198" cy="91" rx="52" ry="44" fill="none" stroke="#D4A12A" stroke-width="1" opacity="0.35"/>
+          <ellipse cx="201" cy="89" rx="70" ry="58" fill="none" stroke="#D4A12A" stroke-width="0.8" opacity="0.25"/>
+          <ellipse cx="199" cy="90" rx="85" ry="72" fill="none" stroke="#D4A12A" stroke-width="0.6" opacity="0.15"/>
+          <circle cx="200" cy="90" r="3" fill="#D4A12A" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="motif-info">
+        <h4>Fingerprint / Tree Ring</h4>
+        <p>Concentric organic rings — your unique biological identity revealed over time. Each ring is a cycle. Each cycle adds resolution. N-of-1: no two patterns are the same.</p>
+        <span class="motif-tag">N-of-1 identity · Compounding</span>
+      </div>
+    </div>
+
+    <div class="motif-card motif-roots">
+      <div class="motif-visual">
+        <svg viewBox="0 0 400 180">
+          <circle cx="200" cy="50" r="5" fill="#B87550" opacity="0.6"/>
+          <path d="M200,55 C190,75 175,85 160,100" fill="none" stroke="#B87550" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          <path d="M200,55 C210,70 230,80 250,95" fill="none" stroke="#B87550" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          <path d="M200,55 C200,75 195,90 190,110" fill="none" stroke="#B87550" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+          <path d="M160,100 C145,115 130,120 115,130" fill="none" stroke="#B87550" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+          <path d="M160,100 C155,118 160,130 155,145" fill="none" stroke="#B87550" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+          <path d="M250,95 C265,108 280,112 295,120" fill="none" stroke="#B87550" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+          <path d="M250,95 C255,112 250,125 255,140" fill="none" stroke="#B87550" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+          <path d="M190,110 C178,125 170,135 155,145" fill="none" stroke="#B87550" stroke-width="0.6" stroke-linecap="round" opacity="0.15"/>
+          <path d="M190,110 C200,128 215,135 225,148" fill="none" stroke="#B87550" stroke-width="0.6" stroke-linecap="round" opacity="0.15"/>
+          <circle cx="160" cy="100" r="3" fill="#B87550" opacity="0.4"/>
+          <circle cx="250" cy="95" r="3" fill="#B87550" opacity="0.4"/>
+          <circle cx="190" cy="110" r="2.5" fill="#B87550" opacity="0.3"/>
+          <circle cx="115" cy="130" r="2" fill="#B87550" opacity="0.2"/>
+          <circle cx="295" cy="120" r="2" fill="#B87550" opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="motif-info">
+        <h4>Root Network</h4>
+        <p>Branching organic networks — how your data sources connect and synthesize. Mycelium, not flowcharts. Each node is a data source; the network is the emergent intelligence.</p>
+        <span class="motif-tag">Synthesis · Connection</span>
+      </div>
+    </div>
+
+    <div class="motif-card motif-light">
+      <div class="motif-visual">
+        <svg viewBox="0 0 400 180">
+          <defs>
+            <linearGradient id="lightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#D4A12A;stop-opacity:0.3" />
+              <stop offset="100%" style="stop-color:#5B8DEF;stop-opacity:0.1" />
+            </linearGradient>
+          </defs>
+          <path d="M0,30 C100,40 150,20 200,35 C250,50 300,25 400,40" fill="none" stroke="url(#lightGrad)" stroke-width="0.8" opacity="0.4"/>
+          <path d="M0,60 C80,55 140,70 200,60 C260,50 320,65 400,55" fill="none" stroke="url(#lightGrad)" stroke-width="0.8" opacity="0.35"/>
+          <path d="M0,90 C90,95 160,80 220,90 C280,100 340,85 400,92" fill="none" stroke="url(#lightGrad)" stroke-width="0.8" opacity="0.3"/>
+          <path d="M0,120 C70,115 130,125 200,118 C270,110 330,122 400,115" fill="none" stroke="url(#lightGrad)" stroke-width="0.8" opacity="0.25"/>
+          <path d="M0,150 C85,155 160,145 230,152 C300,160 350,148 400,153" fill="none" stroke="url(#lightGrad)" stroke-width="0.8" opacity="0.2"/>
+          <line x1="120" y1="0" x2="180" y2="180" stroke="#D4A12A" stroke-width="12" opacity="0.04"/>
+          <line x1="250" y1="0" x2="290" y2="180" stroke="#D4A12A" stroke-width="20" opacity="0.03"/>
+        </svg>
+      </div>
+      <div class="motif-info">
+        <h4>Light Through Complexity</h4>
+        <p>Warm light filtering through organic layers — the signal emerging from noise, but alive and golden. The emergence moment made visual.</p>
+        <span class="motif-tag">The unlock · Clarity</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- INTELLIGENCE BRIEFING MOCK       -->
+<!-- ================================ -->
+<section class="briefing-section">
+  <h2>The Intelligence Briefing</h2>
+  <p class="subtitle">The core product experience — your health data synthesized into one living document. The intelligence emerges here.</p>
+
+  <div class="briefing-mock">
+    <div class="briefing-header">
+      <div class="bh-left">
+        <span class="dot"></span>
+        <span>Emergence Review · Week 8</span>
+      </div>
+      <div class="bh-right">
+        <span>Experiment Cycle 2 of 3</span>
+      </div>
+    </div>
+    <div class="briefing-body">
+      <div class="briefing-main">
+        <h4>A pattern is emerging across three domains.</h4>
+        <div class="insight-card ic-sleep">
+          <div class="ic-label">Sleep Architecture</div>
+          <p>Deep sleep improved 18% since adjusting evening light exposure. Your body is responding — this is signal, not noise. The pattern that's emerging: architecture matters more than duration for your specific biology.</p>
+          <div class="metric">Deep sleep: 1h 42m avg (↑ from 1h 26m) · HRV morning: 58ms (72nd %ile)</div>
+        </div>
+        <div class="insight-card ic-metabolic">
+          <div class="ic-label">Metabolic Response</div>
+          <p>Glucose variability dropped 22% on adjusted meal timing days. Here's what's emerging: your metabolic flexibility is directly linked to your sleep quality from the previous night. No single device showed this — the pattern only surfaces in synthesis.</p>
+          <div class="metric">Glucose CV: 14.2% (↓ from 18.1%) · Post-meal spike: 118mg/dL avg (↓ from 142)</div>
+        </div>
+        <div class="insight-card ic-emergence">
+          <div class="ic-label">Emergent Pattern</div>
+          <p>Across 8 weeks, a system-level insight has surfaced: your sleep → metabolic → cognitive chain is your highest-leverage pathway. Improving one end cascades through the others. This is your personal architecture becoming visible.</p>
+          <div class="metric">Cross-domain correlation: sleep quality → next-day glucose stability r=0.74</div>
+        </div>
+        <div class="insight-card ic-experiment">
+          <div class="ic-label">Next N-of-1 Experiment</div>
+          <p>Test morning cold exposure (2 min, 50°F) and track its effect on the sleep→metabolic chain. Your cortisol curve suggests this could amplify the cascade. 4-week cycle starts Monday.</p>
+          <div class="metric">Hypothesis: Cold exposure strengthens the sleep→metabolic→cognition pathway within 14 days</div>
+        </div>
+      </div>
+      <div class="briefing-sidebar">
+        <h5>Your Benchmarks</h5>
+        <div class="benchmark">
+          <div class="bm-label">HRV (vs. M 35-40, active)</div>
+          <div class="bm-bar"><div class="bm-fill" style="width:72%; background: linear-gradient(90deg, #34B87D, #5B8DEF);"></div></div>
+          <div class="bm-value">72nd %ile · ↑ from 58th (6mo ago)</div>
+        </div>
+        <div class="benchmark">
+          <div class="bm-label">Sleep Efficiency</div>
+          <div class="bm-bar"><div class="bm-fill" style="width:85%; background: linear-gradient(90deg, #5B8DEF, #D4A12A);"></div></div>
+          <div class="bm-value">85th %ile · stable</div>
+        </div>
+        <div class="benchmark">
+          <div class="bm-label">Metabolic Flexibility</div>
+          <div class="bm-bar"><div class="bm-fill" style="width:64%; background: linear-gradient(90deg, #34B87D, #E06B5A);"></div></div>
+          <div class="bm-value">64th %ile · ↑ from 41st (3mo ago)</div>
+        </div>
+        <div class="benchmark">
+          <div class="bm-label">Recovery Score</div>
+          <div class="bm-bar"><div class="bm-fill" style="width:78%; background: linear-gradient(90deg, #D4A12A, #B87550);"></div></div>
+          <div class="bm-value">78th %ile · trending up</div>
+        </div>
+
+        <h5 style="margin-top: 32px;">Emergence Progress</h5>
+        <div class="benchmark">
+          <div class="bm-label">Patterns identified</div>
+          <div class="bm-bar"><div class="bm-fill" style="width:60%; background: linear-gradient(90deg, #D4A12A, #34B87D);"></div></div>
+          <div class="bm-value">6 of ~10 expected · accelerating</div>
+        </div>
+        <div class="benchmark">
+          <div class="bm-label">System visibility</div>
+          <div class="bm-bar"><div class="bm-fill" style="width:45%; background: linear-gradient(90deg, #B87550, #D4A12A);"></div></div>
+          <div class="bm-value">Phase 2 of 4 · system forming</div>
+        </div>
+      </div>
+    </div>
+    <div class="briefing-footer">
+      <p>"The picture is forming. Each experiment adds resolution. Stay the course — your system is becoming visible."</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- LANGUAGE SHIFTS                  -->
+<!-- ================================ -->
+<section class="language-section">
+  <h2>The Language Evolves</h2>
+  <p class="subtitle">New category, new vocabulary. Every word carries the emergent intelligence frame.</p>
+
+  <table class="lang-table">
+    <thead>
+      <tr>
+        <th>Old (Coaching)</th>
+        <th></th>
+        <th>New (Emergent Intelligence)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="lang-old">Session</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">Emergence review</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Program</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">Experiment series</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Protocol</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">N-of-1 experiment</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Goals</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">Hypotheses</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Progress check</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">Emergence review</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Coach</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">Health intelligence partner</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Client</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">Participant → independent analyst</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Advice</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">Emergent insight</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Intake</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">Diagnostic & data inventory</td>
+      </tr>
+      <tr>
+        <td class="lang-old">Graduation</td>
+        <td class="lang-arrow">→</td>
+        <td class="lang-new">You ARE the emergent intelligence</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- FEELING                          -->
+<!-- ================================ -->
+<section class="feeling-section">
+  <div class="label">The Feeling</div>
+  <blockquote>Like watching a picture develop in real time — shapes becoming clear, connections revealing themselves, your own biology becoming legible for the first time. Alive, lucid, full of potential.</blockquote>
+  <div class="feeling-words">
+    <span class="feeling-word fw-3">Emergence</span>
+    <span class="feeling-word fw-1">Clarity</span>
+    <span class="feeling-word fw-2">Warmth</span>
+    <span class="feeling-word fw-4">Aliveness</span>
+    <span class="feeling-word fw-5">Groundedness</span>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- REFERENCES                       -->
+<!-- ================================ -->
+<section class="references">
+  <h2>Reference Points</h2>
+  <div class="ref-grid">
+    <div class="ref-card">
+      <div class="ref-type">Brand</div>
+      <h4>Seed</h4>
+      <p>Science + organic beauty. Peer-reviewed but gorgeous. Proof that rigor and warmth aren't opposites.</p>
+    </div>
+    <div class="ref-card">
+      <div class="ref-type">Brand</div>
+      <h4>Patagonia</h4>
+      <p>Real people in real environments. Philosophical courage. Values that cost something visible.</p>
+    </div>
+    <div class="ref-card">
+      <div class="ref-type">Brand</div>
+      <h4>Onyx Coffee Lab</h4>
+      <p>Zero-gap coherence. Every surface at the same standard. Premium craft from NWA.</p>
+    </div>
+    <div class="ref-card">
+      <div class="ref-type">Designer</div>
+      <h4>Neri Oxman</h4>
+      <p>Biology IS the most advanced technology. Emergence as design principle. Organic forms, computational precision.</p>
+    </div>
+    <div class="ref-card">
+      <div class="ref-type">Concept</div>
+      <h4>Emergence</h4>
+      <p>Complex systems science. The whole is greater than the sum of its parts. Intelligence that no single component produces alone.</p>
+    </div>
+    <div class="ref-card">
+      <div class="ref-type">Philosophy</div>
+      <h4>Solarpunk</h4>
+      <p>Technology + nature + human agency integrated. The most adaptable will survive. Optimistic futurism grounded in ecology.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ================================ -->
+<!-- FOOTER                           -->
+<!-- ================================ -->
+<footer class="page-footer">
+  <span>Cipher · Brand Evolution · 2026-03-01</span>
+  <span>N-of-1 Experiments · Emergent Intelligence</span>
+</footer>
+
+</body>
+</html>

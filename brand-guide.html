@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cipher — Brand Guide</title>
+<title>Cipher — Brand Guide (Signal + Solarpunk)</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
     --blue: #5B8DEF;
-    --green: #3ECF8E;
-    --yellow: #E8B931;
-    --red: #EF5A5A;
-    --black: #111111;
-    --off-white: #FAFAF8;
-    --gray-100: #f5f5f3;
-    --gray-200: #e8e8e6;
-    --gray-300: #d0d0ce;
+    --green: #34B87D;
+    --yellow: #D4A12A;
+    --red: #E06B5A;
+    --copper: #B87550;
+    --black: #1C2826;
+    --off-white: #FAF8F2;
+    --gray-100: #f5f0ea;
+    --gray-200: #E8E4DE;
+    --gray-300: #d0ccc6;
     --gray-400: #999;
     --gray-500: #777;
     --gray-600: #555;
-    --gray-700: #333;
+    --gray-700: #2A2D2E;
   }
 
   html { scroll-behavior: smooth; }
@@ -1007,60 +1008,86 @@
 
     <div class="gradient-bar" style="height:8px; border-radius:4px; margin-bottom:40px;"></div>
 
-    <!-- Primary -->
+    <!-- Foundation -->
     <h3>Foundation</h3>
-    <div class="grid-2" style="margin-bottom:32px;">
+    <div class="grid-4" style="margin-bottom:32px;">
       <div class="swatch-card">
-        <div class="swatch-color" style="background:#111111; height:120px;"></div>
+        <div class="swatch-color" style="background:#1C2826; height:120px;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Black</div>
-          <div class="swatch-hex">#111111</div>
-          <div class="swatch-role">Primary text, buttons, wordmark, authority</div>
+          <div class="swatch-name">Deep Forest</div>
+          <div class="swatch-hex">#1C2826</div>
+          <div class="swatch-role">Primary dark — text, backgrounds (dark mode)</div>
         </div>
       </div>
       <div class="swatch-card">
-        <div class="swatch-color" style="background:#FAFAF8; height:120px; border-bottom:1px solid var(--gray-200);"></div>
+        <div class="swatch-color" style="background:#FAF8F2; height:120px; border-bottom:1px solid var(--gray-200);"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Off-White</div>
-          <div class="swatch-hex">#FAFAF8</div>
-          <div class="swatch-role">Backgrounds, breathing room</div>
+          <div class="swatch-name">Warm Cream</div>
+          <div class="swatch-hex">#FAF8F2</div>
+          <div class="swatch-role">Primary light — backgrounds (light mode)</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#2A2D2E; height:120px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Rich Charcoal</div>
+          <div class="swatch-hex">#2A2D2E</div>
+          <div class="swatch-role">Secondary dark — cards, panels</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#E8E4DE; height:120px; border-bottom:1px solid var(--gray-200);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Soft Stone</div>
+          <div class="swatch-hex">#E8E4DE</div>
+          <div class="swatch-role">Secondary light — borders, dividers</div>
         </div>
       </div>
     </div>
 
     <!-- Accent -->
-    <h3>Accent Palette</h3>
-    <div class="grid-4">
+    <h3>Signal Colors (Accent Palette)</h3>
+    <div class="grid-4" style="margin-bottom:16px;">
       <div class="swatch-card">
         <div class="swatch-color" style="background:var(--blue);"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Blue</div>
+          <div class="swatch-name">Clear Blue</div>
           <div class="swatch-hex">#5B8DEF</div>
-          <div class="swatch-role">Data, intelligence, clarity</div>
+          <div class="swatch-role">Intelligence, clarity, Signal Resolve dot</div>
         </div>
       </div>
       <div class="swatch-card">
         <div class="swatch-color" style="background:var(--green);"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Green</div>
-          <div class="swatch-hex">#3ECF8E</div>
-          <div class="swatch-role">Health, growth, success</div>
+          <div class="swatch-name">Living Green</div>
+          <div class="swatch-hex">#34B87D</div>
+          <div class="swatch-role">Health, growth, vitality</div>
         </div>
       </div>
       <div class="swatch-card">
         <div class="swatch-color" style="background:var(--yellow);"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Yellow</div>
-          <div class="swatch-hex">#E8B931</div>
+          <div class="swatch-name">Solar Gold</div>
+          <div class="swatch-hex">#D4A12A</div>
           <div class="swatch-role">Discovery, insight, warmth</div>
         </div>
       </div>
       <div class="swatch-card">
         <div class="swatch-color" style="background:var(--red);"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Red</div>
-          <div class="swatch-hex">#EF5A5A</div>
-          <div class="swatch-role">Energy, human pulse, alive</div>
+          <div class="swatch-name">Warm Coral</div>
+          <div class="swatch-hex">#E06B5A</div>
+          <div class="swatch-role">Energy, pulse, human vitality</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:var(--copper);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Copper Earth</div>
+          <div class="swatch-hex">#B87550</div>
+          <div class="swatch-role">Grounding, material, nature-tech bridge</div>
         </div>
       </div>
     </div>
@@ -1077,8 +1104,8 @@
 <section id="type">
   <div class="container">
     <div class="section-label">04 / Typography</div>
-    <div class="section-title">Type System</div>
-    <div class="section-subtitle">Two typefaces. Monospace carries the "decode" energy. Sans-serif carries the human warmth. The contrast between them IS the brand.</div>
+    <div class="section-title">Three-Layer Type System</div>
+    <div class="section-subtitle">Three typefaces mapping to the solarpunk integration: technology (JetBrains Mono) + human agency (Inter) + ecological wisdom (Instrument Serif). The interplay between them IS the brand.</div>
 
     <div class="type-specimen">
       <div class="type-meta">
@@ -1110,6 +1137,23 @@
         abcdefghijklmnopqrstuvwxyz
       </div>
       <div style="font-family:'Inter',sans-serif; font-size:42px; font-weight:400; color:var(--gray-300);">
+        0123456789
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-meta">
+        <span>Instrument Serif</span>
+        <span>400, Italic</span>
+        <span>Editorial, Narrative Warmth, Tagline (used sparingly)</span>
+      </div>
+      <div style="font-family:'Instrument Serif',serif; font-size:42px; font-weight:400;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      </div>
+      <div style="font-family:'Instrument Serif',serif; font-size:42px; font-weight:400; font-style:italic; color:var(--gray-400);">
+        abcdefghijklmnopqrstuvwxyz
+      </div>
+      <div style="font-family:'Instrument Serif',serif; font-size:42px; font-weight:400; color:var(--gray-300);">
         0123456789
       </div>
     </div>

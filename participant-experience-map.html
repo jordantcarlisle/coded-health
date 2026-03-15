@@ -1,0 +1,2200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher — Participant Experience Map & Product Vision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF8F2;
+    --forest: #1C2826;
+    --charcoal: #2A2D2E;
+    --stone: #E8E4DE;
+    --blue: #4A7699;
+    --green: #3E7A5C;
+    --gold: #D4A12A;
+    --coral: #E06B5A;
+    --copper: #B87550;
+    --sidebar-w: 260px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--forest);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .page-wrap { display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--forest);
+    padding: 32px 20px;
+    z-index: 100;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 18px;
+    letter-spacing: 0.08em; color: #fff;
+    display: block; margin-bottom: 4px;
+  }
+
+  .sidebar-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    display: block; margin-bottom: 28px;
+  }
+
+  .sidebar-nav h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 8px; margin-top: 20px;
+  }
+
+  .sidebar-nav a {
+    display: block; font-size: 13px; font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none; padding: 5px 8px;
+    border-radius: 5px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1.4;
+  }
+
+  .sidebar-nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .sidebar-nav a.active { background: rgba(74,118,153,0.18); color: var(--blue); }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none; position: fixed;
+    top: 16px; right: 16px; z-index: 200;
+    background: var(--forest); border: none;
+    border-radius: 8px; padding: 10px 12px;
+    cursor: pointer; flex-direction: column; gap: 5px;
+  }
+
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: #fff; border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .sidebar-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4); z-index: 90;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1; max-width: 900px;
+    padding: 60px 56px;
+    position: relative; z-index: 1;
+  }
+
+  /* ── HERO ── */
+  .hero { margin-bottom: 56px; padding-bottom: 48px; border-bottom: 1px solid var(--stone); }
+
+  .hero-wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 36px;
+    letter-spacing: 0.08em; color: var(--forest);
+    line-height: 1; display: block;
+  }
+
+  .hero-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-size: 18px;
+    color: var(--copper); margin-top: 4px; display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300; font-size: 22px;
+    color: var(--charcoal); margin-top: 16px; line-height: 1.3;
+  }
+
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: rgba(28,40,38,0.4);
+    margin-top: 8px; letter-spacing: 0.04em;
+  }
+
+  /* ── WAVEFORM ── */
+  .hero-waveform-wrap {
+    margin-top: 32px; height: 72px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-waveform { width: 100%; height: 72px; display: block; }
+
+  .waveform-chaotic {
+    animation: waveform-animate-chaotic 6s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  @keyframes waveform-animate-chaotic {
+    0%, 100% { transform: translateX(0) scaleY(1); }
+    25% { transform: translateX(-3px) scaleY(1.15); }
+    50% { transform: translateX(2px) scaleY(0.9); }
+    75% { transform: translateX(-1px) scaleY(1.08); }
+  }
+
+  .waveform-resolved {
+    animation: waveform-animate-resolved 4s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  @keyframes waveform-animate-resolved {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.05); }
+  }
+
+  /* ── PERSONAL NOTE ── */
+  .personal-note {
+    margin-top: 32px; background: #fff;
+    border: 1px solid var(--stone);
+    border-left: 4px solid var(--green);
+    border-radius: 10px; padding: 24px 28px;
+  }
+
+  .personal-note p {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-size: 17px;
+    line-height: 1.75; color: var(--charcoal);
+  }
+
+  .personal-note .note-sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal; font-size: 12px;
+    color: var(--green); margin-top: 10px; display: block;
+  }
+
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 64px; scroll-margin-top: 32px; }
+
+  .section-header {
+    display: flex; align-items: center;
+    gap: 14px; margin-bottom: 28px;
+  }
+
+  .section-marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 4px; flex-shrink: 0;
+  }
+
+  .marker-blue { background: rgba(74,118,153,0.12); color: var(--blue); }
+  .marker-green { background: rgba(62,122,92,0.12); color: var(--green); }
+  .marker-gold { background: rgba(212,161,42,0.12); color: var(--gold); }
+  .marker-coral { background: rgba(224,107,90,0.12); color: var(--coral); }
+  .marker-copper { background: rgba(184,117,80,0.12); color: var(--copper); }
+
+  .section h2 { font-size: 26px; font-weight: 700; color: var(--forest); line-height: 1.2; }
+  .section h3 { font-size: 18px; font-weight: 600; color: var(--forest); margin-bottom: 12px; margin-top: 28px; }
+  .section h4 { font-size: 15px; font-weight: 700; color: var(--forest); margin-bottom: 8px; margin-top: 20px; }
+  .section p { margin-bottom: 14px; color: var(--charcoal); font-size: 15.5px; }
+  .section ul, .section ol { padding-left: 20px; margin-bottom: 14px; }
+  .section li { margin-bottom: 6px; font-size: 15.5px; color: var(--charcoal); }
+
+  /* ── CARDS ── */
+  .card {
+    background: #fff; border: 1px solid var(--stone);
+    border-radius: 12px; padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(28,40,38,0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .card:hover { box-shadow: 0 4px 16px rgba(28,40,38,0.08); transform: translateY(-1px); }
+
+  .card-blue { border-left: 4px solid var(--blue); }
+  .card-green { border-left: 4px solid var(--green); }
+  .card-gold { border-left: 4px solid var(--gold); }
+  .card-coral { border-left: 4px solid var(--coral); }
+  .card-copper { border-left: 4px solid var(--copper); }
+
+  .card h4 { font-size: 15px; font-weight: 700; color: var(--forest); margin-bottom: 8px; margin-top: 0; }
+  .card p { margin-bottom: 0; font-size: 14.5px; }
+
+  /* ── TABLES ── */
+  .table-wrap {
+    overflow-x: auto; margin-bottom: 20px;
+    border-radius: 10px; border: 1px solid var(--stone);
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead tr { background: var(--forest); color: #fff; }
+
+  thead th {
+    padding: 12px 16px; text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  tbody tr:nth-child(even) { background: rgba(232,228,222,0.35); }
+  tbody tr:hover { background: rgba(74,118,153,0.05); }
+
+  tbody td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(232,228,222,0.7);
+    vertical-align: top; line-height: 1.5;
+    color: var(--charcoal);
+  }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px; border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .badge-blue { background: rgba(74,118,153,0.15); color: #2a5a73; }
+  .badge-green { background: rgba(62,122,92,0.15); color: #1e6645; }
+  .badge-gold { background: rgba(212,161,42,0.15); color: #9a7010; }
+  .badge-coral { background: rgba(224,107,90,0.15); color: #b04030; }
+  .badge-copper { background: rgba(184,117,80,0.15); color: #8a4a20; }
+
+  /* ── TIER LABELS ── */
+  .tier-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 4px;
+    display: inline-block; margin-bottom: 12px;
+  }
+
+  .tier-1 { background: rgba(62,122,92,0.15); color: #1e6645; }
+  .tier-2 { background: rgba(74,118,153,0.15); color: #2a5a73; }
+  .tier-3 { background: rgba(212,161,42,0.15); color: #9a7010; }
+
+  /* ── NOTE / INSIGHT / CAUTION BOXES ── */
+  .note-box {
+    background: rgba(74,118,153,0.06);
+    border: 1px solid rgba(74,118,153,0.2);
+    border-left: 3px solid var(--blue);
+    border-radius: 8px; padding: 14px 16px;
+    font-size: 14px; color: var(--charcoal);
+    margin-top: 14px; margin-bottom: 14px; line-height: 1.55;
+  }
+
+  .note-box strong {
+    color: var(--blue); font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: block; margin-bottom: 4px;
+  }
+
+  .insight-box {
+    background: rgba(62,122,92,0.06);
+    border: 1px solid rgba(62,122,92,0.2);
+    border-left: 3px solid var(--green);
+    border-radius: 8px; padding: 14px 16px;
+    font-size: 14px; color: var(--charcoal);
+    margin-top: 14px; margin-bottom: 14px; line-height: 1.55;
+  }
+
+  .insight-box strong {
+    color: var(--green); font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: block; margin-bottom: 4px;
+  }
+
+  .caution-box {
+    background: rgba(224,107,90,0.07);
+    border: 1px solid rgba(224,107,90,0.25);
+    border-left: 3px solid var(--coral);
+    border-radius: 8px; padding: 14px 16px;
+    font-size: 14px; color: var(--charcoal);
+    margin-top: 14px; margin-bottom: 14px; line-height: 1.55;
+  }
+
+  .caution-box strong {
+    color: var(--coral); font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: block; margin-bottom: 4px;
+  }
+
+  .gold-box {
+    background: rgba(212,161,42,0.06);
+    border: 1px solid rgba(212,161,42,0.2);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px; padding: 14px 16px;
+    font-size: 14px; color: var(--charcoal);
+    margin-top: 14px; margin-bottom: 14px; line-height: 1.55;
+  }
+
+  .gold-box strong {
+    color: var(--gold); font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: block; margin-bottom: 4px;
+  }
+
+  /* ── PILLAR INTRO ── */
+  .pillar-intro {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-size: 17px;
+    color: var(--copper); margin-bottom: 20px;
+    line-height: 1.6; padding-left: 16px;
+    border-left: 2px solid var(--copper);
+  }
+
+  /* ── CODE BLOCKS ── */
+  .code-block {
+    background: var(--forest);
+    color: rgba(255,255,255,0.88);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px; line-height: 1.6;
+    padding: 24px 28px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    white-space: pre;
+  }
+
+  .code-block .code-comment { color: rgba(255,255,255,0.35); }
+  .code-block .code-green { color: #6ec99e; }
+  .code-block .code-blue { color: #7db8d4; }
+  .code-block .code-gold { color: #e8c860; }
+  .code-block .code-coral { color: #e88a7e; }
+  .code-block .code-copper { color: #d4a070; }
+
+  /* ── ARCHITECTURE DIAGRAM ── */
+  .arch-diagram {
+    display: flex; flex-direction: column;
+    gap: 0; margin-bottom: 24px;
+  }
+
+  .arch-layer {
+    background: #fff; border: 1px solid var(--stone);
+    padding: 20px 24px;
+    position: relative;
+  }
+
+  .arch-layer:first-child { border-radius: 12px 12px 0 0; }
+  .arch-layer:last-child { border-radius: 0 0 12px 12px; }
+  .arch-layer + .arch-layer { border-top: none; }
+
+  .arch-layer-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 6px; display: block;
+  }
+
+  .arch-layer-desc {
+    font-size: 14px; color: var(--charcoal); line-height: 1.5;
+  }
+
+  .arch-layer-tier {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 2px 7px; border-radius: 3px;
+    position: absolute; top: 16px; right: 20px;
+  }
+
+  .arch-layer.layer-coach { border-left: 4px solid var(--gold); }
+  .arch-layer.layer-coach .arch-layer-label { color: var(--gold); }
+  .arch-layer.layer-coach .arch-layer-tier { background: rgba(212,161,42,0.12); color: var(--gold); }
+
+  .arch-layer.layer-engine { border-left: 4px solid var(--blue); }
+  .arch-layer.layer-engine .arch-layer-label { color: var(--blue); }
+  .arch-layer.layer-engine .arch-layer-tier { background: rgba(74,118,153,0.12); color: var(--blue); }
+
+  .arch-layer.layer-data { border-left: 4px solid var(--green); }
+  .arch-layer.layer-data .arch-layer-label { color: var(--green); }
+  .arch-layer.layer-data .arch-layer-tier { background: rgba(62,122,92,0.12); color: var(--green); }
+
+  /* ── THREE TIER PRODUCT GRID ── */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px; margin-bottom: 20px;
+  }
+
+  .tier-card {
+    background: #fff; border: 1px solid var(--stone);
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 1px 4px rgba(28,40,38,0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .tier-card:hover { box-shadow: 0 4px 16px rgba(28,40,38,0.08); transform: translateY(-2px); }
+
+  .tier-card-header {
+    padding: 18px 20px; color: #fff;
+  }
+
+  .tier-card-header.tc-green { background: var(--green); }
+  .tier-card-header.tc-blue { background: var(--blue); }
+  .tier-card-header.tc-gold { background: var(--gold); }
+
+  .tier-card-header .tier-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; opacity: 0.8;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+
+  .tier-card-header h3 {
+    font-size: 16px; font-weight: 700;
+    color: #fff; margin: 0;
+  }
+
+  .tier-card-header .tier-price {
+    font-size: 12px; opacity: 0.85;
+    margin-top: 3px; font-style: italic;
+  }
+
+  .tier-card-body { padding: 18px 20px; }
+
+  .tier-card-body h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(28,40,38,0.45);
+    margin-bottom: 6px; margin-top: 14px;
+  }
+
+  .tier-card-body h4:first-child { margin-top: 0; }
+
+  .tier-card-body ul { padding-left: 16px; margin: 0; }
+
+  .tier-card-body li {
+    font-size: 13px; color: var(--charcoal);
+    margin-bottom: 4px; line-height: 1.45;
+  }
+
+  /* ── WEEK TIMELINE ── */
+  .week-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; margin-top: 36px;
+  }
+
+  .week-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 4px 12px; border-radius: 6px;
+    color: #fff; flex-shrink: 0;
+  }
+
+  .week-badge-blue { background: var(--blue); }
+  .week-badge-green { background: var(--green); }
+  .week-badge-gold { background: var(--gold); }
+  .week-badge-coral { background: var(--coral); }
+
+  .week-header h3 {
+    font-size: 18px; font-weight: 600; color: var(--forest);
+    margin: 0;
+  }
+
+  .week-focus {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-size: 15px;
+    color: var(--copper); margin-bottom: 16px;
+  }
+
+  /* ── PRODUCT LESSON CARDS ── */
+  .lesson-card {
+    background: #fff; border: 1px solid var(--stone);
+    border-radius: 12px; padding: 24px 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(28,40,38,0.04);
+  }
+
+  .lesson-card h4 {
+    font-size: 15px; font-weight: 700; color: var(--forest);
+    margin-bottom: 10px; margin-top: 0;
+  }
+
+  .lesson-card .lesson-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(28,40,38,0.4); margin-top: 12px; margin-bottom: 4px;
+  }
+
+  .lesson-card p { font-size: 14px; color: var(--charcoal); margin-bottom: 6px; line-height: 1.55; }
+  .lesson-card ul { padding-left: 16px; margin: 0 0 6px 0; }
+  .lesson-card li { font-size: 13.5px; color: var(--charcoal); margin-bottom: 3px; line-height: 1.45; }
+
+  /* ── FOOTER ── */
+  .guide-footer {
+    margin-top: 64px; padding-top: 32px;
+    border-top: 1px solid var(--stone);
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 14px;
+    letter-spacing: 0.08em; color: var(--forest);
+  }
+
+  .footer-meta {
+    font-size: 12px; color: rgba(28,40,38,0.4);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── BACKGROUND TEXTURE ── */
+  .page-bg-texture {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='60' cy='60' r='10' fill='none' stroke='%23E8E4DE' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='22' fill='none' stroke='%23E8E4DE' stroke-width='0.7'/%3E%3Ccircle cx='60' cy='60' r='36' fill='none' stroke='%23E8E4DE' stroke-width='0.5'/%3E%3Ccircle cx='60' cy='60' r='52' fill='none' stroke='%23E8E4DE' stroke-width='0.35'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay.open { display: block; }
+    .hamburger { display: flex; }
+    .main { margin-left: 0; padding: 60px 24px 40px; }
+    .tier-grid { grid-template-columns: 1fr; }
+    .arch-diagram { gap: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .main { padding: 60px 16px 32px; }
+    .hero-wordmark { font-size: 26px; }
+    .section h2 { font-size: 21px; }
+  }
+
+  @media print {
+    .sidebar, .hamburger, .sidebar-overlay { display: none !important; }
+    .main { margin-left: 0; padding: 20px; max-width: 100%; }
+    .card, .tier-card, .lesson-card { break-inside: avoid; box-shadow: none; }
+    a { color: inherit; text-decoration: none; }
+    .hero-waveform-wrap, .page-bg-texture { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-bg-texture"></div>
+
+<!-- ── HAMBURGER ── -->
+<button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<div class="page-wrap">
+
+<!-- ══════════════════════════════════════
+     SIDEBAR
+     ══════════════════════════════════════ -->
+<aside class="sidebar">
+  <span class="sidebar-logo">CIPHER</span>
+  <span class="sidebar-tagline">Decode what works for you</span>
+
+  <nav class="sidebar-nav">
+    <h3>Architecture</h3>
+    <a href="#product-architecture">Product Architecture</a>
+    <a href="#behavioral-philosophy">Behavioral Philosophy</a>
+
+    <h3>Experiment Engine</h3>
+    <a href="#skill-tree">The Skill Tree System</a>
+    <a href="#adaptive-engagement">Adaptive Engagement</a>
+
+    <h3>Product Tiers</h3>
+    <a href="#three-tier-model">Three-Tier Model</a>
+
+    <h3>Month 1 Experience</h3>
+    <a href="#pre-week-1">Pre-Week 1: Onboarding</a>
+    <a href="#week-1">Week 1: Assessment</a>
+    <a href="#week-2">Week 2: In Motion</a>
+    <a href="#week-3">Week 3: Midpoint</a>
+    <a href="#week-4">Week 4: Emergence Review</a>
+
+    <h3>Product Intelligence</h3>
+    <a href="#product-lessons">Lessons from the Field</a>
+    <a href="#build-vs-buy">Build vs. Buy</a>
+
+    <h3>Build Plan</h3>
+    <a href="#build-scope">One-Month Build Scope</a>
+    <a href="#data-sources">Data Sources</a>
+
+    <h3>Decisions &amp; Metrics</h3>
+    <a href="#open-decisions">Open Decisions</a>
+    <a href="#success-metrics">Success Metrics</a>
+  </nav>
+</aside>
+
+<!-- ══════════════════════════════════════
+     MAIN CONTENT
+     ══════════════════════════════════════ -->
+<main class="main">
+
+<!-- ── HERO ── -->
+<header class="hero" id="top">
+  <span class="hero-wordmark">CIPHER</span>
+  <span class="hero-tagline">Intelligence emerges</span>
+  <h1 class="hero-subtitle">Experience Map &amp; Product Vision</h1>
+  <p class="hero-meta">Platform architecture &middot; Week-by-week experience &middot; March 2026 &middot; coded.health</p>
+
+  <div class="hero-waveform-wrap">
+    <svg class="hero-waveform" viewBox="0 0 300 72" preserveAspectRatio="none">
+      <path class="waveform-chaotic" d="M0,36 C15,10 30,62 50,36 C70,10 85,62 105,36 C120,15 140,55 160,36 C180,18 195,54 215,36 C230,22 250,50 270,36 C285,28 295,40 300,36" fill="none" stroke="#4A7699" stroke-width="1.5" opacity="0.5"/>
+      <path class="waveform-resolved" d="M0,36 C25,30 50,42 75,36 C100,30 125,42 150,36 C175,30 200,42 225,36 C250,30 275,42 300,36" fill="none" stroke="#3E7A5C" stroke-width="2" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <div class="personal-note">
+    <p>The complete product experience &mdash; from self-serve health intelligence platform to AI+Human coaching &mdash; mapped week-by-week with the behavioral science, technology, and design principles that make it work.</p>
+    <span class="note-sig">Status: Active &middot; Beta target: April 14, 2026 &middot; Prerequisite for GCP architecture execution</span>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: PRODUCT ARCHITECTURE
+     ══════════════════════════════════════ -->
+<div class="section" id="product-architecture">
+  <div class="section-header">
+    <span class="section-marker marker-blue">Foundation</span>
+    <h2>Product Architecture</h2>
+  </div>
+
+  <p>Cipher is a health intelligence platform with three layers:</p>
+
+  <div class="arch-diagram">
+    <div class="arch-layer layer-coach">
+      <span class="arch-layer-label">Coach Layer</span>
+      <span class="arch-layer-tier">Tier 2 + 3</span>
+      <span class="arch-layer-desc">AI Coach: proactive accountability, personalized guidance, real-time support. AI+Human: emergence reviews, deep context.</span>
+    </div>
+    <div class="arch-layer layer-engine">
+      <span class="arch-layer-label">Experiment Engine</span>
+      <span class="arch-layer-tier">All Tiers</span>
+      <span class="arch-layer-desc">Skill tree progression across health domains. 4-week cycles. Montessori-style: assessment &rarr; choice &rarr; experiment &rarr; emerge.</span>
+    </div>
+    <div class="arch-layer layer-data">
+      <span class="arch-layer-label">Data Platform</span>
+      <span class="arch-layer-tier">All Tiers</span>
+      <span class="arch-layer-desc">Health data hub. Wearables, nutrition, labs, subjective. On par or better than Apple Health. Everything in one place.</span>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <strong>Key Principle</strong>
+    The platform is useful at every layer. Data aggregation alone has value. The experiment engine adds structure. The coach layer adds acceleration. Each tier stands on its own &mdash; coaching doesn&rsquo;t prop up a weak platform.
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: BEHAVIORAL PHILOSOPHY
+     ══════════════════════════════════════ -->
+<div class="section" id="behavioral-philosophy">
+  <div class="section-header">
+    <span class="section-marker marker-green">Philosophy</span>
+    <h2>Behavioral Philosophy</h2>
+  </div>
+
+  <p>Cipher&rsquo;s approach to change draws from multiple frameworks, blended into a model that matches the N-of-1 philosophy.</p>
+
+  <h3>Core Principles</h3>
+
+  <div class="card card-green" style="margin-top: 16px;">
+    <h4>1. Autonomy + Competence (Self-Determination Theory)</h4>
+    <p>People change when they feel ownership over the process and see themselves getting better at it. Cipher&rsquo;s entire design reinforces this: participants choose their experiments, interpret their own data over time, and build mastery. The product&rsquo;s job is to make them NOT need the product &mdash; &ldquo;you ARE the emergent intelligence.&rdquo;</p>
+  </div>
+
+  <div class="card card-blue">
+    <h4>2. Environment Design (Clear / Thaler)</h4>
+    <p>Make the right thing easy. The product itself IS the environment. The dashboard is nudge architecture, not just data display. The skill tree surfaces the next logical experiment. The journal is frictionless enough to actually use. Every UX decision asks: &ldquo;Does this make the healthy behavior easier or harder?&rdquo;</p>
+  </div>
+
+  <div class="card card-gold">
+    <h4>3. Emergent Learning Over Delivered Knowledge</h4>
+    <p>Unlike Precision Nutrition (pre-written curriculum delivered to everyone), Cipher generates understanding FROM the participant&rsquo;s own experience. Knowledge is discovered through experiments, not delivered through lessons. The data tells the story &mdash; the product helps you read it.</p>
+  </div>
+
+  <div class="card card-copper">
+    <h4>4. Progressive Mastery Through Structured Choice</h4>
+    <p>Like a Montessori classroom or Alpha School: the environment is structured, the progression is designed, but the learner chooses their path through it. Foundation skills unlock more advanced experiments. Cross-domain connections emerge as breadth increases. Every 4 weeks is a decision point informed by data and experience.</p>
+  </div>
+
+  <h3>What This Means in Practice</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Traditional Coaching</th>
+          <th>Cipher's Model</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Coach tells you what to do</td><td>You choose from a curated skill tree</td></tr>
+        <tr><td>Follow a fixed program</td><td>Navigate a branching progression based on YOUR data</td></tr>
+        <tr><td>Weekly check-in reviews compliance</td><td>Daily data reveals what&rsquo;s actually happening</td></tr>
+        <tr><td>Knowledge delivered via lessons</td><td>Understanding emerges from your own experiments</td></tr>
+        <tr><td>Graduation = finished the program</td><td>Graduation = you can design your own experiments</td></tr>
+        <tr><td>One-size curriculum</td><td>Assessment-informed, self-directed path</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: SKILL TREE SYSTEM
+     ══════════════════════════════════════ -->
+<div class="section" id="skill-tree">
+  <div class="section-header">
+    <span class="section-marker marker-gold">Engine</span>
+    <h2>The Skill Tree System</h2>
+  </div>
+
+  <p>The experiment engine is organized as interconnected skill trees across health domains. Each domain has a progression from foundation habits to advanced experiments, with cross-domain nodes that unlock when you have sufficient experience in multiple areas.</p>
+
+  <h3>Health Domains</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Domain</th>
+          <th>Foundation Focus</th>
+          <th>Example Progression</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sleep</strong></td>
+          <td>Consistent schedule, tracking</td>
+          <td>&rarr; Environment optimization &rarr; Light/temp protocols &rarr; Cross-domain (caffeine, exercise timing)</td>
+        </tr>
+        <tr>
+          <td><strong>Nutrition</strong></td>
+          <td>Awareness, protein targets</td>
+          <td>&rarr; Meal timing &rarr; Micronutrient focus &rarr; Metabolic response (CGM) &rarr; Cross-domain (sleep, performance)</td>
+        </tr>
+        <tr>
+          <td><strong>Movement</strong></td>
+          <td>Consistent baseline, step count</td>
+          <td>&rarr; Training structure &rarr; Recovery integration &rarr; Cross-domain (sleep quality, HRV response)</td>
+        </tr>
+        <tr>
+          <td><strong>Stress &amp; Recovery</strong></td>
+          <td>Awareness, one practice</td>
+          <td>&rarr; Breathwork/meditation progression &rarr; HRV-guided recovery &rarr; Cross-domain (sleep, performance, relationships)</td>
+        </tr>
+        <tr>
+          <td><strong>Social-Emotional</strong></td>
+          <td>Self-awareness, journaling</td>
+          <td>&rarr; Communication skills &rarr; Boundary setting &rarr; Cross-domain (stress, recovery, environment)</td>
+        </tr>
+        <tr>
+          <td><strong>Relationships</strong></td>
+          <td>Connection audit, quality time</td>
+          <td>&rarr; Support network building &rarr; Conflict resolution &rarr; Cross-domain (stress, emotional health)</td>
+        </tr>
+        <tr>
+          <td><strong>Environment</strong></td>
+          <td>Sleep environment, workspace</td>
+          <td>&rarr; Light exposure &rarr; Air quality &rarr; Digital environment &rarr; Cross-domain (sleep, focus, stress)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Skill Tree Structure</h3>
+
+  <p>Each domain follows the same pattern:</p>
+
+  <div class="code-block"><span class="code-gold">DOMAIN SKILL TREE</span>
+
+<span class="code-green">&#9608;&#9608; Foundations</span> <span class="code-comment">(required, 1-2 experiments)</span>
+ &#9500;&#9472; &#9608; Baseline tracking <span class="code-comment">(establish data)</span>
+ &#9500;&#9472; &#9608; Core habit <span class="code-comment">(the one thing that matters most)</span>
+ &#9492;&#9472; &#9608; Consistency check <span class="code-comment">(can you sustain it?)</span>
+       &#9474;
+<span class="code-blue">&#9608;&#9608; Environment &amp; Systems</span> <span class="code-comment">(pick path, 2-3 experiments)</span>
+ &#9500;&#9472; &#9633; Option A &#9472;&#9472;&#9488;
+ &#9500;&#9472; &#9633; Option B &#9472;&#9472;&#9524;&#9472;&gt; &#9633; Advanced Integration
+ &#9492;&#9472; &#9633; Option C &#9472;&#9472;&#9496;
+       &#9474;
+<span class="code-copper">&#9608;&#9608; Cross-Domain</span> <span class="code-comment">(unlocks with experience in other domains)</span>
+ &#9500;&#9472; &#9633; Domain &times; Sleep    <span class="code-comment">[req: Sleep L1]</span>
+ &#9500;&#9472; &#9633; Domain &times; Nutrition <span class="code-comment">[req: Nutrition L1]</span>
+ &#9492;&#9472; &#9633; Domain &times; Stress   <span class="code-comment">[req: Recovery L1]</span></div>
+
+  <h3>How Participants Navigate</h3>
+
+  <ol>
+    <li><strong>Assessment</strong> maps their current state across all domains (diagnostic intake form + connected data)</li>
+    <li><strong>System recommends</strong> a starting domain and experiment based on assessment &mdash; highest leverage or easiest win</li>
+    <li><strong>Participant chooses</strong> &mdash; agency always wins over optimization. They pick the domain and experiment that resonates</li>
+    <li><strong>4-week experiment cycle</strong> &mdash; hypothesis &rarr; protocol &rarr; daily tracking &rarr; emergence review</li>
+    <li><strong>Decision point</strong> &mdash; at the end of each cycle, the skill tree updates. New nodes unlock. Participant chooses next direction informed by data AND experience</li>
+    <li><strong>Cross-domain connections emerge</strong> naturally as they accumulate experiments across domains &mdash; the AI surfaces correlations, but they discover the meaning</li>
+  </ol>
+
+  <h3>Progression Visibility</h3>
+
+  <p>The skill tree is a <strong>visible map</strong> &mdash; participants can see:</p>
+
+  <ul>
+    <li>Where they&rsquo;ve been (completed experiments)</li>
+    <li>Where they are (active experiment)</li>
+    <li>Where they could go (unlocked nodes)</li>
+    <li>What&rsquo;s locked (requires prerequisites)</li>
+    <li>Cross-domain connections (experiments that span multiple domains)</li>
+  </ul>
+
+  <div class="insight-box">
+    <strong>Intrinsic Motivation</strong>
+    &ldquo;I can see the whole map. I&rsquo;m choosing my path through it. And every experiment I complete unlocks new territory.&rdquo;
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: ADAPTIVE ENGAGEMENT
+     ══════════════════════════════════════ -->
+<div class="section" id="adaptive-engagement">
+  <div class="section-header">
+    <span class="section-marker marker-copper">Engagement</span>
+    <h2>Adaptive Engagement Model</h2>
+  </div>
+
+  <p class="pillar-intro">The product gets quieter as participants get more capable. Inspired by the best of Rise (personalized daily energy insights), Finch (multi-layered engagement loops), and Calm (progressive skill building) &mdash; while avoiding their mistakes.</p>
+
+  <h3>Engagement Phases</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>When</th>
+          <th>Daily Touchpoints</th>
+          <th>Product Behavior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Onboarding</strong></td>
+          <td>Week 1-2</td>
+          <td>3-4 (morning signal, midday prompt, evening reflection, data sync notification)</td>
+          <td>Active guidance. &ldquo;Here&rsquo;s what to focus on today.&rdquo; Hand-holding is appropriate &mdash; they&rsquo;re learning the system.</td>
+        </tr>
+        <tr>
+          <td><strong>Building</strong></td>
+          <td>Week 3-8</td>
+          <td>2-3 (morning signal, evening reflection, experiment-related prompts)</td>
+          <td>Structured support. Daily rhythm established. Product reinforces the experiment cycle.</td>
+        </tr>
+        <tr>
+          <td><strong>Practicing</strong></td>
+          <td>Month 3-6</td>
+          <td>1-2 (morning signal, contextual nudges only when data warrants)</td>
+          <td>Selective engagement. Product speaks up for anomalies, milestones, and decision points. Quieter otherwise.</td>
+        </tr>
+        <tr>
+          <td><strong>Independent</strong></td>
+          <td>Month 6+</td>
+          <td>Weekly digest + on-demand</td>
+          <td>The product is a tool they use, not a teacher that talks at them. Weekly intelligence summary. They drive their own cadence.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Design Principles (Learned from Product Research)</h3>
+
+  <div class="card card-blue" style="margin-top:16px;">
+    <h4>From Rise</h4>
+    <p>Personalized daily insights tied to YOUR data. Energy wave visualization. Contextual suggestions (bedtime recommendations, nap windows). The gold standard for &ldquo;useful without being annoying.&rdquo;</p>
+  </div>
+
+  <div class="card card-green">
+    <h4>From Finch</h4>
+    <p>Multi-layered engagement loops (hourly, daily, weekly, monthly) create sustained engagement. <strong>But</strong> &mdash; the gamification must serve the BEHAVIOR, not become the behavior. Finch&rsquo;s mistake was making the pet more compelling than the actual habits. Cipher&rsquo;s engagement loops must always point back to the experiment and the data.</p>
+  </div>
+
+  <div class="card card-gold">
+    <h4>From Calm</h4>
+    <p>Progressive skill building works. Streaks create consistency. <strong>But</strong> &mdash; monetization cannot corrupt the experience. When every new feature is a paywall, trust erodes. Cipher&rsquo;s freemium model must feel generous at the free tier.</p>
+  </div>
+
+  <div class="card card-copper">
+    <h4>From HiCoffee</h4>
+    <p>Simple, specific, actionable. Show ONE thing mapped to YOUR schedule. The caffeine half-life visualization is a masterclass in making data personally useful. Cipher should aspire to this level of clarity for every insight.</p>
+  </div>
+
+  <div class="card card-coral">
+    <h4>From Levels</h4>
+    <p>Real-time feedback loops drive the fastest behavioral change. But multi-app friction kills habit formation. Cipher must be the single surface &mdash; no &ldquo;open three apps to understand one thing.&rdquo;</p>
+  </div>
+
+  <div class="card card-blue">
+    <h4>From MacroFactor</h4>
+    <p>Simplicity wins. Friction is the enemy of tracking adherence. The adaptive algorithm (adjusting targets based on actual data) is the model for how Cipher&rsquo;s AI should work &mdash; learn from the participant&rsquo;s real results, not just initial assumptions.</p>
+  </div>
+
+  <h3>Anti-Patterns to Avoid</h3>
+
+  <div class="caution-box">
+    <strong>Traps</strong>
+    <strong style="display:inline; font-size:14px; text-transform:none; letter-spacing:0; font-family:'Inter',sans-serif;">Finch trap:</strong> gamification that becomes the goal instead of the behavior<br>
+    <strong style="display:inline; font-size:14px; text-transform:none; letter-spacing:0; font-family:'Inter',sans-serif;">Calm trap:</strong> monetization that degrades the core experience<br>
+    <strong style="display:inline; font-size:14px; text-transform:none; letter-spacing:0; font-family:'Inter',sans-serif;">Levels trap:</strong> requiring multiple apps for one workflow<br>
+    <strong style="display:inline; font-size:14px; text-transform:none; letter-spacing:0; font-family:'Inter',sans-serif;">PN trap:</strong> one-size curriculum with no personalization or data integration
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: THREE-TIER PRODUCT MODEL
+     ══════════════════════════════════════ -->
+<div class="section" id="three-tier-model">
+  <div class="section-header">
+    <span class="section-marker marker-coral">Product</span>
+    <h2>Three-Tier Product Model</h2>
+  </div>
+
+  <div class="tier-grid">
+    <!-- TIER 1 -->
+    <div class="tier-card">
+      <div class="tier-card-header tc-green">
+        <div class="tier-name">Tier 1</div>
+        <h3>Self-Serve Platform</h3>
+        <div class="tier-price">Freemium</div>
+      </div>
+      <div class="tier-card-body">
+        <h4>Free</h4>
+        <ul>
+          <li>Health data aggregation (connect all wearables, nutrition trackers, lab results)</li>
+          <li>Dashboard with cross-domain data views</li>
+          <li>Basic experiment engine (run experiments, track habits, log journal)</li>
+          <li>Skill tree visibility (see the map, navigate foundations)</li>
+          <li>Basic AI insights (weekly summary, simple trends)</li>
+        </ul>
+        <h4>Premium ($TBD/mo)</h4>
+        <ul>
+          <li>Advanced AI insights (correlations, anomaly detection, experiment reports)</li>
+          <li>Unlimited experiment history and library</li>
+          <li>Advanced skill tree (cross-domain experiments, full progression)</li>
+          <li>Data export and API access</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TIER 2 -->
+    <div class="tier-card">
+      <div class="tier-card-header tc-blue">
+        <div class="tier-name">Tier 2</div>
+        <h3>AI Coach</h3>
+        <div class="tier-price">$TBD/mo</div>
+      </div>
+      <div class="tier-card-body">
+        <h4>Everything in Premium, plus</h4>
+        <ul>
+          <li><strong>Proactive accountability</strong> &mdash; AI checks in on you. &ldquo;You haven&rsquo;t logged in 3 days &mdash; what&rsquo;s going on?&rdquo;</li>
+          <li><strong>Personalized experiment guidance</strong> &mdash; AI recommends next experiments based on your data, goals, and progression</li>
+          <li><strong>Real-time in-the-moment support</strong> &mdash; Text the AI coach anytime with context from YOUR data</li>
+          <li><strong>Adaptive engagement</strong> &mdash; AI adjusts touchpoint frequency based on your phase and behavior</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TIER 3 -->
+    <div class="tier-card">
+      <div class="tier-card-header tc-gold">
+        <div class="tier-name">Tier 3</div>
+        <h3>AI + Human Partner</h3>
+        <div class="tier-price">$1,200/mo</div>
+      </div>
+      <div class="tier-card-body">
+        <h4>Everything in AI Coach, plus</h4>
+        <ul>
+          <li><strong>Human health intelligence partner</strong> (Jordan, initially) for deep context, nuance, and relationship</li>
+          <li><strong>90-min diagnostic review call</strong> with human partner</li>
+          <li><strong>Weekly 45-min emergence review calls</strong></li>
+          <li><strong>Daily async check-ins</strong> with human partner (response within 12 hours)</li>
+          <li><strong>Human-reviewed experiment design</strong> and AI-generated reports with human interpretation layer</li>
+          <li><strong>The graduation promise</strong> &mdash; &ldquo;You ARE the emergent intelligence&rdquo;</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: WEEK-BY-WEEK EXPERIENCE
+     ══════════════════════════════════════ -->
+<div class="section" id="week-by-week">
+  <div class="section-header">
+    <span class="section-marker marker-blue">Experience</span>
+    <h2>Week-by-Week Experience: Month 1</h2>
+  </div>
+
+  <div class="note-box">
+    <strong>Scope Note</strong>
+    This maps the experience for the <strong>AI+Human tier</strong> (Tier 3), as it&rsquo;s the most complete. Tier 1 and 2 experiences are subsets &mdash; self-serve users follow the same experiment structure without the human layer; AI Coach users get the AI touchpoints without the human calls.
+  </div>
+
+  <!-- ── PRE-WEEK 1 ── -->
+  <div id="pre-week-1">
+    <div class="week-header">
+      <span class="week-badge week-badge-green">Pre-Week 1</span>
+      <h3>Onboarding (Days -7 to 0)</h3>
+    </div>
+
+    <p class="week-focus">Trigger: User signs up (free) or pays (Tier 2/3)</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Experience</th>
+            <th>Product Surface</th>
+            <th>AI</th>
+            <th>Human (Tier 3)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Welcome email with login link</td>
+            <td>Transactional email</td>
+            <td>&mdash;</td>
+            <td>Notified of new participant</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>First login &rarr; onboarding flow</td>
+            <td>Guided setup: profile, goals, current state quick-assessment</td>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Connect data sources</td>
+            <td>OAuth flows: wearables, nutrition trackers, Apple Health</td>
+            <td>Begins historical data backfill</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Diagnostic intake assessment</td>
+            <td>Multi-section form (from diagnostic-framework.md) &mdash; maps current state across all domains</td>
+            <td>Processes responses, generates initial skill tree placement</td>
+            <td>Reviews intake, annotates</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Upload labs/bloodwork (if available)</td>
+            <td>File upload &rarr; Cloud Storage</td>
+            <td>Extracts key markers</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Dashboard populates</td>
+            <td>Data appears as backfill completes</td>
+            <td>Calculates baselines across all connected sources</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Skill tree reveals</td>
+            <td>Assessment results map to recommended starting point in skill tree</td>
+            <td>Generates personalized recommendations: &ldquo;Based on your data and goals, here&rsquo;s where I&rsquo;d start&rdquo;</td>
+            <td>&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>What They Feel</strong>
+      &ldquo;I connected everything and now I can see ALL my health data in one place. The assessment told me where I am across every domain. And there&rsquo;s a clear map of where I could go.&rdquo;
+    </div>
+  </div>
+
+  <!-- ── WEEK 1 ── -->
+  <div id="week-1">
+    <div class="week-header">
+      <span class="week-badge week-badge-blue">Week 1</span>
+      <h3>Assessment, Orientation &amp; First Experiment Selection</h3>
+    </div>
+
+    <p class="week-focus">Focus: Understand the ecosystem. Choose a path. Begin.</p>
+
+    <h4>All Tiers: Self-Directed Discovery</h4>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Experience</th>
+            <th>What They See</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1-2</td>
+            <td>Explore the dashboard. See data from all connected sources in one view for the first time.</td>
+            <td>Overnight sleep data synced. Historical trends calculated. &ldquo;Your average deep sleep over the last 30 days is 1h12m. Your HRV baseline is 42ms.&rdquo;</td>
+          </tr>
+          <tr>
+            <td>2-3</td>
+            <td>Explore the skill tree. See the full map of health domains and where the assessment placed them.</td>
+            <td>Recommended starting domain highlighted. Foundation experiments visible. &ldquo;Based on your assessment, Sleep foundations are your highest-leverage starting point. But you choose.&rdquo;</td>
+          </tr>
+          <tr>
+            <td>3-4</td>
+            <td><strong>Choose first experiment.</strong> Browse available experiments in their chosen domain. Read the hypothesis, protocol, what gets measured. Select one.</td>
+            <td>Experiment card: hypothesis, daily protocol (specific actions), metrics being tracked, duration (4 weeks), what success looks like.</td>
+          </tr>
+          <tr>
+            <td>5-7</td>
+            <td>Experiment activates. Baseline period may start. Dashboard updates to show active experiment status.</td>
+            <td>&ldquo;Experiment active: Consistent Sleep Schedule. Day 1 of 28. Today&rsquo;s focus: bed by 10:30pm.&rdquo;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Tier 3 Addition: Diagnostic Review Call</h4>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>When</th>
+            <th>What</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Day 3-4</strong></td>
+            <td><strong>90-min diagnostic review call.</strong> Jordan walks through the intake, asks follow-ups, shares observations from the backfilled data, identifies patterns together. Validates or adjusts the skill tree placement. Discusses experiment selection.</td>
+          </tr>
+          <tr>
+            <td><strong>Before call</strong></td>
+            <td>AI generates pre-call briefing for Jordan: key data points, intake highlights, suggested areas to probe, draft observations.</td>
+          </tr>
+          <tr>
+            <td><strong>After call</strong></td>
+            <td>Diagnostic summary published to Library within 24 hours. Assessment refined based on conversation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>What They Feel (Self-Serve)</strong>
+      &ldquo;I can see the whole map. I chose where to start. The experiment is clear &mdash; I know exactly what to do and what we&rsquo;re measuring.&rdquo;
+    </div>
+
+    <div class="gold-box">
+      <strong>What They Feel (Tier 3)</strong>
+      &ldquo;Someone looked at ALL my data together and found patterns I missed. And they helped me understand why this starting point makes sense for ME.&rdquo;
+    </div>
+  </div>
+
+  <!-- ── WEEK 2 ── -->
+  <div id="week-2">
+    <div class="week-header">
+      <span class="week-badge week-badge-green">Week 2</span>
+      <h3>Experiment in Motion</h3>
+    </div>
+
+    <p class="week-focus">Focus: Build the daily rhythm. The product teaches itself.</p>
+
+    <h4>Daily Experience (Adaptive &mdash; Onboarding Phase)</h4>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Touchpoint</th>
+            <th>What They See</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Morning</strong></td>
+            <td>Push/email: Morning Signal</td>
+            <td>&ldquo;Good morning. Sleep score: 78. Deep sleep: 1h28m (&uarr;12% vs. baseline). HRV: 45ms. Today&rsquo;s experiment focus: lights out by 10:30pm.&rdquo;</td>
+          </tr>
+          <tr>
+            <td><strong>Midday</strong></td>
+            <td>Optional prompt (first 2 weeks only)</td>
+            <td>&ldquo;Quick check &mdash; energy level right now?&rdquo; (1-5 tap)</td>
+          </tr>
+          <tr>
+            <td><strong>Evening</strong></td>
+            <td>Journal prompt</td>
+            <td>&ldquo;How was today? Anything that affected your experiment?&rdquo; (free text + optional ratings: energy, stress, mood)</td>
+          </tr>
+          <tr>
+            <td><strong>Background</strong></td>
+            <td>Data syncs continuously</td>
+            <td>Dashboard updates with new data. Experiment progress bar advances.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Tier 2 Addition: AI Coach Check-ins</h4>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Trigger</th>
+            <th>AI Coach Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3 days of good adherence</td>
+            <td>&ldquo;Three days in and your sleep consistency is already improving. The hardest part of a new experiment is the first week &mdash; you&rsquo;re through it.&rdquo;</td>
+          </tr>
+          <tr>
+            <td>Anomaly detected</td>
+            <td>&ldquo;Your HRV dropped 20% last night. Anything happen yesterday? Late meal, stress, alcohol? This doesn&rsquo;t mean the experiment isn&rsquo;t working &mdash; just worth noting.&rdquo;</td>
+          </tr>
+          <tr>
+            <td>Missed journal entry</td>
+            <td>&ldquo;No journal entry yesterday &mdash; no big deal. But the evening entries help me give you better insights. Quick one tonight?&rdquo;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Tier 3 Addition: Human Layer</h4>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>What</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Daily async</strong></td>
+            <td>Jordan responds to check-ins, adds context the AI can&rsquo;t see. &ldquo;Saw your HRV drop &mdash; you mentioned a big presentation this week. Stress response is real. Don&rsquo;t change the protocol, just note it.&rdquo;</td>
+          </tr>
+          <tr>
+            <td><strong>Week 2 sync call (45 min)</strong></td>
+            <td>Check in on experiment experience. Review early data together. Troubleshoot obstacles. Adjust protocol if needed.</td>
+          </tr>
+          <tr>
+            <td><strong>Jordan&rsquo;s briefing (from AI)</strong></td>
+            <td>&ldquo;Sleep consistency: 5/7 nights within target. Deep sleep trending up but noisy. HRV: stable. Subjective energy: improving. Adherence: strong. Suggested talking point: the late Friday night &mdash; explore weekend patterns.&rdquo;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>What They Feel</strong>
+      &ldquo;The app knows what I&rsquo;m working on and shows me what matters. I&rsquo;m starting to see patterns in my own data. This is becoming part of my morning routine.&rdquo;
+    </div>
+  </div>
+
+  <!-- ── WEEK 3 ── -->
+  <div id="week-3">
+    <div class="week-header">
+      <span class="week-badge week-badge-gold">Week 3</span>
+      <h3>Midpoint &mdash; Signal or Noise?</h3>
+    </div>
+
+    <p class="week-focus">Focus: First real data check. Is the experiment working? Adjust or hold.</p>
+
+    <h4>All Tiers: Midpoint Report</h4>
+
+    <p>The AI generates a midpoint analysis that appears in the Experiments view:</p>
+
+    <div class="code-block"><span class="code-gold">MIDPOINT REPORT:</span> Consistent Sleep Schedule
+<span class="code-comment">Day 14 of 28</span>
+
+<span class="code-blue">METRICS VS. BASELINE</span>
+&#9500;&#9472; Sleep consistency: 82% (was 54%) .............. <span class="code-green">&uarr;&uarr;</span>
+&#9500;&#9472; Avg deep sleep: 1h22m (was 1h12m) ............ <span class="code-green">&uarr;</span>
+&#9500;&#9472; Sleep onset latency: 18min (was 34min) ........ <span class="code-green">&uarr;&uarr;</span>
+&#9500;&#9472; HRV trend: +8% (not yet significant) .......... <span class="code-copper">&rarr;</span>
+&#9492;&#9472; Subjective energy (self-reported): 3.8 (was 3.1) <span class="code-green">&uarr;</span>
+
+<span class="code-gold">PATTERN DETECTED</span>
+<span class="code-green">&ldquo;Your deep sleep is highest on days when you journal before bed
+AND have no screen time after 9pm. This combination occurred 5
+of 14 nights, and deep sleep averaged 1h38m vs. 1h14m on other
+nights.&rdquo;</span>
+
+<span class="code-blue">RECOMMENDATION</span>
+Hold steady. Signal is emerging but needs more data. The
+consistency improvement is strong. Consider noting screen time
+in your journal to build more data on the pattern above.</div>
+
+    <h4>Tier 2: AI Coach Midpoint</h4>
+
+    <div class="card card-blue">
+      <p>&ldquo;Two weeks in &mdash; here&rsquo;s what I&rsquo;m seeing. Your sleep consistency jumped from 54% to 82%. That&rsquo;s significant. The deep sleep improvement is real but still noisy. I noticed something interesting: on nights you journal AND avoid screens after 9pm, your deep sleep is 20% higher. Worth paying attention to &mdash; but don&rsquo;t change the protocol yet. Let the data build.&rdquo;</p>
+    </div>
+
+    <h4>Tier 3: Midpoint Sync Call (30-45 min)</h4>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>What</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Review</strong></td>
+            <td>Walk through midpoint data together. Share the AI-generated patterns. Jordan adds context.</td>
+          </tr>
+          <tr>
+            <td><strong>Decision</strong></td>
+            <td>Continue as-is, modify protocol, or note the emerging screen time pattern for the NEXT experiment.</td>
+          </tr>
+          <tr>
+            <td><strong>Key question</strong></td>
+            <td>&ldquo;Is this experiment answering the question we asked? Are we seeing signal or noise?&rdquo;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>What They Feel</strong>
+      &ldquo;I can actually see the data shifting. And that pattern about journaling + no screens &mdash; I wouldn&rsquo;t have seen that on my own. But now that I see it, it makes total sense.&rdquo;
+    </div>
+  </div>
+
+  <!-- ── WEEK 4 ── -->
+  <div id="week-4">
+    <div class="week-header">
+      <span class="week-badge week-badge-coral">Week 4</span>
+      <h3>First Emergence Review</h3>
+    </div>
+
+    <p class="week-focus">Focus: What emerged? What did we learn? What&rsquo;s next on the skill tree?</p>
+
+    <h4>All Tiers: Experiment Report</h4>
+
+    <p>AI generates a comprehensive experiment report:</p>
+
+    <div class="code-block"><span class="code-gold">EXPERIMENT COMPLETE:</span> Consistent Sleep Schedule
+<span class="code-comment">28 days | Sleep Domain, Level 1</span>
+
+<span class="code-blue">HYPOTHESIS:</span> <span class="code-copper">&ldquo;Maintaining a consistent bedtime (&plusmn;30min) will
+improve deep sleep duration and next-day energy.&rdquo;</span>
+
+<span class="code-green">RESULT: SUPPORTED &#10003;</span>
+
+<span class="code-blue">KEY METRICS</span>
+&#9500;&#9472; Sleep consistency: 54% &rarr; 79% .................. <span class="code-green">+46%</span>
+&#9500;&#9472; Avg deep sleep: 1h12m &rarr; 1h26m ................ <span class="code-green">+19%</span>
+&#9500;&#9472; Sleep onset latency: 34min &rarr; 19min ............ <span class="code-green">-44%</span>
+&#9500;&#9472; HRV 7-day avg: 42ms &rarr; 47ms ................... <span class="code-green">+12%</span>
+&#9492;&#9472; Subjective energy: 3.1 &rarr; 3.9 ................. <span class="code-green">+26%</span>
+
+<span class="code-gold">EMERGENT PATTERNS</span> <span class="code-comment">(not in original hypothesis)</span>
+1. Screen cutoff + journaling combination correlates with
+   highest deep sleep nights (1h38m avg, n=9)
+2. Weekend consistency dropped to 62% vs. weekday 87% &mdash;
+   weekend routine is the weak link
+3. HRV improvement lagged sleep improvement by ~10 days &mdash;
+   recovery adapts slower than sleep architecture
+
+<span class="code-blue">SKILL TREE UPDATE</span>
+<span class="code-green">&#10003; Sleep L1: Consistent Schedule &mdash; COMPLETE</span>
+<span class="code-gold">UNLOCKED:</span>
+   &#9500;&#9472; Sleep L2a: Screen Protocol <span class="code-comment">(builds on Pattern #1)</span>
+   &#9500;&#9472; Sleep L2b: Temperature Optimization
+   &#9500;&#9472; Sleep L2c: Light Exposure Timing
+   &#9492;&#9472; Cross-domain: Caffeine &times; Sleep <span class="code-comment">[available if Nutrition L1 complete]</span>
+
+<span class="code-copper">NEXT EXPERIMENT OPTIONS</span>
+Based on your data, emergent patterns, and progression:
+  &rarr; Screen Protocol <span class="code-green">(recommended &mdash; builds on discovered pattern)</span>
+  &rarr; Temperature Optimization
+  &rarr; Switch domain: start Nutrition L1 or Movement L1</div>
+
+    <h4>All Tiers: Reflection Prompt</h4>
+
+    <p>Before viewing the full report, the Journal prompts:</p>
+
+    <ul>
+      <li>&ldquo;What did you notice during this experiment?&rdquo;</li>
+      <li>&ldquo;What surprised you?&rdquo;</li>
+      <li>&ldquo;What do you want to explore next?&rdquo;</li>
+    </ul>
+
+    <div class="note-box">
+      <strong>Design Intent</strong>
+      Their reflection is captured BEFORE they see the AI analysis &mdash; preserving their own sense-making as the primary intelligence, with AI as validation and expansion.
+    </div>
+
+    <h4>Tier 2: AI Coach Emergence Review</h4>
+
+    <div class="card card-blue">
+      <p>&ldquo;Your first experiment is complete &mdash; and the data tells a clear story. Consistent bedtime worked. Deep sleep up 19%, energy up 26%. But here&rsquo;s what&rsquo;s really interesting: the AI found a pattern you might have noticed too. On nights when you journaled AND cut screens after 9pm, your deep sleep was 20% higher than other nights. That&rsquo;s a strong signal. Your skill tree just unlocked three new experiments in Sleep. My recommendation: Screen Protocol &mdash; it builds directly on the pattern we discovered. But it&rsquo;s your call. What resonates?&rdquo;</p>
+    </div>
+
+    <h4>Tier 3: Emergence Review Call (45-60 min)</h4>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Duration</th>
+            <th>What</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Participant reflection</strong></td>
+            <td>10 min</td>
+            <td>&ldquo;What did YOU notice? What surprised you?&rdquo; &mdash; their intelligence first</td>
+          </tr>
+          <tr>
+            <td><strong>Results</strong></td>
+            <td>15 min</td>
+            <td>Walk through the experiment report. Validate their observations against data.</td>
+          </tr>
+          <tr>
+            <td><strong>Emergence</strong></td>
+            <td>15 min</td>
+            <td>What emerged that wasn&rsquo;t in the hypothesis? The screen + journal pattern. The weekend gap. The HRV lag. Connections across domains.</td>
+          </tr>
+          <tr>
+            <td><strong>Skill tree</strong></td>
+            <td>10 min</td>
+            <td>Review unlocked experiments. Discuss options. They choose next direction.</td>
+          </tr>
+          <tr>
+            <td><strong>Close</strong></td>
+            <td>5 min</td>
+            <td>Updated baselines. New experiment queued. The cycle continues.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>What They Feel</strong>
+      &ldquo;I didn&rsquo;t just follow a protocol and get told if it worked. I watched intelligence emerge from my own data. I discovered a pattern about myself &mdash; screens + journaling &mdash; that nobody prescribed. And now I can see my skill tree expanding. I know where I&rsquo;ve been, where I am, and where I could go next.&rdquo;
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: PRODUCT LESSONS
+     ══════════════════════════════════════ -->
+<div class="section" id="product-lessons">
+  <div class="section-header">
+    <span class="section-marker marker-copper">Intelligence</span>
+    <h2>Product Lessons from the Field</h2>
+  </div>
+
+  <p class="pillar-intro">Synthesized from Jordan&rsquo;s direct experience with these products. These lessons inform every product decision.</p>
+
+  <!-- Precision Nutrition -->
+  <div class="lesson-card" style="border-left: 4px solid var(--green);">
+    <h4>Precision Nutrition Pro Coach</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Habit sequencing &mdash; master mindfulness &rarr; master environment &rarr; master each nutrition area (protein, vegetables, fruits, smart carbs, healthy fats) &rarr; tactical practices. The progressive layering was sound. Daily check-ins created rhythm. Habit chaining built real foundation.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>The sequencing principle. Foundation habits before complex ones. A clear progression path. Daily check-in rhythm.</p>
+    <div class="lesson-sub">What Cipher fixes</div>
+    <ul>
+      <li>No data integration &mdash; PN was entirely self-report and pre-written curriculum</li>
+      <li>No personalization &mdash; everyone got the same sequence regardless of starting point</li>
+      <li>Thin coach experience &mdash; coaches flew blind between check-ins</li>
+      <li>No emergent learning &mdash; knowledge was delivered, not discovered</li>
+      <li>Graduation was hollow &mdash; just ran out of lessons, not a mastery moment</li>
+      <li>Single domain &mdash; nutrition and exercise only, not whole health</li>
+    </ul>
+    <div class="lesson-sub">Cipher&rsquo;s model</div>
+    <p>Same progressive sequencing principle, but with a Montessori-style decision tree across ALL health domains, informed by real data, where the curriculum emerges from the participant&rsquo;s own experiments.</p>
+  </div>
+
+  <!-- Oura -->
+  <div class="lesson-card" style="border-left: 4px solid var(--blue);">
+    <h4>Oura</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Readiness score as a single synthesized signal. Sleep staging visualization makes complex data intuitive. Long-term trend views reveal patterns invisible day-to-day. Best-in-class passive data collection.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>Synthesized scores. Intuitive data visualization. Trend-over-time as the primary analytical lens.</p>
+    <div class="lesson-sub">What Cipher fixes</div>
+    <p>No coach or accountability layer beyond social circles. No experiment framework &mdash; just data display. No cross-domain synthesis.</p>
+  </div>
+
+  <!-- Levels -->
+  <div class="lesson-card" style="border-left: 4px solid var(--coral);">
+    <h4>Levels (CGM)</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Real-time feedback loops &mdash; seeing glucose spike after a meal creates the fastest behavioral learning loop in health tech. Food + glucose overlay is an experiment built into the UX.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>Immediate cause-and-effect feedback when data supports it. The &ldquo;experiment you don&rsquo;t know you&rsquo;re running&rdquo; UX pattern.</p>
+    <div class="lesson-sub">What Cipher fixes</div>
+    <p>Overly complicated UI. Multi-app friction (CGM app + Levels app + food logger). No micronutrient data or cross-tracker synthesis. Hardware reliability issues broke the habit loop.</p>
+  </div>
+
+  <!-- MacroFactor -->
+  <div class="lesson-card" style="border-left: 4px solid var(--gold);">
+    <h4>MacroFactor</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Simplicity wins. Fast food logging is the #1 predictor of adherence. Adaptive algorithm that adjusts targets based on actual weight trends &mdash; the system learns from YOUR data, not just initial assumptions.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>Friction is the enemy. Adaptive algorithms that learn from real results. The principle that a system should get smarter the more you use it.</p>
+    <div class="lesson-sub">What Cipher fixes</div>
+    <p>Quick-track should be camera/voice-first, not buried behind clicks. The future is ambient capture (AR glasses + voice confirmation).</p>
+  </div>
+
+  <!-- Rise Sleep -->
+  <div class="lesson-card" style="border-left: 4px solid var(--copper);">
+    <h4>Rise Sleep</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Best-in-class personalized daily insights tied to YOUR data. Energy level waves throughout the day with suggestions on bedtimes. Customized per-day insights. Shows how your current sleep is affecting health and performance RIGHT NOW.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>The energy wave visualization model. Personalized, time-specific insights. Making data personally actionable (&ldquo;your energy will dip at 2pm &mdash; nap window&rdquo;).</p>
+  </div>
+
+  <!-- HiCoffee -->
+  <div class="lesson-card" style="border-left: 4px solid var(--green);">
+    <h4>HiCoffee</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Simple, specific, actionable. Shows ONE thing (caffeine half-life) mapped to YOUR schedule. A masterclass in making data personally useful without overwhelming.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>Every insight should aspire to this level of clarity and personal specificity.</p>
+  </div>
+
+  <!-- Finch -->
+  <div class="lesson-card" style="border-left: 4px solid var(--coral);">
+    <h4>Finch</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Best layered engagement loops &mdash; hourly, daily, weekly, monthly engagement tiers with escalating time investment. Creates sustained engagement across multiple timeframes.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>Multi-layered engagement loops. Different cadences for different purposes.</p>
+    <div class="lesson-sub">What Cipher fixes</div>
+    <p>The gamification became the goal. Users optimized their Finch pet instead of their actual behavior. The virtual pet was more compelling than the habits it was supposed to support. <strong>Cipher&rsquo;s engagement loops must always point back to the experiment and the real data.</strong> The skill tree IS the game &mdash; but the rewards are real insights about your body, not virtual achievements.</p>
+  </div>
+
+  <!-- Calm -->
+  <div class="lesson-card" style="border-left: 4px solid var(--gold);">
+    <h4>Calm</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Progressive skill building. Streaks create consistency. The daily Calm meditation created ritual.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>Progressive difficulty. Streak mechanics for consistency (used sparingly). Ritual-quality daily touchpoints.</p>
+    <div class="lesson-sub">What Cipher fixes</div>
+    <p>Monetization corrupted the experience. Every new feature became a paywall. Users wanted a simple timer with light guidance and sounds &mdash; Calm tried to sell guided meditations instead. <strong>Cipher&rsquo;s free tier must feel genuinely generous.</strong></p>
+  </div>
+
+  <!-- Bevel Health -->
+  <div class="lesson-card" style="border-left: 4px solid var(--blue);">
+    <h4>Bevel Health</h4>
+    <div class="lesson-sub">What worked</div>
+    <p>Closest to Cipher&rsquo;s data aggregation vision. Synthesizes across wearables and biomarkers into a unified health view &mdash; the synthesis layer most products lack.</p>
+    <div class="lesson-sub">What Cipher takes</div>
+    <p>The data synthesis model. Multi-source aggregation as the foundation.</p>
+    <div class="lesson-sub">What Cipher adds</div>
+    <p>AI-enabled coaching layer on top. Bevel is the data &mdash; Cipher is the data + the intelligence + the experiment engine + the coach.</p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: BUILD VS BUY
+     ══════════════════════════════════════ -->
+<div class="section" id="build-vs-buy">
+  <div class="section-header">
+    <span class="section-marker marker-blue">Decisions</span>
+    <h2>Build vs. Buy Decisions</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Decision</th>
+          <th>Tool / Approach</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Platform (frontend)</strong></td>
+          <td><span class="badge badge-coral">Build</span></td>
+          <td>React SPA on Firebase Hosting (coded.health)</td>
+          <td>Core product &mdash; must feel like Cipher</td>
+        </tr>
+        <tr>
+          <td><strong>API / backend</strong></td>
+          <td><span class="badge badge-coral">Build</span></td>
+          <td>FastAPI on Cloud Run (api.coded.health)</td>
+          <td>Already architected in GCP plan</td>
+        </tr>
+        <tr>
+          <td><strong>Data ingestion</strong></td>
+          <td><span class="badge badge-coral">Build</span></td>
+          <td>Open Wearables core + extended connectors</td>
+          <td>The data platform foundation</td>
+        </tr>
+        <tr>
+          <td><strong>AI intelligence layer</strong></td>
+          <td><span class="badge badge-coral">Build</span></td>
+          <td>Claude API via FastAPI workers</td>
+          <td>Cipher&rsquo;s moat &mdash; emergent intelligence engine</td>
+        </tr>
+        <tr>
+          <td><strong>Experiment engine</strong></td>
+          <td><span class="badge badge-coral">Build</span></td>
+          <td>Custom &mdash; skill tree, experiment tracker, progression system</td>
+          <td>Core product differentiator</td>
+        </tr>
+        <tr>
+          <td><strong>Auth</strong></td>
+          <td><span class="badge badge-green">Build (existing)</span></td>
+          <td>Open Wearables OAuth2 + session management</td>
+          <td>Already built</td>
+        </tr>
+        <tr>
+          <td><strong>Database</strong></td>
+          <td><span class="badge badge-blue">GCP</span></td>
+          <td>Cloud SQL PostgreSQL</td>
+          <td>Health data stays in your GCP org</td>
+        </tr>
+        <tr>
+          <td><strong>Payments</strong></td>
+          <td><span class="badge badge-gold">Buy</span></td>
+          <td>Stripe</td>
+          <td>Industry standard, API-first</td>
+        </tr>
+        <tr>
+          <td><strong>Scheduling</strong></td>
+          <td><span class="badge badge-gold">Buy</span></td>
+          <td>Cal.com (open-source, API-first)</td>
+          <td>Best-in-class, self-hostable later</td>
+        </tr>
+        <tr>
+          <td><strong>Email / notifications</strong></td>
+          <td><span class="badge badge-gold">Buy</span></td>
+          <td>Resend or Postmark</td>
+          <td>Transactional email, commodity</td>
+        </tr>
+        <tr>
+          <td><strong>Video calls</strong></td>
+          <td><span class="badge badge-gold">Buy</span></td>
+          <td>Zoom / Google Meet via Cal.com</td>
+          <td>Not worth building</td>
+        </tr>
+        <tr>
+          <td><strong>File storage</strong></td>
+          <td><span class="badge badge-blue">GCP</span></td>
+          <td>Cloud Storage</td>
+          <td>Lab results, exports, reports</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: DATA SOURCES
+     ══════════════════════════════════════ -->
+<div class="section" id="data-sources">
+  <div class="section-header">
+    <span class="section-marker marker-green">Integrations</span>
+    <h2>Data Sources &amp; Integrations</h2>
+  </div>
+
+  <p>Cipher is the health data hub. If it generates health-relevant data and has an API or export, Cipher should ingest it.</p>
+
+  <h3>Priority 1: Wearable &amp; Activity Data</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Data</th>
+          <th>Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Oura</td><td>Sleep stages, HRV, readiness, temperature, activity</td><td>Open Wearables (existing)</td></tr>
+        <tr><td>Whoop</td><td>Strain, recovery, sleep, HRV</td><td>Open Wearables (existing)</td></tr>
+        <tr><td>Apple Watch / Apple Health</td><td>Activity, heart rate, workouts, sleep, all HealthKit data</td><td>Open Wearables (existing)</td></tr>
+        <tr><td>Garmin</td><td>Training load, body battery, sleep, HRV, VO2 max</td><td>Open Wearables (existing)</td></tr>
+        <tr><td>Eight Sleep</td><td>Sleep temperature, bed presence, sleep stages</td><td>API integration</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Priority 2: Nutrition &amp; Metabolic</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Data</th>
+          <th>Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>MacroFactor</td><td>Macros, calories, meal timing, weight trends</td><td>API or export</td></tr>
+        <tr><td>Cronometer</td><td>Macros, micronutrients, meal timing</td><td>API or export</td></tr>
+        <tr><td>Levels / Nutrisense / CGM</td><td>Continuous glucose, meal responses</td><td>API integration</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Priority 3: Labs &amp; Biomarkers</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Data</th>
+          <th>Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Bevel Health</td><td>Aggregated biomarkers, trends</td><td>API if available</td></tr>
+        <tr><td>Quest / Labcorp</td><td>Blood panels, metabolic markers</td><td>PDF upload + AI extraction</td></tr>
+        <tr><td>InsideTracker / Function Health</td><td>Comprehensive biomarker panels</td><td>API or export</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Priority 4: Subjective &amp; Behavioral</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Data</th>
+          <th>Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Cipher Journal (native)</td><td>Energy, mood, stress, free text</td><td>Built-in</td></tr>
+        <tr><td>Calm / Headspace</td><td>Meditation minutes, streak</td><td>API if available</td></tr>
+        <tr><td>Rise Sleep</td><td>Sleep debt, energy schedule</td><td>API if available</td></tr>
+        <tr><td>HiCoffee</td><td>Caffeine intake, timing</td><td>Manual or API</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Priority 5: Environment &amp; Context</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Data</th>
+          <th>Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Location / weather</td><td>Temperature, sunlight hours, travel</td><td>API (weather) + device</td></tr>
+        <tr><td>Calendar</td><td>Meeting load, schedule density</td><td>Google Calendar API</td></tr>
+        <tr><td>Screen time</td><td>Device usage patterns</td><td>Apple Screen Time export</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: ONE-MONTH BUILD SCOPE
+     ══════════════════════════════════════ -->
+<div class="section" id="build-scope">
+  <div class="section-header">
+    <span class="section-marker marker-coral">Build Plan</span>
+    <h2>One-Month Build Scope</h2>
+  </div>
+
+  <p>Target: <strong>April 14, 2026</strong>. One month to beta-ready self-serve platform. This requires ruthless focus on what makes Cipher useful on day one, with architecture that supports the full vision.</p>
+
+  <!-- Week 1 -->
+  <div class="week-header">
+    <span class="week-badge week-badge-blue">Build Week 1</span>
+    <h3>Foundation (March 15-21)</h3>
+  </div>
+
+  <p class="week-focus">Goal: GCP infrastructure live. Data flowing. Auth working.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>What</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>GCP project setup</td><td>cipher-dev + cipher-shared-assets per architecture plan</td></tr>
+        <tr><td>2</td><td>CI/CD pipeline</td><td>GitHub &rarr; Cloud Run auto-deploy on merge to main</td></tr>
+        <tr><td>3</td><td>Auth system</td><td>Sign up, login, session management. Extend Open Wearables auth or build on Firebase Auth.</td></tr>
+        <tr><td>4</td><td>Wearable OAuth connections</td><td>Connect Oura, Apple Health, Garmin, Whoop via Open Wearables</td></tr>
+        <tr><td>5</td><td>Data pipeline</td><td>Ingestion &rarr; processing &rarr; Cloud SQL. Historical backfill working.</td></tr>
+        <tr><td>6</td><td>Database schema</td><td>Users, data sources, health metrics, experiments, journal entries, skill tree state</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Week 2 -->
+  <div class="week-header">
+    <span class="week-badge week-badge-green">Build Week 2</span>
+    <h3>Core Experience (March 22-28)</h3>
+  </div>
+
+  <p class="week-focus">Goal: A user can sign up, connect data, see their dashboard, and start an experiment.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>What</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>7</td><td>Onboarding flow</td><td>Guided setup: profile &rarr; connect sources &rarr; quick assessment &rarr; skill tree reveal</td></tr>
+        <tr><td>8</td><td>Dashboard</td><td>At-a-glance health signals. Sleep, HRV, recovery, active experiment. Inspired by Rise&rsquo;s clarity + Oura&rsquo;s synthesis.</td></tr>
+        <tr><td>9</td><td>Signals view (MVP)</td><td>Trend charts for connected data sources. Sleep trends, HRV trends, activity. Not cross-domain correlations yet &mdash; that&rsquo;s AI layer.</td></tr>
+        <tr><td>10</td><td>Diagnostic assessment</td><td>Streamlined version of the 7-part intake. Maps current state across domains. Generates skill tree placement.</td></tr>
+        <tr><td>11</td><td>Skill tree (visual)</td><td>The map. Show domains, foundation experiments, locked/unlocked state. Navigation.</td></tr>
+        <tr><td>12</td><td>Experiment system (MVP)</td><td>Select experiment &rarr; activate &rarr; daily tracking &rarr; complete. Experiment card with hypothesis, protocol, metrics, daily log.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Week 3 -->
+  <div class="week-header">
+    <span class="week-badge week-badge-gold">Build Week 3</span>
+    <h3>Engagement Layer (March 29 - April 4)</h3>
+  </div>
+
+  <p class="week-focus">Goal: The daily experience works. Journal, notifications, AI insights (basic).</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>What</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>13</td><td>Journal</td><td>Daily check-in: energy/mood/stress ratings (1-5 tap) + free text. Mobile-friendly. Low friction.</td></tr>
+        <tr><td>14</td><td>Morning Signal</td><td>Daily notification/email: overnight data summary + today&rsquo;s experiment focus. Like Rise&rsquo;s energy forecast.</td></tr>
+        <tr><td>15</td><td>AI insights (basic)</td><td>Baseline calculations. Simple trend detection. &ldquo;Your deep sleep has increased 15% since your experiment started.&rdquo; Claude API for natural language summaries.</td></tr>
+        <tr><td>16</td><td>Midpoint + completion reports</td><td>Auto-generated experiment reports: metrics vs. baseline, simple visualizations.</td></tr>
+        <tr><td>17</td><td>Skill tree progression</td><td>Completing an experiment updates the tree. New nodes unlock. Cross-domain connections visible but locked until prerequisites met.</td></tr>
+        <tr><td>18</td><td>Stripe integration</td><td>Freemium sign-up (free). Premium + AI Coach tier payment flows.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Week 4 -->
+  <div class="week-header">
+    <span class="week-badge week-badge-coral">Build Week 4</span>
+    <h3>Polish + Beta Prep (April 5-14)</h3>
+  </div>
+
+  <p class="week-focus">Goal: Smooth enough to put real users on it.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>What</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>19</td><td>Responsive / mobile PWA</td><td>The daily experience (journal, morning signal, dashboard) must work on mobile.</td></tr>
+        <tr><td>20</td><td>Onboarding refinement</td><td>First-run experience smooth. Empty states handled. Loading states graceful.</td></tr>
+        <tr><td>21</td><td>Email system</td><td>Welcome email, experiment reminders, weekly digest template</td></tr>
+        <tr><td>22</td><td>Library (MVP)</td><td>Archive of completed experiments + their reports</td></tr>
+        <tr><td>23</td><td>Error handling + monitoring</td><td>Cloud Monitoring, error tracking. The basics.</td></tr>
+        <tr><td>24</td><td>Beta user testing</td><td>Onboard 3-5 beta users (friends, early believers). Collect feedback.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>What&rsquo;s Explicitly NOT in Month 1</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>When</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>AI Coach (Tier 2) &mdash; proactive check-ins, personalized guidance, real-time support</td><td>Month 2</td></tr>
+        <tr><td>AI+Human coaching features &mdash; briefings, session notes, admin dashboard</td><td>Month 2</td></tr>
+        <tr><td>Cross-domain correlation engine</td><td>Month 2-3</td></tr>
+        <tr><td>Nutrition tracker integrations (MacroFactor, Cronometer)</td><td>Month 2</td></tr>
+        <tr><td>Lab/bloodwork upload + AI extraction</td><td>Month 2</td></tr>
+        <tr><td>Advanced skill tree (cross-domain experiments)</td><td>Month 2-3</td></tr>
+        <tr><td>File upload (labs, bloodwork PDFs)</td><td>Month 2</td></tr>
+        <tr><td>Cal.com scheduling integration</td><td>Month 2 (Tier 3 only)</td></tr>
+        <tr><td>Native mobile app</td><td>Later</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: OPEN DECISIONS
+     ══════════════════════════════════════ -->
+<div class="section" id="open-decisions">
+  <div class="section-header">
+    <span class="section-marker marker-gold">Decisions</span>
+    <h2>Open Decisions</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Decision</th>
+          <th>Options</th>
+          <th>Leaning</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Frontend framework</strong></td>
+          <td>React SPA vs. Next.js</td>
+          <td>React SPA</td>
+          <td>Already in GCP plan. Firebase Hosting configured for it. SSR not needed for authenticated app.</td>
+        </tr>
+        <tr>
+          <td><strong>Charting library</strong></td>
+          <td>Recharts, Nivo, Observable Plot, D3</td>
+          <td>TBD</td>
+          <td>Need Rise-quality visualizations. Evaluate based on energy wave / trend chart needs.</td>
+        </tr>
+        <tr>
+          <td><strong>UI component library</strong></td>
+          <td>Tailwind + Headless UI, shadcn/ui, custom</td>
+          <td>TBD</td>
+          <td>Brand requires custom feel but speed requires a foundation.</td>
+        </tr>
+        <tr>
+          <td><strong>AI provider</strong></td>
+          <td>Claude API</td>
+          <td>Claude</td>
+          <td>Already in ecosystem. Best for nuanced health analysis. Structured outputs for reports.</td>
+        </tr>
+        <tr>
+          <td><strong>Mobile strategy</strong></td>
+          <td>PWA (responsive web)</td>
+          <td>PWA for month 1</td>
+          <td>Journal + morning signal need mobile-friendly UX. Native app later if validated.</td>
+        </tr>
+        <tr>
+          <td><strong>Skill tree visualization</strong></td>
+          <td>Custom React component, D3, game engine</td>
+          <td>TBD</td>
+          <td>This is a UX-critical feature. Needs to feel like a game map, not a flowchart.</td>
+        </tr>
+        <tr>
+          <td><strong>Notification system</strong></td>
+          <td>Push notifications, email, in-app, SMS</td>
+          <td>Email + in-app for month 1</td>
+          <td>Push notifications require native app or PWA service worker setup.</td>
+        </tr>
+        <tr>
+          <td><strong>Freemium pricing</strong></td>
+          <td>Free tier limits, premium price point</td>
+          <td>TBD</td>
+          <td>Need to define exactly what&rsquo;s free vs. premium. Price discovery with beta users.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION: SUCCESS METRICS
+     ══════════════════════════════════════ -->
+<div class="section" id="success-metrics">
+  <div class="section-header">
+    <span class="section-marker marker-green">Metrics</span>
+    <h2>Success Metrics</h2>
+  </div>
+
+  <h3>Month 1 (Platform Beta)</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Platform functional</strong></td><td>User can sign up &rarr; connect wearables &rarr; see dashboard &rarr; run experiment &rarr; complete cycle</td></tr>
+        <tr><td><strong>Data flowing</strong></td><td>Continuous sync, &lt;1hr lag, dashboard populated within 24hr of connecting</td></tr>
+        <tr><td><strong>Experiment completion</strong></td><td>At least 1 beta user completes a full 4-week experiment cycle</td></tr>
+        <tr><td><strong>Daily engagement</strong></td><td>Beta users check dashboard 4+ days/week</td></tr>
+        <tr><td><strong>Journal adherence</strong></td><td>3+ entries/week by week 3</td></tr>
+        <tr><td><strong>Skill tree navigation</strong></td><td>Users can see, understand, and navigate the skill tree</td></tr>
+        <tr><td><strong>&ldquo;Aha&rdquo; moment</strong></td><td>At least 1 user reports an insight they wouldn&rsquo;t have had without Cipher</td></tr>
+        <tr><td><strong>Retention signal</strong></td><td>Beta users want to continue after month 1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Month 3 (AI Coach + Coaching Tiers Live)</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Freemium sign-ups</strong></td><td>50+ free users</td></tr>
+        <tr><td><strong>Premium conversion</strong></td><td>10%+ free &rarr; premium</td></tr>
+        <tr><td><strong>AI Coach subscribers</strong></td><td>5+ paying AI Coach tier users</td></tr>
+        <tr><td><strong>Human coaching clients</strong></td><td>3 beta participants at $897/mo</td></tr>
+        <tr><td><strong>Experiment completion rate</strong></td><td>70%+ of started experiments completed</td></tr>
+        <tr><td><strong>Cross-domain experiments</strong></td><td>Users running experiments that span 2+ domains</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>What This Replaces</h3>
+
+  <div class="card card-green" style="margin-top:16px;">
+    <ul style="padding-left:16px; margin:0;">
+      <li><s>Notion</s> &rarr; Built into the platform (Cloud SQL + React)</li>
+      <li><s>Spreadsheets</s> &rarr; Experiment tracker + skill tree + Signals view</li>
+      <li><s>Manual data review</s> &rarr; AI insights + anomaly detection</li>
+      <li><s>Generic coaching portal</s> &rarr; Purpose-built Cipher experience on coded.health</li>
+      <li><s>Apple Health as aggregator</s> &rarr; Cipher IS the health data hub</li>
+      <li><s>Multiple single-purpose apps</s> &rarr; One platform with the experiment as the organizing unit</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ── FOOTER ── -->
+<div class="guide-footer">
+  <span class="footer-wordmark">CIPHER</span>
+  <span class="footer-meta">Experience Map &amp; Product Vision &middot; March 2026 &middot; coded.health</span>
+</div>
+
+</main>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('open');
+  document.querySelector('.sidebar-overlay').classList.toggle('open');
+}
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('.section, [id]');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + entry.target.id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(section => {
+  if (section.id) observer.observe(section);
+});
+
+// Close sidebar on link click (mobile)
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 900) {
+      document.querySelector('.sidebar').classList.remove('open');
+      document.querySelector('.sidebar-overlay').classList.remove('open');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
